@@ -1,4 +1,5 @@
 import { useEffect, useId, useRef, useState, type FormEvent } from 'react';
+import { Link } from 'react-router-dom';
 import { Icon } from './Icon';
 
 export const subjects = [
@@ -208,9 +209,7 @@ export function ContactForm({ subject = '', defaultMessage = '', propertyRef, co
             <input type="checkbox" checked={values.consent} onChange={(e) => set('consent', e.target.checked)} {...fieldProps('consent')} />
             <span>
               J’accepte que NOVA IMMOBILIER utilise mes coordonnées pour me recontacter au sujet de ma demande. Voir la{' '}
-              <a href="/politique-de-confidentialite" target="_blank" rel="noopener">
-                politique de confidentialité
-              </a>
+              <Link to="/politique-de-confidentialite">politique de confidentialité</Link>
               .
             </span>
           </label>
