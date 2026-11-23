@@ -41,46 +41,48 @@ export function Header() {
   };
 
   return (
-    <header className={`site-header ${solid ? 'is-solid' : 'is-transparent'}`}>
-      <div className="container site-header__inner">
-        <Logo light={!solid} />
-
-        <nav className="main-nav" aria-label="Navigation principale">
-          <ul>
-            {navigation.map((item) => (
-              <li key={item.label}>
-                <NavLink to={item.to} className={() => `main-nav__link ${isActive(item.to) ? 'is-active' : ''}`}>
-                  {item.label}
-                </NavLink>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
-        <div className="site-header__actions">
-          <Link to="/favoris" className="icon-btn header-fav" aria-label={`Mes favoris (${favorites.length})`}>
-            <Icon name="heart" />
-            {favorites.length > 0 && <span className="header-fav__count">{favorites.length}</span>}
-          </Link>
-          <a href={agency.phoneHref} className="header-phone">
-            <Icon name="phone" size={16} />
-            <span>{agency.phone}</span>
-          </a>
-          <Link to="/contact" className="btn btn--primary btn--sm header-cta">
-            Nous contacter
-          </Link>
-          <button
-            type="button"
-            className="icon-btn menu-toggle"
-            aria-expanded={open}
-            aria-controls="mobile-nav"
-            aria-label={open ? 'Fermer le menu' : 'Ouvrir le menu'}
-            onClick={() => setOpen((o) => !o)}
-          >
-            <Icon name={open ? 'close' : 'menu'} size={22} />
-          </button>
+    <>
+      <header className={`site-header ${solid ? 'is-solid' : 'is-transparent'}`}>
+        <div className="container site-header__inner">
+          <Logo light={!solid} />
+  
+          <nav className="main-nav" aria-label="Navigation principale">
+            <ul>
+              {navigation.map((item) => (
+                <li key={item.label}>
+                  <NavLink to={item.to} className={() => `main-nav__link ${isActive(item.to) ? 'is-active' : ''}`}>
+                    {item.label}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+          </nav>
+  
+          <div className="site-header__actions">
+            <Link to="/favoris" className="icon-btn header-fav" aria-label={`Mes favoris (${favorites.length})`}>
+              <Icon name="heart" />
+              {favorites.length > 0 && <span className="header-fav__count">{favorites.length}</span>}
+            </Link>
+            <a href={agency.phoneHref} className="header-phone">
+              <Icon name="phone" size={16} />
+              <span>{agency.phone}</span>
+            </a>
+            <Link to="/contact" className="btn btn--primary btn--sm header-cta">
+              Nous contacter
+            </Link>
+            <button
+              type="button"
+              className="icon-btn menu-toggle"
+              aria-expanded={open}
+              aria-controls="mobile-nav"
+              aria-label={open ? 'Fermer le menu' : 'Ouvrir le menu'}
+              onClick={() => setOpen((o) => !o)}
+            >
+              <Icon name={open ? 'close' : 'menu'} size={22} />
+            </button>
+          </div>
         </div>
-      </div>
+      </header>
 
       <div id="mobile-nav" className={`mobile-nav ${open ? 'is-open' : ''}`} aria-hidden={!open}>
         <nav aria-label="Navigation mobile">
@@ -115,6 +117,6 @@ export function Header() {
           </div>
         </div>
       </div>
-    </header>
+    </>
   );
 }

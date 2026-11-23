@@ -26,9 +26,11 @@ export function useReveal() {
         }),
       { rootMargin: '0px 0px -6% 0px', threshold: 0.04 },
     );
+    const observed = new WeakSet<Element>();
     const scan = () =>
-      document.querySelectorAll('.reveal:not(.is-visible):not([data-observed])').forEach((el) => {
-        el.setAttribute('data-observed', '');
+      document.querySelectorAll('.reveal:not(.is-visible)').forEach((el) => {
+        if (observed.has(el)) return;
+        observed.add(el);
         io.observe(el);
       });
     scan();
