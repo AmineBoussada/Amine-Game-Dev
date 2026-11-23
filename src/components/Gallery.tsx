@@ -54,7 +54,7 @@ export function Gallery({ images, title }: { images: PropertyImage[]; title: str
           onClick={() => setLightbox(true)}
           aria-label={`Agrandir la photo ${index + 1} sur ${count}`}
         >
-          <SmartImage src={current.src} alt={current.alt} priority={index === 0} frameClassName="ratio-3-2" />
+          <SmartImage src={current.src} alt={current.alt} scene={current.scene} priority={index === 0} frameClassName="ratio-3-2" />
         </button>
         {count > 1 && (
           <>
@@ -86,7 +86,7 @@ export function Gallery({ images, title }: { images: PropertyImage[]; title: str
               className={`gallery__thumb ${i === index ? 'is-active' : ''}`}
               onClick={() => setIndex(i)}
             >
-              <SmartImage src={img.src.replace('w=1600', 'w=300')} alt="" frameClassName="ratio-4-3" />
+              <SmartImage src={img.src.replace('w=1600', 'w=300')} alt="" scene={img.scene} frameClassName="ratio-4-3" />
             </button>
           ))}
         </div>
@@ -106,7 +106,7 @@ export function Gallery({ images, title }: { images: PropertyImage[]; title: str
             <Icon name="close" size={24} />
           </button>
           <figure className="lightbox__figure">
-            <SmartImage src={current.src.replace('w=1600', 'w=2200')} alt={current.alt} priority frameClassName="lightbox__img" />
+            <SmartImage src={current.src.replace('w=1600', 'w=2200')} alt={current.alt} scene={current.scene} priority frameClassName="lightbox__img" />
             <figcaption>
               {current.alt} <span>· {index + 1} / {count}</span>
             </figcaption>

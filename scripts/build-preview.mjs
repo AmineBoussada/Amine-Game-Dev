@@ -2,7 +2,7 @@
 import { execSync } from 'node:child_process';
 import { readFileSync, readdirSync, writeFileSync } from 'node:fs';
 
-execSync('npx vite build --mode preview-single', { stdio: 'inherit', env: { ...process.env, VITE_HASH_ROUTER: 'true' } });
+execSync('npx vite build --mode preview-single', { stdio: 'inherit', env: { ...process.env, VITE_HASH_ROUTER: 'true', VITE_ILLUSTRATIONS_ONLY: 'true' } });
 const dir = 'dist-preview/assets';
 const files = readdirSync(dir);
 const js = readFileSync(`${dir}/${files.find((f) => f.endsWith('.js'))}`, 'utf8').replace(/<\/script/gi, '<\\/script');

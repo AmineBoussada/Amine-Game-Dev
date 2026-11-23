@@ -25,7 +25,7 @@ export default function About() {
       <section className="section">
         <div className="container about-teaser">
           <div className="about-teaser__media reveal">
-            <SmartImage src={about.image} alt="Intérieur contemporain lumineux" frameClassName="ratio-4-5" />
+            <SmartImage src={about.image} scene={about.scene} alt="Intérieur contemporain lumineux" frameClassName="ratio-4-5" />
           </div>
           <div className="about-teaser__content reveal reveal-delay-1">
             <span className="eyebrow">Notre mission</span>

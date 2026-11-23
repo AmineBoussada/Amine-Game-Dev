@@ -12,7 +12,7 @@ export function PropertyCard({ property: p, className = '' }: { property: Proper
     <article className={`property-card ${className}`}>
       <div className="property-card__media">
         <Link to={href} tabIndex={-1} aria-hidden="true">
-          <SmartImage src={p.images[0].src.replace('w=1600', 'w=900')} alt={p.images[0].alt} frameClassName="ratio-4-3" />
+          <SmartImage src={p.images[0].src.replace('w=1600', 'w=900')} alt={p.images[0].alt} scene={p.images[0].scene} frameClassName="ratio-4-3" />
         </Link>
         <span className={`badge badge--${p.transaction}`}>{transactionLabels[p.transaction]}</span>
         <FavoriteButton id={p.id} title={p.title} className="property-card__fav" />

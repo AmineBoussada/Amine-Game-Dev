@@ -1,3 +1,5 @@
+import type { Scene } from '../utils/illustrations';
+
 /**
  * Property model.
  * Mirrors the future WordPress Custom Post Type `property` and its custom fields
@@ -10,6 +12,8 @@ export type PropertyStatus = 'disponible' | 'sous-compromis' | 'vendu' | 'loue';
 export interface PropertyImage {
   src: string;
   alt: string;
+  /** Illustration shown when the photo is unavailable. */
+  scene: Scene;
 }
 
 export interface Property {

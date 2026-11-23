@@ -22,7 +22,7 @@ export default function Home() {
       {/* ---------- Hero ---------- */}
       <section className="hero" aria-labelledby="hero-title">
         <div className="hero__media">
-          <SmartImage src={hero.image} alt={hero.imageAlt} priority frameClassName="hero__img" />
+          <SmartImage src={hero.image} alt={hero.imageAlt} scene={hero.scene} priority frameClassName="hero__img" />
           <div className="hero__overlay" />
         </div>
         <div className="container hero__content">
@@ -107,7 +107,7 @@ export default function Home() {
           <div className="categories">
             {categories.map((c, i) => (
               <Link key={c.type} to={`/biens?type=${c.type}`} className={`category-card reveal reveal-delay-${i}`}>
-                <SmartImage src={c.image} alt={c.label} frameClassName="category-card__img" />
+                <SmartImage src={c.image} alt={c.label} scene={c.scene} frameClassName="category-card__img" />
                 <div className="category-card__body">
                   <span className="category-card__count">
                     {countByType(c.type)} bien{countByType(c.type) > 1 ? 's' : ''}
@@ -128,7 +128,7 @@ export default function Home() {
       <section className="section section--beige" aria-labelledby="about-title">
         <div className="container about-teaser">
           <div className="about-teaser__media reveal">
-            <SmartImage src={about.image} alt="Intérieur élégant sélectionné par NOVA IMMOBILIER" frameClassName="ratio-4-5" />
+            <SmartImage src={about.image} scene={about.scene} alt="Intérieur élégant sélectionné par NOVA IMMOBILIER" frameClassName="ratio-4-5" />
             <div className="about-teaser__badge">
               <strong>12</strong>
               <span>ans au service de l’immobilier algérois</span>

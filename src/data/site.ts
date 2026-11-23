@@ -1,4 +1,5 @@
 import type { PropertyType, TransactionType } from '../types/property';
+import type { Scene } from '../utils/illustrations';
 
 /**
  * Site-wide content (agency info, navigation, homepage copy).
@@ -60,13 +61,14 @@ export const hero = {
   text: 'Découvrez une sélection de biens immobiliers soigneusement choisis pour concrétiser vos projets en Algérie.',
   image: img('1600596542815-ffad4c1539a9', 2000),
   imageAlt: 'Villa contemporaine aux lignes épurées baignée de lumière naturelle',
+  scene: 'villa-pool' as Scene,
 };
 
-export const categories: { type: PropertyType; label: string; text: string; image: string }[] = [
-  { type: 'appartement', label: 'Appartements', text: 'Du F2 au F5, en résidence ou en centre-ville', image: img('1502672260266-1c1ef2d93688', 900) },
-  { type: 'villa', label: 'Villas', text: 'Villas familiales et demeures d’exception', image: img('1580587771525-78b9dba3b914', 900) },
-  { type: 'terrain', label: 'Terrains', text: 'Terrains constructibles avec acte', image: img('1500382017468-9049fed747ef', 900) },
-  { type: 'local', label: 'Locaux commerciaux', text: 'Commerces, bureaux et showrooms', image: img('1441986300917-64674bd600d8', 900) },
+export const categories: { type: PropertyType; label: string; text: string; image: string; scene: Scene }[] = [
+  { type: 'appartement', label: 'Appartements', text: 'Du F2 au F5, en résidence ou en centre-ville', image: img('1502672260266-1c1ef2d93688', 900), scene: 'building' },
+  { type: 'villa', label: 'Villas', text: 'Villas familiales et demeures d’exception', image: img('1580587771525-78b9dba3b914', 900), scene: 'villa-pool' },
+  { type: 'terrain', label: 'Terrains', text: 'Terrains constructibles avec acte', image: img('1500382017468-9049fed747ef', 900), scene: 'land' },
+  { type: 'local', label: 'Locaux commerciaux', text: 'Commerces, bureaux et showrooms', image: img('1441986300917-64674bd600d8', 900), scene: 'shop' },
 ];
 
 export const values = [
@@ -80,6 +82,7 @@ export const about = {
   title: 'Une agence à taille humaine, exigeante sur chaque détail.',
   text: 'Chez NOVA IMMOBILIER, nous accompagnons nos clients dans chaque étape de leur projet immobilier. Notre mission est de vous aider à trouver le bien idéal grâce à une approche personnalisée, transparente et professionnelle.',
   image: img('1600607687939-ce8a6c25118c', 1200),
+  scene: 'living' as Scene,
   stats: [
     { value: '12', label: 'ans d’expérience' },
     { value: '850+', label: 'clients accompagnés' },
