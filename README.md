@@ -78,6 +78,9 @@ supprime les biens (prix, surfaces, pièces, photos, statut, mise en avant) et g
 Guide du gérant, installation et développement local : **[wordpress/README.md](wordpress/README.md)**.
 Choix d’architecture : [docs/WORDPRESS.md](docs/WORDPRESS.md).
 
+Pour une **nouvelle agence cliente**, le skill Claude Code `real-estate-wp-theme` génère un thème rebrandé
+(nom, couleurs, polices, ville, coordonnées) prêt à installer : voir [wordpress/README.md](wordpress/README.md#3-nouveau-client--générer-un-thème-à-son-nom).
+
 ```bash
 npm run theme:build   # régénère les assets du thème depuis src/
 npm run theme:zip     # crée wordpress/nova-immobilier.zip à téléverser dans WordPress

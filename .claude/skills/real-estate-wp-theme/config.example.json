@@ -1,0 +1,55 @@
+{
+  "name": "Atlas Immobilier",
+  "shortName": "ATLAS",
+  "logoBottom": "IMMOBILIER",
+  "slug": "atlas-immobilier",
+  "prefix": "atlas",
+  "refPrefix": "ATL",
+  "domain": "atlas-immobilier.dz",
+  "colors": {
+    "background": "#F4F3EE",
+    "surface": "#FFFFFF",
+    "text": "#1F2A2E",
+    "muted": "#6E7477",
+    "accent": "#2F6F5E",
+    "soft": "#E2E8E0"
+  },
+  "fonts": {
+    "display": "Cormorant Garamond",
+    "displayWeights": "500;600",
+    "body": "Inter",
+    "bodyWeights": "400;500;600;700"
+  },
+  "locality": {
+    "wilaya": "Oran",
+    "a": "à Oran",
+    "de": "d’Oran",
+    "adjective": "oranaise",
+    "communesExample": "Akid Lotfi, Bir El Djir, Es Senia…"
+  },
+  "contact": {
+    "phone": "+213 41 00 00 00",
+    "mobile": "+213 661 00 00 00",
+    "whatsapp": "213661000000",
+    "email": "contact@atlas-immobilier.dz",
+    "address": "Boulevard de l’ALN (adresse de démonstration)",
+    "city": "Akid Lotfi, Oran",
+    "hours": [["Dimanche – Jeudi", "09h00 – 17h00"], ["Samedi", "09h00 – 12h30"], ["Vendredi", "Fermé"]]
+  },
+  "socials": {
+    "facebook": "https://www.facebook.com/",
+    "instagram": "https://www.instagram.com/",
+    "linkedin": "",
+    "youtube": ""
+  },
+  "texts": {
+    "heroTitle": "Votre prochain chez-vous, à deux pas de la mer.",
+    "heroText": "Appartements, villas et locaux sélectionnés à Oran et dans sa région.",
+    "aboutTitle": "Une agence oranaise attentive à chaque projet.",
+    "aboutText": "Chez Atlas Immobilier, nous accompagnons acheteurs, vendeurs et locataires avec transparence, de la première visite à la signature.",
+    "description": "Agence immobilière basée à Oran : achat, vente et location d’appartements, villas, terrains et locaux commerciaux.",
+    "stats": [["8", "ans d’expérience"], ["400+", "clients accompagnés"], ["15", "communes couvertes"]]
+  },
+  "demoContent": true,
+  "demoNotice": true
+}

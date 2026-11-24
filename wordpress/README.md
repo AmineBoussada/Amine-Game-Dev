@@ -73,11 +73,29 @@ images de l’accueil et de la section « L’agence », chiffres clés.
 
 ---
 
-## 3. Développement local (Docker)
+## 3. Nouveau client : générer un thème à son nom
+
+Le skill Claude Code **`real-estate-wp-theme`** (`.claude/skills/real-estate-wp-theme/`) crée un thème complet pour une autre agence
+à partir de ce thème : nom, logo, couleurs, polices, ville, coordonnées, préfixe de code et préfixe des références (ex. ATL-1024).
+Dans Claude Code, demandez simplement : « crée le thème pour l’agence X à Oran ». Le skill pose les questions manquantes,
+génère `wordpress/<slug>/` et `wordpress/<slug>.zip`, vérifie le résultat et peut le tester dans Docker.
+
+Sans Claude, depuis la racine du dépôt :
+
+```bash
+cp .claude/skills/real-estate-wp-theme/config.example.json wordpress/mon-agence.config.json   # puis éditez-le
+node .claude/skills/real-estate-wp-theme/scripts/generate-theme.mjs wordpress/mon-agence.config.json
+.claude/skills/real-estate-wp-theme/scripts/check-theme.sh wordpress/<slug>
+```
+
+Les thèmes clients et leurs fichiers de configuration ne sont pas versionnés (`.gitignore`).
+
+## 4. Développement local (Docker)
 
 ```bash
 cd wordpress
 docker compose up -d                                   # http://localhost:8080
+# autre thème, base séparée : THEME=<slug> WP_PORT=8081 docker compose -p <prefixe> up -d
 docker compose run --rm cli wp core install --url=http://localhost:8080 --title="NOVA IMMOBILIER" \
   --admin_user=admin --admin_password=changez-moi --admin_email=vous@exemple.com --skip-email
 docker compose run --rm cli wp theme activate nova-immobilier
@@ -96,7 +114,7 @@ npm run theme:build   # → assets/js/theme.js, assets/css/*.css, inc/seed-data.
 npm run theme:zip     # → wordpress/nova-immobilier.zip (à téléverser dans WordPress)
 ```
 
-## 4. Structure du thème
+## 5. Structure du thème
 
 ```
 nova-immobilier/
