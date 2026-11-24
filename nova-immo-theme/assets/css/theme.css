@@ -11,17 +11,17 @@
   --nova-chip-bg: rgba(17, 24, 39, .55);
   color-scheme: light;
 }
-:root[data-theme="dark"],
-:root:not([data-theme="light"]) { color-scheme: dark; }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --nova-bg: #0B1120; --nova-card: #111A2E; --nova-ink: #F3F4F6; --nova-muted: #9CA3AF;
     --nova-accent: #2DD4BF; --nova-accent-soft: #134E4A; --nova-shadow: none;
+    color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --nova-bg: #0B1120; --nova-card: #111A2E; --nova-ink: #F3F4F6; --nova-muted: #9CA3AF;
   --nova-accent: #2DD4BF; --nova-accent-soft: #134E4A; --nova-shadow: none;
+  color-scheme: dark;
 }
 
 body { background: var(--nova-bg); color: var(--nova-ink); }
@@ -56,9 +56,10 @@ body, input, select, button { font-family: var(--wp--preset--font-family--body, 
 .nova-card__img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .nova-card__img--empty { background: linear-gradient(135deg, var(--nova-accent), #115E59); }
 .nova-card::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(to top, rgba(10,14,24,.88) 0%, rgba(10,14,24,.35) 38%, transparent 60%); }
-.nova-card__top { position: absolute; top: .75rem; inset-inline: .75rem; display: flex; align-items: center; gap: .4rem; z-index: 2; }
+.nova-card__top { position: absolute; top: .75rem; inset-inline: .75rem; padding-inline-end: 44px; display: flex; flex-wrap: wrap; align-items: center; gap: .4rem; z-index: 2; }
 .nova-card__top .nova-chip { background: rgba(17,24,39,.55); backdrop-filter: blur(4px); }
-.nova-card__fav { margin-inline-start: auto; width: 36px; height: 36px; border-radius: 50%; border: 0; background: rgba(255,255,255,.9); color: var(--nova-ink); cursor: pointer; font-size: 1rem; }
+.nova-card__top .nova-chip--tx { background: #0F766E; }
+.nova-card__fav { position: absolute; top: 0; inset-inline-end: 0; width: 36px; height: 36px; border-radius: 50%; border: 0; background: rgba(255,255,255,.9); color: var(--nova-ink); cursor: pointer; font-size: 1rem; }
 .nova-card__fav[aria-pressed="true"] { color: #E11D48; }
 .nova-card__body { position: absolute; inset-inline: 0; bottom: 0; padding: 1rem; z-index: 2; pointer-events: none; }
 .nova-card__body a, .nova-card__fav { pointer-events: auto; }
@@ -85,7 +86,13 @@ body, input, select, button { font-family: var(--wp--preset--font-family--body, 
 }
 @media (max-width: 560px) {
   .nova-grid { grid-template-columns: 1fr 1fr; gap: .6rem; }
-  .nova-card__title { font-size: .85rem; }
+  .nova-card__title { font-size: .8rem; }
+  .nova-card__price { font-size: 1.05rem; }
+  .nova-card__body { padding: .75rem; }
+  .nova-card__meta { font-size: .75rem; flex-wrap: wrap; }
+  .nova-card__top { top: .5rem; inset-inline: .5rem; padding-inline-end: 36px; gap: .3rem; }
+  .nova-card__top .nova-chip { padding: .2rem .55rem; font-size: .7rem; }
+  .nova-card__fav { width: 30px; height: 30px; font-size: .85rem; }
   .nova-filters select, .nova-filters input { flex: 1 1 calc(50% - .5rem); }
   .nova-main { padding: .9rem; }
 }

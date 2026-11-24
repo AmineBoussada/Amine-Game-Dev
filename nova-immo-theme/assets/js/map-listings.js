@@ -25,7 +25,7 @@
       '<button class="nova-card__fav" type="button" aria-pressed="false" data-fav="' + l.id + '">♥</button></div>' +
       '<div class="nova-card__body"><p class="nova-card__price">' + esc(l.prix_label) + '</p>' +
       '<h3 class="nova-card__title"><a href="' + esc(l.url) + '">' + esc(l.title) + '</a></h3>' +
-      '<div class="nova-card__meta"><span class="nova-card__loc">📍 ' + esc(l.wilaya) + '</span><span class="nova-card__date">' + esc(l.date) + '</span></div></div></article>';
+      '<div class="nova-card__meta"><span class="nova-card__loc">📍 ' + esc(l.adresse ? l.adresse + ', ' + l.wilaya : l.wilaya) + '</span><span class="nova-card__date">' + esc(l.date) + '</span></div></div></article>';
   }
 
   function initMap() {

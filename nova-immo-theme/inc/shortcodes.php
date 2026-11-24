@@ -32,7 +32,7 @@ function nova_immo_render_card( array $l ) {
 			<p class="nova-card__price"><?php echo esc_html( $l['prix_label'] ); ?></p>
 			<h3 class="nova-card__title"><a href="<?php echo esc_url( $l['url'] ); ?>"><?php echo esc_html( $l['title'] ); ?></a></h3>
 			<div class="nova-card__meta">
-				<span class="nova-card__loc">📍 <?php echo esc_html( $l['wilaya'] ); ?></span>
+				<span class="nova-card__loc">📍 <?php echo esc_html( $l['adresse'] ? $l['adresse'] . ', ' . $l['wilaya'] : $l['wilaya'] ); ?></span>
 				<span class="nova-card__date"><?php echo esc_html( $l['date'] ); ?></span>
 			</div>
 		</div>
