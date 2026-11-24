@@ -1,5 +1,9 @@
 # Migration vers WordPress
 
+> **Statut : réalisé.** Le thème est dans [`wordpress/nova-immobilier`](../wordpress/README.md), selon la stratégie A ci-dessous,
+> avec des champs natifs (meta boxes) au lieu d’ACF : aucune extension requise. Les clés de champs sont `_nova_<clé>`
+> (`_nova_price`, `_nova_rooms`, …), et le type de bien passe par le paramètre `bien` dans l’URL (`type` est réservé par WordPress).
+
 Objectif : permettre au gérant de l’agence de gérer biens, photos, prix, statuts, coordonnées et contenu de l’accueil
 depuis l’administration WordPress, sans toucher au code.
 

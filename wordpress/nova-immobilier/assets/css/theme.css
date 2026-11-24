@@ -1,0 +1,99 @@
+/* =========================================================
+   WordPress-specific additions (on top of the shared CSS).
+   ========================================================= */
+
+/* Reveal only hides content when JS is running. */
+html:not(.js) .reveal { opacity: 1; transform: none; }
+
+/* Radio-based tabs, segmented controls and chips (server-rendered forms). */
+.search-bar__tabs label {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 54px;
+  padding: 0 1.75rem;
+  font-weight: 600;
+  color: var(--c-muted);
+  cursor: pointer;
+}
+.search-bar__tabs label::after {
+  content: '';
+  position: absolute;
+  left: 1.25rem;
+  right: 1.25rem;
+  bottom: -1px;
+  height: 2px;
+  background: var(--c-bronze);
+  transform: scaleX(0);
+  transition: transform var(--t-base) var(--ease);
+}
+.search-bar__tabs label.is-active { color: var(--c-charcoal); }
+.search-bar__tabs label.is-active::after { transform: scaleX(1); }
+.search-bar__tabs label:focus-within { outline: 2px solid var(--c-bronze); outline-offset: -4px; }
+@media (max-width: 560px) {
+  .search-bar__tabs label { flex: 1; justify-content: center; }
+}
+
+.segmented label {
+  display: grid;
+  place-items: center;
+  min-height: 40px;
+  border-radius: 3px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--c-muted);
+  cursor: pointer;
+  transition: background var(--t-fast), color var(--t-fast);
+}
+.segmented label.is-active { background: var(--c-charcoal); color: var(--c-white); }
+.segmented label:focus-within, .chips label:focus-within { outline: 2px solid var(--c-bronze); outline-offset: 2px; }
+label.chip { cursor: pointer; }
+a.chip { color: inherit; }
+
+/* Header logo swap over the hero. */
+.site-header [data-logo-dark][hidden], .site-header [data-logo-light][hidden] { display: none; }
+
+/* Mobile menu stagger uses a CSS variable instead of inline delays. */
+.mobile-nav.is-open li { transition-delay: calc(60ms + var(--i, 0) * 40ms); }
+
+/* Status badges (Vendu / Loué / Sous compromis). */
+.property-card__badges { position: absolute; top: 1rem; left: 1rem; z-index: 2; display: flex; flex-wrap: wrap; gap: 0.4rem; max-width: calc(100% - 5rem); }
+.property-card__badges .badge { position: static; }
+.badge--vendu, .badge--loue { background: #b3412e; color: #fff; }
+.badge--sous-compromis { background: #f6efe2; color: #8c6f47; }
+.property-card.is-unavailable .img-frame { filter: grayscale(0.45); }
+.agent-card__status--vendu, .agent-card__status--loue { color: #b3412e; }
+.agent-card__status--sous-compromis { color: #8c6f47; }
+
+/* Gallery slides (server-rendered, toggled by JS). */
+.gallery__open .gallery__slide { display: block; }
+.gallery__open .gallery__slide[hidden] { display: none; }
+.lightbox[hidden] { display: none; }
+
+/* Listing backdrop uses [hidden]. */
+.listings__backdrop[hidden] { display: none !important; }
+
+/* Pagination. */
+.pagination { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.4rem; margin-top: 2.5rem; }
+.pagination .page-numbers {
+  display: inline-grid;
+  place-items: center;
+  min-width: 44px;
+  height: 44px;
+  padding: 0 0.9rem;
+  border: 1px solid var(--c-line-strong);
+  border-radius: var(--r-sm);
+  background: var(--c-white);
+  font-weight: 600;
+}
+.pagination .page-numbers.current { background: var(--c-charcoal); border-color: var(--c-charcoal); color: var(--c-white); }
+.pagination a.page-numbers:hover { border-color: var(--c-charcoal); }
+
+/* Spam honeypot. */
+.hp-field { position: absolute !important; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+/* Content coming from the WordPress editor. */
+.detail__text p { color: #444; }
+.prose h2 { font-family: var(--f-serif); }
+.field__error[hidden] { display: none; }
+p.empty-state { color: var(--c-muted); }

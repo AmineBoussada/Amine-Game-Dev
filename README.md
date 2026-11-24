@@ -71,6 +71,14 @@ Photos Unsplash chargées par URL, en lazy-loading, avec un cadre à ratio fixe.
 Si une image ne se charge pas, `SmartImage` affiche un visuel de remplacement sobre aux couleurs de la marque.
 Pour la production, remplacez-les par les photos réelles de l’agence (via la médiathèque WordPress).
 
-## Passage à WordPress
+## Version WordPress (gestion des biens)
 
-Voir **[docs/WORDPRESS.md](docs/WORDPRESS.md)**.
+Le dossier **[`wordpress/`](wordpress/README.md)** contient le thème WordPress `nova-immobilier` : le gérant ajoute, modifie et
+supprime les biens (prix, surfaces, pièces, photos, statut, mise en avant) et gère les coordonnées de l’agence depuis l’administration.
+Guide du gérant, installation et développement local : **[wordpress/README.md](wordpress/README.md)**.
+Choix d’architecture : [docs/WORDPRESS.md](docs/WORDPRESS.md).
+
+```bash
+npm run theme:build   # régénère les assets du thème depuis src/
+npm run theme:zip     # crée wordpress/nova-immobilier.zip à téléverser dans WordPress
+```
