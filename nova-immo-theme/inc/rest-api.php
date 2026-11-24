@@ -77,7 +77,9 @@ function nova_immo_rest_listings( WP_REST_Request $request ) {
 		'no_found_rows'  => false,
 	) ) );
 
-	$items = array_map( 'nova_immo_get_listing', $query->posts );
+	$items = array_map( function ( $post ) {
+		return nova_immo_get_listing( $post->ID );
+	}, $query->posts );
 
 	$response = new WP_REST_Response( array_values( array_filter( $items ) ) );
 	$response->header( 'X-WP-Total', (int) $query->found_posts );
