@@ -51,7 +51,18 @@ images de l’accueil et de la section « L’agence », chiffres clés.
 ## 2. Installer sur un hébergement
 
 1. Hébergement WordPress (PHP 8.0+, MySQL/MariaDB, HTTPS). Installez WordPress en **français**.
-2. **Apparence › Thèmes › Ajouter › Téléverser** : envoyez `nova-immobilier.zip`, puis **Activer**.
+2. **Installer le thème depuis le fichier zip**, en trois clics :
+   1. Allez dans **Apparence › Thèmes**, puis cliquez sur le bouton **Téléverser un thème** en haut de la page.
+      *Le formulaire n’apparaît qu’après ce clic.*
+   2. Cliquez sur **Choisir un fichier**, sélectionnez `nova-immobilier.zip`, puis cliquez sur **Installer maintenant**.
+      *Le bouton reste grisé tant qu’aucun fichier n’est choisi.*
+   3. Une fois l’installation terminée, cliquez sur **Activer**.
+
+   **Méthode de secours (FTP ou gestionnaire de fichiers de l’hébergeur)** : décompressez le zip, puis envoyez le dossier
+   `nova-immobilier/` dans `wp-content/themes/`. Le thème apparaît ensuite dans **Apparence › Thèmes** et il suffit de l’activer.
+
+   Si l’installation échoue, vérifiez que la version de PHP de l’hébergement est 8.0 ou supérieure (menu de l’hébergeur),
+   et que la taille maximale de téléversement est d’au moins 10 Mo (`upload_max_filesize`).
 3. **Réglages › Permaliens** : choisissez *Titre de la publication*, puis Enregistrer.
 4. Créez les pages (slugs exacts) : `accueil`, `a-propos`, `contact`, `favoris`, `politique-de-confidentialite`.
    Dans **Réglages › Lecture**, choisissez une page statique et définissez *Accueil* comme page d’accueil.
