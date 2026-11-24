@@ -1,0 +1,92 @@
+/* NOVA Immo — styles du thème (clair + sombre, RTL-ready) */
+:root {
+  --nova-bg: #EEF1F5;
+  --nova-card: #FFFFFF;
+  --nova-ink: #111827;
+  --nova-muted: #6B7280;
+  --nova-accent: #0F766E;
+  --nova-accent-soft: #CCFBF1;
+  --nova-radius: 18px;
+  --nova-shadow: 0 1px 2px rgba(17, 24, 39, .06);
+  --nova-chip-bg: rgba(17, 24, 39, .55);
+  color-scheme: light;
+}
+:root[data-theme="dark"],
+:root:not([data-theme="light"]) { color-scheme: dark; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --nova-bg: #0B1120; --nova-card: #111A2E; --nova-ink: #F3F4F6; --nova-muted: #9CA3AF;
+    --nova-accent: #2DD4BF; --nova-accent-soft: #134E4A; --nova-shadow: none;
+  }
+}
+:root[data-theme="dark"] {
+  --nova-bg: #0B1120; --nova-card: #111A2E; --nova-ink: #F3F4F6; --nova-muted: #9CA3AF;
+  --nova-accent: #2DD4BF; --nova-accent-soft: #134E4A; --nova-shadow: none;
+}
+
+body { background: var(--nova-bg); color: var(--nova-ink); }
+body, input, select, button { font-family: var(--wp--preset--font-family--body, system-ui, sans-serif); }
+[dir="rtl"] body { font-family: "Noto Sans Arabic", system-ui, sans-serif; }
+
+.nova-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem 1.25rem; background: var(--nova-card); border-bottom: 1px solid rgba(0,0,0,.06); position: sticky; top: 0; z-index: 50; }
+.nova-logo a { font-weight: 800; letter-spacing: .02em; color: var(--nova-ink); text-decoration: none; }
+.nova-header-actions { display: flex; align-items: center; gap: .6rem; }
+.nova-theme-toggle { border: 1px solid rgba(0,0,0,.12); background: transparent; color: var(--nova-ink); border-radius: 999px; width: 40px; height: 40px; cursor: pointer; }
+.nova-main { padding: 1.25rem; }
+
+.nova-chip { display: inline-block; padding: .35rem .8rem; border-radius: 999px; background: var(--nova-chip-bg); color: #fff; font-size: .8rem; font-weight: 600; }
+.nova-chip--tx { background: var(--nova-accent); }
+
+/* Filtres : pilules, comme le design de référence */
+.nova-filters { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0 0 1rem; }
+.nova-filters select, .nova-filters input { border: 1px solid rgba(0,0,0,.1); background: var(--nova-card); color: var(--nova-ink); border-radius: 999px; padding: .55rem 1rem; min-height: 44px; }
+.nova-map-toggle { border: 0; border-radius: 999px; padding: .55rem 1rem; min-height: 44px; background: var(--nova-card); color: var(--nova-ink); cursor: pointer; font-weight: 600; }
+.nova-map-toggle[aria-pressed="true"] { background: var(--nova-ink); color: var(--nova-card); }
+
+.nova-listings__layout { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+.nova-listings__layout.is-map { grid-template-columns: 1.1fr .9fr; }
+.nova-map { display: none; min-height: 520px; border-radius: var(--nova-radius); overflow: hidden; position: sticky; top: 84px; height: calc(100vh - 110px); }
+.nova-listings__layout.is-map .nova-map { display: block; }
+
+/* Grille de cartes : photo plein cadre, coins arrondis, dégradé bas, prix en gros */
+.nova-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 1rem; align-content: start; }
+.nova-card { position: relative; border-radius: var(--nova-radius); overflow: hidden; aspect-ratio: 3 / 4; background: var(--nova-accent-soft); color: #fff; box-shadow: var(--nova-shadow); transition: transform .25s ease, box-shadow .25s ease; }
+.nova-card:hover, .nova-card:focus-visible, .nova-card.is-active { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(17,24,39,.18); outline: none; }
+.nova-card__link { position: absolute; inset: 0; z-index: 0; }
+.nova-card__img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.nova-card__img--empty { background: linear-gradient(135deg, var(--nova-accent), #115E59); }
+.nova-card::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(to top, rgba(10,14,24,.88) 0%, rgba(10,14,24,.35) 38%, transparent 60%); }
+.nova-card__top { position: absolute; top: .75rem; inset-inline: .75rem; display: flex; align-items: center; gap: .4rem; z-index: 2; }
+.nova-card__top .nova-chip { background: rgba(17,24,39,.55); backdrop-filter: blur(4px); }
+.nova-card__fav { margin-inline-start: auto; width: 36px; height: 36px; border-radius: 50%; border: 0; background: rgba(255,255,255,.9); color: var(--nova-ink); cursor: pointer; font-size: 1rem; }
+.nova-card__fav[aria-pressed="true"] { color: #E11D48; }
+.nova-card__body { position: absolute; inset-inline: 0; bottom: 0; padding: 1rem; z-index: 2; pointer-events: none; }
+.nova-card__body a, .nova-card__fav { pointer-events: auto; }
+.nova-card__price { margin: 0 0 .25rem; font-size: clamp(1.25rem, 2.2vw, 1.6rem); font-weight: 800; line-height: 1.1; }
+.nova-card__title { margin: 0 0 .5rem; font-size: .95rem; font-weight: 600; text-transform: uppercase; line-height: 1.3; }
+.nova-card__title a { color: inherit; text-decoration: none; }
+.nova-card__meta { display: flex; justify-content: space-between; gap: .5rem; font-size: .85rem; opacity: .95; }
+
+/* Fiche détaillée */
+.nova-detail { max-width: 1100px; margin: 0 auto; }
+.nova-detail__price { font-size: 1.6rem; font-weight: 800; color: var(--nova-accent); margin: .25rem 0; }
+.nova-gallery__main { width: 100%; max-height: 560px; object-fit: cover; border-radius: var(--nova-radius); }
+.nova-specs { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: .75rem; list-style: none; padding: 0; margin: 1.25rem 0; }
+.nova-specs li { background: var(--nova-card); border-radius: 14px; padding: 1rem; display: flex; flex-direction: column; }
+.nova-specs span { color: var(--nova-muted); font-size: .85rem; }
+.nova-detail__cta { display: flex; flex-wrap: wrap; gap: .6rem; margin-bottom: 1.5rem; }
+.nova-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: .6rem 1.2rem; border-radius: 999px; border: 1px solid var(--nova-accent); color: var(--nova-accent); text-decoration: none; font-weight: 700; }
+.nova-btn--primary { background: var(--nova-accent); color: #fff; }
+
+/* Mobile */
+@media (max-width: 900px) {
+  .nova-listings__layout.is-map { grid-template-columns: 1fr; }
+  .nova-map { position: relative; top: 0; height: 420px; min-height: 0; }
+}
+@media (max-width: 560px) {
+  .nova-grid { grid-template-columns: 1fr 1fr; gap: .6rem; }
+  .nova-card__title { font-size: .85rem; }
+  .nova-filters select, .nova-filters input { flex: 1 1 calc(50% - .5rem); }
+  .nova-main { padding: .9rem; }
+}
+@media (prefers-reduced-motion: reduce) { .nova-card { transition: none; } }
