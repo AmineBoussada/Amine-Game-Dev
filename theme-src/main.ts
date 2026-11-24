@@ -214,7 +214,12 @@ function initGallery() {
       t.classList.toggle('is-active', n === index);
       t.setAttribute('aria-selected', String(n === index));
     });
-    thumbs[index]?.scrollIntoView({ block: 'nearest', inline: 'center', behavior: reduceMotion ? 'auto' : 'smooth' });
+    // Scroll only the thumbnail strip (scrollIntoView would also move the page).
+    const thumb = thumbs[index];
+    const strip = thumb?.parentElement;
+    if (thumb && strip) {
+      strip.scrollTo({ left: thumb.offsetLeft - strip.offsetLeft - (strip.clientWidth - thumb.clientWidth) / 2, behavior: reduceMotion ? 'auto' : 'smooth' });
+    }
     $$('[data-gallery-index]', root).forEach((el) => (el.textContent = String(index + 1)));
     const img = $<HTMLImageElement>('img', slides[index]);
     if (img) {

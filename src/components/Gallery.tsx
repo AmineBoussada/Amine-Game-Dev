@@ -15,8 +15,12 @@ export function Gallery({ images, title }: { images: PropertyImage[]; title: str
   const go = useCallback((delta: number) => setIndex((i) => (i + delta + count) % count), [count]);
 
   useEffect(() => {
-    const thumb = thumbsRef.current?.children[index] as HTMLElement | undefined;
-    thumb?.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
+    // Scroll only the thumbnail strip (scrollIntoView would also move the page).
+    const strip = thumbsRef.current;
+    const thumb = strip?.children[index] as HTMLElement | undefined;
+    if (strip && thumb) {
+      strip.scrollTo({ left: thumb.offsetLeft - strip.offsetLeft - (strip.clientWidth - thumb.clientWidth) / 2, behavior: 'smooth' });
+    }
   }, [index]);
 
   useEffect(() => {

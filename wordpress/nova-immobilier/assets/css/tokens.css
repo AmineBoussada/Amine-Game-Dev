@@ -14,6 +14,7 @@
   /* Derived */
   --c-bronze-dark: #8c6f47;
   --c-bronze-soft: rgba(168, 135, 90, 0.12);
+  --c-bronze-light: #d9c3a1; /* accent on dark backgrounds */
   --c-line: #e4ddd1;
   --c-line-strong: #d6cdbf;
   --c-text: var(--c-charcoal);

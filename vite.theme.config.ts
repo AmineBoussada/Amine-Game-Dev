@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 
 // Builds the WordPress theme script: theme-src/main.ts → wordpress/nova-immobilier/assets/js/theme.js
 export default defineConfig({
+  publicDir: false, // don't copy public/ (favicon) into the theme
   build: {
     outDir: 'wordpress/nova-immobilier/assets/js',
     emptyOutDir: false,
