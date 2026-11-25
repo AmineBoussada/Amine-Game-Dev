@@ -1,7 +1,7 @@
 <?php
 defined('ABSPATH') || exit;
 $nav = bahia_nav_items();
-$over_hero = is_front_page();
+$over_hero = is_front_page() && !bahia_is_elementor_page();
 $phone = bahia_setting('phone');
 ?><!doctype html>
 <html <?php language_attributes(); ?>>

@@ -9,7 +9,7 @@ define('BAHIA_VERSION', '1.0.0');
 define('BAHIA_DIR', get_template_directory());
 define('BAHIA_URI', get_template_directory_uri());
 
-foreach (['fields', 'helpers', 'post-types', 'meta-boxes', 'admin-columns', 'settings', 'query', 'leads', 'seo', 'seed', 'i18n'] as $file) {
+foreach (['fields', 'helpers', 'post-types', 'meta-boxes', 'admin-columns', 'settings', 'query', 'leads', 'seo', 'seed', 'i18n', 'elementor'] as $file) {
     require_once BAHIA_DIR . "/inc/{$file}.php";
 }
 // Alternative layouts (see the real-estate-wp-theme skill) add their front-end here.

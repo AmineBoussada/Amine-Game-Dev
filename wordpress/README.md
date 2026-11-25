@@ -46,6 +46,19 @@ images de l’accueil et de la section « L’agence », chiffres clés.
 ### Menu
 **Apparence › Menus** : modifiez le *Menu principal* (Acheter / Louer pointent vers `/biens/?transaction=vente|location`).
 
+### Modifier les pages avec Elementor (version gratuite)
+Prérequis : extension **Elementor** installée et activée, et WordPress 6.8 ou plus récent.
+- Ouvrez une page (**Pages › Accueil**, **À propos**, **Contact** ou une nouvelle page) et cliquez sur **Modifier avec Elementor**.
+  Dès que la page est enregistrée avec Elementor, votre version remplace celle du thème. L'en-tête, le pied de page et les
+  boutons arabe / français et clair / sombre restent ceux du site.
+- Dans la liste des éléments, la catégorie **Bahia Immobilier** (nom de l'agence) contient cinq blocs reliés aux vraies annonces :
+  **Biens à la une** (nombre, vente ou location, type), **Recherche de biens**, **Formulaire de contact** (les demandes arrivent
+  dans *Demandes*), **Chiffres clés** et **Bandeau contact**. Ces blocs se traduisent seuls en arabe.
+- Les textes que vous tapez vous-même dans Elementor (titres, paragraphes) ne sont pas traduits automatiquement.
+- Pour revenir à la page du thème : dans Elementor, menu **Historique** ou bouton **Retour à l'éditeur WordPress**, puis
+  supprimez le contenu Elementor (ou mettez la page à la corbeille et recréez-la avec le même titre).
+- Les listes de biens, les fiches et la page Favoris restent gérées par le thème.
+
 ### Version arabe et mode sombre
 - Les visiteurs choisissent **ع / FR** (langue) et la **lune / le soleil** (clair ou sombre) en haut du site ; leur choix est mémorisé.
 - Chaque bien a un cadre **Version arabe du site** : titre, résumé et description en arabe. Facultatif : si un champ est vide,

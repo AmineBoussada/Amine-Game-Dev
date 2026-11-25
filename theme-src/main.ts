@@ -380,6 +380,12 @@ function initThemeToggle() {
   paint();
 }
 
+// Lets the Elementor editor redraw illustrations of re-rendered widgets.
+(window as unknown as { NOVA_REFRESH?: () => void }).NOVA_REFRESH = () => {
+  fillIllustrations();
+  $$('.elementor .reveal').forEach((el) => el.classList.add('is-visible'));
+};
+
 fillIllustrations();
 initThemeToggle();
 initHeader();

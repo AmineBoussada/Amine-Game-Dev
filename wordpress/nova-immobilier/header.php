@@ -1,7 +1,7 @@
 <?php
 defined('ABSPATH') || exit;
 $nav = nova_nav_items();
-$over_hero = is_front_page();
+$over_hero = is_front_page() && !nova_is_elementor_page();
 $phone = nova_setting('phone');
 ?><!doctype html>
 <html <?php language_attributes(); ?>>

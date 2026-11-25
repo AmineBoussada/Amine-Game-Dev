@@ -47,6 +47,17 @@ Arabic config fields (all optional): `nameAr` (agency name in Arabic, default: `
 `demoSet: "oran"` imports 10 demo properties in Oran with Arabic texts (`demo/oran.json`) instead of the 12 in Algiers.
 Ask the user to have the Arabic reviewed by a native speaker before a real client goes live.
 
+### Elementor (free version)
+
+`inc/elementor.php` (NOVA layout): a page edited with Elementor (`_elementor_edit_mode = builder`) replaces the theme's
+template for the home, "À propos", "Contact" and ordinary pages, inside the theme header/footer. Five widgets in the
+agency's category reuse the template parts: featured properties, search, contact form, key figures, contact banner
+(`inc/elementor-widgets.php`; class names start with `NovaTheme_`, widget names with `nova-`, so the rebrand applies).
+Elementor's default colours/fonts are disabled on activation so widgets use the theme's styles.
+Elementor 4.x requires WordPress 6.8+. To test it locally, download the plugin and WordPress releases from
+downloads.wordpress.org (allowed host needed), `docker cp` them into the WordPress container, then
+`wp core update <zip>` and `wp plugin activate elementor`.
+
 ### Layouts
 
 The back office is the same for every layout. Only the visitor side changes.

@@ -1,5 +1,8 @@
 <?php
 defined('ABSPATH') || exit;
+if (nova_render_elementor_page()) {
+    return; // page built with Elementor
+}
 get_header();
 $aliases = ['recherche' => 'Recherche personnalisée', 'vendre' => 'Vendre ou louer mon bien', 'estimation' => 'Estimation de mon bien', 'visite' => 'Demande de visite'];
 $sujet = sanitize_text_field(wp_unslash($_GET['sujet'] ?? ''));

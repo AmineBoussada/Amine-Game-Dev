@@ -97,3 +97,12 @@ a.chip { color: inherit; }
 .prose h2 { font-family: var(--f-serif); }
 .field__error[hidden] { display: none; }
 p.empty-state { color: var(--c-muted); }
+
+/* ---------- Pages built with Elementor and theme widgets ---------- */
+.nova-elementor main#main { padding-top: var(--header-h); }
+.nova-widget .section-heading { margin-bottom: var(--sp-6); }
+.nova-widget__more { margin-top: var(--sp-6); text-align: center; }
+.nova-widget--cta .cta-banner { padding-block: 0; }
+.nova-widget--cta .cta-banner .container { padding-inline: 0; max-width: none; }
+.nova-widget--search .search-bar { margin: 0; }
+[data-submit-label] { display: inline-flex; align-items: center; gap: 0.5rem; }

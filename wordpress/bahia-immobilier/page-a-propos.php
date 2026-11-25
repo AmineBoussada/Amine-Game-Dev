@@ -1,5 +1,8 @@
 <?php
 defined('ABSPATH') || exit;
+if (bahia_render_elementor_page()) {
+    return; // page built with Elementor
+}
 get_header();
 the_post();
 $steps = [

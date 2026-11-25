@@ -193,7 +193,12 @@ add_action('save_post_property', function (int $post_id, WP_Post $post) {
     }
 
     if (nova_meta($post_id, 'reference') === '') {
-        update_post_meta($post_id, '_nova_reference', 'NOVA-' . (1000 + $post_id));
+        // Unique reference: start from the post number, skip any reference already used (e.g. demo listings).
+        $n = 1000 + $post_id;
+        while (get_posts(['post_type' => 'property', 'post_status' => 'any', 'meta_key' => '_nova_reference', 'meta_value' => 'NOVA-' . $n, 'fields' => 'ids', 'numberposts' => 1, 'post__not_in' => [$post_id]])) {
+            $n++;
+        }
+        update_post_meta($post_id, '_nova_reference', 'NOVA-' . $n);
     }
 
     // First gallery photo becomes the featured image (used by social sharing and admin list).

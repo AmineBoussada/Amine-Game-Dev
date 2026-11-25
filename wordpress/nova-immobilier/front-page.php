@@ -1,5 +1,8 @@
 <?php
 defined('ABSPATH') || exit;
+if (nova_render_elementor_page()) {
+    return; // page built with Elementor
+}
 get_header();
 $featured = nova_featured_properties(6);
 $archive = get_post_type_archive_link('property');
