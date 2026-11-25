@@ -8,7 +8,7 @@ defined('ABSPATH') || exit;
 
 function nova_settings_defaults(): array
 {
-    return [
+    return apply_filters('nova_settings_defaults', [
         'phone' => '+213 23 00 00 00',
         'mobile' => '+213 550 00 00 00',
         'whatsapp' => '213550000000',
@@ -32,7 +32,7 @@ function nova_settings_defaults(): array
         'stat3_value' => '24', 'stat3_label' => 'communes couvertes',
         'hide_unavailable' => 0,
         'demo_notice' => 1,
-    ];
+    ]);
 }
 
 function nova_setting(string $key)
@@ -47,7 +47,7 @@ function nova_setting(string $key)
 /** Sections and fields of the settings page. */
 function nova_settings_schema(): array
 {
-    return [
+    return apply_filters('nova_settings_schema', [
         'contact' => ['Coordonnées de l’agence', [
             'phone' => ['Téléphone fixe', 'text'],
             'mobile' => ['Mobile (affiché)', 'text'],
@@ -79,7 +79,7 @@ function nova_settings_schema(): array
             'hide_unavailable' => ['Masquer les biens vendus ou loués de la liste', 'checkbox'],
             'demo_notice' => ['Afficher la mention « site de démonstration »', 'checkbox'],
         ]],
-    ];
+    ]);
 }
 
 add_action('admin_menu', function () {

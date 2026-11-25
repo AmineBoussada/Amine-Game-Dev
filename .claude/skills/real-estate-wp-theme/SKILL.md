@@ -1,6 +1,6 @@
 ---
 name: real-estate-wp-theme
-description: Generate a ready-to-install WordPress theme for a new real-estate agency client (Algerian market, French UI) by rebranding the tested NOVA IMMOBILIER theme in wordpress/nova-immobilier — new name, logo text, colors, fonts, city wording, contact details, code prefix and reference prefix — then check it and deliver a .zip. Use whenever the user wants a website/theme for another agency ("crée le site pour l'agence X", "nouveau client immobilier", "génère un thème pour…", "انشئ موقع لوكالة…"), or asks to reuse the NOVA theme for someone else.
+description: Generate a ready-to-install WordPress theme for a new real-estate agency client (Algerian market, French UI) by rebranding the tested NOVA IMMOBILIER theme in wordpress/nova-immobilier, with a choice of two designs (NOVA classic, or Riviera with light/dark mode and a French/Arabic right-to-left site) — new name, logo text, colors, fonts, city wording, contact details, code prefix and reference prefix — then check it and deliver a .zip. Use whenever the user wants a website/theme for another agency ("crée le site pour l'agence X", "nouveau client immobilier", "génère un thème pour…", "انشئ موقع لوكالة…"), or asks to reuse the NOVA theme for someone else.
 ---
 
 # Real-estate WordPress theme generator
@@ -31,6 +31,30 @@ they have not given yet:
 | `socials`, `texts` | Optional. Leave a social URL empty to hide it. `texts` sets the homepage hero, the about block, the footer description and three stats. |
 | `demoContent` | `true` imports the 12 demo properties (located in Algiers) with `wp <prefix> seed`. Use `false` for a real client who will enter their own listings. |
 | `demoNotice` | `false` hides the "site de démonstration" footer line. Use `false` for a real client. |
+| `layout` | `"nova"` (default) or `"riviera"`. See *Layouts* below. Ask the user which one when they have not said. |
+
+### Layouts
+
+The back office (properties, settings, client requests, demo import) is the same for every layout. Only the visitor side changes.
+
+- **`nova`** — the original NOVA design (beige, bronze, serif titles). All config fields apply.
+- **`riviera`** — navy and white, marinière stripes, magazine layout (the "Bahia Immobilier" design). Adds:
+  - a **light/dark** button, remembered on the visitor's device;
+  - a **French/Arabic** button: the whole site switches to Arabic, right to left, and the choice is remembered on every page;
+  - optional **Arabic fields on each property** (title, summary, description; the French text is shown when they are empty)
+    and an **Arabic texts** section in *Réglages agence*;
+  - a visit planner on the property page (next opening days, time slots) that fills the contact form.
+
+  Extra config fields: `nameAr` (required), `locality.city` and `locality.cityAr` (required), `logoBottomAr`, `colors.gold`,
+  and `textsAr` (`heroTitle`, `heroText`, `aboutTitle`, `aboutText`, `description`, `address`, `city`, `stats` = 3 labels).
+  `fonts` is ignored (Jost, and IBM Plex Sans Arabic in Arabic). The dark palette is derived from `colors.accent`.
+  Full example: `config.riviera.example.json`. Demo content: 10 properties in Oran with Arabic texts.
+  Interface translations live in `layouts/riviera/inc/lang-ar.php` (French text => Arabic): add a line there for any new string,
+  and ask the user to have the Arabic reviewed by a native speaker before a real client goes live.
+
+Layout files are written with the `nova_` prefix and placeholders (`__SHORT__`, `__CITY__`, `__CITY_AR__`, `__NAME_AR__`,
+`__LOGO_BOTTOM__`, `__LOGO_BOTTOM_AR__`); the generator copies them over the base theme and rebrands them like the rest.
+To add a layout, create `layouts/<name>/` with its templates, `inc/layout.php` (loaded by `functions.php`), and one stylesheet.
 
 When the user gives only a name and a city, propose sensible colors and fonts and say which ones you chose.
 Never invent real contact details: use the user's data or clearly fictional demo values.
@@ -79,6 +103,13 @@ workflow: add a property with 2 uploaded photos, edit price and rooms, mark it "
 receive a client request, and trash the property. Look at `home.png` and `property.png` to confirm the colors, fonts and logo.
 Clean up with `docker compose -p <prefix> down -v`.
 
+Docker notes: export `THEME` and `WP_PORT` in every shell that runs `docker compose` for this project, otherwise compose
+recreates the container with the default theme. Regenerating with `--force` replaces the theme folder: restart the
+container afterwards (`docker compose -p <prefix> restart wordpress`).
+
+For the `riviera` layout, also check the Arabic and dark versions: open the site with `?lang=ar`, switch the theme with the
+moon button, and look at the home page and a property page at 390 px wide (no horizontal scroll, buttons at least 44 px).
+
 If wordpress.org is unreachable, the French language pack cannot install. That only affects the WordPress admin chrome:
 the theme's own screens are already in French.
 
@@ -100,6 +131,6 @@ The owner's guide in `wordpress/README.md` (section 1) applies unchanged to ever
 ## Rules
 
 - Do not commit client themes or configs unless the user asks. `.gitignore` excludes every `wordpress/*/` folder except
-  `nova-immobilier/`, and excludes `wordpress/*.config.json` and `wordpress/*.zip`.
+  `nova-immobilier/` and the fictional demo `bahia-immobilier/`, and excludes `wordpress/*.config.json` and `wordpress/*.zip`.
 - Do not use the NOVA name, logo or demo contact details for a real client.
 - Keep the generated theme self-contained. It needs no plugin.

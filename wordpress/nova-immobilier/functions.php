@@ -12,6 +12,10 @@ define('NOVA_URI', get_template_directory_uri());
 foreach (['fields', 'helpers', 'post-types', 'meta-boxes', 'admin-columns', 'settings', 'query', 'leads', 'seo', 'seed'] as $file) {
     require_once NOVA_DIR . "/inc/{$file}.php";
 }
+// Alternative layouts (see the real-estate-wp-theme skill) add their front-end here.
+if (is_readable(NOVA_DIR . '/inc/layout.php')) {
+    require_once NOVA_DIR . '/inc/layout.php';
+}
 
 add_action('after_setup_theme', function () {
     add_theme_support('title-tag');
@@ -28,11 +32,11 @@ add_action('after_setup_theme', function () {
 add_action('wp_enqueue_scripts', function () {
     wp_enqueue_style(
         'nova-fonts',
-        'https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap',
+        apply_filters('nova_fonts_url', 'https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap'),
         [],
         null
     );
-    $css = ['tokens', 'base', 'components', 'pages', 'theme'];
+    $css = apply_filters('nova_styles', ['tokens', 'base', 'components', 'pages', 'theme']);
     $deps = ['nova-fonts'];
     foreach ($css as $name) {
         $path = "/assets/css/{$name}.css";

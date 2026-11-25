@@ -54,7 +54,7 @@ function nova_feature_options(): array
 function nova_property_fields(): array
 {
     $wilayas = array_combine(nova_wilayas(), nova_wilayas());
-    return [
+    return apply_filters('nova_property_fields', [
         ['key' => 'reference', 'label' => 'Référence', 'type' => 'text', 'group' => 'essentiel', 'help' => 'Laissez vide pour générer automatiquement (ex. NOVA-1024).'],
         ['key' => 'transaction', 'label' => 'Transaction', 'type' => 'select', 'group' => 'essentiel', 'options' => nova_transaction_labels(), 'default' => 'vente', 'required' => true],
         ['key' => 'type', 'label' => 'Type de bien', 'type' => 'select', 'group' => 'essentiel', 'options' => nova_type_labels(), 'default' => 'appartement', 'required' => true],
@@ -77,17 +77,17 @@ function nova_property_fields(): array
 
         ['key' => 'features', 'label' => 'Équipements et prestations', 'type' => 'features', 'group' => 'equipements'],
         ['key' => 'gallery', 'label' => 'Photos', 'type' => 'gallery', 'group' => 'photos'],
-    ];
+    ]);
 }
 
 function nova_field_groups(): array
 {
-    return [
+    return apply_filters('nova_field_groups', [
         'essentiel' => 'Prix et statut',
         'localisation' => 'Localisation',
         'caracteristiques' => 'Caractéristiques',
         'equipements' => 'Équipements',
-    ];
+    ]);
 }
 
 /** Read one property field with its default. */

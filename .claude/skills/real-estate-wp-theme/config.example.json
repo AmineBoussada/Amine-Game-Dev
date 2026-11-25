@@ -6,6 +6,7 @@
   "prefix": "atlas",
   "refPrefix": "ATL",
   "domain": "atlas-immobilier.dz",
+  "layout": "nova",
   "colors": {
     "background": "#F4F3EE",
     "surface": "#FFFFFF",
@@ -34,7 +35,20 @@
     "email": "contact@atlas-immobilier.dz",
     "address": "Boulevard de l’ALN (adresse de démonstration)",
     "city": "Akid Lotfi, Oran",
-    "hours": [["Dimanche – Jeudi", "09h00 – 17h00"], ["Samedi", "09h00 – 12h30"], ["Vendredi", "Fermé"]]
+    "hours": [
+      [
+        "Dimanche – Jeudi",
+        "09h00 – 17h00"
+      ],
+      [
+        "Samedi",
+        "09h00 – 12h30"
+      ],
+      [
+        "Vendredi",
+        "Fermé"
+      ]
+    ]
   },
   "socials": {
     "facebook": "https://www.facebook.com/",
@@ -48,7 +62,20 @@
     "aboutTitle": "Une agence oranaise attentive à chaque projet.",
     "aboutText": "Chez Atlas Immobilier, nous accompagnons acheteurs, vendeurs et locataires avec transparence, de la première visite à la signature.",
     "description": "Agence immobilière basée à Oran : achat, vente et location d’appartements, villas, terrains et locaux commerciaux.",
-    "stats": [["8", "ans d’expérience"], ["400+", "clients accompagnés"], ["15", "communes couvertes"]]
+    "stats": [
+      [
+        "8",
+        "ans d’expérience"
+      ],
+      [
+        "400+",
+        "clients accompagnés"
+      ],
+      [
+        "15",
+        "communes couvertes"
+      ]
+    ]
   },
   "demoContent": true,
   "demoNotice": true

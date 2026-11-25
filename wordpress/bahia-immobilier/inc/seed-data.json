@@ -1,0 +1,386 @@
+[
+ {
+  "reference": "BHA-1048",
+  "title": "Villa avec piscine, terrasse sur la mer",
+  "price": 74000000,
+  "transaction": "vente",
+  "type": "villa",
+  "typology": "Villa R+1",
+  "wilaya": "Oran",
+  "commune": "Canastel",
+  "quartier": "À cinq minutes de la plage",
+  "surface": 320,
+  "landSurface": 540,
+  "rooms": 6,
+  "bedrooms": 4,
+  "bathrooms": 3,
+  "floor": "",
+  "yearBuilt": 2018,
+  "excerpt": "Villa R+1 ouverte sur la baie : séjour sur terrasse de 60 m², piscine, quatre chambres dont une suite avec balcon sur la mer.",
+  "description": [
+   "Sur les hauteurs de Canastel, cette villa R+1 de 320 m² s’ouvre entièrement sur la baie. Le séjour donne sur une terrasse de 60 m² et une piscine bordée de parasols ; les sols sont en pierre claire, les menuiseries en bois laqué blanc.",
+   "À l’étage, quatre chambres dont une suite avec balcon sur la mer. Garage, buanderie et jardin de 220 m². Acte notarié et livret foncier disponibles."
+  ],
+  "features": [
+   "Piscine",
+   "Terrasse",
+   "Vue mer",
+   "Garage",
+   "Jardin",
+   "Chauffage central",
+   "Climatisation",
+   "Acte notarié",
+   "Livret foncier"
+  ],
+  "featured": true,
+  "status": "disponible",
+  "createdAt": "2026-11-20",
+  "slug": "villa-piscine-canastel",
+  "meta": {
+   "title_ar": "فيلا بمسبح وشرفة مطلة على البحر",
+   "excerpt_ar": "فيلا بطابقين منفتحة على الخليج: صالون على شرفة مساحتها 60 م²، ومسبح، وأربع غرف نوم منها جناح بشرفة مطلة على البحر.",
+   "content_ar": "في مرتفعات كاناستيل، تنفتح هذه الفيلا ذات الطابقين ومساحتها 320 م² بالكامل على الخليج. يطل الصالون على شرفة مساحتها 60 م² ومسبح تحيط به المظلات؛ الأرضيات من الحجر الفاتح والنجارة من الخشب المطلي بالأبيض.\n\nفي الطابق العلوي أربع غرف نوم، منها جناح بشرفة مطلة على البحر. مرآب وغرفة غسيل وحديقة مساحتها 220 م². العقد التوثيقي والدفتر العقاري متوفران."
+  }
+ },
+ {
+  "reference": "BHA-1047",
+  "title": "F4 traversant, balcon sur la baie",
+  "price": 31500000,
+  "transaction": "vente",
+  "type": "appartement",
+  "typology": "F4",
+  "wilaya": "Oran",
+  "commune": "Front de mer",
+  "quartier": "Face à la promenade",
+  "surface": 128,
+  "rooms": 4,
+  "bedrooms": 3,
+  "bathrooms": 2,
+  "floor": "6ᵉ étage sur 8, ascenseur",
+  "yearBuilt": 2015,
+  "excerpt": "Grand F4 traversant au 6ᵉ étage, balcon filant sur la baie, deux salles d’eau et place de parking.",
+  "description": [
+   "Au sixième étage d’une résidence gardée du front de mer, ce F4 de 128 m² est traversant : la mer d’un côté, la ville de l’autre. Le séjour double s’ouvre sur un balcon filant face à la baie.",
+   "Trois chambres, deux salles d’eau, cuisine équipée et cellier. Une place de parking en sous-sol est incluse dans le prix."
+  ],
+  "features": [
+   "Ascenseur",
+   "Balcon",
+   "Vue mer",
+   "Parking",
+   "Cuisine équipée",
+   "Gardiennage",
+   "Acte notarié"
+  ],
+  "featured": true,
+  "status": "disponible",
+  "createdAt": "2026-11-18",
+  "slug": "f4-front-de-mer",
+  "meta": {
+   "title_ar": "شقة F4 بشرفة مطلة على الخليج",
+   "excerpt_ar": "شقة F4 واسعة في الطابق السادس، بشرفة ممتدة على الخليج، وحمامين، ومكان لركن السيارة.",
+   "content_ar": "في الطابق السادس من إقامة محروسة على الواجهة البحرية، تمتد هذه الشقة F4 على 128 م²: البحر من جهة والمدينة من الجهة الأخرى. يطل الصالون المزدوج على شرفة ممتدة مقابل الخليج.\n\nثلاث غرف نوم، وحمامان، ومطبخ مجهز ومخزن. مكان ركن السيارة في الطابق السفلي مشمول في السعر."
+  }
+ },
+ {
+  "reference": "BHA-1046",
+  "title": "F3 meublé, chambre avec vue mer",
+  "price": 95000,
+  "transaction": "location",
+  "type": "appartement",
+  "typology": "F3",
+  "wilaya": "Oran",
+  "commune": "Akid Lotfi",
+  "quartier": "Résidence récente",
+  "surface": 96,
+  "rooms": 3,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "floor": "4ᵉ étage, ascenseur",
+  "yearBuilt": 2020,
+  "excerpt": "F3 meublé et équipé dans une résidence récente, chambre principale avec vue sur la mer.",
+  "description": [
+   "Dans une résidence récente d’Akid Lotfi, ce F3 de 96 m² est loué meublé : séjour lumineux, cuisine équipée, deux chambres dont une avec vue sur la mer.",
+   "Commerces, écoles et tramway à quelques minutes à pied. Disponible immédiatement, bail d’un an minimum."
+  ],
+  "features": [
+   "Meublé",
+   "Ascenseur",
+   "Climatisation",
+   "Cuisine équipée",
+   "Vue mer",
+   "Proche transports"
+  ],
+  "featured": true,
+  "status": "disponible",
+  "createdAt": "2026-11-16",
+  "slug": "f3-meuble-akid-lotfi",
+  "meta": {
+   "title_ar": "شقة F3 مفروشة بإطلالة بحرية",
+   "excerpt_ar": "شقة F3 مفروشة ومجهزة في إقامة حديثة، وغرفة النوم الرئيسية مطلة على البحر.",
+   "content_ar": "في إقامة حديثة بالعقيد لطفي، تُؤجَّر هذه الشقة F3 بمساحة 96 م² مفروشة: صالون مضيء، ومطبخ مجهز، وغرفتا نوم إحداهما مطلة على البحر.\n\nالمحلات والمدارس والترامواي على بعد دقائق سيرًا على الأقدام. متوفرة فورًا، بعقد لا يقل عن سنة."
+  }
+ },
+ {
+  "reference": "BHA-1045",
+  "title": "Terrain de 450 m² avec vue mer",
+  "price": 18000000,
+  "transaction": "vente",
+  "type": "terrain",
+  "typology": "Terrain",
+  "wilaya": "Oran",
+  "commune": "Bir El Djir",
+  "quartier": "Lotissement viabilisé",
+  "surface": 450,
+  "rooms": 0,
+  "bedrooms": 0,
+  "bathrooms": 0,
+  "floor": "",
+  "yearBuilt": null,
+  "excerpt": "Terrain plat dans un lotissement viabilisé, vue dégagée sur la mer, R+2 autorisé.",
+  "description": [
+   "Terrain plat de 450 m² dans un lotissement viabilisé de Bir El Djir : eau, électricité et gaz en limite de parcelle. La vue sur la mer est dégagée depuis le haut du terrain.",
+   "Le règlement autorise une construction en R+2. Acte notarié et livret foncier disponibles."
+  ],
+  "features": [
+   "Vue mer",
+   "Acte notarié",
+   "Livret foncier"
+  ],
+  "featured": true,
+  "status": "disponible",
+  "createdAt": "2026-11-14",
+  "slug": "terrain-bir-el-djir",
+  "meta": {
+   "title_ar": "أرض مساحتها 450 م² بإطلالة بحرية",
+   "excerpt_ar": "أرض مستوية في تجزئة مهيأة، بإطلالة مفتوحة على البحر، والبناء بطابقين مسموح.",
+   "content_ar": "أرض مستوية مساحتها 450 م² في تجزئة مهيأة ببئر الجير: الماء والكهرباء والغاز على حدود القطعة. والإطلالة على البحر مفتوحة من أعلى الأرض.\n\nيسمح النظام ببناء طابقين. العقد التوثيقي والدفتر العقاري متوفران."
+  }
+ },
+ {
+  "reference": "BHA-1044",
+  "title": "Boutique d’angle, store et vitrines",
+  "price": 39000000,
+  "transaction": "vente",
+  "type": "local",
+  "typology": "Local commercial",
+  "wilaya": "Oran",
+  "commune": "Centre-ville",
+  "quartier": "Rue commerçante",
+  "surface": 110,
+  "rooms": 2,
+  "bedrooms": 0,
+  "bathrooms": 1,
+  "floor": "Rez-de-chaussée et mezzanine",
+  "yearBuilt": 1958,
+  "excerpt": "Local d’angle sur deux niveaux, deux vitrines et store rayé, dans une rue très passante.",
+  "description": [
+   "Au centre-ville, ce local d’angle de 110 m² sur deux niveaux bénéficie de deux vitrines et d’un store rayé neuf. Le rez-de-chaussée accueille la boutique, la mezzanine un bureau et une réserve.",
+   "Rideaux métalliques, climatisation et sanitaires. Convient à tout commerce."
+  ],
+  "features": [
+   "Vitrine",
+   "Climatisation",
+   "Acte notarié"
+  ],
+  "featured": true,
+  "status": "disponible",
+  "createdAt": "2026-11-12",
+  "slug": "boutique-centre-ville",
+  "meta": {
+   "title_ar": "محل على زاوية بواجهات زجاجية",
+   "excerpt_ar": "محل على زاوية بمستويين، بواجهتين زجاجيتين ومظلة مخططة، في شارع كثير الحركة.",
+   "content_ar": "في وسط المدينة، يتميز هذا المحل الواقع على زاوية بمساحة 110 م² على مستويين بواجهتين زجاجيتين ومظلة مخططة جديدة. الطابق الأرضي للمحل، والطابق العلوي لمكتب ومخزن.\n\nستائر حديدية، وتكييف، ومرافق صحية. مناسب لكل أنواع التجارة."
+  }
+ },
+ {
+  "reference": "BHA-1043",
+  "title": "Villa blanche, store rayé et jardin",
+  "price": 280000,
+  "transaction": "location",
+  "type": "villa",
+  "typology": "Villa R+1",
+  "wilaya": "Oran",
+  "commune": "Canastel",
+  "quartier": "Proche de la forêt",
+  "surface": 260,
+  "landSurface": 480,
+  "rooms": 6,
+  "bedrooms": 4,
+  "bathrooms": 2,
+  "floor": "",
+  "yearBuilt": 2012,
+  "excerpt": "Villa familiale louée vide, jardin arboré, garage et terrasse couverte.",
+  "description": [
+   "Entre la forêt et la mer, cette villa de 260 m² se loue vide. Le rez-de-chaussée s’ouvre sur une terrasse couverte et un jardin arboré ; l’étage compte quatre chambres.",
+   "Garage pour deux voitures, chauffage central et bâche à eau. Disponible à partir du mois prochain."
+  ],
+  "features": [
+   "Jardin",
+   "Garage",
+   "Terrasse",
+   "Chauffage central",
+   "Bâche à eau"
+  ],
+  "featured": false,
+  "status": "disponible",
+  "createdAt": "2026-11-10",
+  "slug": "villa-jardin-canastel",
+  "meta": {
+   "title_ar": "فيلا بيضاء بحديقة ومظلة مخططة",
+   "excerpt_ar": "فيلا عائلية للكراء غير مفروشة، بحديقة مشجرة ومرآب وشرفة مغطاة.",
+   "content_ar": "بين الغابة والبحر، تُؤجَّر هذه الفيلا بمساحة 260 م² غير مفروشة. ينفتح الطابق الأرضي على شرفة مغطاة وحديقة مشجرة، وفي الطابق العلوي أربع غرف نوم.\n\nمرآب لسيارتين، وتدفئة مركزية، وخزان ماء. متوفرة ابتداءً من الشهر القادم."
+  }
+ },
+ {
+  "reference": "BHA-1042",
+  "title": "F3 face à la promenade",
+  "price": 24500000,
+  "transaction": "vente",
+  "type": "appartement",
+  "typology": "F3",
+  "wilaya": "Oran",
+  "commune": "Front de mer",
+  "quartier": "Face à la promenade",
+  "surface": 104,
+  "rooms": 3,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "floor": "3ᵉ étage, ascenseur",
+  "yearBuilt": 1998,
+  "excerpt": "F3 rénové face à la promenade, grand séjour lumineux et balcon sur la mer.",
+  "description": [
+   "Ce F3 de 104 m² a été entièrement rénové : électricité, sols et salle d’eau. Le séjour lumineux donne sur la promenade et la mer.",
+   "Deux chambres, cuisine équipée, cave. Immeuble bien entretenu avec ascenseur."
+  ],
+  "features": [
+   "Ascenseur",
+   "Balcon",
+   "Vue mer",
+   "Cuisine équipée",
+   "Double vitrage"
+  ],
+  "featured": false,
+  "status": "disponible",
+  "createdAt": "2026-11-08",
+  "slug": "f3-promenade-front-de-mer",
+  "meta": {
+   "title_ar": "شقة F3 مقابل الكورنيش",
+   "excerpt_ar": "شقة F3 مجددة مقابل الكورنيش، بصالون واسع ومضيء وشرفة على البحر.",
+   "content_ar": "جُدِّدت هذه الشقة F3 بمساحة 104 م² بالكامل: الكهرباء والأرضيات والحمام. يطل الصالون المضيء على الكورنيش والبحر.\n\nغرفتا نوم، ومطبخ مجهز، وقبو. عمارة جيدة الصيانة بمصعد."
+  }
+ },
+ {
+  "reference": "BHA-1041",
+  "title": "Bureau lumineux au premier étage",
+  "price": 120000,
+  "transaction": "location",
+  "type": "local",
+  "typology": "Bureaux",
+  "wilaya": "Oran",
+  "commune": "Centre-ville",
+  "quartier": "Proche de la place du 1er-Novembre",
+  "surface": 85,
+  "rooms": 3,
+  "bedrooms": 0,
+  "bathrooms": 1,
+  "floor": "1ᵉʳ étage",
+  "yearBuilt": 1965,
+  "excerpt": "Plateau de bureaux de 85 m², trois pièces, fibre optique, au cœur du centre-ville.",
+  "description": [
+   "Au premier étage d’un immeuble ancien rénové, ce plateau de 85 m² compte trois bureaux, un accueil et une kitchenette.",
+   "Fibre optique, climatisation et interphone. Idéal pour un cabinet ou une agence."
+  ],
+  "features": [
+   "Fibre optique",
+   "Climatisation",
+   "Interphone"
+  ],
+  "featured": false,
+  "status": "disponible",
+  "createdAt": "2026-11-06",
+  "slug": "bureau-centre-ville",
+  "meta": {
+   "title_ar": "مكتب مضيء في الطابق الأول",
+   "excerpt_ar": "مكاتب بمساحة 85 م²، بثلاث غرف وألياف بصرية، في قلب وسط المدينة.",
+   "content_ar": "في الطابق الأول من عمارة قديمة مجددة، تضم هذه المساحة البالغة 85 م² ثلاثة مكاتب واستقبالًا ومطبخًا صغيرًا.\n\nألياف بصرية، وتكييف، وجهاز اتصال داخلي. مثالية لمكتب مهني أو وكالة."
+  }
+ },
+ {
+  "reference": "BHA-1040",
+  "title": "F2 rénové, proche du tramway",
+  "price": 14800000,
+  "transaction": "vente",
+  "type": "appartement",
+  "typology": "F2",
+  "wilaya": "Oran",
+  "commune": "Akid Lotfi",
+  "quartier": "À deux pas du tramway",
+  "surface": 62,
+  "rooms": 2,
+  "bedrooms": 1,
+  "bathrooms": 1,
+  "floor": "2ᵉ étage",
+  "yearBuilt": 2010,
+  "excerpt": "F2 rénové en résidence fermée, idéal premier achat ou investissement locatif.",
+  "description": [
+   "Dans une résidence fermée d’Akid Lotfi, ce F2 de 62 m² a été rénové avec soin : cuisine équipée, salle d’eau neuve et double vitrage.",
+   "Le tramway, les commerces et les écoles sont à deux pas. Acte notarié disponible."
+  ],
+  "features": [
+   "Résidence fermée",
+   "Cuisine équipée",
+   "Double vitrage",
+   "Proche transports",
+   "Acte notarié"
+  ],
+  "featured": false,
+  "status": "disponible",
+  "createdAt": "2026-11-04",
+  "slug": "f2-akid-lotfi",
+  "meta": {
+   "title_ar": "شقة F2 مجددة قرب الترامواي",
+   "excerpt_ar": "شقة F2 مجددة في إقامة مغلقة، مثالية لأول شراء أو للاستثمار في الكراء.",
+   "content_ar": "في إقامة مغلقة بالعقيد لطفي، جُدِّدت هذه الشقة F2 بمساحة 62 م² بعناية: مطبخ مجهز، وحمام جديد، وزجاج مزدوج.\n\nالترامواي والمحلات والمدارس على بعد خطوات. العقد التوثيقي متوفر."
+  }
+ },
+ {
+  "reference": "BHA-1039",
+  "title": "F5 avec grande terrasse",
+  "price": 36000000,
+  "transaction": "vente",
+  "type": "appartement",
+  "typology": "F5",
+  "wilaya": "Oran",
+  "commune": "Bir El Djir",
+  "quartier": "Quartier neuf",
+  "surface": 160,
+  "rooms": 5,
+  "bedrooms": 4,
+  "bathrooms": 2,
+  "floor": "Dernier étage, ascenseur",
+  "yearBuilt": 2021,
+  "excerpt": "F5 au dernier étage d’une résidence neuve, terrasse de 40 m² et deux places de parking.",
+  "description": [
+   "Au dernier étage d’une résidence neuve de Bir El Djir, ce F5 de 160 m² profite d’une terrasse de 40 m² sans vis-à-vis.",
+   "Quatre chambres, deux salles de bain, cuisine équipée. Deux places de parking et gardiennage."
+  ],
+  "features": [
+   "Terrasse",
+   "Ascenseur",
+   "Parking",
+   "Gardiennage",
+   "Cuisine équipée",
+   "Résidence fermée"
+  ],
+  "featured": false,
+  "status": "disponible",
+  "createdAt": "2026-11-02",
+  "slug": "f5-terrasse-bir-el-djir",
+  "meta": {
+   "title_ar": "شقة F5 بتراس واسع",
+   "excerpt_ar": "شقة F5 في الطابق الأخير من إقامة جديدة، بتراس مساحته 40 م² ومكانين لركن السيارات.",
+   "content_ar": "في الطابق الأخير من إقامة جديدة ببئر الجير، تتمتع هذه الشقة F5 بمساحة 160 م² بتراس مساحته 40 م² دون مقابل.\n\nأربع غرف نوم، وحمامان، ومطبخ مجهز. مكانان لركن السيارات وحراسة."
+  }
+ }
+]

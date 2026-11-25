@@ -1,0 +1,60 @@
+{
+  "name": "Bahia Immobilier",
+  "nameAr": "باهية للعقارات",
+  "shortName": "BAHIA",
+  "logoBottom": "IMMOBILIER",
+  "logoBottomAr": "عقارات",
+  "slug": "bahia-immobilier",
+  "prefix": "bahia",
+  "refPrefix": "BHA",
+  "domain": "bahia-immobilier.dz",
+  "layout": "riviera",
+  "colors": {
+    "background": "#FFFFFF",
+    "surface": "#FFFFFF",
+    "text": "#0A1E33",
+    "muted": "#3B4A5C",
+    "accent": "#0E2A47",
+    "soft": "#F3EEE6",
+    "gold": "#B8975A"
+  },
+  "locality": {
+    "wilaya": "Oran",
+    "city": "Oran",
+    "cityAr": "وهران",
+    "a": "à Oran",
+    "de": "d’Oran",
+    "adjective": "oranaise",
+    "communesExample": "Canastel, Front de mer, Akid Lotfi…"
+  },
+  "contact": {
+    "phone": "+213 41 00 00 00",
+    "mobile": "+213 661 00 00 00",
+    "whatsapp": "213661000000",
+    "email": "contact@bahia-immobilier.dz",
+    "address": "Boulevard du Front de mer (adresse de démonstration)",
+    "city": "Front de mer, Oran",
+    "hours": [["Dimanche – Jeudi", "09h00 – 17h00"], ["Samedi", "09h00 – 13h00"], ["Vendredi", "Fermé"]]
+  },
+  "socials": { "facebook": "https://www.facebook.com/", "instagram": "https://www.instagram.com/", "linkedin": "", "youtube": "" },
+  "texts": {
+    "heroTitle": "La Méditerranée, côté adresse.",
+    "heroText": "Appartements face à la baie, villas sur les hauteurs de Canastel : une sélection courte, visitée et vérifiée par nos conseillers.",
+    "aboutTitle": "Une agence oranaise, attentive à chaque détail.",
+    "aboutText": "Chez Bahia Immobilier, un seul conseiller vous suit de la première visite à la remise des clés. Nous visitons chaque bien et vérifions ses documents avant de vous le proposer.",
+    "description": "Agence immobilière à Oran : achat, vente et location d’appartements, villas, terrains et locaux.",
+    "stats": [["10", "ans à Oran"], ["600+", "clients accompagnés"], ["12", "quartiers couverts"]]
+  },
+  "textsAr": {
+    "heroTitle": "المتوسط، بعنوان يليق بكم.",
+    "heroText": "شقق مطلة على الخليج، وفيلات في مرتفعات كاناستيل: تشكيلة قصيرة يزورها مستشارونا ويتحققون منها قبل عرضها عليكم.",
+    "aboutTitle": "وكالة وهرانية تهتم بكل التفاصيل.",
+    "aboutText": "في باهية للعقارات، يرافقكم مستشار واحد من أول زيارة إلى تسليم المفاتيح. نزور كل عقار ونتحقق من وثائقه قبل أن نعرضه عليكم.",
+    "description": "وكالة عقارية في وهران: بيع وشراء وكراء الشقق والفيلات والأراضي والمحلات.",
+    "address": "شارع الواجهة البحرية (عنوان تجريبي)",
+    "city": "الواجهة البحرية، وهران",
+    "stats": ["سنوات في وهران", "زبون رافقناه", "حيًّا نغطيه"]
+  },
+  "demoContent": true,
+  "demoNotice": true
+}

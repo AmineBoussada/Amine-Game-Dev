@@ -39,6 +39,7 @@ WP_CLI::add_command('nova seed', function ($args, $assoc) {
             'bathrooms' => $p['bathrooms'], 'floor' => $p['floor'] ?? '', 'year_built' => $p['yearBuilt'] ?? '',
             'features' => $p['features'], 'featured' => $p['featured'] ? 1 : 0, 'status' => $p['status'], 'gallery' => '',
         ];
+        $map = array_merge($map, $p['meta'] ?? []); // extra fields, e.g. Arabic texts
         foreach ($map as $k => $v) {
             update_post_meta($id, "_nova_{$k}", $v);
         }

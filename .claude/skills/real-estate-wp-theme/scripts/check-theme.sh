@@ -12,9 +12,16 @@ echo "Checking $DIR"
 
 # 1. Required files
 for f in style.css functions.php index.php header.php footer.php front-page.php archive-property.php single-property.php \
-         inc/fields.php inc/settings.php assets/css/tokens.css assets/js/theme.js assets/js/admin.js; do
+         inc/fields.php inc/settings.php assets/js/theme.js assets/js/admin.js; do
   [ -f "$DIR/$f" ] || bad "missing $f"
 done
+# Styles: tokens.css (NOVA layout) or the layout's own stylesheet (inc/layout.php present).
+if [ -f "$DIR/inc/layout.php" ]; then
+  ls "$DIR"/assets/css/*.css >/dev/null 2>&1 || bad "missing layout stylesheet in assets/css/"
+  [ -f "$DIR/inc/lang-ar.php" ] || bad "missing inc/lang-ar.php"
+else
+  [ -f "$DIR/assets/css/tokens.css" ] || bad "missing assets/css/tokens.css"
+fi
 [ $FAIL -eq 0 ] && ok "required files present"
 
 # 2. Theme header

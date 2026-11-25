@@ -61,10 +61,18 @@ function nova_render_field(array $f, int $post_id): void
                     echo '<span class="nova-price-preview" data-price-preview></span>';
                 }
                 break;
+            case 'textarea':
+                printf(
+                    '<textarea id="%s" name="%s" rows="%d" placeholder="%s"%s%s>%s</textarea>',
+                    esc_attr($id), esc_attr($name), (int) ($f['rows'] ?? 4), esc_attr($f['placeholder'] ?? ''),
+                    !empty($f['dir']) ? ' dir="' . esc_attr($f['dir']) . '"' : '', $req ? ' required' : '', esc_textarea((string) $value)
+                );
+                break;
             default:
                 printf(
-                    '<input type="text" id="%s" name="%s" value="%s" placeholder="%s"%s>',
-                    esc_attr($id), esc_attr($name), esc_attr($value), esc_attr($f['placeholder'] ?? ''), $req ? ' required' : ''
+                    '<input type="text" id="%s" name="%s" value="%s" placeholder="%s"%s%s>',
+                    esc_attr($id), esc_attr($name), esc_attr($value), esc_attr($f['placeholder'] ?? ''),
+                    !empty($f['dir']) ? ' dir="' . esc_attr($f['dir']) . '"' : '', $req ? ' required' : ''
                 );
         }
     }
@@ -171,6 +179,9 @@ add_action('save_post_property', function (int $post_id, WP_Post $post) {
                 break;
             case 'gallery':
                 $value = implode(',', array_filter(array_map('absint', explode(',', (string) $raw))));
+                break;
+            case 'textarea':
+                $value = sanitize_textarea_field((string) $raw);
                 break;
             default:
                 $value = sanitize_text_field((string) $raw);

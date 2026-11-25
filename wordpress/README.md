@@ -46,6 +46,14 @@ images de l’accueil et de la section « L’agence », chiffres clés.
 ### Menu
 **Apparence › Menus** : modifiez le *Menu principal* (Acheter / Louer pointent vers `/biens/?transaction=vente|location`).
 
+### Version arabe et mode sombre (thèmes « Riviera », ex. Bahia Immobilier)
+- Les visiteurs choisissent **ع / FR** (langue) et la **lune / le soleil** (clair ou sombre) en haut du site ; leur choix est mémorisé.
+- Chaque bien a un cadre **Version arabe du site** : titre, résumé et description en arabe. Facultatif : si un champ est vide,
+  le texte français s’affiche.
+- **Réglages agence › Textes de la version arabe** : titre et texte d’accueil, présentation, adresse, chiffres clés en arabe.
+- Les menus, boutons, filtres et formulaires sont traduits automatiquement. Les demandes des clients arrivent toujours en français
+  dans **Demandes** (seul le message est écrit par le client).
+
 ---
 
 ## 2. Installer sur un hébergement
@@ -88,7 +96,10 @@ node .claude/skills/real-estate-wp-theme/scripts/generate-theme.mjs wordpress/mo
 .claude/skills/real-estate-wp-theme/scripts/check-theme.sh wordpress/<slug>
 ```
 
-Les thèmes clients et leurs fichiers de configuration ne sont pas versionnés (`.gitignore`).
+Deux designs sont disponibles : `"layout": "nova"` (celui-ci) ou `"layout": "riviera"` (bleu marine, mode sombre, site en français et en arabe ;
+exemple complet : `config.riviera.example.json`, résultat : `wordpress/bahia-immobilier/`).
+
+Les thèmes clients et leurs fichiers de configuration ne sont pas versionnés (`.gitignore`). Exception : `bahia-immobilier/`, agence fictive de démonstration.
 
 ## 4. Développement local (Docker)
 

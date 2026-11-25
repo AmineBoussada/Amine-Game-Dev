@@ -9,6 +9,22 @@ const $ = <T extends Element = HTMLElement>(sel: string, root: ParentNode = docu
 const $$ = <T extends Element = HTMLElement>(sel: string, root: ParentNode = document) => Array.from(root.querySelectorAll<T>(sel));
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+/* Visitor-facing messages. A layout can translate them with window.NOVA_I18N (same keys). */
+const L = {
+  menuOpen: 'Ouvrir le menu',
+  menuClose: 'Fermer le menu',
+  favAdd: 'Ajouter aux favoris',
+  favRemove: 'Retirer des favoris',
+  errName: 'Veuillez indiquer votre nom complet.',
+  errPhone: 'Numéro invalide. Exemple : 0550 12 34 56 ou +213 550 12 34 56.',
+  errEmail: 'Veuillez saisir une adresse email valide.',
+  errSubject: 'Veuillez choisir un sujet.',
+  errMessage: 'Votre message doit contenir au moins 10 caractères.',
+  errConsent: 'Votre accord est nécessaire pour être recontacté(e).',
+  sending: 'Envoi en cours…',
+  ...((window as unknown as { NOVA_I18N?: Record<string, string> }).NOVA_I18N ?? {}),
+};
+
 /* ---------- Illustrations for properties without photos ---------- */
 function fillIllustrations(root: ParentNode = document) {
   $$<HTMLImageElement>('img[data-scene]', root).forEach((img) => {
@@ -41,7 +57,7 @@ function initHeader() {
     nav?.setAttribute('aria-hidden', String(!open));
     $$('a', nav ?? document).forEach((a) => (a.tabIndex = open ? 0 : -1));
     toggle?.setAttribute('aria-expanded', String(open));
-    toggle?.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+    toggle?.setAttribute('aria-label', open ? L.menuClose : L.menuOpen);
     $('[data-icon-open]', toggle!)!.hidden = open;
     $('[data-icon-close]', toggle!)!.hidden = !open;
     document.body.classList.toggle('no-scroll', open);
@@ -101,7 +117,7 @@ function initFavorites() {
       const on = favs.includes(btn.dataset.fav!);
       btn.classList.toggle('is-active', on);
       btn.setAttribute('aria-pressed', String(on));
-      btn.title = on ? 'Retirer des favoris' : 'Ajouter aux favoris';
+      btn.title = on ? L.favRemove : L.favAdd;
     });
     $$('[data-fav-count]').forEach((el) => {
       el.textContent = String(favs.length);
@@ -266,12 +282,12 @@ function initContactForms() {
   $$<HTMLFormElement>('[data-contact-form]').forEach((form) => {
     const get = (name: string) => form.elements.namedItem(name) as HTMLInputElement | null;
     const rules: Record<string, () => string> = {
-      name: () => (get('name')!.value.trim().length < 3 ? 'Veuillez indiquer votre nom complet.' : ''),
-      phone: () => (!phoneRe.test(get('phone')!.value.replace(/[\s.-]/g, '')) ? 'Numéro invalide. Exemple : 0550 12 34 56 ou +213 550 12 34 56.' : ''),
-      email: () => (!emailRe.test(get('email')!.value.trim()) ? 'Veuillez saisir une adresse email valide.' : ''),
-      subject: () => (!get('subject')!.value ? 'Veuillez choisir un sujet.' : ''),
-      message: () => (get('message')!.value.trim().length < 10 ? 'Votre message doit contenir au moins 10 caractères.' : ''),
-      consent: () => (!get('consent')!.checked ? 'Votre accord est nécessaire pour être recontacté(e).' : ''),
+      name: () => (get('name')!.value.trim().length < 3 ? L.errName : ''),
+      phone: () => (!phoneRe.test(get('phone')!.value.replace(/[\s.-]/g, '')) ? L.errPhone : ''),
+      email: () => (!emailRe.test(get('email')!.value.trim()) ? L.errEmail : ''),
+      subject: () => (!get('subject')!.value ? L.errSubject : ''),
+      message: () => (get('message')!.value.trim().length < 10 ? L.errMessage : ''),
+      consent: () => (!get('consent')!.checked ? L.errConsent : ''),
     };
     const touched = new Set<string>();
     const check = (name: string) => {
@@ -306,7 +322,7 @@ function initContactForms() {
       }
       const btn = $<HTMLButtonElement>('button[type=submit]', form)!;
       btn.disabled = true;
-      $('[data-submit-label]', btn)!.innerHTML = '<span class="spinner" aria-hidden="true"></span> Envoi en cours…';
+      $('[data-submit-label]', btn)!.innerHTML = `<span class="spinner" aria-hidden="true"></span> ${L.sending}`;
     });
   });
 }

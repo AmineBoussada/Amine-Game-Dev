@@ -7,12 +7,17 @@
  *   node .claude/skills/real-estate-wp-theme/scripts/generate-theme.mjs <config.json> [--force] [--no-zip]
  *
  * Output: wordpress/<slug>/ (theme folder) and wordpress/<slug>.zip (upload in WordPress).
+ *
+ * `layout` in the config chooses the front-end: "nova" (default, the NOVA design) or "riviera"
+ * (layouts/riviera: navy and white, light/dark switch, French/Arabic with right-to-left display).
  */
 import { cpSync, existsSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import { execSync } from 'node:child_process';
-import { join, resolve } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const SOURCE = 'wordpress/nova-immobilier';
+const LAYOUTS = join(dirname(fileURLToPath(import.meta.url)), '..', 'layouts');
 const TEXT_EXT = /\.(php|css|js|json|svg|txt|md)$/i;
 
 /* ---------------- Config ---------------- */
@@ -38,6 +43,9 @@ if (cfg.prefix && !/^[a-z][a-z0-9]{1,9}$/.test(cfg.prefix)) errors.push('"prefix
 if (cfg.prefix === 'nova' || cfg.prefix === 'wp') errors.push('"prefix" cannot be "nova" or "wp"');
 if (cfg.refPrefix && !/^[A-Z0-9]{2,8}$/.test(cfg.refPrefix)) errors.push('"refPrefix" must be 2–8 uppercase letters/digits');
 for (const [k, v] of Object.entries(cfg.colors ?? {})) if (!/^#[0-9a-fA-F]{6}$/.test(v)) errors.push(`colors.${k} must be a #RRGGBB hex`);
+const LAYOUT = cfg.layout ?? 'nova';
+if (LAYOUT !== 'nova' && !existsSync(join(LAYOUTS, LAYOUT))) errors.push(`unknown "layout": ${LAYOUT} (available: nova, ${readdirSync(LAYOUTS).join(', ')})`);
+if (LAYOUT === 'riviera') ['nameAr', 'locality.cityAr'].forEach(req);
 if (errors.length) fail('Invalid config:\n  - ' + errors.join('\n  - '));
 
 const P = cfg.prefix;
@@ -74,6 +82,12 @@ if (existsSync(target)) {
 cpSync(SOURCE, target, { recursive: true });
 const zipLeft = join(target, `${SOURCE.split('/').pop()}.zip`);
 if (existsSync(zipLeft)) rmSync(zipLeft);
+if (LAYOUT !== 'nova') {
+  // The layout replaces the front-end templates and styles; the back office stays the base theme's.
+  for (const f of ['tokens', 'base', 'components', 'pages', 'theme']) rmSync(join(target, `assets/css/${f}.css`), { force: true });
+  for (const f of ['cta-banner', 'stats']) rmSync(join(target, `template-parts/${f}.php`), { force: true });
+  cpSync(join(LAYOUTS, LAYOUT), target, { recursive: true });
+}
 
 /* ---------------- Helpers ---------------- */
 const phpStr = (s) =>
@@ -88,7 +102,15 @@ const walk = (dir) =>
   });
 
 /* ---------------- Replacement rules (order matters) ---------------- */
+const cityName = cfg.locality.city ?? cfg.locality.wilaya;
 const rules = [
+  // Placeholders used by alternative layouts.
+  [/__SHORT__/g, short],
+  [/__NAME_AR__/g, cfg.nameAr ?? name],
+  [/__CITY_AR__/g, cfg.locality.cityAr ?? cityName],
+  [/__CITY__/g, cityName],
+  [/__LOGO_BOTTOM_AR__/g, cfg.logoBottomAr ?? 'عقارات'],
+  [/__LOGO_BOTTOM__/g, logoBottom],
   // Brand text first (before identifier rules touch "nova").
   [/NOVA IMMOBILIER/g, name],
   [/<span class="logo__name">NOVA<\/span><span class="logo__sub">IMMOBILIER<\/span>/g,
@@ -140,37 +162,41 @@ for (const file of walk(target)) {
 }
 
 /* ---------------- Design tokens ---------------- */
-const tokensPath = join(target, 'assets/css/tokens.css');
-let tokens = readFileSync(tokensPath, 'utf8');
-const setToken = (tok, val) => {
-  const re = new RegExp(`(${esc(tok)}:\\s*)[^;]+;`);
-  if (!re.test(tokens)) fail(`Token ${tok} not found in tokens.css`);
-  tokens = tokens.replace(re, `$1${val};`);
-};
-setToken('--c-ivory', c.background);
-setToken('--c-white', c.surface);
-setToken('--c-charcoal', c.text);
-setToken('--c-gray', c.muted);
-setToken('--c-bronze', c.accent);
-setToken('--c-beige', c.soft);
-setToken('--c-bronze-dark', derived.accentDark);
-setToken('--c-bronze-soft', `rgba(${accentRgb}, 0.12)`);
-setToken('--c-bronze-light', derived.accentLight);
-setToken('--c-line', derived.line);
-setToken('--c-line-strong', derived.lineStrong);
-setToken('--c-muted', derived.mutedText);
 const fonts = cfg.fonts ?? {};
-if (fonts.display) setToken('--f-serif', `'${fonts.display}', Georgia, 'Times New Roman', serif`);
-if (fonts.body) setToken('--f-sans', `'${fonts.body}', system-ui, -apple-system, 'Segoe UI', sans-serif`);
-writeFileSync(tokensPath, tokens);
+if (LAYOUT === 'nova') {
+  const tokensPath = join(target, 'assets/css/tokens.css');
+  let tokens = readFileSync(tokensPath, 'utf8');
+  const setToken = (tok, val) => {
+    const re = new RegExp(`(${esc(tok)}:\\s*)[^;]+;`);
+    if (!re.test(tokens)) fail(`Token ${tok} not found in tokens.css`);
+    tokens = tokens.replace(re, `$1${val};`);
+  };
+  setToken('--c-ivory', c.background);
+  setToken('--c-white', c.surface);
+  setToken('--c-charcoal', c.text);
+  setToken('--c-gray', c.muted);
+  setToken('--c-bronze', c.accent);
+  setToken('--c-beige', c.soft);
+  setToken('--c-bronze-dark', derived.accentDark);
+  setToken('--c-bronze-soft', `rgba(${accentRgb}, 0.12)`);
+  setToken('--c-bronze-light', derived.accentLight);
+  setToken('--c-line', derived.line);
+  setToken('--c-line-strong', derived.lineStrong);
+  setToken('--c-muted', derived.mutedText);
+  if (fonts.display) setToken('--f-serif', `'${fonts.display}', Georgia, 'Times New Roman', serif`);
+  if (fonts.body) setToken('--f-sans', `'${fonts.body}', system-ui, -apple-system, 'Segoe UI', sans-serif`);
+  writeFileSync(tokensPath, tokens);
 
-// Google Fonts URL.
-if (fonts.display || fonts.body) {
-  const fam = (f, w) => `family=${f.replace(/ /g, '+')}:wght@${w}`;
-  const url = `https://fonts.googleapis.com/css2?${fam(fonts.body ?? 'Manrope', fonts.bodyWeights ?? '400;500;600;700')}&${fam(fonts.display ?? 'Playfair Display', fonts.displayWeights ?? '500;600')}&display=swap`;
-  const fp = join(target, 'functions.php');
-  const s = readFileSync(fp, 'utf8').replace(/'https:\/\/fonts\.googleapis\.com\/css2\?[^']+'/, `'${url}'`);
-  writeFileSync(fp, s);
+  // Google Fonts URL.
+  if (fonts.display || fonts.body) {
+    const fam = (f, w) => `family=${f.replace(/ /g, '+')}:wght@${w}`;
+    const url = `https://fonts.googleapis.com/css2?${fam(fonts.body ?? 'Manrope', fonts.bodyWeights ?? '400;500;600;700')}&${fam(fonts.display ?? 'Playfair Display', fonts.displayWeights ?? '500;600')}&display=swap`;
+    const fp = join(target, 'functions.php');
+    const s = readFileSync(fp, 'utf8').replace(/'https:\/\/fonts\.googleapis\.com\/css2\?[^']+'/, `'${url}'`);
+    writeFileSync(fp, s);
+  }
+} else {
+  setLayoutTokens();
 }
 
 /* ---------------- Settings defaults ---------------- */
@@ -209,6 +235,29 @@ for (const [key, value] of Object.entries(defaults)) {
 }
 writeFileSync(settingsPath, settings);
 
+if (LAYOUT === 'riviera') {
+  // Arabic texts of the settings page (defaults in inc/layout.php).
+  const layoutPath = join(target, 'inc/layout.php');
+  let layoutPhp = readFileSync(layoutPath, 'utf8');
+  const ta = cfg.textsAr ?? {};
+  const arDefaults = {
+    ...(ta.heroTitle && { hero_title_ar: ta.heroTitle }),
+    ...(ta.heroText && { hero_text_ar: ta.heroText }),
+    ...(ta.aboutTitle && { about_title_ar: ta.aboutTitle }),
+    ...(ta.aboutText && { about_text_ar: ta.aboutText }),
+    ...(ta.description && { description_ar: ta.description }),
+    ...(ta.address && { address_ar: ta.address }),
+    ...(ta.city && { city_ar: ta.city }),
+  };
+  (ta.stats ?? []).slice(0, 3).forEach((l, i) => (arDefaults[`stat${i + 1}_label_ar`] = l));
+  for (const [key, value] of Object.entries(arDefaults)) {
+    const re = new RegExp(`('${key}' => )'(?:[^'\\\\]|\\\\.)*'`);
+    if (!re.test(layoutPhp)) fail(`Arabic setting default "${key}" not found in inc/layout.php`);
+    layoutPhp = layoutPhp.replace(re, `$1${phpStr(value)}`);
+  }
+  writeFileSync(layoutPath, layoutPhp);
+}
+
 /* ---------------- Demo content ---------------- */
 if (cfg.demoContent === false) writeFileSync(join(target, 'inc/seed-data.json'), '[]\n');
 
@@ -229,7 +278,7 @@ const leftovers = walk(target)
       .filter(([, , line]) => /(?<![a-z])nova(?!lidate)/i.test(line)),
   );
 console.log(`✓ Theme generated: ${target}  (${changed} files rebranded)`);
-console.log(`  name: ${name} · prefix: ${P}_ · references: ${cfg.refPrefix}-xxxx · WP-CLI: wp ${P} seed`);
+console.log(`  name: ${name} · layout: ${LAYOUT} · prefix: ${P}_ · references: ${cfg.refPrefix}-xxxx · WP-CLI: wp ${P} seed`);
 if (leftovers.length) {
   console.log(`✗ ${leftovers.length} leftover "nova" occurrence(s):`);
   leftovers.slice(0, 20).forEach(([f, n, l]) => console.log(`  ${f}:${n}: ${l.trim().slice(0, 140)}`));
@@ -243,6 +292,39 @@ if (!NO_ZIP) {
   } catch {
     console.log('! "zip" command not available: compress the theme folder manually.');
   }
+}
+
+/** Colours of an alternative layout: light tokens from the config, dark tokens derived from the accent. */
+function setLayoutTokens() {
+  const cssPath = join(target, `assets/css/${LAYOUT}.css`);
+  let css = readFileSync(cssPath, 'utf8');
+  const set = (block, tok, val) => {
+    const re = new RegExp(`(${block}[^}]*?${esc(tok)}:\\s*)[^;]+;`);
+    if (!re.test(css)) fail(`Token ${tok} not found in ${cssPath}`);
+    css = css.replace(re, `$1${val};`);
+  };
+  const light = ':root \\{';
+  set(light, '--bg', c.background);
+  set(light, '--surface', c.surface);
+  set(light, '--ink', c.text);
+  set(light, '--muted', c.muted);
+  set(light, '--marine', c.accent);
+  set(light, '--alt', c.soft);
+  if (c.gold) set(light, '--gold', c.gold);
+  if (c.accent.toUpperCase() !== '#0E2A47') {
+    const dark = ':root\\[data-theme="sombre"\\] \\{';
+    const bg = mix(c.accent, '#000000', 0.4);
+    set(dark, '--bg', bg);
+    set(dark, '--surface', mix(c.accent, '#000000', 0.2));
+    set(dark, '--alt', mix(c.accent, '#000000', 0.28));
+    set(dark, '--band', mix(c.accent, '#000000', 0.55));
+    set(dark, '--btn-ink', bg);
+    set(dark, '--stripe-bg', bg);
+    set(dark, '--header', `rgba(${hex2rgb(bg).join(', ')}, 0.97)`);
+    set(dark, '--footer', mix(c.accent, '#000000', 0.68));
+  }
+  writeFileSync(cssPath, css);
+  if (cfg.fonts) console.log(`! "fonts" is ignored by the ${LAYOUT} layout (Jost, and IBM Plex Sans Arabic in Arabic).`);
 }
 
 function fail(msg) {

@@ -111,7 +111,7 @@ function nova_get_property($post = null): array
     }
 
     $features = $m('features');
-    return [
+    return apply_filters('nova_property', [
         'id' => $id,
         'url' => get_permalink($id),
         'reference' => $m('reference') ?: 'NOVA-' . $id,
@@ -136,7 +136,7 @@ function nova_get_property($post = null): array
         'featured' => (bool) $m('featured'),
         'status' => $m('status') ?: 'disponible',
         'date' => get_the_date('Y-m-d', $id),
-    ];
+    ], $post);
 }
 
 function nova_type_label(array $p): string
@@ -166,6 +166,14 @@ function nova_image(array $img, string $size = 'nova-card', string $frame = 'rat
             'sizes' => $size === 'nova-thumb' ? '120px' : '(max-width: 640px) 100vw, (max-width: 1200px) 60vw, 900px',
         ]);
         return '<div class="img-frame is-loaded ' . esc_attr($frame) . '">' . $html . '</div>';
+    }
+    // A layout can ship its own illustration files instead of the generated ones.
+    $src = (string) apply_filters('nova_illustration_src', '', $img['scene'] ?? 'living', $img['seed'] ?? '');
+    if ($src !== '') {
+        return sprintf(
+            '<div class="img-frame is-loaded is-illustration %s"><img src="%s" alt="%s" loading="%s" decoding="async"></div>',
+            esc_attr($frame), esc_url($src), esc_attr($alt), $priority ? 'eager' : 'lazy'
+        );
     }
     return sprintf(
         '<div class="img-frame is-loaded is-illustration %s"><img src="%s" data-scene="%s" data-seed="%s" alt="%s" decoding="async"></div>',

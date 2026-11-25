@@ -23,6 +23,7 @@ function nova_current_filters(): array
         'transaction' => isset(nova_transaction_labels()[$tx]) ? $tx : '',
         'bien' => isset(nova_type_labels()[$type]) ? $type : '',
         'wilaya' => in_array($g('wilaya'), nova_wilayas(), true) ? $g('wilaya') : '',
+        'commune' => mb_substr($g('commune'), 0, 80),
         'prix_min' => $num('prix_min'),
         'prix_max' => $num('prix_max'),
         'surface' => $num('surface'),
@@ -37,6 +38,7 @@ function nova_filters_meta_query(array $f): array
     if ($f['transaction']) $mq[] = ['key' => '_nova_transaction', 'value' => $f['transaction']];
     if ($f['bien']) $mq[] = ['key' => '_nova_type', 'value' => $f['bien']];
     if ($f['wilaya']) $mq[] = ['key' => '_nova_wilaya', 'value' => $f['wilaya']];
+    if ($f['commune']) $mq[] = ['key' => '_nova_commune', 'value' => $f['commune']];
     if ($f['prix_min']) $mq[] = ['key' => '_nova_price', 'value' => $f['prix_min'], 'compare' => '>=', 'type' => 'NUMERIC'];
     if ($f['prix_max']) $mq[] = ['key' => '_nova_price', 'value' => $f['prix_max'], 'compare' => '<=', 'type' => 'NUMERIC'];
     if ($f['surface']) $mq[] = ['key' => '_nova_surface', 'value' => $f['surface'], 'compare' => '>=', 'type' => 'NUMERIC'];
