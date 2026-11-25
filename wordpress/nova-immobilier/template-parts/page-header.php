@@ -4,9 +4,9 @@ defined('ABSPATH') || exit;
 ?>
 <section class="page-header">
     <div class="container">
-        <nav class="breadcrumb" aria-label="Fil d’Ariane">
+        <nav class="breadcrumb" aria-label="<?php echo esc_attr(nova_t('Fil d’Ariane')); ?>">
             <ol>
-                <li><a href="<?php echo esc_url(home_url('/')); ?>">Accueil</a></li>
+                <li><a href="<?php echo esc_url(home_url('/')); ?>"><?php echo esc_html(nova_t('Accueil')); ?></a></li>
                 <?php foreach ($args['crumbs'] ?? [] as [$label, $url]) : ?>
                     <li><?php if ($url) : ?><a href="<?php echo esc_url($url); ?>"><?php echo esc_html($label); ?></a><?php else : ?><span aria-current="page"><?php echo esc_html($label); ?></span><?php endif; ?></li>
                 <?php endforeach; ?>

@@ -4,44 +4,83 @@ get_header();
 global $wp_query;
 $f = bahia_current_filters();
 $total = (int) $wp_query->found_posts;
-$archive = get_post_type_archive_link('property');
-$title = $f['transaction'] === 'vente' ? bahia_t('Biens à vendre') : ($f['transaction'] === 'location' ? bahia_t('Biens à louer') : sprintf(bahia_t('Biens à %s'), bahia_t('Oran')));
-$filtered = (bool) array_filter([$f['transaction'], $f['bien'], $f['wilaya'], $f['commune'], $f['prix_min'], $f['prix_max'], $f['surface'], $f['pieces']]);
+$heading = bahia_t($f['transaction'] === 'vente' ? 'Biens à vendre' : ($f['transaction'] === 'location' ? 'Biens à louer' : 'Nos biens immobiliers'));
+
+$chips = [];
+if ($f['transaction']) $chips[] = [bahia_t(bahia_transaction_labels()[$f['transaction']]), ['transaction' => '', 'prix_min' => '', 'prix_max' => '']];
+if ($f['bien']) $chips[] = [bahia_t(bahia_type_labels()[$f['bien']]), ['bien' => '']];
+if ($f['wilaya']) $chips[] = [bahia_t($f['wilaya']), ['wilaya' => '']];
+if ($f['commune']) $chips[] = [bahia_t($f['commune']), ['commune' => '']];
+if ($f['prix_min']) $chips[] = [sprintf(bahia_t('Dès %s'), bahia_price_short($f['prix_min'])), ['prix_min' => '']];
+if ($f['prix_max']) $chips[] = [sprintf(bahia_t('Jusqu’à %s'), bahia_price_short($f['prix_max'])), ['prix_max' => '']];
+if ($f['surface']) $chips[] = [$f['surface'] . ' ' . bahia_t('m²') . ' +', ['surface' => '']];
+if ($f['pieces']) $chips[] = [sprintf(bahia_t('%s+ pièces'), $f['pieces']), ['pieces' => '']];
 
 get_template_part('template-parts/page-header', null, [
-    'title' => $title,
-    'subtitle' => bahia_t('Appartements, villas, terrains et locaux. Chaque annonce a été visitée par un conseiller avant sa mise en ligne.'),
+    'title' => $heading,
+    'subtitle' => bahia_t('Trouvez le bien qui correspond à votre projet.'),
     'crumbs' => [[bahia_t('Nos biens'), null]],
 ]);
-get_template_part('template-parts/filter-panel');
 ?>
-<section class="rv-wrap rv-results" aria-label="<?php echo esc_attr(bahia_t('Résultats')); ?>">
-    <div class="rv-results__head">
-        <p class="rv-count" role="status"><strong><?php echo esc_html(bahia_num($total)); ?></strong> <?php echo esc_html(bahia_t($total > 1 ? 'biens trouvés' : 'bien trouvé')); ?></p>
-        <?php if ($filtered) : ?><a class="rv-link" href="<?php echo esc_url($archive); ?>"><?php echo esc_html(bahia_t('Effacer les filtres')); ?></a><?php endif; ?>
-    </div>
-
-    <?php if (have_posts()) : ?>
-        <div class="property-grid rv-grid">
-            <?php while (have_posts()) : the_post();
-                get_template_part('template-parts/property-card', null, ['p' => bahia_get_property(), 'heading' => 'h2']);
-            endwhile; ?>
-        </div>
-        <?php
-        $links = paginate_links(['type' => 'array', 'prev_text' => bahia_t('Précédent'), 'next_text' => bahia_t('Suivant')]);
-        if ($links) : ?>
-            <nav class="rv-pagination" aria-label="<?php echo esc_attr(bahia_t('Pagination')); ?>"><?php echo implode('', $links); ?></nav>
-        <?php endif; ?>
-    <?php else : ?>
-        <div class="rv-empty">
-            <?php echo bahia_stripes('rv-stripes--square'); ?>
-            <h2><?php echo esc_html(bahia_t('Aucun bien pour ces critères')); ?></h2>
-            <p><?php echo esc_html(bahia_t('Élargissez la recherche ou confiez-nous votre projet : nous vous appelons dès qu’un bien correspond.')); ?></p>
-            <div class="rv-actions rv-actions--center">
-                <a href="<?php echo esc_url($archive); ?>" class="rv-btn rv-btn--ghost"><?php echo esc_html(bahia_t('Effacer les filtres')); ?></a>
-                <a href="<?php echo esc_url(bahia_contact_url('recherche', 'formulaire')); ?>" class="rv-btn"><?php echo esc_html(bahia_t('Confier ma recherche')); ?></a>
+<section class="section listings">
+    <div class="container listings__layout">
+        <aside class="listings__sidebar" aria-label="<?php echo esc_attr(bahia_t('Filtres de recherche')); ?>" data-filter-drawer>
+            <div class="listings__sidebar-head">
+                <h2><?php echo esc_html(bahia_t('Filtrer')); ?></h2>
+                <button type="button" class="icon-btn listings__close" data-filter-close aria-label="<?php echo esc_attr(bahia_t('Fermer les filtres')); ?>"><?php echo bahia_icon('close'); ?></button>
             </div>
+            <?php get_template_part('template-parts/filter-panel'); ?>
+            <div class="listings__drawer-footer">
+                <button type="button" class="btn btn--primary btn--block" data-filter-close><?php echo esc_html(sprintf(bahia_t('Voir %s'), $total . ' ' . bahia_t($total > 1 ? 'résultats' : 'résultat'))); ?></button>
+            </div>
+        </aside>
+        <div class="listings__backdrop" data-filter-close hidden></div>
+
+        <div class="listings__main">
+            <div class="listings__toolbar">
+                <p class="listings__count"><strong><?php echo $total; ?></strong> <?php echo esc_html(bahia_t($total > 1 ? 'biens trouvés' : 'bien trouvé')); ?></p>
+                <div class="listings__tools">
+                    <button type="button" class="btn btn--outline btn--sm listings__filter-btn" data-filter-open><?php echo bahia_icon('filter', 18); ?> <?php echo esc_html(bahia_t('Filtres')); ?> <?php if ($chips) : ?><span class="pill-count"><?php echo count($chips); ?></span><?php endif; ?></button>
+                    <label class="sort-select"><span class="sr-only"><?php echo esc_html(bahia_t('Trier par')); ?></span>
+                        <select name="tri" form="bahia-filters" data-autosubmit>
+                            <?php foreach (bahia_sort_options() as $k => $v) : ?><option value="<?php echo esc_attr($k); ?>" <?php selected($f['tri'], $k); ?>><?php echo esc_html(bahia_t($v)); ?></option><?php endforeach; ?>
+                        </select>
+                    </label>
+                </div>
+            </div>
+
+            <?php if ($chips) : ?>
+                <ul class="active-filters" aria-label="<?php echo esc_attr(bahia_t('Filtres actifs')); ?>">
+                    <?php foreach ($chips as [$label, $clear]) : ?>
+                        <li><a class="chip chip--removable" href="<?php echo esc_url(bahia_filters_url($clear)); ?>"><?php echo esc_html($label); ?> <?php echo bahia_icon('close', 14); ?><span class="sr-only"><?php echo esc_html(bahia_t('Retirer ce filtre')); ?></span></a></li>
+                    <?php endforeach; ?>
+                    <li><a class="active-filters__clear" href="<?php echo esc_url(get_post_type_archive_link('property')); ?>"><?php echo esc_html(bahia_t('Tout effacer')); ?></a></li>
+                </ul>
+            <?php endif; ?>
+
+            <?php if (have_posts()) : ?>
+                <div class="property-grid">
+                    <?php $i = 0; while (have_posts()) : the_post();
+                        get_template_part('template-parts/property-card', null, ['p' => bahia_get_property(), 'class' => 'reveal reveal-delay-' . ($i++ % 3)]);
+                    endwhile; ?>
+                </div>
+                <?php
+                $links = paginate_links(['type' => 'array', 'prev_text' => bahia_t('‹ Précédent'), 'next_text' => bahia_t('Suivant ›')]);
+                if ($links) : ?>
+                    <nav class="pagination" aria-label="<?php echo esc_attr(bahia_t('Pagination')); ?>"><?php echo implode('', $links); ?></nav>
+                <?php endif; ?>
+            <?php else : ?>
+                <div class="empty-state">
+                    <span class="empty-state__icon"><?php echo bahia_icon('search', 26); ?></span>
+                    <h2><?php echo esc_html(bahia_t('Aucun bien ne correspond à vos critères')); ?></h2>
+                    <p><?php echo esc_html(bahia_t('Élargissez votre recherche ou confiez-nous votre projet : nous vous informerons dès qu’un bien correspondant arrive en exclusivité.')); ?></p>
+                    <div class="empty-state__actions">
+                        <a href="<?php echo esc_url(get_post_type_archive_link('property')); ?>" class="btn btn--outline btn--sm"><?php echo esc_html(bahia_t('Réinitialiser les filtres')); ?></a>
+                        <a href="<?php echo esc_url(bahia_contact_url('Recherche personnalisée', 'formulaire')); ?>" class="btn btn--primary btn--sm"><?php echo esc_html(bahia_t('Confier ma recherche')); ?></a>
+                    </div>
+                </div>
+            <?php endif; ?>
         </div>
-    <?php endif; ?>
+    </div>
 </section>
 <?php get_footer();

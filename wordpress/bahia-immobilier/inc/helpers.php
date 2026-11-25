@@ -319,7 +319,7 @@ function bahia_icon(string $name, int $size = 20, string $class = ''): string
 
 function bahia_logo(bool $light = false): string
 {
-    return '<a href="' . esc_url(home_url('/')) . '" class="logo' . ($light ? ' logo--light' : '') . '" aria-label="Bahia Immobilier — Accueil">'
+    return '<a href="' . esc_url(home_url('/')) . '" class="logo' . ($light ? ' logo--light' : '') . '" aria-label="' . esc_attr(bahia_t('Bahia Immobilier') . ' — ' . bahia_t('Accueil')) . '">'
         . '<svg class="logo__mark" viewBox="0 0 40 40" aria-hidden="true"><rect x="0.75" y="0.75" width="38.5" height="38.5" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><text x="20" y="28" text-anchor="middle" font-size="21" style="fill:var(--logo-accent);font-family:var(--f-serif);font-weight:600">B</text></svg>'
         . '<span class="logo__text"><span class="logo__name">BAHIA</span><span class="logo__sub">IMMOBILIER</span></span></a>';
 }

@@ -9,7 +9,7 @@ define('NOVA_VERSION', '1.0.0');
 define('NOVA_DIR', get_template_directory());
 define('NOVA_URI', get_template_directory_uri());
 
-foreach (['fields', 'helpers', 'post-types', 'meta-boxes', 'admin-columns', 'settings', 'query', 'leads', 'seo', 'seed'] as $file) {
+foreach (['fields', 'helpers', 'post-types', 'meta-boxes', 'admin-columns', 'settings', 'query', 'leads', 'seo', 'seed', 'i18n'] as $file) {
     require_once NOVA_DIR . "/inc/{$file}.php";
 }
 // Alternative layouts (see the real-estate-wp-theme skill) add their front-end here.
@@ -36,7 +36,7 @@ add_action('wp_enqueue_scripts', function () {
         [],
         null
     );
-    $css = apply_filters('nova_styles', ['tokens', 'base', 'components', 'pages', 'theme']);
+    $css = apply_filters('nova_styles', ['tokens', 'base', 'components', 'pages', 'theme', 'modes']);
     $deps = ['nova-fonts'];
     foreach ($css as $name) {
         $path = "/assets/css/{$name}.css";

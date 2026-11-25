@@ -1,30 +1,10 @@
 /**
- * Riviera layout: light/dark switch and visit planner.
+ * Riviera layout: header height and visit planner (the light/dark switch is in theme.js).
  * Favorites, filters, gallery, menu and form validation come from theme.js (shared with the base theme).
  */
 (function () {
   'use strict';
   var root = document.documentElement;
-
-  /* ---------- Light / dark (remembered on this device) ---------- */
-  function setTheme(dark) {
-    if (dark) root.setAttribute('data-theme', 'sombre');
-    else root.removeAttribute('data-theme');
-    var value = dark ? 'sombre' : 'clair';
-    try { localStorage.setItem('nova_theme', value); } catch (e) { /* storage unavailable */ }
-    document.cookie = 'nova_theme=' + value + '; path=/; max-age=31536000; SameSite=Lax';
-    paintThemeButtons();
-  }
-  function paintThemeButtons() {
-    var dark = root.getAttribute('data-theme') === 'sombre';
-    document.querySelectorAll('[data-theme-toggle]').forEach(function (btn) {
-      btn.setAttribute('aria-pressed', String(dark));
-    });
-  }
-  document.querySelectorAll('[data-theme-toggle]').forEach(function (btn) {
-    btn.addEventListener('click', function () { setTheme(root.getAttribute('data-theme') !== 'sombre'); });
-  });
-  paintThemeButtons();
 
   /* ---------- Header height (sticky filter bar, mobile menu) ---------- */
   var header = document.querySelector('[data-header]');

@@ -9,7 +9,7 @@ define('BAHIA_VERSION', '1.0.0');
 define('BAHIA_DIR', get_template_directory());
 define('BAHIA_URI', get_template_directory_uri());
 
-foreach (['fields', 'helpers', 'post-types', 'meta-boxes', 'admin-columns', 'settings', 'query', 'leads', 'seo', 'seed'] as $file) {
+foreach (['fields', 'helpers', 'post-types', 'meta-boxes', 'admin-columns', 'settings', 'query', 'leads', 'seo', 'seed', 'i18n'] as $file) {
     require_once BAHIA_DIR . "/inc/{$file}.php";
 }
 // Alternative layouts (see the real-estate-wp-theme skill) add their front-end here.
@@ -36,7 +36,7 @@ add_action('wp_enqueue_scripts', function () {
         [],
         null
     );
-    $css = apply_filters('bahia_styles', ['tokens', 'base', 'components', 'pages', 'theme']);
+    $css = apply_filters('bahia_styles', ['tokens', 'base', 'components', 'pages', 'theme', 'modes']);
     $deps = ['bahia-fonts'];
     foreach ($css as $name) {
         $path = "/assets/css/{$name}.css";

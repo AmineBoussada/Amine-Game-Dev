@@ -357,7 +357,31 @@ function initPropertyActions() {
   });
 }
 
+/* ---------- Light / dark display (remembered on this device) ---------- */
+function initThemeToggle() {
+  const root = document.documentElement;
+  const paint = () =>
+    $$('[data-theme-toggle]').forEach((b) => b.setAttribute('aria-pressed', String(root.dataset.theme === 'sombre')));
+  $$('[data-theme-toggle]').forEach((btn) =>
+    btn.addEventListener('click', () => {
+      const dark = root.dataset.theme !== 'sombre';
+      if (dark) root.setAttribute('data-theme', 'sombre');
+      else root.removeAttribute('data-theme');
+      const value = dark ? 'sombre' : 'clair';
+      try {
+        localStorage.setItem('nova_theme', value);
+      } catch {
+        /* storage unavailable */
+      }
+      document.cookie = `nova_theme=${value}; path=/; max-age=31536000; SameSite=Lax`;
+      paint();
+    }),
+  );
+  paint();
+}
+
 fillIllustrations();
+initThemeToggle();
 initHeader();
 initReveal();
 initFavorites();

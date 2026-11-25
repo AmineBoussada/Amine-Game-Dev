@@ -42,7 +42,7 @@ function bahia_meta_description(): string
 add_action('wp_head', function () {
     $desc = wp_strip_all_tags(bahia_meta_description());
     echo '<meta name="description" content="' . esc_attr(mb_substr($desc, 0, 300)) . "\">\n";
-    echo '<meta name="theme-color" content="#FFFFFF">' . "\n";
+    echo '<meta name="theme-color" content="#F7F5F0">' . "\n";
     echo '<meta property="og:type" content="website">' . "\n";
     echo '<meta property="og:title" content="' . esc_attr(wp_get_document_title()) . "\">\n";
     echo '<meta property="og:description" content="' . esc_attr(mb_substr($desc, 0, 200)) . "\">\n";

@@ -3,66 +3,64 @@ defined('ABSPATH') || exit;
 get_header();
 the_post();
 $steps = [
-    ['Nous vous écoutons', 'Budget, quartier, nombre de pièces, délais : votre projet tient sur une page.'],
-    ['Nous visitons pour vous', 'Nous écartons les biens qui ne correspondent pas avant de vous les montrer.'],
-    ['Nous suivons le dossier', 'Documents, livret foncier, compromis : jusqu’à la signature chez le notaire.'],
+    ['Écoute', 'Nous prenons le temps de comprendre votre projet, votre budget et vos priorités.'],
+    ['Sélection', 'Nous identifions et visitons les biens qui correspondent réellement à vos critères.'],
+    ['Vérification', 'Actes, livret foncier, situation juridique : chaque dossier est contrôlé.'],
+    ['Signature', 'Nous vous accompagnons jusqu’à la signature chez le notaire et la remise des clés.'],
 ];
 $values = [
-    ['Des biens vérifiés', 'Chaque bien est visité et ses documents contrôlés avant d’être proposé.'],
-    ['Un conseiller dédié', 'Le même interlocuteur de la première visite jusqu’à la signature.'],
-    ['Des prix réalistes', 'Nos estimations s’appuient sur les ventes récentes du quartier.'],
-    ['Des honoraires annoncés', 'Nos honoraires sont communiqués dès le premier rendez-vous.'],
+    ['selection', 'Sélection de biens', 'Chaque bien est visité, vérifié et documenté avant d’être proposé à nos clients.'],
+    ['support', 'Accompagnement personnalisé', 'Un conseiller dédié vous suit de la première visite jusqu’à la signature chez le notaire.'],
+    ['map', 'Expertise locale', 'Une connaissance fine des quartiers d’Oran et des prix réels du marché algérien.'],
+    ['shield', 'Transparence et confiance', 'Des informations claires, des documents vérifiés et des honoraires annoncés dès le départ.'],
 ];
-get_template_part('template-parts/page-header', null, [
-    'title' => bahia_t('L’agence'),
-    'subtitle' => bahia_s('description'),
-    'crumbs' => [[bahia_t('L’agence'), null]],
-]);
+$team = [['CT', 'Conseiller transaction', 'Vente & achat résidentiel'], ['CL', 'Conseillère location', 'Location & gestion locative'], ['RE', 'Responsable entreprises', 'Locaux & immobilier d’entreprise']];
+get_template_part('template-parts/page-header', null, ['title' => sprintf(bahia_t('À propos de %s'), bahia_t('Bahia Immobilier')), 'subtitle' => bahia_t('Une agence oranaise, une exigence européenne.'), 'crumbs' => [[bahia_t('À propos'), null]]]);
 ?>
-<section class="rv-wrap rv-section rv-section--top0">
-    <div class="rv-split rv-split--center">
-        <?php echo bahia_setting_image('about_image', 'living', bahia_t('Séjour avec baie vitrée sur la mer'), 'rv-estimate__img'); ?>
-        <div class="rv-stack">
-            <span class="rv-eyebrow rv-eyebrow--rule"><?php echo esc_html(bahia_t('Notre mission')); ?></span>
-            <h2 class="rv-h2"><?php echo esc_html(bahia_s('about_title')); ?></h2>
-            <p class="rv-lead"><?php echo esc_html(bahia_s('about_text')); ?></p>
-            <?php if (!bahia_is_ar() && trim(get_the_content())) : ?><div class="rv-prose"><?php the_content(); ?></div><?php endif; ?>
-            <dl class="rv-stats">
-                <?php for ($i = 1; $i <= 3; $i++) : ?>
-                    <div><dt><?php echo esc_html(bahia_s("stat{$i}_label")); ?></dt><dd><bdi><?php echo esc_html(bahia_setting("stat{$i}_value")); ?></bdi></dd></div>
-                <?php endfor; ?>
-            </dl>
+<section class="section">
+    <div class="container about-teaser">
+        <div class="about-teaser__media reveal"><?php echo bahia_setting_image('about_image', 'living', bahia_t('Intérieur contemporain lumineux'), 'ratio-4-5'); ?></div>
+        <div class="about-teaser__content reveal reveal-delay-1">
+            <span class="eyebrow"><?php echo esc_html(bahia_t('Notre mission')); ?></span>
+            <h2><?php echo esc_html(bahia_s('about_title')); ?></h2>
+            <p class="lead"><?php echo esc_html(bahia_s('about_text')); ?></p>
+            <?php if (!bahia_is_ar() && trim(get_the_content())) : ?><div class="muted"><?php the_content(); ?></div><?php endif; ?>
+            <?php get_template_part('template-parts/stats'); ?>
         </div>
     </div>
 </section>
-
-<section class="rv-band" aria-labelledby="m-title">
-    <?php echo bahia_stripes('rv-stripes--band'); ?>
-    <div class="rv-wrap rv-section">
-        <div class="rv-band__head">
-            <span class="rv-eyebrow rv-eyebrow--gold"><?php echo esc_html(bahia_t('Notre méthode')); ?></span>
-            <h2 id="m-title" class="rv-h2"><?php echo esc_html(bahia_t('Un seul conseiller, du premier appel à la remise des clés.')); ?></h2>
-        </div>
-        <ol class="rv-steps">
+<section class="section section--white">
+    <div class="container">
+        <div class="section-heading section-heading--center reveal"><div><span class="eyebrow"><?php echo esc_html(bahia_t('Notre méthode')); ?></span><h2 class="section-heading__title"><?php echo esc_html(bahia_t('Quatre étapes, un seul interlocuteur')); ?></h2></div></div>
+        <ol class="steps">
             <?php foreach ($steps as $i => [$title, $text]) : ?>
-                <li><span class="rv-steps__n"><?php echo ['I', 'II', 'III'][$i]; ?></span><h3><?php echo esc_html(bahia_t($title)); ?></h3><p><?php echo esc_html(bahia_t($text)); ?></p></li>
+                <li class="reveal reveal-delay-<?php echo $i; ?>"><span class="steps__n"><?php echo sprintf('%02d', $i + 1); ?></span><h3><?php echo esc_html(bahia_t($title)); ?></h3><p><?php echo esc_html(bahia_t($text)); ?></p></li>
             <?php endforeach; ?>
         </ol>
     </div>
 </section>
-
-<section class="rv-wrap rv-section" aria-labelledby="v-title">
-    <div class="rv-sechead">
-        <div>
-            <span class="rv-eyebrow"><?php echo esc_html(bahia_t('Nos engagements')); ?></span>
-            <h2 id="v-title" class="rv-h2"><?php echo esc_html(bahia_t('Ce que nous vous garantissons')); ?></h2>
-        </div>
-        <a class="rv-link" href="<?php echo esc_url(bahia_contact_url('', 'formulaire')); ?>"><?php echo esc_html(bahia_t('Prendre rendez-vous')); ?> <span class="rv-arrow" aria-hidden="true"></span></a>
+<section class="section">
+    <div class="container">
+        <div class="section-heading reveal"><div><span class="eyebrow"><?php echo esc_html(bahia_t('Nos engagements')); ?></span><h2 class="section-heading__title"><?php echo esc_html(bahia_t('Ce qui nous distingue')); ?></h2></div></div>
+        <ul class="why__grid why__grid--4">
+            <?php foreach ($values as [$icon, $title, $text]) : ?>
+                <li class="why__item reveal"><span class="why__icon"><?php echo bahia_icon($icon, 26); ?></span><h3><?php echo esc_html(bahia_t($title)); ?></h3><p><?php echo esc_html(bahia_t($text)); ?></p></li>
+            <?php endforeach; ?>
+        </ul>
     </div>
-    <ul class="rv-values">
-        <?php foreach ($values as [$title, $text]) : ?>
-            <li><h3><?php echo esc_html(bahia_t($title)); ?></h3><p><?php echo esc_html(bahia_t($text)); ?></p></li>
-        <?php endforeach; ?>
-    </ul>
 </section>
+<section class="section section--beige">
+    <div class="container">
+        <div class="section-heading reveal">
+            <div><span class="eyebrow"><?php echo esc_html(bahia_t('L’équipe')); ?></span><h2 class="section-heading__title"><?php echo esc_html(bahia_t('Des conseillers spécialisés')); ?></h2><p class="lead"><?php echo esc_html(bahia_t('Chaque projet est suivi par un conseiller dédié selon la nature de votre recherche.')); ?></p></div>
+            <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="link-arrow"><?php echo esc_html(bahia_t('Prendre rendez-vous')); ?> <?php echo bahia_icon('arrow', 16, 'rtl-flip'); ?></a>
+        </div>
+        <ul class="team">
+            <?php foreach ($team as $i => [$ini, $name, $role]) : ?>
+                <li class="team__card reveal reveal-delay-<?php echo $i; ?>"><span class="team__avatar" aria-hidden="true"><?php echo esc_html($ini); ?></span><h3><?php echo esc_html(bahia_t($name)); ?></h3><p><?php echo esc_html(bahia_t($role)); ?></p></li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+</section>
+<?php get_template_part('template-parts/cta-banner'); ?>
 <?php get_footer();

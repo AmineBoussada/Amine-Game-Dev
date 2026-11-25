@@ -46,6 +46,8 @@ for (const [k, v] of Object.entries(cfg.colors ?? {})) if (!/^#[0-9a-fA-F]{6}$/.
 const LAYOUT = cfg.layout ?? 'nova';
 if (LAYOUT !== 'nova' && !existsSync(join(LAYOUTS, LAYOUT))) errors.push(`unknown "layout": ${LAYOUT} (available: nova, ${readdirSync(LAYOUTS).join(', ')})`);
 if (LAYOUT === 'riviera') ['nameAr', 'locality.cityAr'].forEach(req);
+const DEMO = cfg.demoSet ? join(dirname(fileURLToPath(import.meta.url)), '..', 'demo', `${cfg.demoSet}.json`) : null;
+if (DEMO && !existsSync(DEMO)) errors.push(`unknown "demoSet": ${cfg.demoSet}`);
 if (errors.length) fail('Invalid config:\n  - ' + errors.join('\n  - '));
 
 const P = cfg.prefix;
@@ -66,7 +68,8 @@ const c = cfg.colors;
 const accentRgb = hex2rgb(c.accent).join(', ');
 const derived = {
   accentDark: mix(c.accent, '#000000', 0.17),
-  accentLight: mix(c.accent, '#ffffff', 0.45),
+  // Accent on dark backgrounds and photos: lighten more when the accent itself is dark (e.g. navy).
+  accentLight: mix(c.accent, '#ffffff', hex2rgb(c.accent).reduce((a, v) => a + v, 0) / 3 < 90 ? 0.68 : 0.45),
   accentPale: mix(c.accent, '#ffffff', 0.2),
   line: mix(c.soft, c.text, 0.04),
   lineStrong: mix(c.soft, c.text, 0.1),
@@ -84,10 +87,11 @@ const zipLeft = join(target, `${SOURCE.split('/').pop()}.zip`);
 if (existsSync(zipLeft)) rmSync(zipLeft);
 if (LAYOUT !== 'nova') {
   // The layout replaces the front-end templates and styles; the back office stays the base theme's.
-  for (const f of ['tokens', 'base', 'components', 'pages', 'theme']) rmSync(join(target, `assets/css/${f}.css`), { force: true });
+  for (const f of ['tokens', 'base', 'components', 'pages', 'theme', 'modes']) rmSync(join(target, `assets/css/${f}.css`), { force: true });
   for (const f of ['cta-banner', 'stats']) rmSync(join(target, `template-parts/${f}.php`), { force: true });
   cpSync(join(LAYOUTS, LAYOUT), target, { recursive: true });
 }
+if (DEMO) cpSync(DEMO, join(target, 'inc/seed-data.json'));
 
 /* ---------------- Helpers ---------------- */
 const phpStr = (s) =>
@@ -107,6 +111,7 @@ const rules = [
   // Placeholders used by alternative layouts.
   [/__SHORT__/g, short],
   [/__NAME_AR__/g, cfg.nameAr ?? name],
+  [/نوفا للعقارات/g, cfg.nameAr ?? name],
   [/__CITY_AR__/g, cfg.locality.cityAr ?? cityName],
   [/__CITY__/g, cityName],
   [/__LOGO_BOTTOM_AR__/g, cfg.logoBottomAr ?? 'عقارات'],
@@ -195,6 +200,7 @@ if (LAYOUT === 'nova') {
     const s = readFileSync(fp, 'utf8').replace(/'https:\/\/fonts\.googleapis\.com\/css2\?[^']+'/, `'${url}'`);
     writeFileSync(fp, s);
   }
+  setDarkTokens();
 } else {
   setLayoutTokens();
 }
@@ -235,9 +241,9 @@ for (const [key, value] of Object.entries(defaults)) {
 }
 writeFileSync(settingsPath, settings);
 
-if (LAYOUT === 'riviera') {
-  // Arabic texts of the settings page (defaults in inc/layout.php).
-  const layoutPath = join(target, 'inc/layout.php');
+{
+  // Arabic texts of the settings page (defaults in inc/i18n.php).
+  const layoutPath = join(target, 'inc/i18n.php');
   let layoutPhp = readFileSync(layoutPath, 'utf8');
   const ta = cfg.textsAr ?? {};
   const arDefaults = {
@@ -252,7 +258,7 @@ if (LAYOUT === 'riviera') {
   (ta.stats ?? []).slice(0, 3).forEach((l, i) => (arDefaults[`stat${i + 1}_label_ar`] = l));
   for (const [key, value] of Object.entries(arDefaults)) {
     const re = new RegExp(`('${key}' => )'(?:[^'\\\\]|\\\\.)*'`);
-    if (!re.test(layoutPhp)) fail(`Arabic setting default "${key}" not found in inc/layout.php`);
+    if (!re.test(layoutPhp)) fail(`Arabic setting default "${key}" not found in inc/i18n.php`);
     layoutPhp = layoutPhp.replace(re, `$1${phpStr(value)}`);
   }
   writeFileSync(layoutPath, layoutPhp);
@@ -325,6 +331,28 @@ function setLayoutTokens() {
   }
   writeFileSync(cssPath, css);
   if (cfg.fonts) console.log(`! "fonts" is ignored by the ${LAYOUT} layout (Jost, and IBM Plex Sans Arabic in Arabic).`);
+}
+
+/** Dark palette of the NOVA layout (assets/css/modes.css), derived from the accent colour. */
+function setDarkTokens() {
+  const p = join(target, 'assets/css/modes.css');
+  let css = readFileSync(p, 'utf8');
+  const bg = mix(c.accent, '#111111', 0.88);
+  const vals = {
+    '--d-bg': bg,
+    '--d-surface': mix(c.accent, '#1d1d1d', 0.84),
+    '--d-alt': mix(c.accent, '#181818', 0.86),
+    '--d-text': mix(c.accent, '#f2f2f2', 0.93),
+    '--d-muted': mix(c.accent, '#b4b4b4', 0.88),
+    '--d-accent': mix(c.accent, '#ffffff', 0.55),
+    '--d-on-accent': bg,
+  };
+  for (const [tok, val] of Object.entries(vals)) {
+    const re = new RegExp(`(${esc(tok)}:\\s*)[^;]+;`);
+    if (!re.test(css)) fail(`Token ${tok} not found in modes.css`);
+    css = css.replace(re, `$1${val};`);
+  }
+  writeFileSync(p, css);
 }
 
 function fail(msg) {

@@ -10,4 +10,5 @@ wordpress/*/
 !wordpress/nova-immobilier/
 # Bahia Immobilier: fictional demo agency (Riviera layout), safe to commit
 !wordpress/bahia-immobilier/
+!wordpress/bahia-immobilier.config.json
 wordpress/*.config.json

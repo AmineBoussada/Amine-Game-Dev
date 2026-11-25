@@ -46,7 +46,7 @@ images de l’accueil et de la section « L’agence », chiffres clés.
 ### Menu
 **Apparence › Menus** : modifiez le *Menu principal* (Acheter / Louer pointent vers `/biens/?transaction=vente|location`).
 
-### Version arabe et mode sombre (thèmes « Riviera », ex. Bahia Immobilier)
+### Version arabe et mode sombre
 - Les visiteurs choisissent **ع / FR** (langue) et la **lune / le soleil** (clair ou sombre) en haut du site ; leur choix est mémorisé.
 - Chaque bien a un cadre **Version arabe du site** : titre, résumé et description en arabe. Facultatif : si un champ est vide,
   le texte français s’affiche.
@@ -96,8 +96,8 @@ node .claude/skills/real-estate-wp-theme/scripts/generate-theme.mjs wordpress/mo
 .claude/skills/real-estate-wp-theme/scripts/check-theme.sh wordpress/<slug>
 ```
 
-Deux designs sont disponibles : `"layout": "nova"` (celui-ci) ou `"layout": "riviera"` (bleu marine, mode sombre, site en français et en arabe ;
-exemple complet : `config.riviera.example.json`, résultat : `wordpress/bahia-immobilier/`).
+Chaque site a le choix français / arabe et clair / sombre. Deux designs : `"layout": "nova"` (celui-ci ; exemple :
+Bahia Immobilier en bleu marine, `wordpress/bahia-immobilier/`) ou `"layout": "riviera"` (exemple : `config.riviera.example.json`).
 
 Les thèmes clients et leurs fichiers de configuration ne sont pas versionnés (`.gitignore`). Exception : `bahia-immobilier/`, agence fictive de démonstration.
 

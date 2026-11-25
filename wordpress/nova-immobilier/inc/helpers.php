@@ -319,7 +319,7 @@ function nova_icon(string $name, int $size = 20, string $class = ''): string
 
 function nova_logo(bool $light = false): string
 {
-    return '<a href="' . esc_url(home_url('/')) . '" class="logo' . ($light ? ' logo--light' : '') . '" aria-label="NOVA IMMOBILIER — Accueil">'
+    return '<a href="' . esc_url(home_url('/')) . '" class="logo' . ($light ? ' logo--light' : '') . '" aria-label="' . esc_attr(nova_t('NOVA IMMOBILIER') . ' — ' . nova_t('Accueil')) . '">'
         . '<svg class="logo__mark" viewBox="0 0 40 40" aria-hidden="true"><rect x="0.75" y="0.75" width="38.5" height="38.5" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 29V11l16 18V11" fill="none" stroke="var(--logo-accent)" stroke-width="2.2" stroke-linecap="square"/></svg>'
         . '<span class="logo__text"><span class="logo__name">NOVA</span><span class="logo__sub">IMMOBILIER</span></span></a>';
 }

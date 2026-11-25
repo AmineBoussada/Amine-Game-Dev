@@ -15,24 +15,26 @@ $categories = [
     ['terrain', 'Terrains constructibles avec acte', 'land'],
     ['local', 'Commerces, bureaux et showrooms', 'shop'],
 ];
+$city_parts = preg_split('/[,،]/u', nova_s('city'));
+$city = trim((string) end($city_parts));
 ?>
 <section class="hero" aria-labelledby="hero-title">
     <div class="hero__media">
-        <?php echo nova_setting_image('hero_image', 'villa-pool', 'Villa contemporaine aux lignes épurées baignée de lumière naturelle', 'hero__img', true); ?>
+        <?php echo nova_setting_image('hero_image', 'villa-pool', nova_t('Villa contemporaine aux lignes épurées baignée de lumière naturelle'), 'hero__img', true); ?>
         <div class="hero__overlay"></div>
     </div>
     <div class="container hero__content">
-        <span class="eyebrow hero__eyebrow">Agence immobilière · <?php echo esc_html(trim(strrchr(', ' . nova_setting('city'), ','), ', ')); ?></span>
-        <h1 id="hero-title" class="hero__title"><?php echo esc_html(nova_setting('hero_title')); ?></h1>
-        <p class="hero__text"><?php echo esc_html(nova_setting('hero_text')); ?></p>
+        <span class="eyebrow hero__eyebrow"><?php echo esc_html(nova_t('Agence immobilière') . ' · ' . $city); ?></span>
+        <h1 id="hero-title" class="hero__title"><?php echo esc_html(nova_s('hero_title')); ?></h1>
+        <p class="hero__text"><?php echo esc_html(nova_s('hero_text')); ?></p>
         <div class="hero__actions">
-            <a href="<?php echo esc_url($archive); ?>" class="btn btn--bronze">Découvrir nos biens <?php echo nova_icon('arrow', 18); ?></a>
-            <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--ghost-light">Contactez-nous</a>
+            <a href="<?php echo esc_url($archive); ?>" class="btn btn--bronze"><?php echo esc_html(nova_t('Découvrir nos biens')); ?> <?php echo nova_icon('arrow', 18, 'rtl-flip'); ?></a>
+            <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--ghost-light"><?php echo esc_html(nova_t('Contactez-nous')); ?></a>
         </div>
     </div>
 </section>
 
-<section class="home-search" aria-label="Recherche de biens">
+<section class="home-search" aria-label="<?php echo esc_attr(nova_t('Recherche de biens')); ?>">
     <div class="container"><?php get_template_part('template-parts/search-bar'); ?></div>
 </section>
 
@@ -40,18 +42,18 @@ $categories = [
     <div class="container">
         <div class="section-heading reveal">
             <div>
-                <span class="eyebrow">Sélection du moment</span>
-                <h2 id="featured-title" class="section-heading__title">Biens à la une</h2>
-                <p class="lead">Une sélection de biens récemment confiés à notre agence, visités et vérifiés par nos conseillers.</p>
+                <span class="eyebrow"><?php echo esc_html(nova_t('Sélection du moment')); ?></span>
+                <h2 id="featured-title" class="section-heading__title"><?php echo esc_html(nova_t('Biens à la une')); ?></h2>
+                <p class="lead"><?php echo esc_html(nova_t('Une sélection de biens récemment confiés à notre agence, visités et vérifiés par nos conseillers.')); ?></p>
             </div>
-            <div class="section-heading__action"><a href="<?php echo esc_url($archive); ?>" class="link-arrow">Voir tous les biens <?php echo nova_icon('arrow', 16); ?></a></div>
+            <div class="section-heading__action"><a href="<?php echo esc_url($archive); ?>" class="link-arrow"><?php echo esc_html(nova_t('Voir tous les biens')); ?> <?php echo nova_icon('arrow', 16, 'rtl-flip'); ?></a></div>
         </div>
         <?php if ($featured) : ?>
             <div class="property-grid">
                 <?php foreach ($featured as $i => $p) get_template_part('template-parts/property-card', null, ['p' => $p, 'class' => 'reveal reveal-delay-' . ($i % 3)]); ?>
             </div>
         <?php else : ?>
-            <p class="empty-state">Aucun bien publié pour le moment.</p>
+            <p class="empty-state"><?php echo esc_html(nova_t('Aucun bien publié pour le moment.')); ?></p>
         <?php endif; ?>
     </div>
 </section>
@@ -59,17 +61,17 @@ $categories = [
 <section class="section section--white" aria-labelledby="why-title">
     <div class="container why">
         <div class="why__intro reveal">
-            <span class="eyebrow">Pourquoi nous choisir ?</span>
-            <h2 id="why-title">Un accompagnement exigeant, du premier appel à la remise des clés.</h2>
-            <p class="lead">Acheter, vendre ou louer un bien en Algérie demande du temps, des vérifications et de la confiance. Nous prenons tout cela en charge.</p>
-            <a href="<?php echo esc_url(home_url('/a-propos/')); ?>" class="link-arrow">Notre approche <?php echo nova_icon('arrow', 16); ?></a>
+            <span class="eyebrow"><?php echo esc_html(nova_t('Pourquoi nous choisir ?')); ?></span>
+            <h2 id="why-title"><?php echo esc_html(nova_t('Un accompagnement exigeant, du premier appel à la remise des clés.')); ?></h2>
+            <p class="lead"><?php echo esc_html(nova_t('Acheter, vendre ou louer un bien en Algérie demande du temps, des vérifications et de la confiance. Nous prenons tout cela en charge.')); ?></p>
+            <a href="<?php echo esc_url(home_url('/a-propos/')); ?>" class="link-arrow"><?php echo esc_html(nova_t('Notre approche')); ?> <?php echo nova_icon('arrow', 16, 'rtl-flip'); ?></a>
         </div>
         <ul class="why__grid">
             <?php foreach ($values as $i => [$icon, $title, $text]) : ?>
                 <li class="why__item reveal reveal-delay-<?php echo $i; ?>">
                     <span class="why__icon"><?php echo nova_icon($icon, 26); ?></span>
-                    <h3><?php echo esc_html($title); ?></h3>
-                    <p><?php echo esc_html($text); ?></p>
+                    <h3><?php echo esc_html(nova_t($title)); ?></h3>
+                    <p><?php echo esc_html(nova_t($text)); ?></p>
                 </li>
             <?php endforeach; ?>
         </ul>
@@ -80,20 +82,20 @@ $categories = [
     <div class="container">
         <div class="section-heading reveal">
             <div>
-                <span class="eyebrow">Explorer</span>
-                <h2 id="cat-title" class="section-heading__title">Trouvez par type de bien</h2>
-                <p class="lead">Appartements, villas, terrains ou locaux : accédez directement aux biens qui correspondent à votre projet.</p>
+                <span class="eyebrow"><?php echo esc_html(nova_t('Explorer')); ?></span>
+                <h2 id="cat-title" class="section-heading__title"><?php echo esc_html(nova_t('Trouvez par type de bien')); ?></h2>
+                <p class="lead"><?php echo esc_html(nova_t('Appartements, villas, terrains ou locaux : accédez directement aux biens qui correspondent à votre projet.')); ?></p>
             </div>
         </div>
         <div class="categories">
-            <?php foreach ($categories as $i => [$type, $text, $scene]) : $n = nova_count_type($type); ?>
+            <?php foreach ($categories as $i => [$type, $text, $scene]) : $n = nova_count_type($type); $label = nova_t(nova_type_plural_labels()[$type]); ?>
                 <a href="<?php echo esc_url(add_query_arg('bien', $type, $archive)); ?>" class="category-card reveal reveal-delay-<?php echo $i; ?>">
-                    <?php echo nova_image(['id' => 0, 'alt' => nova_type_plural_labels()[$type], 'scene' => $scene, 'seed' => "cat-{$type}"], 'nova-card', 'category-card__img'); ?>
+                    <?php echo nova_image(['id' => 0, 'alt' => $label, 'scene' => $scene, 'seed' => "cat-{$type}"], 'nova-card', 'category-card__img'); ?>
                     <div class="category-card__body">
-                        <span class="category-card__count"><?php echo esc_html(nova_plural($n, 'bien')); ?></span>
-                        <h3><?php echo esc_html(nova_type_plural_labels()[$type]); ?></h3>
-                        <p><?php echo esc_html($text); ?></p>
-                        <span class="category-card__arrow" aria-hidden="true"><?php echo nova_icon('arrow', 18); ?></span>
+                        <span class="category-card__count"><?php echo esc_html($n . ' ' . nova_t($n > 1 ? 'biens' : 'bien')); ?></span>
+                        <h3><?php echo esc_html($label); ?></h3>
+                        <p><?php echo esc_html(nova_t($text)); ?></p>
+                        <span class="category-card__arrow" aria-hidden="true"><?php echo nova_icon('arrow', 18, 'rtl-flip'); ?></span>
                     </div>
                 </a>
             <?php endforeach; ?>
@@ -104,15 +106,15 @@ $categories = [
 <section class="section section--beige" aria-labelledby="about-title">
     <div class="container about-teaser">
         <div class="about-teaser__media reveal">
-            <?php echo nova_setting_image('about_image', 'living', 'Intérieur élégant sélectionné par NOVA IMMOBILIER', 'ratio-4-5'); ?>
-            <div class="about-teaser__badge"><strong><?php echo esc_html(nova_setting('stat1_value')); ?></strong><span><?php echo esc_html(nova_setting('stat1_label')); ?></span></div>
+            <?php echo nova_setting_image('about_image', 'living', nova_t('Intérieur élégant sélectionné par notre agence'), 'ratio-4-5'); ?>
+            <div class="about-teaser__badge"><strong><bdi><?php echo esc_html(nova_setting('stat1_value')); ?></bdi></strong><span><?php echo esc_html(nova_s('stat1_label')); ?></span></div>
         </div>
         <div class="about-teaser__content reveal reveal-delay-1">
-            <span class="eyebrow">L’agence</span>
-            <h2 id="about-title"><?php echo esc_html(nova_setting('about_title')); ?></h2>
-            <p class="lead"><?php echo esc_html(nova_setting('about_text')); ?></p>
+            <span class="eyebrow"><?php echo esc_html(nova_t('L’agence')); ?></span>
+            <h2 id="about-title"><?php echo esc_html(nova_s('about_title')); ?></h2>
+            <p class="lead"><?php echo esc_html(nova_s('about_text')); ?></p>
             <?php get_template_part('template-parts/stats'); ?>
-            <a href="<?php echo esc_url(home_url('/a-propos/')); ?>" class="btn btn--primary">En savoir plus sur notre agence <?php echo nova_icon('arrow', 18); ?></a>
+            <a href="<?php echo esc_url(home_url('/a-propos/')); ?>" class="btn btn--primary"><?php echo esc_html(nova_t('En savoir plus sur notre agence')); ?> <?php echo nova_icon('arrow', 18, 'rtl-flip'); ?></a>
         </div>
     </div>
 </section>

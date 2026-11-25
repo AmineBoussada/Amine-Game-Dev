@@ -4,10 +4,10 @@
   "shortName": "BAHIA",
   "logoBottom": "IMMOBILIER",
   "logoBottomAr": "عقارات",
-  "slug": "bahia-immobilier",
-  "prefix": "bahia",
+  "slug": "bahia-riviera",
+  "prefix": "bahiar",
   "refPrefix": "BHA",
-  "domain": "bahia-immobilier.dz",
+  "domain": "bahia-riviera.dz",
   "layout": "riviera",
   "colors": {
     "background": "#FFFFFF",
@@ -34,16 +34,47 @@
     "email": "contact@bahia-immobilier.dz",
     "address": "Boulevard du Front de mer (adresse de démonstration)",
     "city": "Front de mer, Oran",
-    "hours": [["Dimanche – Jeudi", "09h00 – 17h00"], ["Samedi", "09h00 – 13h00"], ["Vendredi", "Fermé"]]
+    "hours": [
+      [
+        "Dimanche – Jeudi",
+        "09h00 – 17h00"
+      ],
+      [
+        "Samedi",
+        "09h00 – 13h00"
+      ],
+      [
+        "Vendredi",
+        "Fermé"
+      ]
+    ]
   },
-  "socials": { "facebook": "https://www.facebook.com/", "instagram": "https://www.instagram.com/", "linkedin": "", "youtube": "" },
+  "socials": {
+    "facebook": "https://www.facebook.com/",
+    "instagram": "https://www.instagram.com/",
+    "linkedin": "",
+    "youtube": ""
+  },
   "texts": {
     "heroTitle": "La Méditerranée, côté adresse.",
     "heroText": "Appartements face à la baie, villas sur les hauteurs de Canastel : une sélection courte, visitée et vérifiée par nos conseillers.",
     "aboutTitle": "Une agence oranaise, attentive à chaque détail.",
     "aboutText": "Chez Bahia Immobilier, un seul conseiller vous suit de la première visite à la remise des clés. Nous visitons chaque bien et vérifions ses documents avant de vous le proposer.",
     "description": "Agence immobilière à Oran : achat, vente et location d’appartements, villas, terrains et locaux.",
-    "stats": [["10", "ans à Oran"], ["600+", "clients accompagnés"], ["12", "quartiers couverts"]]
+    "stats": [
+      [
+        "10",
+        "ans à Oran"
+      ],
+      [
+        "600+",
+        "clients accompagnés"
+      ],
+      [
+        "12",
+        "quartiers couverts"
+      ]
+    ]
   },
   "textsAr": {
     "heroTitle": "المتوسط، بعنوان يليق بكم.",
@@ -53,8 +84,13 @@
     "description": "وكالة عقارية في وهران: بيع وشراء وكراء الشقق والفيلات والأراضي والمحلات.",
     "address": "شارع الواجهة البحرية (عنوان تجريبي)",
     "city": "الواجهة البحرية، وهران",
-    "stats": ["سنوات في وهران", "زبون رافقناه", "حيًّا نغطيه"]
+    "stats": [
+      "سنوات في وهران",
+      "زبون رافقناه",
+      "حيًّا نغطيه"
+    ]
   },
   "demoContent": true,
+  "demoSet": "oran",
   "demoNotice": true
 }
