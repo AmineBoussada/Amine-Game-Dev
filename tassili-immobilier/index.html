@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="fr" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tassili Immobilier · Vente et location en Algérie</title>
+<meta name="description" content="Appartements, villas, terrains et programmes neufs à vendre et à louer en Algérie, papiers vérifiés.">
+<meta name="theme-color" content="#023047">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<script src="assets/js/boot.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Marcellus&family=Reem+Kufi:wght@500;600&display=swap">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body data-page="home">
+<a class="skip-link" href="#main" data-i18n="skip">Aller au contenu</a>
+<header id="site-header" class="site-header"></header>
+<main id="main">
+  <section class="hero">
+    <img class="hero-bg" id="hero-bg" alt="" width="800" height="600">
+    <div class="hero-shade"></div>
+    <div class="container hero-in">
+      <p class="eyebrow" data-i18n="h_eyebrow">Agence immobilière · 7 wilayas</p>
+      <h1 class="hero-title" data-i18n="h_title">Trouvez le bien qui vous ressemble, papiers en règle</h1>
+      <p class="hero-lede" data-i18n="h_lede">Appartements, villas, terrains et programmes neufs, vérifiés par notre équipe, d’Alger à Oran.</p>
+      <div id="hero-search" class="search-panel"></div>
+      <ul class="hero-trust">
+        <li><span data-icon="shield"></span><span data-i18n="trust1">Papiers vérifiés avant publication</span></li>
+        <li><span data-icon="key"></span><span data-i18n="trust2">1 240 biens vendus depuis 2009</span></li>
+        <li><span data-icon="wa"></span><span data-i18n="trust3">Réponse WhatsApp en 15 min</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="t-wilayas">
+    <div class="container">
+      <div class="section-head"><div><h2 id="t-wilayas" data-i18n="sec_wilayas">Parcourir par wilaya</h2><p data-i18n="sec_wilayas_sub">Nos conseillers connaissent chaque quartier.</p></div></div>
+      <div class="wilaya-grid" id="wilaya-grid"></div>
+    </div>
+  </section>
+
+  <section class="section section-alt" aria-labelledby="t-featured">
+    <div class="container">
+      <div class="section-head"><div><h2 id="t-featured" data-i18n="sec_featured">Biens à la une</h2><p data-i18n="sec_featured_sub">Sélectionnés cette semaine par nos conseillers.</p></div>
+        <a class="link-arrow" href="biens.html"><span data-i18n="see_all">Voir tous les biens</span><span data-icon="arrow" data-icon-class="flip"></span></a></div>
+      <div class="card-grid" id="featured-grid"></div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="t-types">
+    <div class="container">
+      <div class="section-head"><h2 id="t-types" data-i18n="sec_types">Que cherchez-vous ?</h2></div>
+      <div class="type-grid" id="type-grid"></div>
+    </div>
+  </section>
+
+  <section class="section section-alt" aria-labelledby="t-why">
+    <div class="container">
+      <div class="section-head"><h2 id="t-why" data-i18n="sec_why">Pourquoi Tassili Immobilier</h2></div>
+      <div class="why-grid">
+        <div class="why-item"><span class="why-ic" data-icon="shield"></span><h3 data-i18n="why1_t">Papiers vérifiés</h3><p data-i18n="why1"></p></div>
+        <div class="why-item"><span class="why-ic" data-icon="calendar"></span><h3 data-i18n="why2_t">Visites organisées</h3><p data-i18n="why2"></p></div>
+        <div class="why-item"><span class="why-ic" data-icon="doc"></span><h3 data-i18n="why3_t">Jusqu’au notaire</h3><p data-i18n="why3"></p></div>
+        <div class="why-item"><span class="why-ic" data-icon="bolt"></span><h3 data-i18n="why4_t">Réponse rapide</h3><p data-i18n="why4"></p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="t-new">
+    <div class="container">
+      <div class="section-head"><div><h2 id="t-new" data-i18n="sec_new">Programmes neufs</h2><p data-i18n="sec_new_sub">Achetez sur plan avec un paiement échelonné.</p></div>
+        <a class="link-arrow" href="biens.html?neuf=1"><span data-i18n="see_all">Voir tous les biens</span><span data-icon="arrow" data-icon-class="flip"></span></a></div>
+      <div class="card-grid" id="new-grid"></div>
+    </div>
+  </section>
+
+  <section class="section section-alt" aria-labelledby="t-testi">
+    <div class="container">
+      <div class="figures">
+        <div class="figure"><b class="ltr">1&#8239;240</b><span data-i18n="fig1">biens vendus</span></div>
+        <div class="figure"><b class="ltr">17</b><span data-i18n="fig2">ans d’expérience</span></div>
+        <div class="figure"><b class="ltr">7</b><span data-i18n="fig3">wilayas couvertes</span></div>
+        <div class="figure"><b class="ltr">98&#8239;%</b><span data-i18n="fig4">de clients satisfaits</span></div>
+      </div>
+      <div class="section-head"><h2 id="t-testi" data-i18n="sec_testi">Ils nous ont fait confiance</h2></div>
+      <div class="testi-grid">
+        <figure class="testi"><span data-icon="quote"></span><blockquote data-i18n="t1"></blockquote><footer><span class="avatar">AR</span><div><b data-i18n="t1_who"></b><span class="muted" data-i18n="t1_where"></span></div></footer></figure>
+        <figure class="testi"><span data-icon="quote"></span><blockquote data-i18n="t2"></blockquote><footer><span class="avatar">M</span><div><b data-i18n="t2_who"></b><span class="muted" data-i18n="t2_where"></span></div></footer></figure>
+        <figure class="testi"><span data-icon="quote"></span><blockquote data-i18n="t3"></blockquote><footer><span class="avatar">SL</span><div><b data-i18n="t3_who"></b><span class="muted" data-i18n="t3_where"></span></div></footer></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="cta-band">
+        <div><h2 data-i18n="sell_title">Vous vendez ou louez un bien ?</h2><p data-i18n="sell_text"></p></div>
+        <div class="cta-actions">
+          <a class="btn btn-gold btn-lg" href="contact.html?sujet=estimer" data-i18n="sell_cta">Estimer mon bien</a>
+          <a class="btn btn-light btn-lg" id="sell-wa" href="#" target="_blank" rel="noopener"><span data-icon="wa"></span><span data-i18n="ch_wa_t">WhatsApp</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer id="site-footer" class="site-footer"></footer>
+<script src="assets/js/utils.js" defer></script>
+<script src="assets/js/i18n.js" defer></script>
+<script src="assets/js/config.js" defer></script>
+<script src="assets/js/data.js" defer></script>
+<script src="assets/js/media.js" defer></script>
+<script src="assets/js/components.js" defer></script>
+<script src="assets/js/search.js" defer></script>
+<script src="assets/js/forms.js" defer></script>
+<script src="assets/js/pages/home.js" defer></script>
+<script src="assets/js/app.js" defer></script>
+</body>
+</html>

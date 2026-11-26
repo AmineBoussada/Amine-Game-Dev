@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="fr" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Contact · Tassili Immobilier</title>
+<meta name="description" content="Contactez Tassili Immobilier sur WhatsApp, par téléphone ou par e-mail.">
+<meta name="theme-color" content="#023047">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<script src="assets/js/boot.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Marcellus&family=Reem+Kufi:wght@500;600&display=swap">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body data-page="contact">
+<a class="skip-link" href="#main" data-i18n="skip">Aller au contenu</a>
+<header id="site-header" class="site-header"></header>
+<main id="main">
+  <div class="page-head">
+    <div class="container">
+      <p class="eyebrow" data-i18n="ct_eyebrow">Contact</p>
+      <h1 data-i18n="ct_title">Parlons de votre projet</h1>
+      <p class="muted" style="margin-top:6px;max-width:60ch" data-i18n="ct_lede"></p>
+    </div>
+  </div>
+  <section class="section" style="padding-top:var(--s-6)">
+    <div class="container">
+      <div class="channels">
+        <a class="channel wa" id="ch-wa" href="#" target="_blank" rel="noopener"><span class="ch-ic" data-icon="wa" data-icon-class="ic-lg"></span><b data-i18n="ch_wa_t">WhatsApp</b><span data-i18n="ch_wa"></span></a>
+        <a class="channel" id="ch-call" href="#"><span class="ch-ic" data-icon="phone" data-icon-class="ic-lg"></span><b data-i18n="ch_call_t">Téléphone</b><span class="ltr" id="ch-phone-num"></span></a>
+        <a class="channel" id="ch-mail" href="#"><span class="ch-ic" data-icon="mail" data-icon-class="ic-lg"></span><b data-i18n="ch_mail_t">E-mail</b><span id="ch-mail-addr"></span></a>
+      </div>
+
+      <div class="contact-layout">
+        <div class="form-card">
+          <div id="contact-form-wrap">
+            <h2 data-i18n="ct_form">Envoyer un message</h2>
+            <p class="muted" style="margin:4px 0 var(--s-5)" data-i18n="ct_form_sub"></p>
+            <form id="contact-form" class="form-grid" novalidate>
+              <div class="form-alert full" data-form-summary hidden role="alert" data-i18n="err_summary"></div>
+              <div class="field"><label for="c-name" data-i18n="f_name">Nom complet</label><input class="control" id="c-name" name="name" autocomplete="name" required data-rule="name"><p class="f-error" id="c-name-err" hidden></p></div>
+              <div class="field"><label for="c-phone" data-i18n="f_phone">Téléphone</label><input class="control ltr" id="c-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required data-rule="phone" data-i18n-ph="f_phone_ph"><p class="f-error" id="c-phone-err" hidden></p></div>
+              <div class="field"><label for="c-email" data-i18n="f_email">E-mail (facultatif)</label><input class="control ltr" id="c-email" name="email" type="email" autocomplete="email" data-rule="email" data-i18n-ph="f_email_ph"><p class="f-error" id="c-email-err" hidden></p></div>
+              <div class="field"><label for="c-subject" data-i18n="f_subject">Objet</label>
+                <select class="control" id="c-subject" name="subject">
+                  <option value="buy" data-i18n="subj_buy">Acheter un bien</option>
+                  <option value="rent" data-i18n="subj_rent">Louer un bien</option>
+                  <option value="sell" data-i18n="subj_sell">Vendre ou louer mon bien</option>
+                  <option value="estimate" data-i18n="subj_estimate">Faire estimer mon bien</option>
+                  <option value="other" data-i18n="subj_other">Autre question</option>
+                </select></div>
+              <div class="field full"><label for="c-ref" data-i18n="f_ref">Référence du bien (facultatif)</label><input class="control ltr" id="c-ref" name="ref" autocomplete="off" data-i18n-ph="f_ref_ph"></div>
+              <div class="field full"><label for="c-message" data-i18n="f_message">Message</label><textarea class="control" id="c-message" name="message" rows="5" required data-rule="message" data-i18n-ph="f_message_ph"></textarea><p class="f-error" id="c-message-err" hidden></p></div>
+              <div class="field full"><label class="check"><input type="checkbox" id="c-consent" name="consent" required data-rule="consent"><span data-i18n="f_consent">J’accepte d’être recontacté(e) au sujet de ma demande.</span></label><p class="f-error" id="c-consent-err" hidden></p></div>
+              <div class="full" style="display:grid;gap:8px;justify-items:start"><button class="btn btn-primary btn-lg" type="submit"><span data-i18n="f_send">Envoyer le message</span></button><p class="demo-note" data-i18n="demo_note"></p></div>
+            </form>
+          </div>
+          <div class="success-panel" id="contact-success" hidden role="status">
+            <span data-icon="check" data-icon-class="ic-lg"></span>
+            <h3 id="success-title" tabindex="-1" data-i18n="form_success_title">Message envoyé</h3>
+            <p id="success-text"></p>
+            <div class="cta-actions"><a class="btn btn-wa" id="success-wa" href="#" target="_blank" rel="noopener"><span data-icon="wa"></span><span data-i18n="wa_write">Écrire sur WhatsApp</span></a><button type="button" class="btn btn-ghost" id="success-again" data-i18n="form_again">Envoyer un autre message</button></div>
+            <p class="demo-note" data-i18n="demo_note"></p>
+          </div>
+        </div>
+
+        <div class="office">
+          <div class="office-card">
+            <img id="office-img" alt="" width="800" height="600">
+            <div class="in">
+              <h2 style="font-size:1.4rem" data-i18n="ct_office">Notre agence</h2>
+              <dl>
+                <div><dt data-i18n="ct_address">Adresse</dt><dd id="office-address"></dd></div>
+                <div><dt data-i18n="ct_hours">Horaires</dt><dd id="office-hours"></dd></div>
+              </dl>
+              <a class="link-arrow" id="office-map" href="#" target="_blank" rel="noopener"><span data-i18n="ct_map">Ouvrir dans Google Maps</span><span data-icon="external" data-icon-class="ic-sm"></span></a>
+            </div>
+          </div>
+          <div>
+            <h2 style="font-size:1.4rem;margin-bottom:var(--s-3)" data-i18n="faq_title">Questions fréquentes</h2>
+            <div class="faq">
+              <details><summary data-i18n="faq1_q"></summary><p data-i18n="faq1_a"></p></details>
+              <details><summary data-i18n="faq2_q"></summary><p data-i18n="faq2_a"></p></details>
+              <details><summary data-i18n="faq3_q"></summary><p data-i18n="faq3_a"></p></details>
+              <details><summary data-i18n="faq4_q"></summary><p data-i18n="faq4_a"></p></details>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer id="site-footer" class="site-footer"></footer>
+<script src="assets/js/utils.js" defer></script>
+<script src="assets/js/i18n.js" defer></script>
+<script src="assets/js/config.js" defer></script>
+<script src="assets/js/data.js" defer></script>
+<script src="assets/js/media.js" defer></script>
+<script src="assets/js/components.js" defer></script>
+<script src="assets/js/search.js" defer></script>
+<script src="assets/js/forms.js" defer></script>
+<script src="assets/js/pages/contact.js" defer></script>
+<script src="assets/js/app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+/* Sample listings (fictional). One record = the future WordPress "annonce" post + its custom fields.
+   price is in dinars (DA); for rentals it is the monthly rent. floor: 0 = rez-de-chaussée. */
+window.TI = window.TI || {};
+TI.properties = [
+  {
+    ref: 'TS-1024', tx: 'vente', type: 'villa', typo: 'F6', price: 220000000, surface: 420, land: 600, rooms: 6, beds: 4, baths: 3, floors: 2, year: 2016,
+    wilaya: 16, commune: 'hydra', agent: 'yasmine', date: '2026-11-21', seed: 11, featured: true, exclusive: true,
+    papers: ['acte', 'livret', 'permis', 'conformite'], amen: ['piscine', 'jardin', 'garage', 'climatisation', 'chauffage', 'securite', 'citerne', 'cuisine'],
+    title: { fr: 'Villa F6 avec jardin et piscine', ar: 'فيلا F6 بحديقة ومسبح' },
+    desc: {
+      fr: 'Villa contemporaine sur deux niveaux, au calme dans une rue résidentielle de Hydra. Grand séjour ouvert sur le jardin, piscine, cuisine équipée et quatre chambres dont une suite parentale. Garage deux voitures, gardiennage de la rue et papiers en règle.',
+      ar: 'فيلا عصرية من طابقين في شارع سكني هادئ بحيدرة. صالون واسع يطل على الحديقة، مسبح، مطبخ مجهز وأربع غرف نوم منها جناح رئيسي. مرآب لسيارتين، حراسة الشارع ووثائق سليمة.'
+    }
+  },
+  {
+    ref: 'TS-0871', tx: 'location', type: 'appartement', typo: 'F3', price: 85000, surface: 96, rooms: 3, beds: 2, baths: 1, floor: 4, year: 2012,
+    wilaya: 31, commune: 'akid-lotfi', agent: 'karim', date: '2026-11-19', seed: 23, featured: true,
+    papers: ['acte', 'livret'], amen: ['ascenseur', 'meuble', 'climatisation', 'cuisine', 'gaz'],
+    title: { fr: 'Appartement F3 meublé, 4e étage', ar: 'شقة F3 مفروشة، الطابق الرابع' },
+    desc: {
+      fr: 'Appartement F3 lumineux au 4e étage avec ascenseur, entièrement meublé et climatisé. À deux pas du boulevard, des commerces et du tramway. Disponible immédiatement, bail d’un an minimum.',
+      ar: 'شقة F3 مشرقة في الطابق الرابع بمصعد، مفروشة بالكامل ومكيفة. على بعد خطوات من الشارع الرئيسي والمحلات والترامواي. متاحة فورًا، عقد كراء لمدة سنة على الأقل.'
+    }
+  },
+  {
+    ref: 'TS-1102', tx: 'vente', type: 'appartement', typo: 'F4', price: 26500000, surface: 112, rooms: 4, beds: 3, baths: 2, floor: 6, year: 2019,
+    wilaya: 16, commune: 'bab-ezzouar', agent: 'yasmine', date: '2026-11-17', seed: 35, featured: true,
+    papers: ['acte', 'livret', 'conformite'], amen: ['ascenseur', 'parking', 'cuisine', 'securite', 'gaz', 'chauffage'],
+    title: { fr: 'Appartement F4 en résidence fermée', ar: 'شقة F4 في إقامة مغلقة' },
+    desc: {
+      fr: 'F4 de 112 m² dans une résidence fermée récente, au 6e étage avec ascenseur. Double exposition, cuisine équipée, deux salles d’eau et place de parking en sous-sol. Acte notarié et livret foncier disponibles.',
+      ar: 'شقة F4 بمساحة 112 م² في إقامة مغلقة حديثة، الطابق السادس بمصعد. واجهتان، مطبخ مجهز، حمامان وموقف سيارات في الطابق السفلي. العقد الموثق والدفتر العقاري متوفران.'
+    }
+  },
+  {
+    ref: 'TS-1150', tx: 'vente', type: 'duplex', typo: 'F5', price: 68000000, surface: 210, rooms: 5, beds: 4, baths: 2, floor: 5, year: 2017,
+    wilaya: 16, commune: 'dely-ibrahim', agent: 'samir', date: '2026-11-15', seed: 47, featured: true,
+    papers: ['acte', 'livret'], amen: ['terrasse', 'ascenseur', 'parking', 'chauffage', 'gaz', 'cuisine'],
+    title: { fr: 'Duplex F5 avec grande terrasse', ar: 'دوبلكس F5 بتراس واسع' },
+    desc: {
+      fr: 'Duplex F5 en dernier étage avec une terrasse de 60 m². Séjour double, quatre chambres, chauffage central et gaz de ville. Quartier recherché, proche des écoles et de l’autoroute.',
+      ar: 'دوبلكس F5 في الطابق الأخير بتراس مساحته 60 م². صالون مزدوج، أربع غرف نوم، تدفئة مركزية وغاز المدينة. حي مطلوب، قريب من المدارس والطريق السيار.'
+    }
+  },
+  {
+    ref: 'TS-0990', tx: 'vente', type: 'terrain', price: 9500000, surface: 500, wilaya: 42, commune: 'cherchell', agent: 'samir', date: '2026-11-02', seed: 59,
+    papers: ['acte', 'livret'], amen: ['viabilise', 'vue_mer'],
+    title: { fr: 'Terrain de 500 m² près de la mer', ar: 'قطعة أرض 500 م² قرب البحر' },
+    desc: {
+      fr: 'Terrain plat de 500 m² en zone urbanisable, à 800 m de la mer. Viabilisé (eau et électricité, gaz à proximité), façade de 20 m sur route goudronnée. Idéal pour une villa familiale.',
+      ar: 'قطعة أرض مستوية بمساحة 500 م² في منطقة قابلة للتعمير، على بعد 800 م من البحر. مهيأة (ماء وكهرباء، والغاز بالقرب)، بواجهة 20 م على طريق معبد. مثالية لبناء فيلا عائلية.'
+    }
+  },
+  {
+    ref: 'TS-1201', tx: 'vente', type: 'appartement', typo: 'F3', price: 12800000, surface: 85, rooms: 3, beds: 2, baths: 1, floor: 3, isNew: true,
+    delivery: { fr: '2e trimestre 2027', ar: 'الثلاثي الثاني 2027' },
+    wilaya: 25, commune: 'ali-mendjeli', agent: 'nadia', date: '2026-11-20', seed: 61, featured: true,
+    papers: ['permis'], amen: ['ascenseur', 'parking', 'securite'],
+    title: { fr: 'F3 neuf sur plan à Ali Mendjeli', ar: 'شقة F3 جديدة على المخطط في علي منجلي' },
+    desc: {
+      fr: 'Promotion neuve à Ali Mendjeli : F3 de 85 m² vendu sur plan, livraison prévue au 2e trimestre 2027. Résidence sécurisée avec ascenseurs, parking et espaces verts. Paiement échelonné possible.',
+      ar: 'ترقية عقارية جديدة في علي منجلي: شقة F3 بمساحة 85 م² تباع على المخطط، والتسليم متوقع في الثلاثي الثاني من 2027. إقامة مؤمنة بمصاعد وموقف سيارات ومساحات خضراء. إمكانية الدفع بالتقسيط.'
+    }
+  },
+  {
+    ref: 'TS-1033', tx: 'vente', type: 'villa', typo: 'F5', price: 95000000, surface: 300, land: 400, rooms: 5, beds: 4, baths: 2, floors: 2, year: 2008,
+    wilaya: 31, commune: 'canastel', agent: 'karim', date: '2026-10-28', seed: 73,
+    papers: ['acte', 'livret', 'permis'], amen: ['vue_mer', 'terrasse', 'jardin', 'garage', 'citerne'],
+    title: { fr: 'Villa F5 avec vue sur la baie', ar: 'فيلا F5 بإطلالة على الخليج' },
+    desc: {
+      fr: 'Villa F5 avec une vue dégagée sur la baie d’Oran, sur un terrain de 400 m². Terrasse panoramique, jardin arboré, garage et citerne. À rafraîchir selon vos goûts.',
+      ar: 'فيلا F5 بإطلالة مفتوحة على خليج وهران، على أرض مساحتها 400 م². تراس بانورامي، حديقة مشجرة، مرآب وخزان مياه. تحتاج إلى بعض التجديد حسب ذوقك.'
+    }
+  },
+  {
+    ref: 'TS-0912', tx: 'location', type: 'local', price: 250000, surface: 140, floor: 0, year: 2005,
+    wilaya: 16, commune: 'el-biar', agent: 'yasmine', date: '2026-11-10', seed: 83,
+    papers: ['acte'], amen: ['vitrine', 'climatisation'],
+    title: { fr: 'Local commercial avec vitrine', ar: 'محل تجاري بواجهة زجاجية' },
+    desc: {
+      fr: 'Local commercial de 140 m² en rez-de-chaussée, large vitrine sur une artère passante d’El Biar. Hauteur sous plafond de 4 m, sanitaires et rideau métallique. Convient à une agence, une pharmacie ou un showroom.',
+      ar: 'محل تجاري بمساحة 140 م² في الطابق الأرضي، بواجهة زجاجية واسعة على شارع حيوي بالأبيار. علو السقف 4 م، مرافق صحية وستار حديدي. مناسب لوكالة أو صيدلية أو قاعة عرض.'
+    }
+  },
+  {
+    ref: 'TS-1188', tx: 'location', type: 'appartement', typo: 'F4', price: 120000, surface: 120, rooms: 4, beds: 3, baths: 2, floor: 2, year: 2014,
+    wilaya: 16, commune: 'cheraga', agent: 'yasmine', date: '2026-11-12', seed: 97,
+    papers: ['acte', 'livret'], amen: ['parking', 'chauffage', 'gaz', 'cuisine'],
+    title: { fr: 'Appartement F4 au calme', ar: 'شقة F4 في حي هادئ' },
+    desc: {
+      fr: 'F4 de 120 m² dans une résidence calme de Chéraga, au 2e étage. Chauffage central, gaz de ville et place de parking. Proche du centre commercial et des écoles.',
+      ar: 'شقة F4 بمساحة 120 م² في إقامة هادئة بالشراقة، الطابق الثاني. تدفئة مركزية، غاز المدينة وموقف سيارات. قريبة من المركز التجاري والمدارس.'
+    }
+  },
+  {
+    ref: 'TS-1065', tx: 'location', type: 'villa', typo: 'F5', price: 180000, surface: 260, land: 500, rooms: 5, beds: 4, baths: 2, floors: 2, year: 2010,
+    wilaya: 23, commune: 'seraidi', agent: 'nadia', date: '2026-10-30', seed: 101,
+    papers: ['acte', 'livret'], amen: ['meuble', 'jardin', 'vue_mer', 'garage', 'chauffage'],
+    title: { fr: 'Villa meublée vue mer', ar: 'فيلا مفروشة بإطلالة على البحر' },
+    desc: {
+      fr: 'Villa F5 meublée sur les hauteurs de Seraïdi, entourée de verdure avec vue sur la mer. Jardin, cheminée et garage. Location longue durée, idéale pour une famille.',
+      ar: 'فيلا F5 مفروشة في مرتفعات سرايدي، تحيط بها الخضرة مع إطلالة على البحر. حديقة، مدفأة ومرآب. كراء لمدة طويلة، مثالية لعائلة.'
+    }
+  },
+  {
+    ref: 'TS-1210', tx: 'vente', type: 'appartement', typo: 'F3', price: 15500000, surface: 90, rooms: 3, beds: 2, baths: 1, floor: 4, isNew: true,
+    delivery: { fr: 'décembre 2026', ar: 'ديسمبر 2026' },
+    wilaya: 42, commune: 'bou-ismail', agent: 'samir', date: '2026-11-22', seed: 113, featured: true,
+    papers: ['permis', 'acte'], amen: ['vue_mer', 'ascenseur', 'parking', 'terrasse'],
+    title: { fr: 'F3 neuf face à la mer', ar: 'شقة F3 جديدة مقابل البحر' },
+    desc: {
+      fr: 'Résidence neuve face à la mer à Bou Ismaïl : F3 de 90 m² avec balcon vue mer. Livraison en décembre 2026, finitions haut de gamme, ascenseur et parking. Facilités de paiement.',
+      ar: 'إقامة جديدة مقابل البحر في بو إسماعيل: شقة F3 بمساحة 90 م² بشرفة مطلة على البحر. التسليم في ديسمبر 2026، تشطيبات راقية، مصعد وموقف سيارات. تسهيلات في الدفع.'
+    }
+  },
+  {
+    ref: 'TS-0955', tx: 'vente', type: 'appartement', typo: 'F3', price: 9800000, surface: 78, rooms: 3, beds: 2, baths: 1, floor: 3, year: 2009,
+    wilaya: 13, commune: 'mansourah', agent: 'karim', date: '2026-10-21', seed: 127,
+    papers: ['acte', 'livret'], amen: ['cuisine', 'gaz'],
+    title: { fr: 'Appartement F3 près de l’université', ar: 'شقة F3 قرب الجامعة' },
+    desc: {
+      fr: 'F3 de 78 m² au 3e étage, quartier Mansourah, proche de l’université et des commerces. Bon état, cuisine équipée et cave. Idéal pour un premier achat.',
+      ar: 'شقة F3 بمساحة 78 م² في الطابق الثالث، حي منصورة، قريبة من الجامعة والمحلات. حالة جيدة، مطبخ مجهز وقبو. مثالية كأول شراء.'
+    }
+  },
+  {
+    ref: 'TS-1120', tx: 'location', type: 'duplex', typo: 'F5', price: 200000, surface: 190, rooms: 5, beds: 4, baths: 3, floor: 3, year: 2018,
+    wilaya: 16, commune: 'ben-aknoun', agent: 'samir', date: '2026-11-08', seed: 131,
+    papers: ['acte', 'livret'], amen: ['terrasse', 'parking', 'securite', 'cuisine', 'ascenseur'],
+    title: { fr: 'Duplex F5 en résidence gardée', ar: 'دوبلكس F5 في إقامة محروسة' },
+    desc: {
+      fr: 'Duplex F5 de 190 m² dans une résidence gardée à Ben Aknoun. Terrasse, trois salles d’eau, cuisine équipée et deux places de parking. Libre au 1er janvier.',
+      ar: 'دوبلكس F5 بمساحة 190 م² في إقامة محروسة ببن عكنون. تراس، ثلاثة حمامات، مطبخ مجهز وموقفان للسيارات. متاح ابتداءً من 1 جانفي.'
+    }
+  },
+  {
+    ref: 'TS-1077', tx: 'vente', type: 'villa', typo: 'F7', price: 75000000, surface: 380, land: 500, rooms: 7, beds: 5, baths: 3, floors: 3, year: 2013,
+    wilaya: 6, commune: 'tichy', agent: 'nadia', date: '2026-10-25', seed: 139, exclusive: true,
+    papers: ['acte', 'livret', 'permis'], amen: ['vue_mer', 'terrasse', 'jardin', 'citerne', 'garage'],
+    title: { fr: 'Villa F7 à 300 m de la plage', ar: 'فيلا F7 على بعد 300 م من الشاطئ' },
+    desc: {
+      fr: 'Villa F7 à 300 m de la plage de Tichy, sur un terrain de 500 m². Trois niveaux, sept pièces, terrasse vue mer et jardin. Convient aussi à une maison d’hôtes.',
+      ar: 'فيلا F7 على بعد 300 م من شاطئ تيشي، على أرض مساحتها 500 م². ثلاثة طوابق، سبع غرف، تراس مطل على البحر وحديقة. مناسبة أيضًا كدار ضيافة.'
+    }
+  },
+  {
+    ref: 'TS-1215', tx: 'vente', type: 'local', price: 32000000, surface: 95, floor: 0, year: 2011,
+    wilaya: 25, commune: 'sidi-mabrouk', agent: 'nadia', date: '2026-11-05', seed: 149,
+    papers: ['acte'], amen: ['vitrine', 'climatisation'],
+    title: { fr: 'Local d’angle à double vitrine', ar: 'محل في زاوية بواجهتين زجاجيتين' },
+    desc: {
+      fr: 'Local commercial de 95 m² à Sidi Mabrouk, à l’angle de deux rues avec double vitrine. Livré avec sanitaires et climatisation. Acte notarié.',
+      ar: 'محل تجاري بمساحة 95 م² في سيدي مبروك، في زاوية شارعين بواجهتين زجاجيتين. مزود بمرافق صحية وتكييف. عقد موثق.'
+    }
+  },
+  {
+    ref: 'TS-1222', tx: 'vente', type: 'appartement', typo: 'F4', price: 17900000, surface: 105, rooms: 4, beds: 3, baths: 2, floor: 7, isNew: true,
+    delivery: { fr: '4e trimestre 2027', ar: 'الثلاثي الرابع 2027' },
+    wilaya: 31, commune: 'bir-el-djir', agent: 'karim', date: '2026-11-24', seed: 157,
+    papers: ['permis'], amen: ['ascenseur', 'parking', 'securite'],
+    title: { fr: 'F4 neuf en résidence fermée', ar: 'شقة F4 جديدة في إقامة مغلقة' },
+    desc: {
+      fr: 'Promotion neuve à Bir El Djir : F4 de 105 m², livraison prévue au 4e trimestre 2027. Résidence fermée avec ascenseurs, parking souterrain et aire de jeux. Paiement échelonné.',
+      ar: 'ترقية عقارية جديدة في بئر الجير: شقة F4 بمساحة 105 م²، والتسليم متوقع في الثلاثي الرابع من 2027. إقامة مغلقة بمصاعد وموقف تحت الأرض ومساحة ألعاب. الدفع بالتقسيط.'
+    }
+  }
+];

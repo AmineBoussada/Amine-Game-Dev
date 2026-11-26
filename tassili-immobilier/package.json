@@ -1,0 +1,13 @@
+{
+  "name": "tassili-immobilier-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Static HTML/CSS/JS frontend for a bilingual (FR/AR) Algerian real estate agency template.",
+  "scripts": {
+    "start": "npx --yes serve -l 5173 .",
+    "test": "node tests/run.cjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.47.0"
+  }
+}
