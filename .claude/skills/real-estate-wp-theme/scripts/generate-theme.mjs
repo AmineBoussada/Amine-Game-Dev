@@ -196,7 +196,8 @@ if (LAYOUT === 'nova') {
   // Google Fonts URL.
   if (fonts.display || fonts.body) {
     const fam = (f, w) => `family=${f.replace(/ /g, '+')}:wght@${w}`;
-    const url = `https://fonts.googleapis.com/css2?${fam(fonts.body ?? 'Manrope', fonts.bodyWeights ?? '400;500;600;700')}&${fam(fonts.display ?? 'Playfair Display', fonts.displayWeights ?? '500;600')}&display=swap`;
+    const families = [...new Set([fam(fonts.body ?? 'Manrope', fonts.bodyWeights ?? '400;500;600;700'), fam(fonts.display ?? 'Playfair Display', fonts.displayWeights ?? '500;600')])];
+    const url = `https://fonts.googleapis.com/css2?${families.join('&')}&display=swap`;
     const fp = join(target, 'functions.php');
     const s = readFileSync(fp, 'utf8').replace(/'https:\/\/fonts\.googleapis\.com\/css2\?[^']+'/, `'${url}'`);
     writeFileSync(fp, s);

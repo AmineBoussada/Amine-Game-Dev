@@ -32,7 +32,7 @@ add_action('after_setup_theme', function () {
 add_action('wp_enqueue_scripts', function () {
     wp_enqueue_style(
         'bahia-fonts',
-        apply_filters('bahia_fonts_url', 'https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap'),
+        apply_filters('bahia_fonts_url', 'https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap'),
         [],
         null
     );

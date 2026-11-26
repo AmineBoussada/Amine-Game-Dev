@@ -26,8 +26,8 @@
   --c-whatsapp: #1f9d55;
 
   /* Typography */
-  --f-sans: 'Manrope', 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --f-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --f-sans: 'Raleway', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --f-serif: 'Raleway', Georgia, 'Times New Roman', serif;
 
   --fs-xs: 0.75rem;
   --fs-sm: 0.875rem;
