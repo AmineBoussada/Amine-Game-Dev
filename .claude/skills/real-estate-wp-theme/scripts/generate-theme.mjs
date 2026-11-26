@@ -152,6 +152,7 @@ const rules = [
   [/#c2a27a/gi, derived.accentPale],
   [/#1b1b1b/gi, derived.footer],
   [/#F7F5F0/g, c.background],
+  [/rgba\(247, ?245, ?240/g, `rgba(${hex2rgb(c.background).join(', ')}`], // header background over the page
 ];
 
 let changed = 0;

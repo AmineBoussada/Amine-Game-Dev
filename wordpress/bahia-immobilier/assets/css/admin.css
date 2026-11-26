@@ -1,5 +1,5 @@
 /* Bahia Immobilier — admin styles */
-.bahia-admin { --bahia-bronze: #1E3A5F; }
+.bahia-admin { --bahia-bronze: #0F5C61; }
 .bahia-group { margin: 0 0 18px; padding: 14px 16px 6px; border: 1px solid #e4ddd1; border-radius: 6px; background: #fcfbf8; }
 .bahia-group legend { padding: 0 6px; font-weight: 600; font-size: 14px; color: #222; }
 .bahia-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px 18px; }
@@ -18,8 +18,8 @@
 
 .bahia-gallery__list { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 10px; }
 .bahia-gallery__list li { position: relative; width: 120px; height: 90px; margin: 0; border-radius: 4px; overflow: hidden; cursor: move; box-shadow: 0 1px 3px rgba(0,0,0,.15); }
-.bahia-gallery__list li:first-child { outline: 3px solid #1E3A5F; }
-.bahia-gallery__list li:first-child::after { content: 'Principale'; position: absolute; left: 0; bottom: 0; padding: 2px 6px; background: #1E3A5F; color: #fff; font-size: 11px; }
+.bahia-gallery__list li:first-child { outline: 3px solid #0F5C61; }
+.bahia-gallery__list li:first-child::after { content: 'Principale'; position: absolute; left: 0; bottom: 0; padding: 2px 6px; background: #0F5C61; color: #fff; font-size: 11px; }
 .bahia-gallery__list img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .bahia-gallery__remove { position: absolute; top: 4px; right: 4px; width: 22px; height: 22px; border: 0; border-radius: 50%; background: rgba(0,0,0,.65); color: #fff; line-height: 20px; cursor: pointer; }
 .bahia-gallery__empty { color: #777; font-style: italic; }
@@ -29,10 +29,10 @@
 .column-bahia_ref { width: 90px; }
 .column-bahia_featured { width: 70px; text-align: center !important; }
 .bahia-pill { display: inline-block; padding: 1px 7px; border-radius: 3px; font-size: 11px; font-weight: 600; text-transform: uppercase; color: #fff; background: #222; }
-.bahia-pill--location { background: #1E3A5F; }
+.bahia-pill--location { background: #0F5C61; }
 .bahia-status { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 12px; background: #eaf3ec; color: #3f7a52; }
 .bahia-status--vendu, .bahia-status--loue { background: #f3e9e6; color: #b3412e; }
-.bahia-status--sous-compromis { background: #f6efe2; color: #19304f; }
+.bahia-status--sous-compromis { background: #f6efe2; color: #0c4c51; }
 .bahia-overview { display: flex; gap: 24px; }
 .bahia-overview strong { font-size: 22px; display: block; }
 

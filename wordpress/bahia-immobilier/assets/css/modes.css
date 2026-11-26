@@ -5,13 +5,13 @@
 
 /* ---------- Dark palette (the generator derives it from the client's accent) ---------- */
 :root[data-theme="sombre"] {
-  --d-bg: #13161a;
-  --d-surface: #1d2228;
-  --d-alt: #191d22;
-  --d-text: #e3e5e8;
-  --d-muted: #a2a5aa;
-  --d-accent: #9aa6b7;
-  --d-on-accent: #13161a;
+  --d-bg: #111a1b;
+  --d-surface: #1b2728;
+  --d-alt: #172222;
+  --d-text: #e2e8e8;
+  --d-muted: #a0a9aa;
+  --d-accent: #93b6b8;
+  --d-on-accent: #111a1b;
   --c-ivory: var(--d-bg);
   --c-bg: var(--d-bg);
   --c-white: var(--d-surface);

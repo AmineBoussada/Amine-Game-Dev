@@ -60,10 +60,10 @@ a.chip { color: inherit; }
 .property-card__badges { position: absolute; top: 1rem; left: 1rem; z-index: 2; display: flex; flex-wrap: wrap; gap: 0.4rem; max-width: calc(100% - 5rem); }
 .property-card__badges .badge { position: static; }
 .badge--vendu, .badge--loue { background: #b3412e; color: #fff; }
-.badge--sous-compromis { background: #f6efe2; color: #19304f; }
+.badge--sous-compromis { background: #f6efe2; color: #0c4c51; }
 .property-card.is-unavailable .img-frame { filter: grayscale(0.45); }
 .agent-card__status--vendu, .agent-card__status--loue { color: #b3412e; }
-.agent-card__status--sous-compromis { color: #19304f; }
+.agent-card__status--sous-compromis { color: #0c4c51; }
 
 /* Gallery slides (server-rendered, toggled by JS). */
 .gallery__open .gallery__slide { display: block; }

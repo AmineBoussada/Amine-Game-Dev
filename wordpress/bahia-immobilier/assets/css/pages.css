@@ -32,7 +32,7 @@
 
 .hero__img .img-fallback {
   background: linear-gradient(135deg, #3a352f, #24221f);
-  color: rgba(30, 58, 95, 0.6);
+  color: rgba(15, 92, 97, 0.6);
 }
 
 @keyframes heroZoom {
@@ -53,7 +53,7 @@
 }
 
 .hero__eyebrow {
-  color: #b7c0cc;
+  color: #b2cbcc;
   animation: fadeUp 800ms var(--ease) 100ms both;
 }
 
@@ -229,7 +229,7 @@
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #b7c0cc;
+  color: #b2cbcc;
 }
 
 .category-card h3 {
@@ -1125,9 +1125,9 @@
   aspect-ratio: 4 / 3;
   border-radius: var(--r-sm);
   background:
-    linear-gradient(90deg, rgba(30, 58, 95, 0.12) 1px, transparent 1px) 0 0 / 28px 28px,
-    linear-gradient(rgba(30, 58, 95, 0.12) 1px, transparent 1px) 0 0 / 28px 28px,
-    radial-gradient(circle at 50% 50%, rgba(30, 58, 95, 0.18) 0 34%, transparent 35%),
+    linear-gradient(90deg, rgba(15, 92, 97, 0.12) 1px, transparent 1px) 0 0 / 28px 28px,
+    linear-gradient(rgba(15, 92, 97, 0.12) 1px, transparent 1px) 0 0 / 28px 28px,
+    radial-gradient(circle at 50% 50%, rgba(15, 92, 97, 0.18) 0 34%, transparent 35%),
     var(--c-ivory);
 }
 
@@ -1496,7 +1496,7 @@
 }
 
 .contact__box--dark .link-arrow {
-  color: #b7c0cc;
+  color: #b2cbcc;
 }
 
 .hours li {

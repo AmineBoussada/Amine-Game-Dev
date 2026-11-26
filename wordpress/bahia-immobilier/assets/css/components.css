@@ -202,7 +202,7 @@
 
 .site-header.is-solid {
   color: var(--c-charcoal);
-  background: rgba(247, 245, 240, 0.94);
+  background: rgba(243, 246, 245, 0.94);
   backdrop-filter: saturate(1.4) blur(12px);
   box-shadow: 0 1px 0 var(--c-line);
 }
@@ -428,7 +428,7 @@
   justify-content: center;
   gap: 0.6rem;
   background:
-    repeating-linear-gradient(135deg, transparent 0 22px, rgba(30, 58, 95, 0.07) 22px 23px),
+    repeating-linear-gradient(135deg, transparent 0 22px, rgba(15, 92, 97, 0.07) 22px 23px),
     var(--c-beige);
   color: var(--c-bronze);
 }
@@ -949,7 +949,7 @@
   top: -80px;
   width: 320px;
   height: 320px;
-  border: 1px solid rgba(30, 58, 95, 0.35);
+  border: 1px solid rgba(15, 92, 97, 0.35);
   border-radius: 50%;
 }
 
@@ -960,7 +960,7 @@
   top: 40px;
   width: 160px;
   height: 160px;
-  border: 1px solid rgba(30, 58, 95, 0.2);
+  border: 1px solid rgba(15, 92, 97, 0.2);
   border-radius: 50%;
 }
 
@@ -999,7 +999,7 @@
 /* ---------- Footer ---------- */
 .site-footer {
   padding-top: clamp(3.5rem, 6vw, 5.5rem);
-  background: #1b1b1b;
+  background: #161e1e;
   color: rgba(255, 255, 255, 0.68);
   font-size: 0.925rem;
 }

@@ -4,21 +4,21 @@
    ========================================================= */
 :root {
   /* Palette */
-  --c-ivory: #F7F5F0;
+  --c-ivory: #F3F6F5;
   --c-white: #FFFFFF;
-  --c-charcoal: #222222;
+  --c-charcoal: #1C2526;
   --c-gray: #777777;
-  --c-bronze: #1E3A5F;
-  --c-beige: #E9E3D9;
+  --c-bronze: #0F5C61;
+  --c-beige: #DCE8E6;
 
   /* Derived */
-  --c-bronze-dark: #19304f;
-  --c-bronze-soft: rgba(30, 58, 95, 0.12);
-  --c-bronze-light: #b7c0cc; /* accent on dark backgrounds */
-  --c-line: #e1dbd2;
-  --c-line-strong: #d5d0c7;
+  --c-bronze-dark: #0c4c51;
+  --c-bronze-soft: rgba(15, 92, 97, 0.12);
+  --c-bronze-light: #b2cbcc; /* accent on dark backgrounds */
+  --c-line: #d4e0de;
+  --c-line-strong: #c9d5d3;
   --c-text: var(--c-charcoal);
-  --c-muted: #666666; /* AA on ivory; brand #777 used for decorative text */
+  --c-muted: #656767; /* AA on ivory; brand #777 used for decorative text */
   --c-bg: var(--c-ivory);
   --c-surface: var(--c-white);
   --c-error: #b3412e;

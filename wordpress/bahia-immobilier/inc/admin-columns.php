@@ -42,7 +42,7 @@ add_action('manage_property_posts_custom_column', function ($col, $post_id) {
             echo '<span class="bahia-status bahia-status--' . esc_attr($p['status']) . '">' . esc_html(bahia_status_labels()[$p['status']] ?? '') . '</span>';
             break;
         case 'bahia_featured':
-            echo $p['featured'] ? '<span class="dashicons dashicons-star-filled" style="color:#1E3A5F" title="À la une"></span>' : '<span class="dashicons dashicons-star-empty" style="color:#ccc"></span>';
+            echo $p['featured'] ? '<span class="dashicons dashicons-star-filled" style="color:#0F5C61" title="À la une"></span>' : '<span class="dashicons dashicons-star-empty" style="color:#ccc"></span>';
             break;
     }
 }, 10, 2);
