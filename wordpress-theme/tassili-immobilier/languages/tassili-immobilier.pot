@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tassili Immobilier 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-26 20:22+0000\n"
-"PO-Revision-Date: 2026-11-26 20:22+0000\n"
+"POT-Creation-Date: 2026-11-26 21:03+0000\n"
+"PO-Revision-Date: 2026-11-26 21:03+0000\n"
 "Language-Team: English\n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
@@ -26,7 +26,7 @@ msgstr ""
 msgid "%1$s, wilaya of %2$s. The exact address is given during the visit."
 msgstr ""
 
-#: inc/admin.php:509
+#: inc/admin.php:515
 msgid "%s (copy)"
 msgstr ""
 
@@ -74,7 +74,7 @@ msgid_plural "%s properties"
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/admin.php:760
+#: inc/admin.php:766
 msgid "%s property updated."
 msgid_plural "%s properties updated."
 msgstr[0] ""
@@ -227,7 +227,7 @@ msgid "All properties"
 msgstr ""
 
 #: inc/taxonomies.php:83
-#: inc/admin.php:655
+#: inc/admin.php:661
 msgid "All property types"
 msgstr ""
 
@@ -236,7 +236,7 @@ msgid "All testimonials"
 msgstr ""
 
 #: inc/taxonomies.php:35
-#: inc/admin.php:634
+#: inc/admin.php:640
 msgid "All transactions"
 msgstr ""
 
@@ -247,7 +247,7 @@ msgstr ""
 
 #: front-page.php:59
 #: template-parts/archive-properties.php:107
-#: inc/admin.php:644
+#: inc/admin.php:650
 msgid "All wilayas"
 msgstr ""
 
@@ -267,7 +267,7 @@ msgstr ""
 msgid "Any"
 msgstr ""
 
-#: inc/admin.php:661
+#: inc/admin.php:667
 msgid "Any availability"
 msgstr ""
 
@@ -286,18 +286,18 @@ msgid "Are the documents checked?"
 msgstr ""
 
 #: inc/meta-boxes.php:109
-#: inc/admin.php:348
+#: inc/admin.php:354
 msgid "Availability"
 msgstr ""
 
-#: inc/admin.php:750
+#: inc/admin.php:756
 msgid "Availability updated."
 msgstr ""
 
 #: single-property.php:162
 #: inc/helpers.php:566
 #: inc/admin.php:193
-#: inc/admin.php:390
+#: inc/admin.php:396
 msgid "Available"
 msgstr ""
 
@@ -586,7 +586,7 @@ msgstr ""
 msgid "Drafts"
 msgstr ""
 
-#: inc/admin.php:429
+#: inc/admin.php:435
 msgid "Duplicate"
 msgstr ""
 
@@ -718,7 +718,7 @@ msgstr ""
 msgid "Footer links"
 msgstr ""
 
-#: inc/setup.php:161
+#: inc/setup.php:172
 msgid "Footer widgets"
 msgstr ""
 
@@ -857,7 +857,7 @@ msgstr ""
 #: templates/page-favorites.php:28
 #: single-property.php:45
 #: inc/nav.php:20
-#: inc/admin.php:349
+#: inc/admin.php:355
 msgid "Home"
 msgstr ""
 
@@ -865,11 +865,11 @@ msgstr ""
 msgid "Home page"
 msgstr ""
 
-#: inc/admin.php:753
+#: inc/admin.php:759
 msgid "Home page setting updated."
 msgstr ""
 
-#: inc/admin.php:256
+#: inc/admin.php:262
 msgid "How to manage your properties"
 msgstr ""
 
@@ -960,8 +960,8 @@ msgstr ""
 msgid "Largest surface"
 msgstr ""
 
-#: inc/admin.php:267
-#: inc/admin.php:311
+#: inc/admin.php:273
+#: inc/admin.php:317
 msgid "Latest requests"
 msgstr ""
 
@@ -1039,7 +1039,7 @@ msgstr ""
 msgid "Main navigation"
 msgstr ""
 
-#: inc/admin.php:427
+#: inc/admin.php:433
 msgid "Make available again"
 msgstr ""
 
@@ -1047,17 +1047,17 @@ msgstr ""
 msgid "Map search text"
 msgstr ""
 
-#: inc/admin.php:561
+#: inc/admin.php:567
 msgid "Mark as available"
 msgstr ""
 
-#: inc/admin.php:421
-#: inc/admin.php:562
+#: inc/admin.php:427
+#: inc/admin.php:568
 msgid "Mark as reserved"
 msgstr ""
 
-#: inc/admin.php:424
-#: inc/admin.php:563
+#: inc/admin.php:430
+#: inc/admin.php:569
 msgid "Mark as sold or rented"
 msgstr ""
 
@@ -1085,7 +1085,7 @@ msgstr ""
 #: single-property.php:328
 #: inc/meta-boxes.php:513
 #: inc/post-types.php:249
-#: inc/admin.php:289
+#: inc/admin.php:295
 msgid "Message"
 msgstr ""
 
@@ -1210,7 +1210,7 @@ msgstr ""
 msgid "No property matches your search"
 msgstr ""
 
-#: inc/admin.php:284
+#: inc/admin.php:290
 msgid "No requests yet."
 msgstr ""
 
@@ -1264,7 +1264,7 @@ msgstr ""
 msgid "Open the menu"
 msgstr ""
 
-#: inc/admin.php:328
+#: inc/admin.php:334
 msgid "Open the overview"
 msgstr ""
 
@@ -1522,8 +1522,8 @@ msgstr ""
 msgid "Remove from favourites"
 msgstr ""
 
-#: inc/admin.php:402
-#: inc/admin.php:565
+#: inc/admin.php:408
+#: inc/admin.php:571
 msgid "Remove from the home page"
 msgstr ""
 
@@ -1668,7 +1668,7 @@ msgstr ""
 msgid "See all properties"
 msgstr ""
 
-#: inc/admin.php:269
+#: inc/admin.php:275
 msgid "See all requests"
 msgstr ""
 
@@ -1725,8 +1725,8 @@ msgid "Show less"
 msgstr ""
 
 #: inc/meta-boxes.php:99
-#: inc/admin.php:402
-#: inc/admin.php:564
+#: inc/admin.php:408
+#: inc/admin.php:570
 msgid "Show on the home page"
 msgstr ""
 
@@ -1738,7 +1738,7 @@ msgstr ""
 msgid "Show the site in this language"
 msgstr ""
 
-#: inc/setup.php:163
+#: inc/setup.php:174
 msgid "Shown at the bottom of every page, above the copyright line."
 msgstr ""
 
@@ -1786,7 +1786,7 @@ msgid "Sold, rented or reserved"
 msgstr ""
 
 #: inc/enqueue.php:139
-#: inc/admin.php:763
+#: inc/admin.php:769
 msgid "Something went wrong. Please try again."
 msgstr ""
 
@@ -1846,6 +1846,10 @@ msgstr ""
 
 #: inc/demo-import.php:516
 msgid "Tassili Immobilier is active. Want to see it with sample listings?"
+msgstr ""
+
+#: inc/admin.php:241
+msgid "Tassili Immobilier theme, version %s"
 msgstr ""
 
 #: templates/page-about.php:145
@@ -1916,7 +1920,7 @@ msgstr ""
 msgid "The link may be broken, or the property may have been sold or let."
 msgstr ""
 
-#: inc/admin.php:756
+#: inc/admin.php:762
 msgid "The property was duplicated. You are editing the copy, which is a draft."
 msgstr ""
 
@@ -2097,7 +2101,7 @@ msgid "Visit date"
 msgstr ""
 
 #: inc/post-types.php:249
-#: inc/admin.php:289
+#: inc/admin.php:295
 #: inc/forms.php:200
 msgid "Visit request"
 msgstr ""
@@ -2245,7 +2249,7 @@ msgstr ""
 
 #: inc/demo-import.php:450
 #: inc/demo-import.php:473
-#: inc/admin.php:450
+#: inc/admin.php:456
 msgid "You do not have permission to do this."
 msgstr ""
 

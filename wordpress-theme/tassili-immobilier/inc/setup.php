@@ -124,6 +124,17 @@ function tassili_after_switch_theme() {
 add_action( 'after_switch_theme', 'tassili_after_switch_theme' );
 
 /**
+ * After the theme files are replaced by a newer version, rebuild the URL rules once.
+ */
+function tassili_maybe_upgrade() {
+	if ( get_option( 'tassili_version' ) !== TASSILI_VERSION ) {
+		update_option( 'tassili_version', TASSILI_VERSION, false );
+		tassili_schedule_rewrite_flush();
+	}
+}
+add_action( 'init', 'tassili_maybe_upgrade', 5 );
+
+/**
  * Ask for the rewrite rules to be rebuilt on the next request.
  *
  * Doing it at once can miss rules: WordPress only adds a post type's URLs at registration

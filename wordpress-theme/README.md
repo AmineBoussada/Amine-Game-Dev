@@ -2,7 +2,9 @@
 
 A bilingual French / Arabic real estate theme for Algerian agencies, built from the approved design and static frontend in `../tassili-immobilier/`. Tassili Immobilier is a fictional agency, and all demo data is made up.
 
-**Install:** upload `dist/tassili-immobilier.zip` at **Appearance > Themes > Add New > Upload Theme**, activate it, then open **Appearance > Demo content**.
+**Update:** upload the new zip the same way; WordPress shows the installed and uploaded versions, and you must click **Replace active with uploaded**.
+
+**Install:** upload `dist/tassili-immobilier-<version>.zip` at **Appearance > Themes > Add New > Upload Theme**, activate it, then open **Appearance > Demo content**.
 
 Requires WordPress 6.4+ and PHP 7.4+. No plugin is needed.
 
@@ -51,7 +53,7 @@ tassili-immobilier/          the theme (this is what gets zipped)
   languages/                 tassili-immobilier.pot, fr_FR.po/.mo, ar.po/.mo
 tools/                       extract-strings, translations, build-translations, build-zip, setup-test-site
 tests/                       run.cjs (155+ browser checks), install-test.cjs (zip upload test)
-dist/tassili-immobilier.zip  the installable package
+dist/tassili-immobilier-<version>.zip  the installable package
 ```
 
 ## How the two languages work

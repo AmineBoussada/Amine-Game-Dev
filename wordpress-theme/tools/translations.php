@@ -9,6 +9,7 @@
  */
 
 $S = array(
+	'Tassili Immobilier theme, version %s' => array( 'Thème Tassili Immobilier, version %s', 'قالب تاسيلي للعقار، الإصدار %s' ),
 	'%s (copy)' => array( '%s (copie)', '%s (نسخة)' ),
 	'Add a property' => array( 'Ajouter un bien', 'إضافة عقار' ),
 	'Any availability' => array( 'Toutes les disponibilités', 'أي حالة توفر' ),

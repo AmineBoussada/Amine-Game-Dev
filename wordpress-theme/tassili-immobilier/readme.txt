@@ -56,6 +56,11 @@ It registers custom post types and taxonomies, which the directory only allows i
 
 == Changelog ==
 
+= 1.1.0 =
+* New back office: "Biens immobiliers" menu (All properties, Add a property), Requests menu, Agency menu with overview.
+* Availability status (Available / Reserved / Sold or rented), list filters, home-page star, bulk actions, Duplicate.
+* Classic editor for properties, Arabic title and content for pages.
+
 = 1.0.0 =
 * First release.
 

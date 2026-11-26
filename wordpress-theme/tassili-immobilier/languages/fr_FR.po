@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tassili Immobilier 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-26 20:22+0000\n"
-"PO-Revision-Date: 2026-11-26 20:22+0000\n"
+"POT-Creation-Date: 2026-11-26 21:03+0000\n"
+"PO-Revision-Date: 2026-11-26 21:03+0000\n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgstr "%1$s biens vendus depuis %2$d"
 msgid "%1$s, wilaya of %2$s. The exact address is given during the visit."
 msgstr "%1$s, wilaya de %2$s. L’adresse exacte est communiquée lors de la visite."
 
-#: inc/admin.php:509
+#: inc/admin.php:515
 msgid "%s (copy)"
 msgstr "%s (copie)"
 
@@ -73,7 +73,7 @@ msgid_plural "%s properties"
 msgstr[0] "%s bien"
 msgstr[1] "%s biens"
 
-#: inc/admin.php:760
+#: inc/admin.php:766
 msgid "%s property updated."
 msgid_plural "%s properties updated."
 msgstr[0] "%s bien mis à jour."
@@ -226,7 +226,7 @@ msgid "All properties"
 msgstr "Tous les biens"
 
 #: inc/taxonomies.php:83
-#: inc/admin.php:655
+#: inc/admin.php:661
 msgid "All property types"
 msgstr "Tous les types de bien"
 
@@ -235,7 +235,7 @@ msgid "All testimonials"
 msgstr "Tous les témoignages"
 
 #: inc/taxonomies.php:35
-#: inc/admin.php:634
+#: inc/admin.php:640
 msgid "All transactions"
 msgstr "Toutes les transactions"
 
@@ -246,7 +246,7 @@ msgstr "Tous les types"
 
 #: front-page.php:59
 #: template-parts/archive-properties.php:107
-#: inc/admin.php:644
+#: inc/admin.php:650
 msgid "All wilayas"
 msgstr "Toutes les wilayas"
 
@@ -266,7 +266,7 @@ msgstr "Autre question"
 msgid "Any"
 msgstr "Indifférent"
 
-#: inc/admin.php:661
+#: inc/admin.php:667
 msgid "Any availability"
 msgstr "Toutes les disponibilités"
 
@@ -285,18 +285,18 @@ msgid "Are the documents checked?"
 msgstr "Les papiers sont-ils vérifiés ?"
 
 #: inc/meta-boxes.php:109
-#: inc/admin.php:348
+#: inc/admin.php:354
 msgid "Availability"
 msgstr "Disponibilité"
 
-#: inc/admin.php:750
+#: inc/admin.php:756
 msgid "Availability updated."
 msgstr "Disponibilité mise à jour."
 
 #: single-property.php:162
 #: inc/helpers.php:566
 #: inc/admin.php:193
-#: inc/admin.php:390
+#: inc/admin.php:396
 msgid "Available"
 msgstr "Disponible"
 
@@ -585,7 +585,7 @@ msgstr "Documents vus par notre service juridique avant la publication."
 msgid "Drafts"
 msgstr "Brouillons"
 
-#: inc/admin.php:429
+#: inc/admin.php:435
 msgid "Duplicate"
 msgstr "Dupliquer"
 
@@ -717,7 +717,7 @@ msgstr "%de étage"
 msgid "Footer links"
 msgstr "Liens du pied de page"
 
-#: inc/setup.php:161
+#: inc/setup.php:172
 msgid "Footer widgets"
 msgstr "Widgets du pied de page"
 
@@ -856,7 +856,7 @@ msgstr "Texte de l’accueil (français)"
 #: templates/page-favorites.php:28
 #: single-property.php:45
 #: inc/nav.php:20
-#: inc/admin.php:349
+#: inc/admin.php:355
 msgid "Home"
 msgstr "Accueil"
 
@@ -864,11 +864,11 @@ msgstr "Accueil"
 msgid "Home page"
 msgstr "Page d’accueil"
 
-#: inc/admin.php:753
+#: inc/admin.php:759
 msgid "Home page setting updated."
 msgstr "Réglage de la page d’accueil mis à jour."
 
-#: inc/admin.php:256
+#: inc/admin.php:262
 msgid "How to manage your properties"
 msgstr "Comment gérer vos biens"
 
@@ -959,8 +959,8 @@ msgstr "Langues : %s"
 msgid "Largest surface"
 msgstr "Plus grande surface"
 
-#: inc/admin.php:267
-#: inc/admin.php:311
+#: inc/admin.php:273
+#: inc/admin.php:317
 msgid "Latest requests"
 msgstr "Dernières demandes"
 
@@ -1038,7 +1038,7 @@ msgstr "Localisation"
 msgid "Main navigation"
 msgstr "Navigation principale"
 
-#: inc/admin.php:427
+#: inc/admin.php:433
 msgid "Make available again"
 msgstr "Remettre disponible"
 
@@ -1046,17 +1046,17 @@ msgstr "Remettre disponible"
 msgid "Map search text"
 msgstr "Texte de recherche de la carte"
 
-#: inc/admin.php:561
+#: inc/admin.php:567
 msgid "Mark as available"
 msgstr "Marquer comme disponible"
 
-#: inc/admin.php:421
-#: inc/admin.php:562
+#: inc/admin.php:427
+#: inc/admin.php:568
 msgid "Mark as reserved"
 msgstr "Marquer comme réservé"
 
-#: inc/admin.php:424
-#: inc/admin.php:563
+#: inc/admin.php:430
+#: inc/admin.php:569
 msgid "Mark as sold or rented"
 msgstr "Marquer comme vendu ou loué"
 
@@ -1084,7 +1084,7 @@ msgstr "Menus"
 #: single-property.php:328
 #: inc/meta-boxes.php:513
 #: inc/post-types.php:249
-#: inc/admin.php:289
+#: inc/admin.php:295
 msgid "Message"
 msgstr "Message"
 
@@ -1209,7 +1209,7 @@ msgstr "Aucun bien trouvé."
 msgid "No property matches your search"
 msgstr "Aucun bien ne correspond à votre recherche"
 
-#: inc/admin.php:284
+#: inc/admin.php:290
 msgid "No requests yet."
 msgstr "Aucune demande pour le moment."
 
@@ -1263,7 +1263,7 @@ msgstr "Ouvrir dans Google Maps"
 msgid "Open the menu"
 msgstr "Ouvrir le menu"
 
-#: inc/admin.php:328
+#: inc/admin.php:334
 msgid "Open the overview"
 msgstr "Ouvrir la vue d’ensemble"
 
@@ -1521,8 +1521,8 @@ msgstr "Retirer le filtre : %s"
 msgid "Remove from favourites"
 msgstr "Retirer des favoris"
 
-#: inc/admin.php:402
-#: inc/admin.php:565
+#: inc/admin.php:408
+#: inc/admin.php:571
 msgid "Remove from the home page"
 msgstr "Retirer de la page d’accueil"
 
@@ -1667,7 +1667,7 @@ msgstr "Résultats pour « %s »"
 msgid "See all properties"
 msgstr "Voir tous les biens"
 
-#: inc/admin.php:269
+#: inc/admin.php:275
 msgid "See all requests"
 msgstr "Voir toutes les demandes"
 
@@ -1724,8 +1724,8 @@ msgid "Show less"
 msgstr "Réduire"
 
 #: inc/meta-boxes.php:99
-#: inc/admin.php:402
-#: inc/admin.php:564
+#: inc/admin.php:408
+#: inc/admin.php:570
 msgid "Show on the home page"
 msgstr "Afficher sur la page d’accueil"
 
@@ -1737,7 +1737,7 @@ msgstr "Afficher les biens vendus et loués dans les listes"
 msgid "Show the site in this language"
 msgstr "Afficher le site dans cette langue"
 
-#: inc/setup.php:163
+#: inc/setup.php:174
 msgid "Shown at the bottom of every page, above the copyright line."
 msgstr "Affichée en bas de chaque page, au-dessus de la ligne de copyright."
 
@@ -1785,7 +1785,7 @@ msgid "Sold, rented or reserved"
 msgstr "Vendu, loué ou réservé"
 
 #: inc/enqueue.php:139
-#: inc/admin.php:763
+#: inc/admin.php:769
 msgid "Something went wrong. Please try again."
 msgstr "Une erreur est survenue. Veuillez réessayer."
 
@@ -1846,6 +1846,10 @@ msgstr "Contenu de démonstration Tassili Immobilier"
 #: inc/demo-import.php:516
 msgid "Tassili Immobilier is active. Want to see it with sample listings?"
 msgstr "Tassili Immobilier est activé. Envie de le voir avec des biens d’exemple ?"
+
+#: inc/admin.php:241
+msgid "Tassili Immobilier theme, version %s"
+msgstr "Thème Tassili Immobilier, version %s"
 
 #: templates/page-about.php:145
 #: inc/customizer.php:156
@@ -1915,7 +1919,7 @@ msgstr "Les informations envoyées par nos formulaires servent uniquement à ré
 msgid "The link may be broken, or the property may have been sold or let."
 msgstr "Le lien est peut-être erroné, ou le bien a été vendu ou loué."
 
-#: inc/admin.php:756
+#: inc/admin.php:762
 msgid "The property was duplicated. You are editing the copy, which is a draft."
 msgstr "Le bien a été dupliqué. Vous modifiez la copie, qui est un brouillon."
 
@@ -2096,7 +2100,7 @@ msgid "Visit date"
 msgstr "Date de visite"
 
 #: inc/post-types.php:249
-#: inc/admin.php:289
+#: inc/admin.php:295
 #: inc/forms.php:200
 msgid "Visit request"
 msgstr "Demande de visite"
@@ -2244,7 +2248,7 @@ msgstr "Oui. Nous demandons l’acte notarié et, quand il existe, le livret fon
 
 #: inc/demo-import.php:450
 #: inc/demo-import.php:473
-#: inc/admin.php:450
+#: inc/admin.php:456
 msgid "You do not have permission to do this."
 msgstr "Vous n’avez pas l’autorisation d’effectuer cette action."
 

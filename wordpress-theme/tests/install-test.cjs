@@ -7,7 +7,9 @@
 const { chromium } = require('playwright');
 const path = require('path');
 const BASE = (process.env.WP_URL || 'http://127.0.0.1:8081').replace(/\/$/, '');
-const ZIP = path.resolve(process.env.ZIP || path.join(__dirname, '..', 'dist', 'tassili-immobilier.zip'));
+const dist = path.join(__dirname, '..', 'dist');
+const newest = require('fs').readdirSync(dist).filter(f => /^tassili-immobilier.*\.zip$/.test(f)).sort().pop();
+const ZIP = path.resolve(process.env.ZIP || path.join(dist, newest));
 const USER = process.env.WP_USER || 'admin', PASS = process.env.WP_PASS || 'adminpass123';
 let passed = 0, failed = 0; const failures = [];
 const ok = (c, n, e) => { if (c) { passed++; console.log('  ✓ ' + n); } else { failed++; failures.push(n + (e ? ' — ' + e : '')); console.log('  ✗ ' + n + (e ? ' — ' + e : '')); } };

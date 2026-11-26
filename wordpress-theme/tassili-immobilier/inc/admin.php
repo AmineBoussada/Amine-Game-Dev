@@ -235,6 +235,12 @@ function tassili_render_overview() {
 	?>
 	<div class="wrap tassili-overview">
 		<h1><?php esc_html_e( 'Properties: overview', 'tassili-immobilier' ); ?></h1>
+		<p class="description">
+			<?php
+			/* translators: %s: theme version number. */
+			echo esc_html( sprintf( __( 'Tassili Immobilier theme, version %s', 'tassili-immobilier' ), TASSILI_VERSION ) );
+			?>
+		</p>
 
 		<div class="tassili-cards">
 			<?php foreach ( $cards as $card ) : ?>

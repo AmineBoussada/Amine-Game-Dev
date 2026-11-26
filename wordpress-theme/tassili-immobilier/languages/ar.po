@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tassili Immobilier 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-26 20:22+0000\n"
-"PO-Revision-Date: 2026-11-26 20:22+0000\n"
+"POT-Creation-Date: 2026-11-26 21:03+0000\n"
+"PO-Revision-Date: 2026-11-26 21:03+0000\n"
 "Language-Team: Arabic\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgstr "%1$s عقارًا مبيعًا منذ %2$d"
 msgid "%1$s, wilaya of %2$s. The exact address is given during the visit."
 msgstr "%1$s، ولاية %2$s. يُعطى العنوان الدقيق أثناء الزيارة."
 
-#: inc/admin.php:509
+#: inc/admin.php:515
 msgid "%s (copy)"
 msgstr "%s (نسخة)"
 
@@ -97,7 +97,7 @@ msgstr[3] "%s عقارات"
 msgstr[4] "%s عقارًا"
 msgstr[5] "%s عقار"
 
-#: inc/admin.php:760
+#: inc/admin.php:766
 msgid "%s property updated."
 msgid_plural "%s properties updated."
 msgstr[0] "لم يتم تحديث أي عقار."
@@ -258,7 +258,7 @@ msgid "All properties"
 msgstr "كل العقارات"
 
 #: inc/taxonomies.php:83
-#: inc/admin.php:655
+#: inc/admin.php:661
 msgid "All property types"
 msgstr "كل أنواع العقارات"
 
@@ -267,7 +267,7 @@ msgid "All testimonials"
 msgstr "كل الشهادات"
 
 #: inc/taxonomies.php:35
-#: inc/admin.php:634
+#: inc/admin.php:640
 msgid "All transactions"
 msgstr "كل المعاملات"
 
@@ -278,7 +278,7 @@ msgstr "كل الأنواع"
 
 #: front-page.php:59
 #: template-parts/archive-properties.php:107
-#: inc/admin.php:644
+#: inc/admin.php:650
 msgid "All wilayas"
 msgstr "كل الولايات"
 
@@ -298,7 +298,7 @@ msgstr "سؤال آخر"
 msgid "Any"
 msgstr "الكل"
 
-#: inc/admin.php:661
+#: inc/admin.php:667
 msgid "Any availability"
 msgstr "أي حالة توفر"
 
@@ -317,18 +317,18 @@ msgid "Are the documents checked?"
 msgstr "هل يتم التحقق من الوثائق؟"
 
 #: inc/meta-boxes.php:109
-#: inc/admin.php:348
+#: inc/admin.php:354
 msgid "Availability"
 msgstr "التوفر"
 
-#: inc/admin.php:750
+#: inc/admin.php:756
 msgid "Availability updated."
 msgstr "تم تحديث حالة التوفر."
 
 #: single-property.php:162
 #: inc/helpers.php:566
 #: inc/admin.php:193
-#: inc/admin.php:390
+#: inc/admin.php:396
 msgid "Available"
 msgstr "متوفر"
 
@@ -617,7 +617,7 @@ msgstr "وثائق اطلع عليها قسمنا القانوني قبل الن
 msgid "Drafts"
 msgstr "المسودات"
 
-#: inc/admin.php:429
+#: inc/admin.php:435
 msgid "Duplicate"
 msgstr "تكرار"
 
@@ -749,7 +749,7 @@ msgstr "الطابق %d"
 msgid "Footer links"
 msgstr "روابط التذييل"
 
-#: inc/setup.php:161
+#: inc/setup.php:172
 msgid "Footer widgets"
 msgstr "عناصر التذييل"
 
@@ -888,7 +888,7 @@ msgstr "نص الصفحة الرئيسية (بالفرنسية)"
 #: templates/page-favorites.php:28
 #: single-property.php:45
 #: inc/nav.php:20
-#: inc/admin.php:349
+#: inc/admin.php:355
 msgid "Home"
 msgstr "الرئيسية"
 
@@ -896,11 +896,11 @@ msgstr "الرئيسية"
 msgid "Home page"
 msgstr "الصفحة الرئيسية"
 
-#: inc/admin.php:753
+#: inc/admin.php:759
 msgid "Home page setting updated."
 msgstr "تم تحديث إعداد الصفحة الرئيسية."
 
-#: inc/admin.php:256
+#: inc/admin.php:262
 msgid "How to manage your properties"
 msgstr "كيف تدير عقاراتك"
 
@@ -991,8 +991,8 @@ msgstr "اللغات: %s"
 msgid "Largest surface"
 msgstr "المساحة الأكبر"
 
-#: inc/admin.php:267
-#: inc/admin.php:311
+#: inc/admin.php:273
+#: inc/admin.php:317
 msgid "Latest requests"
 msgstr "آخر الطلبات"
 
@@ -1070,7 +1070,7 @@ msgstr "الموقع"
 msgid "Main navigation"
 msgstr "التنقل الرئيسي"
 
-#: inc/admin.php:427
+#: inc/admin.php:433
 msgid "Make available again"
 msgstr "إعادة إتاحته"
 
@@ -1078,17 +1078,17 @@ msgstr "إعادة إتاحته"
 msgid "Map search text"
 msgstr "نص البحث في الخريطة"
 
-#: inc/admin.php:561
+#: inc/admin.php:567
 msgid "Mark as available"
 msgstr "تحديد كمتاح"
 
-#: inc/admin.php:421
-#: inc/admin.php:562
+#: inc/admin.php:427
+#: inc/admin.php:568
 msgid "Mark as reserved"
 msgstr "تحديد كمحجوز"
 
-#: inc/admin.php:424
-#: inc/admin.php:563
+#: inc/admin.php:430
+#: inc/admin.php:569
 msgid "Mark as sold or rented"
 msgstr "تحديد كمباع أو مؤجر"
 
@@ -1116,7 +1116,7 @@ msgstr "القوائم"
 #: single-property.php:328
 #: inc/meta-boxes.php:513
 #: inc/post-types.php:249
-#: inc/admin.php:289
+#: inc/admin.php:295
 msgid "Message"
 msgstr "الرسالة"
 
@@ -1241,7 +1241,7 @@ msgstr "لم يتم العثور على عقارات."
 msgid "No property matches your search"
 msgstr "لا يوجد عقار يطابق بحثك"
 
-#: inc/admin.php:284
+#: inc/admin.php:290
 msgid "No requests yet."
 msgstr "لا توجد طلبات بعد."
 
@@ -1295,7 +1295,7 @@ msgstr "فتح في خرائط Google"
 msgid "Open the menu"
 msgstr "فتح القائمة"
 
-#: inc/admin.php:328
+#: inc/admin.php:334
 msgid "Open the overview"
 msgstr "فتح النظرة العامة"
 
@@ -1553,8 +1553,8 @@ msgstr "إزالة الفلتر: %s"
 msgid "Remove from favourites"
 msgstr "إزالة من المفضلة"
 
-#: inc/admin.php:402
-#: inc/admin.php:565
+#: inc/admin.php:408
+#: inc/admin.php:571
 msgid "Remove from the home page"
 msgstr "إزالته من الصفحة الرئيسية"
 
@@ -1699,7 +1699,7 @@ msgstr "نتائج البحث عن «%s»"
 msgid "See all properties"
 msgstr "عرض كل العقارات"
 
-#: inc/admin.php:269
+#: inc/admin.php:275
 msgid "See all requests"
 msgstr "عرض كل الطلبات"
 
@@ -1756,8 +1756,8 @@ msgid "Show less"
 msgstr "عرض أقل"
 
 #: inc/meta-boxes.php:99
-#: inc/admin.php:402
-#: inc/admin.php:564
+#: inc/admin.php:408
+#: inc/admin.php:570
 msgid "Show on the home page"
 msgstr "عرضه في الصفحة الرئيسية"
 
@@ -1769,7 +1769,7 @@ msgstr "عرض العقارات المباعة والمؤجرة في القوا�
 msgid "Show the site in this language"
 msgstr "عرض الموقع بهذه اللغة"
 
-#: inc/setup.php:163
+#: inc/setup.php:174
 msgid "Shown at the bottom of every page, above the copyright line."
 msgstr "تظهر أسفل كل صفحة، فوق سطر حقوق النشر."
 
@@ -1817,7 +1817,7 @@ msgid "Sold, rented or reserved"
 msgstr "مباع أو مؤجر أو محجوز"
 
 #: inc/enqueue.php:139
-#: inc/admin.php:763
+#: inc/admin.php:769
 msgid "Something went wrong. Please try again."
 msgstr "حدث خطأ. يرجى المحاولة مرة أخرى."
 
@@ -1878,6 +1878,10 @@ msgstr "المحتوى التجريبي لقالب تاسيلي للعقار"
 #: inc/demo-import.php:516
 msgid "Tassili Immobilier is active. Want to see it with sample listings?"
 msgstr "تم تفعيل قالب تاسيلي للعقار. هل تريد رؤيته مع عقارات تجريبية؟"
+
+#: inc/admin.php:241
+msgid "Tassili Immobilier theme, version %s"
+msgstr "قالب تاسيلي للعقار، الإصدار %s"
 
 #: templates/page-about.php:145
 #: inc/customizer.php:156
@@ -1947,7 +1951,7 @@ msgstr "تُستعمل المعلومات المرسلة عبر استمارات
 msgid "The link may be broken, or the property may have been sold or let."
 msgstr "قد يكون الرابط خاطئًا، أو ربما تم بيع العقار أو كراؤه."
 
-#: inc/admin.php:756
+#: inc/admin.php:762
 msgid "The property was duplicated. You are editing the copy, which is a draft."
 msgstr "تم تكرار العقار. أنت تعدّل النسخة وهي مسودة."
 
@@ -2132,7 +2136,7 @@ msgid "Visit date"
 msgstr "تاريخ الزيارة"
 
 #: inc/post-types.php:249
-#: inc/admin.php:289
+#: inc/admin.php:295
 #: inc/forms.php:200
 msgid "Visit request"
 msgstr "طلب زيارة"
@@ -2280,7 +2284,7 @@ msgstr "نعم. نطلب العقد الموثق والدفتر العقاري �
 
 #: inc/demo-import.php:450
 #: inc/demo-import.php:473
-#: inc/admin.php:450
+#: inc/admin.php:456
 msgid "You do not have permission to do this."
 msgstr "ليس لديك صلاحية للقيام بذلك."
 
