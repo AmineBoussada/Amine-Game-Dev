@@ -209,6 +209,10 @@ function tassili_filters_to_query_args( $f ) {
 			'compare' => 'LIKE',
 		);
 	}
+	$open = tassili_open_listing_clause();
+	if ( $open ) {
+		$meta_query[] = $open;
+	}
 	if ( count( $meta_query ) > 1 ) {
 		$meta_query['relation'] = 'AND';
 	}

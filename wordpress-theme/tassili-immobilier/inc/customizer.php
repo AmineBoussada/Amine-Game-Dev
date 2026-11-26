@@ -20,6 +20,16 @@ function tassili_sanitize_digits( $value ) {
 }
 
 /**
+ * Sanitize a checkbox.
+ *
+ * @param mixed $value Value.
+ * @return int
+ */
+function tassili_sanitize_checkbox( $value ) {
+	return $value ? 1 : 0;
+}
+
+/**
  * Sanitize a language choice.
  *
  * @param string $value Value.
@@ -238,6 +248,8 @@ function tassili_customize_register( $wp_customize ) {
 			),
 		)
 	);
+	$add( 'tassili_home', 'hero_lede_fr', __( 'Hero text (French)', 'tassili-immobilier' ), 'textarea', 'sanitize_textarea_field', array( 'description' => __( 'Leave empty to use the default text.', 'tassili-immobilier' ) ) );
+	$add( 'tassili_home', 'hero_lede_ar', __( 'Hero text (Arabic)', 'tassili-immobilier' ), 'textarea', 'sanitize_textarea_field' );
 	$add( 'tassili_home', 'cta_url', __( 'Header button link', 'tassili-immobilier' ), 'url', 'esc_url_raw', array( 'description' => __( 'The “List my property” button. Leave empty to link to the contact page.', 'tassili-immobilier' ) ) );
 
 	/* Display */
@@ -267,6 +279,14 @@ function tassili_customize_register( $wp_customize ) {
 				'ar' => 'العربية',
 			),
 		)
+	);
+	$add(
+		'tassili_display',
+		'show_closed',
+		__( 'Show sold and rented properties in the listings', 'tassili-immobilier' ),
+		'checkbox',
+		'tassili_sanitize_checkbox',
+		array( 'description' => __( 'They always keep a “Sold” or “Rented” label. When off, they disappear from searches and the home page.', 'tassili-immobilier' ) )
 	);
 	$add(
 		'tassili_display',

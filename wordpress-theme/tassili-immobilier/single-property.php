@@ -104,6 +104,9 @@ while ( have_posts() ) :
 		<div class="container p-layout">
 			<div class="p-main">
 				<header class="p-head">
+					<?php if ( 'available' !== $tassili_p['status'] ) : ?>
+						<p class="status-banner status-banner--<?php echo esc_attr( $tassili_p['status'] ); ?>"><?php echo esc_html( tassili_status_label( $tassili_p['status'], $tassili_p['tx'] ) ); ?></p>
+					<?php endif; ?>
 					<p class="p-ref"><?php esc_html_e( 'Ref.', 'tassili-immobilier' ); ?> <span class="ltr"><?php echo esc_html( $tassili_p['ref'] ); ?></span></p>
 					<h1><?php the_title(); ?></h1>
 					<p class="p-loc"><?php tassili_the_icon( 'pin' ); ?><?php echo esc_html( tassili_place( $tassili_id ) ); ?></p>

@@ -14,6 +14,9 @@ if ( ! $tassili_p ) {
 	return;
 }
 ?>
+<?php if ( 'available' !== $tassili_p['status'] ) : ?>
+	<span class="badge badge-<?php echo esc_attr( $tassili_p['status'] ); ?>"><?php echo esc_html( tassili_status_label( $tassili_p['status'], $tassili_p['tx'] ) ); ?></span>
+<?php endif; ?>
 <span class="badge <?php echo 'vente' === $tassili_p['tx'] ? 'badge-sale' : 'badge-rent'; ?>">
 	<?php echo 'vente' === $tassili_p['tx'] ? esc_html__( 'For sale', 'tassili-immobilier' ) : esc_html__( 'For rent', 'tassili-immobilier' ); ?>
 </span>

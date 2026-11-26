@@ -104,6 +104,11 @@ function tassili_meta_fields( $post_type ) {
 					'label' => __( 'Exclusive listing', 'tassili-immobilier' ),
 					'type'  => 'checkbox',
 				),
+				'status'      => array(
+					'box'   => 'flags',
+					'label' => __( 'Availability', 'tassili-immobilier' ),
+					'type'  => 'status',
+				),
 				'agent'       => array(
 					'box'   => 'flags',
 					'label' => __( 'Agent in charge', 'tassili-immobilier' ),
@@ -275,6 +280,8 @@ function tassili_sanitize_field( $value, $field ) {
 				return '';
 			}
 			return (int) $value;
+		case 'status':
+			return tassili_normalize_status( (string) $value );
 		case 'agent':
 			return absint( $value );
 		case 'checkbox':
@@ -374,6 +381,12 @@ function tassili_render_field( $post_id, $key, $field ) {
 			printf( '<select id="%1$s" name="%2$s"><option value="">—</option>', esc_attr( $id ), esc_attr( $name ) );
 			foreach ( $field['options'] as $option ) {
 				printf( '<option value="%1$s"%2$s>%1$s</option>', esc_attr( $option ), selected( $value, $option, false ) );
+			}
+			echo '</select>';
+		} elseif ( 'status' === $field['type'] ) {
+			printf( '<select id="%1$s" name="%2$s">', esc_attr( $id ), esc_attr( $name ) );
+			foreach ( tassili_status_options() as $status_key => $status_label ) {
+				printf( '<option value="%1$s"%2$s>%3$s</option>', esc_attr( $status_key ), selected( tassili_normalize_status( (string) $value ), $status_key, false ), esc_html( $status_label ) );
 			}
 			echo '</select>';
 		} elseif ( 'agent' === $field['type'] ) {
@@ -627,14 +640,14 @@ add_action( 'save_post_post', 'tassili_save_meta', 10, 2 );
  * @param string $hook Admin page.
  */
 function tassili_admin_assets( $hook ) {
-	if ( ! in_array( $hook, array( 'post.php', 'post-new.php', 'edit-tags.php', 'term.php' ), true ) ) {
+	if ( ! in_array( $hook, array( 'post.php', 'post-new.php', 'edit-tags.php', 'term.php', 'edit.php', 'index.php', 'toplevel_page_tassili' ), true ) ) {
 		return;
 	}
 	$screen = get_current_screen();
 	if ( ! $screen ) {
 		return;
 	}
-	$ours = in_array( $screen->post_type, array( 'property', 'agent', 'testimonial', 'lead', 'page', 'post' ), true );
+	$ours = in_array( $screen->post_type, array( 'property', 'agent', 'testimonial', 'lead', 'page', 'post' ), true ) || in_array( $hook, array( 'toplevel_page_tassili', 'index.php' ), true );
 	if ( ! $ours ) {
 		return;
 	}

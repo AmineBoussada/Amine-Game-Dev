@@ -28,6 +28,7 @@ $tassili_modules = array(
 	'post-types',
 	'taxonomies',
 	'meta-boxes',
+	'admin',
 	'customizer',
 	'query-filters',
 	'template-tags',

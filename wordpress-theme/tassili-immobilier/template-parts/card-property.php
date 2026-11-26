@@ -20,7 +20,7 @@ $tassili_rooms  = (int) $tassili_p['rooms'];
 $tassili_beds   = (int) $tassili_p['beds'];
 $tassili_wa     = tassili_whatsapp_url( tassili_property_whatsapp_message( $tassili_id ), $tassili_agent ? $tassili_agent['whatsapp'] : '' );
 ?>
-<article class="card" data-id="<?php echo esc_attr( (string) $tassili_id ); ?>">
+<article class="card<?php echo 'available' !== $tassili_p['status'] ? esc_attr( ' card--' . $tassili_p['status'] ) : ''; ?>" data-id="<?php echo esc_attr( (string) $tassili_id ); ?>">
 	<div class="card-media">
 		<?php tassili_the_card_image( $tassili_id ); ?>
 		<div class="card-badges"><?php get_template_part( 'template-parts/badges', null, array( 'property' => $tassili_p ) ); ?></div>

@@ -41,6 +41,9 @@ function tassili_defaults() {
 		'stat_wilayas'      => 7,
 		'stat_satisfaction' => 98,
 		'cta_url'           => '',
+		'show_closed'       => 0,
+		'hero_lede_fr'      => '',
+		'hero_lede_ar'      => '',
 		'closed_weekday'    => 5,
 	);
 }
@@ -295,6 +298,7 @@ function tassili_get_property( $post = null ) {
 		'delivery'  => tassili_localized_post_text( $id, 'delivery', (string) $meta( 'delivery' ) ),
 		'featured'  => (bool) $meta( 'featured' ),
 		'exclusive' => (bool) $meta( 'exclusive' ),
+		'status'    => tassili_normalize_status( (string) $meta( 'status' ) ),
 		'papers'    => is_array( $papers ) ? $papers : array(),
 		'agent'     => (int) $meta( 'agent' ),
 	);
@@ -543,5 +547,74 @@ function tassili_get_agent( $agent_id = 0 ) {
 		'tel'      => tassili_tel_href( '' !== $phone ? $phone : $whatsapp ),
 		'whatsapp' => '' !== $whatsapp ? $whatsapp : preg_replace( '/\D+/', '', (string) tassili_mod( 'whatsapp' ) ),
 		'photo'    => (int) get_post_thumbnail_id( $id ),
+	);
+}
+
+/*
+---------------------------------------------------------------------------------------
+ * Availability status of a listing
+ * ------------------------------------------------------------------------------------
+ */
+
+/**
+ * The statuses a listing can have.
+ *
+ * @return array<string,string> key => label.
+ */
+function tassili_status_options() {
+	return array(
+		'available' => __( 'Available', 'tassili-immobilier' ),
+		'reserved'  => __( 'Reserved', 'tassili-immobilier' ),
+		'closed'    => __( 'Sold or rented', 'tassili-immobilier' ),
+	);
+}
+
+/**
+ * A valid status key, "available" when empty or unknown.
+ *
+ * @param string $status Raw value.
+ * @return string
+ */
+function tassili_normalize_status( $status ) {
+	return array_key_exists( $status, tassili_status_options() ) ? $status : 'available';
+}
+
+/**
+ * Public label of a status: "Sold" for a sale, "Rented" for a rental.
+ *
+ * @param string $status Status key.
+ * @param string $tx     vente|location.
+ * @return string Empty for an available listing.
+ */
+function tassili_status_label( $status, $tx ) {
+	if ( 'reserved' === $status ) {
+		return __( 'Reserved', 'tassili-immobilier' );
+	}
+	if ( 'closed' === $status ) {
+		return 'location' === $tx ? __( 'Rented', 'tassili-immobilier' ) : __( 'Sold', 'tassili-immobilier' );
+	}
+	return '';
+}
+
+/**
+ * Meta query clause that leaves sold and rented listings out, unless the owner chose to show them.
+ *
+ * @return array Empty when nothing must be excluded.
+ */
+function tassili_open_listing_clause() {
+	if ( tassili_mod( 'show_closed' ) ) {
+		return array();
+	}
+	return array(
+		'relation' => 'OR',
+		array(
+			'key'     => '_tassili_status',
+			'compare' => 'NOT EXISTS',
+		),
+		array(
+			'key'     => '_tassili_status',
+			'value'   => 'closed',
+			'compare' => '!=',
+		),
 	);
 }

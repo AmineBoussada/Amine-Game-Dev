@@ -524,6 +524,160 @@ function mailCount() {
     ok(wp('echo get_post_meta(' + postId + ',"_tassili_price",true);') === before, 'saving without the theme nonce leaves meta untouched');
     wp('wp_delete_post(' + postId + ', true);');
   }
+  /* ============================ Management =========================== */
+  console.log('Back office: managing properties');
+  const mp = await adminCtx.newPage();
+  mp.on('pageerror', e => errors.push('admin :: ' + e.message));
+  const idOf = ref => Number(wp('$q=get_posts(["post_type"=>"property","meta_key"=>"_tassili_ref","meta_value"=>"' + ref + '","fields"=>"ids","post_status"=>"any"]); echo $q[0];'));
+  const meta = (id, key) => wp('echo get_post_meta(' + id + ',"_tassili_' + key + '",true);');
+  const A = BASE + '/wp-admin/';
+  // Start from a known state, whatever an interrupted earlier run left behind.
+  wp('remove_theme_mod("tassili_show_closed"); foreach(get_posts(["post_type"=>"property","fields"=>"ids","posts_per_page"=>-1,"post_status"=>"any"]) as $i){ delete_post_meta($i,"_tassili_status"); }');
+  const idVilla = idOf('TS-1033'), idFlat = idOf('TS-0871');
+
+  await mp.goto(A + 'index.php');
+  ok(await mp.locator('#adminmenu > li.toplevel_page_tassili').count() === 1, 'one "Properties" entry in the admin menu');
+  const sub = (await mp.locator('#adminmenu li.toplevel_page_tassili .wp-submenu li').allInnerTexts()).map(t => t.trim()).filter(Boolean);
+  ok(sub.slice(1, 3).join() === 'Overview,All properties' && sub[3] === 'Add new' && sub.includes('Wilayas') && sub.includes('Property types') && sub.includes('All agents') && sub.includes('Leads') && sub[sub.length - 1] === 'Site settings', 'submenu: Overview, All properties, Add new, taxonomies, Agents, Leads, Site settings', sub.join(' | '));
+  ok(!(await mp.locator('#adminmenu a[href="edit.php?post_type=property"]').count() > 0 && await mp.locator('#adminmenu > li#menu-posts-property').count() > 0), 'no second, separate listings menu');
+  ok(/Latest requests/.test(await mp.locator('#tassili_requests').innerText().catch(() => '')), 'dashboard widget with the latest requests');
+
+  await mp.goto(A + 'admin.php?page=tassili');
+  ok(await mp.locator('.tassili-card').count() >= 5, 'overview shows the stat cards');
+  ok(/16/.test(await mp.locator('.tassili-card').first().innerText()), 'overview counts the published properties');
+  ok(await mp.locator('.tassili-box details').count() >= 8, 'overview has the how-to guide');
+  ok(await mp.locator('.tassili-actions a.button-primary').getAttribute('href').then(h => /post-new\.php\?post_type=property/.test(h)), 'primary button adds a property');
+
+  await mp.goto(A + 'post-new.php?post_type=property');
+  ok(await mp.locator('#postdivrich').count() === 1 && await mp.locator('.edit-post-layout, .block-editor').count() === 0, 'listings use the classic editor with every box visible');
+  ok(await mp.locator('#tassili-details:visible').count() === 1 && await mp.locator('#tassili-flags select[name="tassili_meta[status]"]').count() === 1, 'details and availability boxes are on the form');
+  ok(await mp.locator('#transactiondiv, #transaction-adder, #taxonomy-transaction').count() >= 1 && await mp.locator('#taxonomy-wilaya').count() === 1, 'transaction, wilaya, type and features pickers are on the form');
+
+  await mp.goto(A + 'edit.php?post_type=property');
+  ok(await mp.locator('#the-list tr.type-property').count() === 16, 'list shows all 16 properties');
+  ok(await mp.locator('thead th.column-tassili_status').count() === 1 && await mp.locator('thead th.column-tassili_featured').count() === 1 && await mp.locator('thead th.column-tassili_price').count() === 1, 'list has price, availability and home-page star columns');
+  ok(await mp.locator('select[name="tassili_tx"], select[name="tassili_wilaya"], select[name="tassili_type"], select[name="tassili_status"]').count() === 4, 'four filters above the list');
+  ok(await mp.locator('#bulk-action-selector-top option[value="tassili_closed"]').count() === 1, 'bulk actions include "Mark as sold or rented"');
+
+  // filters
+  await mp.goto(A + 'edit.php?post_type=property&tassili_tx=location');
+  ok(await mp.locator('#the-list tr.type-property').count() === 5, 'filter: rentals = 5');
+  await mp.goto(A + 'edit.php?post_type=property&tassili_wilaya=alger&tassili_type=appartement');
+  ok(await mp.locator('#the-list tr.type-property').count() === 2, 'filter: apartments in Alger = 2', String(await mp.locator('#the-list tr.type-property').count()));
+
+  // star toggles the home page flag
+  await mp.goto(A + 'edit.php?post_type=property');
+  const wasFeatured = !!meta(idVilla, 'featured');
+  await mp.locator('#post-' + idVilla + ' .tassili-star').click();
+  await mp.waitForSelector('.notice-success');
+  ok(!!meta(idVilla, 'featured') !== wasFeatured && /Home page setting updated/.test(await mp.locator('.notice-success').first().innerText()), 'the star toggles "Show on the home page" and confirms');
+  await mp.goto(A + 'edit.php?post_type=property');
+  await mp.locator('#post-' + idVilla + ' .tassili-star').click();   // put it back
+
+  // reserve, sell, re-open from the row links
+  const rowAction = async (id, label) => { await mp.goto(A + 'edit.php?post_type=property'); await mp.locator('#post-' + id).hover(); await mp.locator('#post-' + id + ' .row-actions a', { hasText: label }).click(); await mp.waitForSelector('.notice'); };
+  await rowAction(idVilla, 'Mark as reserved');
+  ok(meta(idVilla, 'status') === 'reserved' && await mp.locator('#post-' + idVilla + ' .tassili-pill--reserved').count() === 1, 'row link: reserved, shown as a pill');
+  page = await ctxPage();
+  await go(page, '/biens/?lang=fr&type=villa');
+  ok(await page.locator('.card[data-id="' + idVilla + '"] .badge-reserved').count() === 1 && /Réservé/.test(await page.locator('.card[data-id="' + idVilla + '"] .badge-reserved').textContent()), 'visitors see a "Réservé" badge on the card');
+  await go(page, wp('echo wp_make_link_relative(get_permalink(' + idVilla + '));') + '?lang=ar');
+  ok(await page.locator('.status-banner--reserved').count() === 1 && /محجوز/.test(await page.locator('.status-banner').textContent()), 'single page shows the banner in Arabic (محجوز)');
+  await page.context().close();
+
+  await rowAction(idVilla, 'Mark as sold or rented');
+  ok(meta(idVilla, 'status') === 'closed', 'row link: marked sold');
+  page = await ctxPage();
+  await go(page, '/biens/?lang=fr&type=villa');
+  ok(/3 biens/.test(await page.locator('#a-count').textContent()) && await page.locator('.card[data-id="' + idVilla + '"]').count() === 0, 'a sold property leaves the search results (3 of 4 villas left)');
+  await go(page, '/biens/?lang=fr');
+  ok(/15 biens/.test(await page.locator('#a-count').textContent()), 'and the total drops from 16 to 15');
+  await go(page, '/');
+  ok(await page.locator('.card[data-id="' + idVilla + '"]').count() === 0, 'and the home page');
+  const soldUrl = wp('echo wp_make_link_relative(get_permalink(' + idVilla + '));');
+  const soldRes = await page.goto(BASE + soldUrl + '?lang=fr');
+  ok(soldRes.status() === 200 && /Vendu/.test(await page.locator('.status-banner--closed').textContent()), 'its page still opens, with a "Vendu" banner');
+  wp('set_theme_mod("tassili_show_closed",1);');
+  await go(page, '/biens/?lang=fr&type=villa');
+  ok(/4 biens/.test(await page.locator('#a-count').textContent()) && /Vendu/.test(await page.locator('.card[data-id="' + idVilla + '"] .badge-closed').textContent()), 'with the setting on, sold properties are listed with a "Vendu" badge');
+  wp('remove_theme_mod("tassili_show_closed");');
+  await page.context().close();
+
+  await rowAction(idVilla, 'Make available again');
+  ok(meta(idVilla, 'status') === 'available', 'row link: available again');
+
+  // rentals say "Loué"
+  await rowAction(idFlat, 'Mark as sold or rented');
+  page = await ctxPage();
+  wp('set_theme_mod("tassili_show_closed",1);');
+  await go(page, '/biens/?lang=fr&tx=location');
+  ok(/Loué/.test(await page.locator('.card[data-id="' + idFlat + '"] .badge-closed').textContent()), 'a rental shows "Loué", not "Vendu"');
+  wp('remove_theme_mod("tassili_show_closed");');
+  await page.context().close();
+  await rowAction(idFlat, 'Make available again');
+
+  // bulk action
+  await mp.goto(A + 'edit.php?post_type=property');
+  await mp.check('#cb-select-' + idVilla); await mp.check('#cb-select-' + idFlat);
+  await mp.selectOption('#bulk-action-selector-top', 'tassili_reserved');
+  await mp.click('#doaction');
+  await mp.waitForSelector('.notice-success');
+  ok(meta(idVilla, 'status') === 'reserved' && meta(idFlat, 'status') === 'reserved' && /2 properties updated/.test(await mp.locator('.notice-success').first().innerText()), 'bulk action marks both reserved and reports "2 properties updated"');
+  await mp.check('#cb-select-' + idVilla); await mp.check('#cb-select-' + idFlat);
+  await mp.selectOption('#bulk-action-selector-top', 'tassili_available');
+  await mp.click('#doaction');
+  await mp.waitForSelector('.notice-success');
+  ok(meta(idVilla, 'status') === 'available' && meta(idFlat, 'status') === 'available', 'bulk action puts them back');
+  await mp.goto(A + 'edit.php?post_type=property&tassili_status=reserved');
+  ok(await mp.locator('#the-list tr.type-property').count() === 0, 'filter "Reserved" is empty again');
+
+  // duplicate
+  await mp.goto(A + 'edit.php?post_type=property');
+  await mp.locator('#post-' + idVilla).hover();
+  await mp.locator('#post-' + idVilla + ' .row-actions a', { hasText: 'Duplicate' }).click();
+  await mp.waitForURL(/post\.php\?post=\d+&action=edit/);
+  const copyId = Number(/post=(\d+)/.exec(mp.url())[1]);
+  ok(copyId !== idVilla && /copy/.test(await mp.locator('#title').inputValue()) && /duplicated/.test(await mp.locator('.notice-success').first().innerText()), 'Duplicate opens the copy, titled "(copy)"');
+  ok(wp('echo get_post_status(' + copyId + ');') === 'draft', 'the copy is a draft');
+  ok(meta(copyId, 'price') === meta(idVilla, 'price') && meta(copyId, 'ref') !== meta(idVilla, 'ref') && /^TS-\d{4}$/.test(meta(copyId, 'ref')), 'it keeps the price and gets a new reference', meta(copyId, 'ref'));
+  ok(wp('echo implode(",", wp_get_object_terms(' + copyId + ', "wilaya", ["fields"=>"slugs"]));') === wp('echo implode(",", wp_get_object_terms(' + idVilla + ', "wilaya", ["fields"=>"slugs"]));'), 'and the same wilaya and commune');
+  ok(await mp.locator('#tassili-meta-price').inputValue() === meta(idVilla, 'price'), 'the copy opens with the fields filled in');
+
+  // edit through the real form, then delete
+  await mp.fill('#title', 'Villa modifiée par test');
+  await mp.fill('#tassili-meta-price', '99000000');
+  await mp.click('#publish');
+  await mp.waitForSelector('#message, .notice-success');
+  ok(meta(copyId, 'price') === '99000000' && wp('echo get_post_status(' + copyId + ');') === 'publish', 'editing in the form and clicking Publish saves it');
+  page = await ctxPage();
+  await go(page, '/biens/?lang=fr&sort=price_desc');
+  ok(await page.locator('.card .card-title', { hasText: 'Villa modifiée par test' }).count() === 1, 'the edited property appears on the site');
+  await page.context().close();
+  await mp.goto(A + 'edit.php?post_type=property');
+  await mp.locator('#post-' + copyId).hover();
+  await mp.locator('#post-' + copyId + ' .row-actions .trash a').click();
+  await mp.waitForSelector('#message');
+  ok(wp('echo get_post_status(' + copyId + ');') === 'trash', 'Trash moves it to the trash');
+  await mp.goto(A + 'edit.php?post_status=trash&post_type=property');
+  await mp.locator('#post-' + copyId).hover();
+  await mp.locator('#post-' + copyId + ' .row-actions .delete a').click();
+  await mp.waitForSelector('#message');
+  ok(wp('echo get_post(' + copyId + ') ? "exists" : "gone";') === 'gone', 'Delete permanently removes it for good');
+
+  // permission: an editor can manage properties but not see leads or settings
+  wp('if(!username_exists("tassili_editor")) wp_insert_user(["user_login"=>"tassili_editor","user_pass"=>"editorpass123","user_email"=>"editor@example.test","role"=>"editor"]);');
+  const edCtx = await browser.newContext(); const ed = await edCtx.newPage();
+  await ed.goto(BASE + '/wp-login.php'); await ed.fill('#user_login', 'tassili_editor'); await ed.fill('#user_pass', 'editorpass123'); await ed.click('#wp-submit'); await ed.waitForURL(/wp-admin/);
+  await ed.goto(A + 'admin.php?page=tassili');
+  ok(await ed.locator('.tassili-card').count() === 5 && /Latest requests/.test(await ed.locator('.tassili-box').nth(1).innerText().catch(() => '')) === false, 'an editor sees the overview without the requests box');
+  const leadsAsEditor = await ed.goto(A + 'edit.php?post_type=lead');
+  ok(leadsAsEditor.status() === 403, 'an editor cannot open the leads (personal data)');
+  const listAsEditor = await ed.goto(A + 'edit.php?post_type=property');
+  ok(listAsEditor.status() === 200 && await ed.locator('#the-list tr.type-property').count() === 16, 'an editor can manage the properties');
+  await edCtx.close();
+  wp('require_once ABSPATH."wp-admin/includes/user.php"; $u=get_user_by("login","tassili_editor"); if($u) wp_delete_user($u->ID);');
+  await mp.close();
+
   await adminCtx.close();
 
   ok(errors.length === 0, 'no JavaScript errors on any page', errors.slice(0, 4).join(' | '));

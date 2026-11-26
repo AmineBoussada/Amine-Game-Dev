@@ -43,7 +43,7 @@ $tassili_tiles      = array( 'ext-villa-2', 'ext-residence-1', 'ext-residence-3'
 				?>
 			</p>
 			<h1 class="hero-title"><?php echo esc_html( $tassili_hero_title ); ?></h1>
-			<p class="hero-lede"><?php esc_html_e( 'Apartments, villas, land and new developments, checked by our team, from Algiers to Oran.', 'tassili-immobilier' ); ?></p>
+			<p class="hero-lede"><?php echo esc_html( '' !== tassili_mod_l( 'hero_lede' ) ? tassili_mod_l( 'hero_lede' ) : __( 'Apartments, villas, land and new developments, checked by our team, from Algiers to Oran.', 'tassili-immobilier' ) ); ?></p>
 
 			<div class="search-panel" id="hero-search">
 				<form id="home-search" method="get" action="<?php echo esc_url( get_post_type_archive_link( 'property' ) ); ?>" role="search" aria-label="<?php esc_attr_e( 'Search for a property', 'tassili-immobilier' ); ?>">
@@ -159,11 +159,15 @@ $tassili_tiles      = array( 'ext-villa-2', 'ext-residence-1', 'ext-residence-3'
 			'post_type'      => 'property',
 			'posts_per_page' => 6,
 			'no_found_rows'  => true,
-			'meta_query'     => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- six rows, cached by the object cache.
+			'meta_query'     => array_filter( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- six rows, cached by the object cache.
 				array(
-					'key'   => '_tassili_featured',
-					'value' => '1',
-				),
+					'relation' => 'AND',
+					array(
+						'key'   => '_tassili_featured',
+						'value' => '1',
+					),
+					tassili_open_listing_clause(),
+				)
 			),
 		)
 	);
@@ -230,11 +234,15 @@ $tassili_tiles      = array( 'ext-villa-2', 'ext-residence-1', 'ext-residence-3'
 			'post_type'      => 'property',
 			'posts_per_page' => 3,
 			'no_found_rows'  => true,
-			'meta_query'     => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- three rows.
+			'meta_query'     => array_filter( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- three rows.
 				array(
-					'key'   => '_tassili_is_new',
-					'value' => '1',
-				),
+					'relation' => 'AND',
+					array(
+						'key'   => '_tassili_is_new',
+						'value' => '1',
+					),
+					tassili_open_listing_clause(),
+				)
 			),
 		)
 	);

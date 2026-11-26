@@ -19,6 +19,23 @@ Requires WordPress 6.4+ and PHP 7.4+. No plugin is needed.
 | Back office | Native meta boxes, Customizer panel, demo importer, structured data (schema.org) on listings |
 | Design | Light and dark mode, responsive from 360 px, bundled fonts (no external requests) |
 
+## Managing properties (back office)
+
+Everything is under one **Properties** menu in the WordPress admin:
+
+| Screen | What it is for |
+|---|---|
+| **Overview** | Counts (published, available, reserved, sold or rented, drafts, requests), shortcuts, a step-by-step guide, latest requests |
+| **All properties** | The list: photo, reference, price, transaction, wilaya, type, availability and a home-page star. Filters by transaction, wilaya, type and availability. Row links: Edit, Quick Edit, Trash, Mark as reserved, Mark as sold or rented, Make available again, **Duplicate** |
+| **Add new** | The full form with every field visible (classic editor): details, documents, Arabic version, availability, agent, photo gallery |
+| **Bulk actions** | Select several properties: mark available / reserved / sold or rented, show or remove from the home page, move to the trash |
+| **Transactions, Wilayas, Property types, Features** | Manage the lists, with an Arabic name for each |
+| **Agents, Testimonials** | People shown on the site |
+| **Leads** | Contact and visit requests (administrators only) |
+| **Site settings** | Opens the Customizer panel: phone, WhatsApp, address, hours, hero text, figures, language, and whether sold properties stay listed |
+
+A property can be **Available**, **Reserved** or **Sold or rented**. Reserved shows a badge. Sold or rented shows "Vendu" or "Loué", and the property leaves the searches and the home page (its page still opens). Turn on *Show sold and rented properties in the listings* in Site settings to keep them listed.
+
 ## Folder layout
 
 ```

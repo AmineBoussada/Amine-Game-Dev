@@ -22,3 +22,37 @@
 @media (max-width: 600px) {
 	.tassili-fields--details, .tassili-fields--arabic, .tassili-fields--agent, .tassili-fields--testimonial, .tassili-fields--papers { grid-template-columns: 1fr; }
 }
+
+/* ---------- Overview page ---------- */
+.tassili-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 16px 0; }
+.tassili-card { display: grid; gap: 2px; padding: 14px 16px; background: #fff; border: 1px solid #c3c4c7; border-radius: 6px; text-decoration: none; color: #1d2327; }
+.tassili-card:hover { border-color: #2271b1; }
+.tassili-card strong { font-size: 28px; line-height: 1.1; }
+.tassili-card span { color: #646970; }
+.tassili-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.tassili-columns { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 16px; margin-top: 16px; align-items: start; }
+.tassili-box { background: #fff; border: 1px solid #c3c4c7; border-radius: 6px; padding: 8px 18px 14px; }
+.tassili-box details { border-top: 1px solid #f0f0f1; padding: 8px 0; }
+.tassili-box summary { cursor: pointer; font-weight: 600; }
+.tassili-box details p { margin: 8px 0 2px; line-height: 1.6; }
+.tassili-leads { margin: 0; padding: 0; list-style: none; }
+.tassili-leads li { padding: 8px 0; border-top: 1px solid #f0f0f1; }
+@media (max-width: 960px) { .tassili-columns { grid-template-columns: 1fr; } }
+
+/* ---------- Listing screen ---------- */
+.tassili-pill { display: inline-block; padding: 2px 9px; border-radius: 999px; font-size: 12px; font-weight: 600; background: #e7f5ec; color: #1e7b4f; }
+.tassili-pill--reserved { background: #fff1d6; color: #8a4b00; }
+.tassili-pill--closed { background: #e6e9ec; color: #3f5c6d; }
+.tassili-star { text-decoration: none; font-size: 20px; line-height: 1; color: #c3c4c7; }
+.tassili-star.is-on, .tassili-star:hover { color: #dba617; }
+.post-type-property .wp-list-table .column-tassili_thumb { width: 64px; }
+.post-type-property .wp-list-table .column-title { width: 24%; }
+.post-type-property .wp-list-table .column-taxonomy-transaction { width: 8%; }
+.post-type-property .wp-list-table .column-taxonomy-wilaya { width: 14%; }
+.post-type-property .wp-list-table .column-taxonomy-property_type { width: 12%; }
+.post-type-property .wp-list-table .column-tassili_ref { width: 84px; }
+.post-type-property .wp-list-table .column-tassili_price { width: 108px; }
+.post-type-property .wp-list-table .column-tassili_status { width: 104px; }
+.post-type-property .wp-list-table .column-tassili_featured { width: 52px; text-align: center; }
+.post-type-property .wp-list-table .column-date { width: 112px; }
+.post-type-property .wp-list-table .row-actions { line-height: 1.7; }

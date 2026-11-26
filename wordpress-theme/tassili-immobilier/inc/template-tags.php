@@ -355,7 +355,11 @@ function tassili_similar_properties( $post_id, $limit = 3 ) {
 		'fields'         => 'ids',
 		'no_found_rows'  => true,
 	);
-	$p    = tassili_get_property( $post_id );
+	$open = tassili_open_listing_clause();
+	if ( $open ) {
+		$base['meta_query'] = array( $open ); // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- three rows.
+	}
+	$p = tassili_get_property( $post_id );
 
 	$passes = array();
 	if ( $p && $p['type'] ) {

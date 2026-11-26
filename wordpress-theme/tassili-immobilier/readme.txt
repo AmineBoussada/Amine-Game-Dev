@@ -19,6 +19,7 @@ Tassili Immobilier turns WordPress into a property website for an Algerian agenc
 * Light and dark mode, responsive from 360 px up.
 * WhatsApp button on every listing with the reference pre-filled, plus a floating button.
 * Contact form and visit-request form. Requests are e-mailed and saved in the back office (Properties > Leads). Anti-spam: nonce, honeypot and rate limit.
+* A complete back office under one "Properties" menu: overview, filters, quick actions, bulk actions, duplicate, and an Available / Reserved / Sold or rented status.
 * Favourites, kept in the visitor's browser.
 * Customizer settings for phone, WhatsApp, address, hours, social links, hero image and figures.
 * Optional demo content: 16 sample listings, 4 agents, 3 testimonials and the standard pages.

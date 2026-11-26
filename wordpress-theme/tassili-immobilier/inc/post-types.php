@@ -46,10 +46,9 @@ function tassili_register_post_types() {
 				'slug'       => $slug,
 				'with_front' => false,
 			),
-			'menu_position'       => 5,
-			'menu_icon'           => 'dashicons-admin-home',
+			'show_in_menu'        => 'tassili',
 			'supports'            => array( 'title', 'editor', 'thumbnail', 'excerpt', 'revisions' ),
-			'show_in_rest'        => true,
+			'show_in_rest'        => false,
 			'capability_type'     => 'post',
 			'exclude_from_search' => false,
 		)
@@ -70,7 +69,7 @@ function tassili_register_post_types() {
 			),
 			'public'          => false,
 			'show_ui'         => true,
-			'show_in_menu'    => 'edit.php?post_type=property',
+			'show_in_menu'    => 'tassili',
 			'supports'        => array( 'title', 'thumbnail', 'page-attributes' ),
 			'menu_icon'       => 'dashicons-businessperson',
 			'capability_type' => 'post',
@@ -90,7 +89,7 @@ function tassili_register_post_types() {
 			),
 			'public'          => false,
 			'show_ui'         => true,
-			'show_in_menu'    => 'edit.php?post_type=property',
+			'show_in_menu'    => 'tassili',
 			'supports'        => array( 'title', 'editor', 'page-attributes' ),
 			'capability_type' => 'post',
 		)
@@ -111,7 +110,7 @@ function tassili_register_post_types() {
 			),
 			'public'              => false,
 			'show_ui'             => true,
-			'show_in_menu'        => 'edit.php?post_type=property',
+			'show_in_menu'        => 'tassili',
 			'show_in_rest'        => false,
 			'exclude_from_search' => true,
 			'supports'            => array( 'title' ),
@@ -254,3 +253,16 @@ function tassili_lead_column_content( $column, $post_id ) {
 	}
 }
 add_action( 'manage_lead_posts_custom_column', 'tassili_lead_column_content', 10, 2 );
+
+/**
+ * Edit listings with the classic editor: every field of a listing is visible straight away,
+ * which suits agency staff better than the block editor's hidden panels.
+ *
+ * @param bool   $use_block_editor Whether the block editor is used.
+ * @param string $post_type Post type.
+ * @return bool
+ */
+function tassili_classic_editor_for_listings( $use_block_editor, $post_type ) {
+	return 'property' === $post_type ? false : $use_block_editor;
+}
+add_filter( 'use_block_editor_for_post_type', 'tassili_classic_editor_for_listings', 10, 2 );
