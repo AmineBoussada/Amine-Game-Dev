@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<ruleset name="Tassili Immobilier">
+	<description>WordPress coding standards for the Tassili Immobilier theme.</description>
+	<file>tassili-immobilier</file>
+	<exclude-pattern>*/languages/*</exclude-pattern>
+	<exclude-pattern>*/assets/*</exclude-pattern>
+	<arg name="extensions" value="php"/>
+	<arg name="colors"/>
+	<arg value="ps"/>
+
+	<rule ref="WordPress"/>
+	<rule ref="WordPress-Docs"/>
+	<rule ref="WordPress-Extra"/>
+
+	<!-- Text domain and prefixes -->
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array"><element value="tassili-immobilier"/></property>
+		</properties>
+	</rule>
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" type="array"><element value="tassili"/></property>
+		</properties>
+	</rule>
+
+	<!-- WordPress finds taxonomy templates by the exact taxonomy slug, which uses an underscore. -->
+	<rule ref="WordPress.Files.FileName.NotHyphenatedLowercase">
+		<exclude-pattern>*/taxonomy-property_type.php</exclude-pattern>
+	</rule>
+
+	<!-- Supported PHP and WordPress versions (matches style.css) -->
+	<config name="testVersion" value="7.4-"/>
+	<config name="minimum_wp_version" value="6.4"/>
+	<rule ref="PHPCompatibilityWP"/>
+</ruleset>

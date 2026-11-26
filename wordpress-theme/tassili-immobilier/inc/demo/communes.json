@@ -1,0 +1,131 @@
+[
+ {
+  "code": 16,
+  "fr": "Alger",
+  "ar": "الجزائر",
+  "communes": [
+   {
+    "id": "hydra",
+    "fr": "Hydra",
+    "ar": "حيدرة"
+   },
+   {
+    "id": "el-biar",
+    "fr": "El Biar",
+    "ar": "الأبيار"
+   },
+   {
+    "id": "ben-aknoun",
+    "fr": "Ben Aknoun",
+    "ar": "بن عكنون"
+   },
+   {
+    "id": "cheraga",
+    "fr": "Chéraga",
+    "ar": "الشراقة"
+   },
+   {
+    "id": "dely-ibrahim",
+    "fr": "Dely Ibrahim",
+    "ar": "دالي إبراهيم"
+   },
+   {
+    "id": "bab-ezzouar",
+    "fr": "Bab Ezzouar",
+    "ar": "باب الزوار"
+   }
+  ]
+ },
+ {
+  "code": 31,
+  "fr": "Oran",
+  "ar": "وهران",
+  "communes": [
+   {
+    "id": "akid-lotfi",
+    "fr": "Akid Lotfi",
+    "ar": "العقيد لطفي"
+   },
+   {
+    "id": "canastel",
+    "fr": "Canastel",
+    "ar": "كناستال"
+   },
+   {
+    "id": "bir-el-djir",
+    "fr": "Bir El Djir",
+    "ar": "بئر الجير"
+   }
+  ]
+ },
+ {
+  "code": 25,
+  "fr": "Constantine",
+  "ar": "قسنطينة",
+  "communes": [
+   {
+    "id": "ali-mendjeli",
+    "fr": "Ali Mendjeli",
+    "ar": "علي منجلي"
+   },
+   {
+    "id": "sidi-mabrouk",
+    "fr": "Sidi Mabrouk",
+    "ar": "سيدي مبروك"
+   }
+  ]
+ },
+ {
+  "code": 42,
+  "fr": "Tipaza",
+  "ar": "تيبازة",
+  "communes": [
+   {
+    "id": "cherchell",
+    "fr": "Cherchell",
+    "ar": "شرشال"
+   },
+   {
+    "id": "bou-ismail",
+    "fr": "Bou Ismaïl",
+    "ar": "بو إسماعيل"
+   }
+  ]
+ },
+ {
+  "code": 23,
+  "fr": "Annaba",
+  "ar": "عنابة",
+  "communes": [
+   {
+    "id": "seraidi",
+    "fr": "Seraïdi",
+    "ar": "سرايدي"
+   }
+  ]
+ },
+ {
+  "code": 6,
+  "fr": "Béjaïa",
+  "ar": "بجاية",
+  "communes": [
+   {
+    "id": "tichy",
+    "fr": "Tichy",
+    "ar": "تيشي"
+   }
+  ]
+ },
+ {
+  "code": 13,
+  "fr": "Tlemcen",
+  "ar": "تلمسان",
+  "communes": [
+   {
+    "id": "mansourah",
+    "fr": "Mansourah",
+    "ar": "منصورة"
+   }
+  ]
+ }
+]

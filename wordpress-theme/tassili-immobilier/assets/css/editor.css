@@ -1,0 +1,5 @@
+/* Block editor styles: match the front end's typography. */
+body { font-family: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif; font-size: 17px; line-height: 1.6; color: #023047; }
+h1, h2, h3, h4 { font-family: "Marcellus", Georgia, serif; font-weight: 400; line-height: 1.2; color: #023047; }
+a { color: #157A93; }
+blockquote { border-inline-start: 3px solid #FFB703; padding-inline-start: 1.2em; margin-inline: 0; color: #3F5C6D; }

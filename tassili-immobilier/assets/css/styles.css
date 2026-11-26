@@ -270,7 +270,8 @@ html[lang="ar"] .footer-grid h3 { letter-spacing: 0; font-size: 15px; }
 .fav[aria-pressed="true"] { color: #D7263D; }
 .fav[aria-pressed="true"] svg { fill: currentColor; }
 .card-ref, .card-count { position: absolute; z-index: 1; bottom: 10px; color: #fff; font-size: 12px; font-weight: 500; display: inline-flex; gap: 4px; align-items: center; }
-.card-ref { inset-inline-start: 12px; letter-spacing: .04em; }
+.card-ref { left: 12px; letter-spacing: .04em; }
+[dir="rtl"] .card-ref { left: auto; right: 12px; }
 .card-count { inset-inline-end: 12px; }
 .card-count .ic { width: 14px; height: 14px; }
 .card-body { display: grid; gap: 6px; padding: var(--s-4); flex: 1; align-content: start; }
@@ -415,7 +416,8 @@ html[lang="ar"] .card-title { font-weight: 600; }
 .g-next { inset-inline-end: 12px; }
 .g-badges { position: absolute; top: 14px; inset-inline-start: 14px; display: flex; gap: 6px; flex-wrap: wrap; pointer-events: none; }
 .g-counter, .g-caption { position: absolute; bottom: 12px; padding: 5px 10px; border-radius: var(--r-pill); background: rgb(2 28 42 / .72); color: #fff; font-size: 13px; font-weight: 500; pointer-events: none; }
-.g-counter { inset-inline-end: 12px; }
+.g-counter { right: 12px; }
+[dir="rtl"] .g-counter { right: auto; left: 12px; }
 .g-caption { inset-inline-start: 12px; }
 .g-thumbs { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: repeat(2, minmax(0, 1fr)); gap: var(--s-3); min-height: 0; }
 .g-thumb { position: relative; border: 0; padding: 0; border-radius: var(--r-md); overflow: hidden; cursor: pointer; background: var(--surface-2); aspect-ratio: 4 / 3; max-width: 100%; }

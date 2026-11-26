@@ -1,0 +1,72 @@
+/* Tassili Immobilier — design tokens
+   Palette: coolors 8ecae6-219ebc-023047-ffb703-fb8500 (approved).
+   Light values on :root, dark values in the two dark blocks. */
+:root {
+  --bg: #F2F8FB;
+  --surface: #FFFFFF;
+  --surface-2: #E2F0F7;
+  --ink: #023047;
+  --ink-2: #3F5C6D;
+  --line: #CBE2EE;
+  --band: #023047;
+  --on-band: #FFFFFF;
+  --on-band-2: #B9D9E8;
+  --brand: #023047;
+  --brand-hover: #034463;
+  --brand-text: #157A93;
+  --on-brand: #FFFFFF;
+  --gold: #FFB703;
+  --gold-hover: #F2AA00;
+  --gold-text: #A65400;
+  --orange: #FB8500;
+  --focus: #219EBC;
+  --sky: #8ECAE6;
+  --ocean: #219EBC;
+  --wa: #128C4A;
+  --wa-hover: #0E7A40;
+  --danger: #B42318;
+  --success: #1E7B4F;
+  --scrim: rgb(2 28 42 / .62);
+  --shadow-sm: 0 1px 2px rgb(2 48 71 / .06);
+  --shadow: 0 1px 2px rgb(2 48 71 / .06), 0 8px 24px rgb(2 48 71 / .10);
+  --shadow-lg: 0 2px 4px rgb(2 48 71 / .08), 0 20px 48px rgb(2 48 71 / .18);
+
+  --f-display: "Marcellus", "Cormorant Garamond", Georgia, serif;
+  --f-body: "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --f-ar-display: "Reem Kufi", "IBM Plex Sans Arabic", "IBM Plex Sans", "Noto Kufi Arabic", Tahoma, sans-serif;
+  --f-ar-body: "IBM Plex Sans Arabic", "IBM Plex Sans", "Noto Sans Arabic", Tahoma, sans-serif;
+
+  --r-sm: 6px; --r-md: 10px; --r-lg: 16px; --r-pill: 999px;
+  --s-1: 4px; --s-2: 8px; --s-3: 12px; --s-4: 16px; --s-5: 24px; --s-6: 32px; --s-7: 48px; --s-8: 72px;
+  --container: 1200px;
+  --util-h: 36px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #011B28; --surface: #022A3D; --surface-2: #06364D; --ink: #E6F3F9; --ink-2: #9CBCCC; --line: #154A62;
+    --band: #022A3D; --on-band: #FFFFFF; --on-band-2: #9CBCCC;
+    --brand: #219EBC; --brand-hover: #2BB3D3; --brand-text: #8ECAE6; --on-brand: #011B28;
+    --gold: #FFB703; --gold-hover: #FFC533; --gold-text: #FFB703; --orange: #FB8500; --focus: #FFB703;
+    --sky: #1B6F86; --ocean: #219EBC; --wa: #1FA855; --wa-hover: #25B864; --danger: #FF8A7A; --success: #4FD18B;
+    --scrim: rgb(0 10 16 / .72);
+    --shadow-sm: 0 1px 2px rgb(0 0 0 / .3);
+    --shadow: 0 1px 2px rgb(0 0 0 / .3), 0 8px 24px rgb(0 0 0 / .35);
+    --shadow-lg: 0 2px 4px rgb(0 0 0 / .4), 0 20px 48px rgb(0 0 0 / .5);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #011B28; --surface: #022A3D; --surface-2: #06364D; --ink: #E6F3F9; --ink-2: #9CBCCC; --line: #154A62;
+  --band: #022A3D; --on-band: #FFFFFF; --on-band-2: #9CBCCC;
+  --brand: #219EBC; --brand-hover: #2BB3D3; --brand-text: #8ECAE6; --on-brand: #011B28;
+  --gold: #FFB703; --gold-hover: #FFC533; --gold-text: #FFB703; --orange: #FB8500; --focus: #FFB703;
+  --sky: #1B6F86; --ocean: #219EBC; --wa: #1FA855; --wa-hover: #25B864; --danger: #FF8A7A; --success: #4FD18B;
+  --scrim: rgb(0 10 16 / .72);
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / .3);
+  --shadow: 0 1px 2px rgb(0 0 0 / .3), 0 8px 24px rgb(0 0 0 / .35);
+  --shadow-lg: 0 2px 4px rgb(0 0 0 / .4), 0 20px 48px rgb(0 0 0 / .5);
+  color-scheme: dark;
+}
+/* Arabic swaps the font roles; everything else reads the same tokens. */
+html[lang="ar"] { --f-display: var(--f-ar-display); --f-body: var(--f-ar-body); }

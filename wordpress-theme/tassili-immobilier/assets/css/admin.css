@@ -1,0 +1,24 @@
+/* Back-office styling for the Tassili Immobilier meta boxes. */
+.tassili-fields--details,
+.tassili-fields--arabic,
+.tassili-fields--agent,
+.tassili-fields--testimonial { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px 18px; }
+.tassili-fields--arabic .tassili-field--textarea,
+.tassili-fields--testimonial .tassili-field--textarea { grid-column: 1 / -1; }
+.tassili-fields--agent, .tassili-fields--testimonial { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.tassili-fields--flags, .tassili-fields--papers { display: grid; gap: 10px; }
+.tassili-fields--papers { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.tassili-field { display: grid; gap: 4px; align-content: start; }
+.tassili-field__label { font-weight: 600; }
+.tassili-field .description { color: #646970; font-size: 12px; }
+.tassili-checks { display: grid; gap: 6px; }
+.tassili-gallery { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 12px; padding: 0; list-style: none; min-height: 20px; }
+.tassili-gallery li { position: relative; width: 96px; height: 72px; border: 1px solid #c3c4c7; border-radius: 4px; overflow: hidden; cursor: move; background: #f6f7f7; }
+.tassili-gallery img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.tassili-gallery__remove { position: absolute; top: 2px; inset-inline-end: 2px; width: 20px; height: 20px; line-height: 18px; text-align: center; background: rgba(0, 0, 0, .65); color: #fff !important; border-radius: 50%; text-decoration: none; }
+@media (max-width: 960px) {
+	.tassili-fields--details, .tassili-fields--arabic { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 600px) {
+	.tassili-fields--details, .tassili-fields--arabic, .tassili-fields--agent, .tassili-fields--testimonial, .tassili-fields--papers { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,58 @@
+[
+ {
+  "id": "yasmine",
+  "name": "Yasmine Benali",
+  "role": {
+   "fr": "Conseillère senior, Alger",
+   "ar": "مستشارة أولى، الجزائر"
+  },
+  "phone": "0555 00 00 01",
+  "whatsapp": "213555000001",
+  "langs": {
+   "fr": "arabe, français, anglais",
+   "ar": "العربية، الفرنسية، الإنجليزية"
+  }
+ },
+ {
+  "id": "karim",
+  "name": "Karim Haddad",
+  "role": {
+   "fr": "Conseiller, Oran",
+   "ar": "مستشار، وهران"
+  },
+  "phone": "0555 00 00 02",
+  "whatsapp": "213555000002",
+  "langs": {
+   "fr": "arabe, français",
+   "ar": "العربية، الفرنسية"
+  }
+ },
+ {
+  "id": "nadia",
+  "name": "Nadia Mansouri",
+  "role": {
+   "fr": "Conseillère, Est algérien",
+   "ar": "مستشارة، الشرق الجزائري"
+  },
+  "phone": "0555 00 00 03",
+  "whatsapp": "213555000003",
+  "langs": {
+   "fr": "arabe, français, tamazight",
+   "ar": "العربية، الفرنسية، الأمازيغية"
+  }
+ },
+ {
+  "id": "samir",
+  "name": "Samir Belkacem",
+  "role": {
+   "fr": "Directeur d’agence",
+   "ar": "مدير الوكالة"
+  },
+  "phone": "0555 00 00 04",
+  "whatsapp": "213555000004",
+  "langs": {
+   "fr": "arabe, français, anglais",
+   "ar": "العربية، الفرنسية، الإنجليزية"
+  }
+ }
+]
