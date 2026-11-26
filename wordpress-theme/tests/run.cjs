@@ -536,10 +536,16 @@ function mailCount() {
   const idVilla = idOf('TS-1033'), idFlat = idOf('TS-0871');
 
   await mp.goto(A + 'index.php');
-  ok(await mp.locator('#adminmenu > li.toplevel_page_tassili').count() === 1, 'one "Properties" entry in the admin menu');
-  const sub = (await mp.locator('#adminmenu li.toplevel_page_tassili .wp-submenu li').allInnerTexts()).map(t => t.trim()).filter(Boolean);
-  ok(sub.slice(1, 3).join() === 'Overview,All properties' && sub[3] === 'Add new' && sub.includes('Wilayas') && sub.includes('Property types') && sub.includes('All agents') && sub.includes('Leads') && sub[sub.length - 1] === 'Site settings', 'submenu: Overview, All properties, Add new, taxonomies, Agents, Leads, Site settings', sub.join(' | '));
-  ok(!(await mp.locator('#adminmenu a[href="edit.php?post_type=property"]').count() > 0 && await mp.locator('#adminmenu > li#menu-posts-property').count() > 0), 'no second, separate listings menu');
+  const subOf = async sel => (await mp.locator(sel + ' .wp-submenu li:not(.wp-submenu-head)').allInnerTexts()).map(t => t.trim()).filter(Boolean);
+  ok(await mp.locator('#menu-posts-property .dashicons-building').count() === 1 && /Properties/.test(await mp.locator('#menu-posts-property > a .wp-menu-name').innerText()), 'a "Properties" menu with the building icon');
+  const propSub = await subOf('#menu-posts-property');
+  ok(propSub.join('|') === 'All properties|Add new property', 'its submenu holds only "All properties" and "Add new property"', propSub.join(' | '));
+  const leadSub = await subOf('#menu-posts-lead');
+  ok(await mp.locator('#menu-posts-lead .dashicons-email-alt').count() === 1 && /Leads/.test(await mp.locator('#menu-posts-lead .wp-menu-name').innerText()) && leadSub.length === 0, 'requests have their own one-click menu with the envelope icon', leadSub.join(' | '));
+  const agencySub = await subOf('#adminmenu li.toplevel_page_tassili');
+  ok(agencySub[0] === 'Overview' && ['All agents', 'All testimonials', 'Wilayas', 'Property types', 'Features', 'Transactions'].every(x => agencySub.includes(x)) && agencySub[agencySub.length - 1] === 'Site settings', 'the "Agency" menu holds the overview, agents, testimonials, lists and site settings', agencySub.join(' | '));
+  const order = await mp.evaluate(() => [...document.querySelectorAll('#adminmenu > li')].map(li => li.id || li.className.split(' ')[0]).filter(x => /menu-posts-property|menu-posts-lead|toplevel_page_tassili|menu-posts$/.test(x)));
+  ok(order.indexOf('menu-posts-property') < order.indexOf('menu-posts-lead') && order.indexOf('menu-posts-lead') < order.indexOf('toplevel_page_tassili'), 'menu order: Properties, Requests, Agency', order.join(' > '));
   ok(/Latest requests/.test(await mp.locator('#tassili_requests').innerText().catch(() => '')), 'dashboard widget with the latest requests');
 
   await mp.goto(A + 'admin.php?page=tassili');

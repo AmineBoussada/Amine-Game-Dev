@@ -19,6 +19,7 @@ function tassili_register_taxonomies() {
 		'show_ui'           => true,
 		'show_admin_column' => true,
 		'show_in_rest'      => true,
+		'show_in_menu'      => false,
 		'query_var'         => false,
 	);
 

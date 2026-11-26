@@ -522,6 +522,8 @@ $S = array(
 );
 
 $C = array(
+	"admin menu\x04Properties" => array( 'Biens immobiliers', 'العقارات' ),
+	"admin menu\x04Agency" => array( 'Agence', 'الوكالة' ),
 	"separator between commune and wilaya\x04, " => array( ', ', '، ' ),
 );
 

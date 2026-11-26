@@ -20,18 +20,17 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Add the top-level menu that holds every screen of the theme.
  */
 function tassili_admin_menu() {
+	// Properties and Requests have their own menus. This one holds the rest of the agency's tools.
 	add_menu_page(
-		__( 'Properties', 'tassili-immobilier' ),
-		__( 'Properties', 'tassili-immobilier' ),
+		_x( 'Agency', 'admin menu', 'tassili-immobilier' ),
+		_x( 'Agency', 'admin menu', 'tassili-immobilier' ),
 		'edit_posts',
 		'tassili',
 		'tassili_render_overview',
-		'dashicons-admin-home',
-		5
+		'dashicons-store',
+		3.4
 	);
 	add_submenu_page( 'tassili', __( 'Overview', 'tassili-immobilier' ), __( 'Overview', 'tassili-immobilier' ), 'edit_posts', 'tassili', 'tassili_render_overview' );
-	// WordPress only adds these itself when a post type owns its own top-level menu.
-	add_submenu_page( 'tassili', __( 'Add new property', 'tassili-immobilier' ), __( 'Add new', 'tassili-immobilier' ), 'edit_posts', 'post-new.php?post_type=property' );
 	foreach ( array( 'transaction', 'wilaya', 'property_type', 'feature' ) as $taxonomy ) {
 		$tax_object = get_taxonomy( $taxonomy );
 		if ( $tax_object ) {
@@ -43,6 +42,23 @@ function tassili_admin_menu() {
 add_action( 'admin_menu', 'tassili_admin_menu' );
 
 /**
+ * Keep the agency's menus together, right under the Dashboard: Properties, Requests, Agency.
+ *
+ * @param string[] $order Menu slugs in display order.
+ * @return string[]
+ */
+function tassili_menu_order( $order ) {
+	$ours  = array( 'edit.php?post_type=property', 'edit.php?post_type=lead', 'tassili' );
+	$order = array_values( array_diff( $order, $ours ) );
+	$pos   = array_search( 'index.php', $order, true );
+	$pos   = false === $pos ? 0 : $pos + 1;
+	array_splice( $order, $pos, 0, $ours );
+	return $order;
+}
+add_filter( 'custom_menu_order', '__return_true' );
+add_filter( 'menu_order', 'tassili_menu_order' );
+
+/**
  * Put "Overview" first in the submenu.
  */
 function tassili_reorder_submenu() {
@@ -52,15 +68,12 @@ function tassili_reorder_submenu() {
 	}
 	$order = array(
 		'tassili',
-		'edit.php?post_type=property',
-		'post-new.php?post_type=property',
-		'edit-tags.php?taxonomy=transaction&post_type=property',
+		'edit.php?post_type=agent',
+		'edit.php?post_type=testimonial',
 		'edit-tags.php?taxonomy=wilaya&post_type=property',
 		'edit-tags.php?taxonomy=property_type&post_type=property',
 		'edit-tags.php?taxonomy=feature&post_type=property',
-		'edit.php?post_type=agent',
-		'edit.php?post_type=testimonial',
-		'edit.php?post_type=lead',
+		'edit-tags.php?taxonomy=transaction&post_type=property',
 		'customize.php?autofocus[panel]=tassili',
 	);
 	$items = $submenu['tassili'];
@@ -86,10 +99,12 @@ add_action( 'admin_menu', 'tassili_reorder_submenu', 999 );
  */
 function tassili_menu_parent_file( $parent_file ) {
 	$screen = get_current_screen();
-	if ( $screen && in_array( $screen->post_type, array( 'property', 'agent', 'testimonial', 'lead' ), true ) && in_array( $screen->base, array( 'post', 'edit', 'edit-tags', 'term' ), true ) ) {
-		return 'tassili';
+	if ( ! $screen ) {
+		return $parent_file;
 	}
-	return $parent_file;
+	$is_term_screen = in_array( $screen->base, array( 'edit-tags', 'term' ), true ) && in_array( $screen->taxonomy, array( 'transaction', 'wilaya', 'property_type', 'feature' ), true );
+	$is_people      = in_array( $screen->post_type, array( 'agent', 'testimonial' ), true ) && in_array( $screen->base, array( 'post', 'edit' ), true );
+	return ( $is_term_screen || $is_people ) ? 'tassili' : $parent_file;
 }
 add_filter( 'parent_file', 'tassili_menu_parent_file' );
 

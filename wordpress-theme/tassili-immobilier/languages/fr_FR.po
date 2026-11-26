@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tassili Immobilier 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-26 18:32+0000\n"
-"PO-Revision-Date: 2026-11-26 18:32+0000\n"
+"POT-Creation-Date: 2026-11-26 20:22+0000\n"
+"PO-Revision-Date: 2026-11-26 20:22+0000\n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgstr "%1$s biens vendus depuis %2$d"
 msgid "%1$s, wilaya of %2$s. The exact address is given during the visit."
 msgstr "%1$s, wilaya de %2$s. L’adresse exacte est communiquée lors de la visite."
 
-#: inc/admin.php:494
+#: inc/admin.php:509
 msgid "%s (copy)"
 msgstr "%s (copie)"
 
@@ -73,7 +73,7 @@ msgid_plural "%s properties"
 msgstr[0] "%s bien"
 msgstr[1] "%s biens"
 
-#: inc/admin.php:745
+#: inc/admin.php:760
 msgid "%s property updated."
 msgid_plural "%s properties updated."
 msgstr[0] "%s bien mis à jour."
@@ -102,42 +102,37 @@ msgstr "0 = rez-de-chaussée. Laisser vide si non applicable."
 msgid "1st floor"
 msgstr "1er étage"
 
-#: inc/admin.php:188
+#: inc/post-types.php:32
 #: inc/admin.php:203
+#: inc/admin.php:218
 msgid "Add a property"
 msgstr "Ajouter un bien"
 
-#: inc/post-types.php:32
-#: inc/admin.php:34
-msgid "Add new"
-msgstr "Ajouter"
-
-#: inc/post-types.php:63
+#: inc/post-types.php:65
 msgid "Add new agent"
 msgstr "Ajouter un agent"
 
-#: inc/taxonomies.php:107
+#: inc/taxonomies.php:108
 msgid "Add new feature"
 msgstr "Ajouter un équipement"
 
 #: inc/post-types.php:33
-#: inc/admin.php:34
 msgid "Add new property"
 msgstr "Ajouter un bien"
 
-#: inc/taxonomies.php:84
+#: inc/taxonomies.php:85
 msgid "Add new property type"
 msgstr "Ajouter un type de bien"
 
-#: inc/post-types.php:85
+#: inc/post-types.php:87
 msgid "Add new testimonial"
 msgstr "Ajouter un témoignage"
 
-#: inc/taxonomies.php:36
+#: inc/taxonomies.php:37
 msgid "Add new transaction"
 msgstr "Ajouter une transaction"
 
-#: inc/taxonomies.php:59
+#: inc/taxonomies.php:60
 msgid "Add new wilaya / commune"
 msgstr "Ajouter une wilaya / commune"
 
@@ -183,7 +178,7 @@ msgstr "Après-midi (13h – 17h)"
 msgid "Agency details"
 msgstr "Informations de l’agence"
 
-#: inc/post-types.php:62
+#: inc/post-types.php:64
 msgid "Agent"
 msgstr "Agent"
 
@@ -195,9 +190,9 @@ msgstr "Informations de l’agent"
 msgid "Agent in charge"
 msgstr "Agent en charge"
 
-#: inc/post-types.php:61
-#: inc/post-types.php:66
-#: inc/admin.php:190
+#: inc/post-types.php:63
+#: inc/post-types.php:68
+#: inc/admin.php:205
 msgid "Agents"
 msgstr "Agents"
 
@@ -205,7 +200,7 @@ msgstr "Agents"
 msgid "All"
 msgstr "Tout"
 
-#: inc/post-types.php:65
+#: inc/post-types.php:67
 msgid "All agents"
 msgstr "Tous les agents"
 
@@ -215,7 +210,7 @@ msgstr "Tous les agents"
 msgid "All communes"
 msgstr "Toutes les communes"
 
-#: inc/taxonomies.php:105
+#: inc/taxonomies.php:106
 msgid "All features"
 msgstr "Tous les équipements"
 
@@ -226,21 +221,21 @@ msgstr "Tous nos biens"
 #: 404.php:21
 #: templates/page-favorites.php:46
 #: inc/post-types.php:40
-#: inc/admin.php:189
+#: inc/admin.php:204
 msgid "All properties"
 msgstr "Tous les biens"
 
-#: inc/taxonomies.php:82
-#: inc/admin.php:640
+#: inc/taxonomies.php:83
+#: inc/admin.php:655
 msgid "All property types"
 msgstr "Tous les types de bien"
 
-#: inc/post-types.php:87
+#: inc/post-types.php:89
 msgid "All testimonials"
 msgstr "Tous les témoignages"
 
-#: inc/taxonomies.php:34
-#: inc/admin.php:619
+#: inc/taxonomies.php:35
+#: inc/admin.php:634
 msgid "All transactions"
 msgstr "Toutes les transactions"
 
@@ -251,11 +246,11 @@ msgstr "Tous les types"
 
 #: front-page.php:59
 #: template-parts/archive-properties.php:107
-#: inc/admin.php:629
+#: inc/admin.php:644
 msgid "All wilayas"
 msgstr "Toutes les wilayas"
 
-#: inc/taxonomies.php:57
+#: inc/taxonomies.php:58
 msgid "All wilayas and communes"
 msgstr "Toutes les wilayas et communes"
 
@@ -271,7 +266,7 @@ msgstr "Autre question"
 msgid "Any"
 msgstr "Indifférent"
 
-#: inc/admin.php:646
+#: inc/admin.php:661
 msgid "Any availability"
 msgstr "Toutes les disponibilités"
 
@@ -281,7 +276,7 @@ msgstr "Appartements, villas, terrains et programmes neufs, vérifiés par notre
 
 #: inc/meta-boxes.php:525
 #: inc/meta-boxes.php:552
-#: inc/admin.php:208
+#: inc/admin.php:223
 msgid "Arabic version"
 msgstr "Version arabe"
 
@@ -290,18 +285,18 @@ msgid "Are the documents checked?"
 msgstr "Les papiers sont-ils vérifiés ?"
 
 #: inc/meta-boxes.php:109
-#: inc/admin.php:333
+#: inc/admin.php:348
 msgid "Availability"
 msgstr "Disponibilité"
 
-#: inc/admin.php:735
+#: inc/admin.php:750
 msgid "Availability updated."
 msgstr "Disponibilité mise à jour."
 
 #: single-property.php:162
 #: inc/helpers.php:566
-#: inc/admin.php:178
-#: inc/admin.php:375
+#: inc/admin.php:193
+#: inc/admin.php:390
 msgid "Available"
 msgstr "Disponible"
 
@@ -372,11 +367,11 @@ msgstr "Puis-je visiter le week-end ?"
 msgid "Certificate of conformity"
 msgstr "Certificat de conformité"
 
-#: inc/admin.php:210
+#: inc/admin.php:225
 msgid "Change texts, phone and logo"
 msgstr "Modifier les textes, le téléphone et le logo"
 
-#: inc/admin.php:206
+#: inc/admin.php:221
 msgid "Change the Availability in the box on the right of the property, or use the quick links under its title in the list. You can also select several properties and use Bulk actions. A sold or rented property gets a label and leaves the searches and the home page, unless you tick the option in Site settings."
 msgstr "Changez la Disponibilité dans le cadre à droite du bien, ou utilisez les liens rapides sous son titre dans la liste. Vous pouvez aussi sélectionner plusieurs biens et utiliser les Actions groupées. Un bien vendu ou loué reçoit une étiquette et disparaît des recherches et de l’accueil, sauf si vous cochez l’option dans Réglages du site."
 
@@ -409,7 +404,7 @@ msgstr "Sélectionnés cette semaine par nos conseillers."
 msgid "Clear all"
 msgstr "Tout effacer"
 
-#: inc/admin.php:207
+#: inc/admin.php:222
 msgid "Click the star in the list, or tick “Show on the home page” in the property. The home page shows the six latest starred properties."
 msgstr "Cliquez sur l’étoile dans la liste, ou cochez « Afficher sur la page d’accueil » dans le bien. L’accueil montre les six derniers biens mis en avant."
 
@@ -462,7 +457,7 @@ msgstr "Formulaires de contact et de visite"
 msgid "Contact and visit requests are e-mailed here. Leave empty to use the site administrator’s address."
 msgstr "Les demandes de contact et de visite sont envoyées à cette adresse. Laissez vide pour utiliser celle de l’administrateur du site."
 
-#: inc/admin.php:209
+#: inc/admin.php:224
 msgid "Contact and visit requests arrive by e-mail and are kept in Properties > Requests, which only administrators can see."
 msgstr "Les demandes de contact et de visite arrivent par e-mail et sont conservées dans Biens > Demandes, visibles uniquement par les administrateurs."
 
@@ -491,7 +486,7 @@ msgstr "Créer une alerte"
 msgid "DA"
 msgstr "DA"
 
-#: inc/post-types.php:233
+#: inc/post-types.php:236
 msgid "Date"
 msgstr "Date"
 
@@ -586,11 +581,11 @@ msgstr "Papiers vérifiés avant publication"
 msgid "Documents seen by our legal team before publication."
 msgstr "Documents vus par notre service juridique avant la publication."
 
-#: inc/admin.php:181
+#: inc/admin.php:196
 msgid "Drafts"
 msgstr "Brouillons"
 
-#: inc/admin.php:414
+#: inc/admin.php:429
 msgid "Duplicate"
 msgstr "Dupliquer"
 
@@ -604,19 +599,19 @@ msgstr "E-mail"
 msgid "E-mail (optional)"
 msgstr "E-mail (facultatif)"
 
-#: inc/admin.php:208
+#: inc/admin.php:223
 msgid "Each property, agent, testimonial and page has an “Arabic version” box. Leave it empty to show the French text to everyone. Wilayas, types and features have an Arabic name field too."
 msgstr "Chaque bien, agent, témoignage et page a un cadre « Version arabe ». Laissez-le vide pour montrer le texte français à tout le monde. Les wilayas, types et équipements ont aussi un champ pour le nom en arabe."
 
-#: inc/post-types.php:64
+#: inc/post-types.php:66
 msgid "Edit agent"
 msgstr "Modifier l’agent"
 
-#: inc/taxonomies.php:106
+#: inc/taxonomies.php:107
 msgid "Edit feature"
 msgstr "Modifier l’équipement"
 
-#: inc/admin.php:204
+#: inc/admin.php:219
 msgid "Edit or delete a property"
 msgstr "Modifier ou supprimer un bien"
 
@@ -624,19 +619,19 @@ msgstr "Modifier ou supprimer un bien"
 msgid "Edit property"
 msgstr "Modifier le bien"
 
-#: inc/taxonomies.php:83
+#: inc/taxonomies.php:84
 msgid "Edit property type"
 msgstr "Modifier le type de bien"
 
-#: inc/post-types.php:86
+#: inc/post-types.php:88
 msgid "Edit testimonial"
 msgstr "Modifier le témoignage"
 
-#: inc/taxonomies.php:35
+#: inc/taxonomies.php:36
 msgid "Edit transaction"
 msgstr "Modifier la transaction"
 
-#: inc/taxonomies.php:58
+#: inc/taxonomies.php:59
 msgid "Edit wilaya / commune"
 msgstr "Modifier la wilaya / commune"
 
@@ -679,7 +674,7 @@ msgstr "Adresse de la page Facebook"
 msgid "Favourites need JavaScript to be displayed."
 msgstr "L’affichage des favoris nécessite JavaScript."
 
-#: inc/taxonomies.php:104
+#: inc/taxonomies.php:105
 msgid "Feature"
 msgstr "Équipement"
 
@@ -689,8 +684,8 @@ msgstr "Biens à la une"
 
 #: template-parts/archive-properties.php:171
 #: single-property.php:171
-#: inc/taxonomies.php:103
-#: inc/taxonomies.php:108
+#: inc/taxonomies.php:104
+#: inc/taxonomies.php:109
 msgid "Features"
 msgstr "Équipements"
 
@@ -790,7 +785,7 @@ msgstr "Faire estimer mon bien"
 msgid "Get new properties on WhatsApp"
 msgstr "Recevez les nouveaux biens sur WhatsApp"
 
-#: inc/admin.php:203
+#: inc/admin.php:218
 msgid "Go to Properties > Add new. Enter the title and the description, then fill in the “Property details” box: price, surface, typology and so on. In the boxes on the right, tick the transaction (sale or rent), the wilaya and the commune, and the type of property. Add the main photo with “Set featured image”, then click Publish."
 msgstr "Allez dans Biens > Ajouter. Saisissez le titre et la description, puis remplissez le cadre « Détails du bien » : prix, surface, typologie, etc. Dans les cadres à droite, cochez la transaction (vente ou location), la wilaya et la commune, ainsi que le type de bien. Ajoutez la photo principale avec « Définir la photo », puis cliquez sur Publier."
 
@@ -861,7 +856,7 @@ msgstr "Texte de l’accueil (français)"
 #: templates/page-favorites.php:28
 #: single-property.php:45
 #: inc/nav.php:20
-#: inc/admin.php:334
+#: inc/admin.php:349
 msgid "Home"
 msgstr "Accueil"
 
@@ -869,11 +864,11 @@ msgstr "Accueil"
 msgid "Home page"
 msgstr "Page d’accueil"
 
-#: inc/admin.php:738
+#: inc/admin.php:753
 msgid "Home page setting updated."
 msgstr "Réglage de la page d’accueil mis à jour."
 
-#: inc/admin.php:241
+#: inc/admin.php:256
 msgid "How to manage your properties"
 msgstr "Comment gérer vos biens"
 
@@ -885,7 +880,7 @@ msgstr "J’accepte d’être recontacté(e) au sujet de ma demande."
 msgid "I live abroad, what can I do?"
 msgstr "J’habite à l’étranger, comment faire ?"
 
-#: inc/taxonomies.php:210
+#: inc/taxonomies.php:211
 msgid "Icon"
 msgstr "Icône"
 
@@ -964,18 +959,18 @@ msgstr "Langues : %s"
 msgid "Largest surface"
 msgstr "Plus grande surface"
 
-#: inc/admin.php:252
-#: inc/admin.php:296
+#: inc/admin.php:267
+#: inc/admin.php:311
 msgid "Latest requests"
 msgstr "Dernières demandes"
 
-#: inc/post-types.php:104
+#: inc/post-types.php:106
 msgid "Lead"
 msgstr "Demande"
 
-#: inc/post-types.php:103
-#: inc/post-types.php:106
-#: inc/post-types.php:107
+#: inc/post-types.php:105
+#: inc/post-types.php:108
+#: inc/post-types.php:109
 msgid "Leads"
 msgstr "Demandes"
 
@@ -1043,7 +1038,7 @@ msgstr "Localisation"
 msgid "Main navigation"
 msgstr "Navigation principale"
 
-#: inc/admin.php:412
+#: inc/admin.php:427
 msgid "Make available again"
 msgstr "Remettre disponible"
 
@@ -1051,17 +1046,17 @@ msgstr "Remettre disponible"
 msgid "Map search text"
 msgstr "Texte de recherche de la carte"
 
-#: inc/admin.php:546
+#: inc/admin.php:561
 msgid "Mark as available"
 msgstr "Marquer comme disponible"
 
-#: inc/admin.php:406
-#: inc/admin.php:547
+#: inc/admin.php:421
+#: inc/admin.php:562
 msgid "Mark as reserved"
 msgstr "Marquer comme réservé"
 
-#: inc/admin.php:409
-#: inc/admin.php:548
+#: inc/admin.php:424
+#: inc/admin.php:563
 msgid "Mark as sold or rented"
 msgstr "Marquer comme vendu ou loué"
 
@@ -1081,15 +1076,15 @@ msgstr "Prix maximum"
 msgid "Menu"
 msgstr "Menu"
 
-#: inc/admin.php:199
+#: inc/admin.php:214
 msgid "Menus"
 msgstr "Menus"
 
 #: templates/page-contact.php:112
 #: single-property.php:328
 #: inc/meta-boxes.php:513
-#: inc/post-types.php:246
-#: inc/admin.php:274
+#: inc/post-types.php:249
+#: inc/admin.php:289
 msgid "Message"
 msgstr "Message"
 
@@ -1132,12 +1127,12 @@ msgstr "Mes favoris"
 msgid "My favourites (%d)"
 msgstr "Mes favoris (%d)"
 
-#: inc/post-types.php:229
+#: inc/post-types.php:232
 #: inc/forms.php:237
 msgid "Name"
 msgstr "Nom"
 
-#: inc/taxonomies.php:197
+#: inc/taxonomies.php:198
 #: inc/meta-boxes.php:204
 msgid "Name in Arabic"
 msgstr "Nom en arabe"
@@ -1188,7 +1183,7 @@ msgstr "Article suivant :"
 msgid "No favourites yet"
 msgstr "Pas encore de favoris"
 
-#: inc/post-types.php:108
+#: inc/post-types.php:110
 msgid "No leads yet."
 msgstr "Aucune demande pour le moment."
 
@@ -1214,7 +1209,7 @@ msgstr "Aucun bien trouvé."
 msgid "No property matches your search"
 msgstr "Aucun bien ne correspond à votre recherche"
 
-#: inc/admin.php:269
+#: inc/admin.php:284
 msgid "No requests yet."
 msgstr "Aucune demande pour le moment."
 
@@ -1239,11 +1234,11 @@ msgstr "Aucun résultat"
 msgid "Number of levels"
 msgstr "Nombre de niveaux"
 
-#: inc/taxonomies.php:217
+#: inc/taxonomies.php:218
 msgid "Offer as a search filter"
 msgstr "Proposer comme filtre de recherche"
 
-#: inc/taxonomies.php:205
+#: inc/taxonomies.php:206
 msgid "Official number, from 1 to 58. Leave empty for communes."
 msgstr "Numéro officiel, de 1 à 58. Laissez vide pour les communes."
 
@@ -1255,7 +1250,7 @@ msgstr "Sur WhatsApp ou par téléphone, en arabe ou en français."
 msgid "One contact person from the first call to the signature."
 msgstr "Un interlocuteur unique du premier appel à la signature."
 
-#: inc/admin.php:204
+#: inc/admin.php:219
 msgid "Open Properties > All properties and move the mouse over a row: Edit opens the full form, Quick Edit changes the title and the date, Trash removes it. To delete for good, open the Trash view and click Delete permanently."
 msgstr "Ouvrez Biens > Tous les biens et passez la souris sur une ligne : Modifier ouvre le formulaire complet, Modification rapide change le titre et la date, Corbeille le retire. Pour supprimer définitivement, ouvrez la vue Corbeille et cliquez sur Supprimer définitivement."
 
@@ -1268,7 +1263,7 @@ msgstr "Ouvrir dans Google Maps"
 msgid "Open the menu"
 msgstr "Ouvrir le menu"
 
-#: inc/admin.php:313
+#: inc/admin.php:328
 msgid "Open the overview"
 msgstr "Ouvrir la vue d’ensemble"
 
@@ -1308,8 +1303,8 @@ msgstr "Notre méthode"
 msgid "Our wilayas"
 msgstr "Nos wilayas"
 
-#: inc/admin.php:32
-#: inc/admin.php:32
+#: inc/admin.php:33
+#: inc/admin.php:33
 msgid "Overview"
 msgstr "Vue d’ensemble"
 
@@ -1318,7 +1313,7 @@ msgstr "Vue d’ensemble"
 msgid "Page"
 msgstr "Page"
 
-#: inc/admin.php:192
+#: inc/admin.php:207
 msgid "Pages"
 msgstr "Pages"
 
@@ -1331,7 +1326,7 @@ msgstr "Pagination"
 #: single-property.php:311
 #: inc/meta-boxes.php:167
 #: inc/meta-boxes.php:496
-#: inc/post-types.php:231
+#: inc/post-types.php:234
 #: inc/forms.php:238
 msgid "Phone"
 msgstr "Téléphone"
@@ -1340,8 +1335,8 @@ msgstr "Téléphone"
 msgid "Phone (as displayed)"
 msgstr "Téléphone (tel qu’affiché)"
 
-#: inc/post-types.php:67
-#: inc/post-types.php:156
+#: inc/post-types.php:69
+#: inc/post-types.php:159
 msgid "Photo"
 msgstr "Photo"
 
@@ -1353,7 +1348,7 @@ msgstr "Photo %1$d : %2$s"
 msgid "Photo gallery"
 msgstr "Galerie photos"
 
-#: inc/admin.php:205
+#: inc/admin.php:220
 msgid "Photos"
 msgstr "Photos"
 
@@ -1380,7 +1375,7 @@ msgstr "Article précédent :"
 
 #: template-parts/archive-properties.php:143
 #: inc/meta-boxes.php:35
-#: inc/post-types.php:161
+#: inc/post-types.php:164
 msgid "Price (DA)"
 msgstr "Prix (DA)"
 
@@ -1403,9 +1398,6 @@ msgstr "Confidentialité"
 
 #: template-parts/archive-properties.php:63
 #: inc/post-types.php:30
-#: inc/post-types.php:41
-#: inc/admin.php:24
-#: inc/admin.php:25
 msgid "Properties"
 msgstr "Biens"
 
@@ -1421,7 +1413,7 @@ msgstr "Biens à louer"
 msgid "Properties for sale"
 msgstr "Biens à vendre"
 
-#: inc/admin.php:207
+#: inc/admin.php:222
 msgid "Properties on the home page"
 msgstr "Biens sur la page d’accueil"
 
@@ -1433,7 +1425,7 @@ msgstr "Biens par page"
 msgid "Properties sold"
 msgstr "Biens vendus"
 
-#: inc/admin.php:222
+#: inc/admin.php:237
 msgid "Properties: overview"
 msgstr "Biens : vue d’ensemble"
 
@@ -1461,12 +1453,12 @@ msgstr "Référence du bien (facultatif)"
 
 #: front-page.php:72
 #: template-parts/archive-properties.php:123
-#: inc/taxonomies.php:81
+#: inc/taxonomies.php:82
 msgid "Property type"
 msgstr "Type de bien"
 
-#: inc/taxonomies.php:80
-#: inc/taxonomies.php:85
+#: inc/taxonomies.php:81
+#: inc/taxonomies.php:86
 msgid "Property types"
 msgstr "Types de bien"
 
@@ -1474,7 +1466,7 @@ msgstr "Types de bien"
 msgid "Public e-mail"
 msgstr "E-mail public"
 
-#: inc/admin.php:177
+#: inc/admin.php:192
 msgid "Published properties"
 msgstr "Biens publiés"
 
@@ -1505,7 +1497,7 @@ msgid "Real estate agency · %d wilayas"
 msgstr "Agence immobilière · %d wilayas"
 
 #: single-property.php:110
-#: inc/post-types.php:160
+#: inc/post-types.php:163
 msgid "Ref."
 msgstr "Réf."
 
@@ -1529,8 +1521,8 @@ msgstr "Retirer le filtre : %s"
 msgid "Remove from favourites"
 msgstr "Retirer des favoris"
 
-#: inc/admin.php:387
-#: inc/admin.php:550
+#: inc/admin.php:402
+#: inc/admin.php:565
 msgid "Remove from the home page"
 msgstr "Retirer de la page d’accueil"
 
@@ -1568,21 +1560,21 @@ msgstr "Détails de la demande"
 msgid "Request sent"
 msgstr "Demande envoyée"
 
-#: inc/admin.php:195
+#: inc/admin.php:210
 msgid "Requests"
 msgstr "Demandes"
 
-#: inc/admin.php:209
+#: inc/admin.php:224
 msgid "Requests from visitors"
 msgstr "Demandes des visiteurs"
 
-#: inc/admin.php:184
+#: inc/admin.php:199
 msgid "Requests in the last 30 days"
 msgstr "Demandes des 30 derniers jours"
 
 #: inc/helpers.php:567
 #: inc/helpers.php:591
-#: inc/admin.php:179
+#: inc/admin.php:194
 msgid "Reserved"
 msgstr "Réservé"
 
@@ -1657,7 +1649,7 @@ msgstr "Rechercher un bien"
 msgid "Search for:"
 msgstr "Rechercher :"
 
-#: inc/post-types.php:109
+#: inc/post-types.php:111
 msgid "Search leads"
 msgstr "Rechercher des demandes"
 
@@ -1675,7 +1667,7 @@ msgstr "Résultats pour « %s »"
 msgid "See all properties"
 msgstr "Voir tous les biens"
 
-#: inc/admin.php:254
+#: inc/admin.php:269
 msgid "See all requests"
 msgstr "Voir toutes les demandes"
 
@@ -1715,7 +1707,7 @@ msgstr "Envoyer la demande"
 msgid "Sending…"
 msgstr "Envoi…"
 
-#: inc/post-types.php:68
+#: inc/post-types.php:70
 msgid "Set photo"
 msgstr "Définir la photo"
 
@@ -1732,8 +1724,8 @@ msgid "Show less"
 msgstr "Réduire"
 
 #: inc/meta-boxes.php:99
-#: inc/admin.php:387
-#: inc/admin.php:549
+#: inc/admin.php:402
+#: inc/admin.php:564
 msgid "Show on the home page"
 msgstr "Afficher sur la page d’accueil"
 
@@ -1761,13 +1753,13 @@ msgstr "Affichée aux visiteurs qui n’ont pas encore choisi de langue."
 msgid "Similar properties"
 msgstr "Biens similaires"
 
-#: inc/admin.php:41
-#: inc/admin.php:41
-#: inc/admin.php:198
+#: inc/admin.php:40
+#: inc/admin.php:40
+#: inc/admin.php:213
 msgid "Site settings"
 msgstr "Réglages du site"
 
-#: inc/admin.php:210
+#: inc/admin.php:225
 msgid "Site settings holds the phone, WhatsApp number, address, opening hours, social links, hero text and figures. Pages such as About and Contact are edited under Pages. The menu is edited under Appearance > Menus."
 msgstr "Les Réglages du site regroupent le téléphone, le numéro WhatsApp, l’adresse, les horaires, les réseaux sociaux, le texte d’accueil et les chiffres. Les pages comme L’agence et Contact se modifient dans Pages. Le menu se modifie dans Apparence > Menus."
 
@@ -1784,16 +1776,16 @@ msgid "Sold"
 msgstr "Vendu"
 
 #: inc/helpers.php:568
-#: inc/admin.php:180
+#: inc/admin.php:195
 msgid "Sold or rented"
 msgstr "Vendu ou loué"
 
-#: inc/admin.php:206
+#: inc/admin.php:221
 msgid "Sold, rented or reserved"
 msgstr "Vendu, loué ou réservé"
 
 #: inc/enqueue.php:139
-#: inc/admin.php:748
+#: inc/admin.php:763
 msgid "Something went wrong. Please try again."
 msgstr "Une erreur est survenue. Veuillez réessayer."
 
@@ -1806,7 +1798,7 @@ msgstr "Trier par"
 msgid "Subject"
 msgstr "Objet"
 
-#: inc/post-types.php:232
+#: inc/post-types.php:235
 msgid "Subject / property"
 msgstr "Objet / bien"
 
@@ -1864,7 +1856,7 @@ msgstr "Identifiant fiscal"
 msgid "Terrace"
 msgstr "Terrasse"
 
-#: inc/post-types.php:84
+#: inc/post-types.php:86
 msgid "Testimonial"
 msgstr "Témoignage"
 
@@ -1876,8 +1868,8 @@ msgstr "Détails du témoignage"
 msgid "Testimonial in Arabic"
 msgstr "Témoignage en arabe"
 
-#: inc/post-types.php:83
-#: inc/post-types.php:88
+#: inc/post-types.php:85
+#: inc/post-types.php:90
 msgid "Testimonials"
 msgstr "Témoignages"
 
@@ -1911,7 +1903,7 @@ msgstr "Le plus rapide, c’est WhatsApp. Vous pouvez aussi nous appeler ou remp
 msgid "The featured image is the first photo. Add more here and drag to reorder."
 msgstr "L’image mise en avant est la première photo. Ajoutez-en ici et glissez pour réordonner."
 
-#: inc/admin.php:205
+#: inc/admin.php:220
 msgid "The featured image is the first photo. Add the others in the “Photo gallery” box and drag them to change the order. Without photos, the site shows a neutral illustration."
 msgstr "L’image mise en avant est la première photo. Ajoutez les autres dans le cadre « Galerie photos » et glissez-les pour changer l’ordre. Sans photo, le site affiche une illustration neutre."
 
@@ -1923,7 +1915,7 @@ msgstr "Les informations envoyées par nos formulaires servent uniquement à ré
 msgid "The link may be broken, or the property may have been sold or let."
 msgstr "Le lien est peut-être erroné, ou le bien a été vendu ou loué."
 
-#: inc/admin.php:741
+#: inc/admin.php:756
 msgid "The property was duplicated. You are editing the copy, which is a draft."
 msgstr "Le bien a été dupliqué. Vous modifiez la copie, qui est un brouillon."
 
@@ -2005,12 +1997,12 @@ msgstr "Numéro du registre du commerce"
 
 #: front-page.php:50
 #: template-parts/archive-properties.php:86
-#: inc/taxonomies.php:33
+#: inc/taxonomies.php:34
 msgid "Transaction"
 msgstr "Transaction"
 
-#: inc/taxonomies.php:32
-#: inc/taxonomies.php:37
+#: inc/taxonomies.php:33
+#: inc/taxonomies.php:38
 msgid "Transactions"
 msgstr "Transactions"
 
@@ -2023,7 +2015,7 @@ msgid "Tuesday"
 msgstr "Mardi"
 
 #: inc/meta-boxes.php:495
-#: inc/post-types.php:230
+#: inc/post-types.php:233
 msgid "Type"
 msgstr "Type"
 
@@ -2081,7 +2073,7 @@ msgstr[1] "Voir %s biens"
 msgid "View 1 property"
 msgstr "Voir 1 bien"
 
-#: inc/post-types.php:105
+#: inc/post-types.php:107
 msgid "View lead"
 msgstr "Voir la demande"
 
@@ -2103,8 +2095,8 @@ msgstr "Visite"
 msgid "Visit date"
 msgstr "Date de visite"
 
-#: inc/post-types.php:246
-#: inc/admin.php:274
+#: inc/post-types.php:249
+#: inc/admin.php:289
 #: inc/forms.php:200
 msgid "Visit request"
 msgstr "Demande de visite"
@@ -2194,24 +2186,24 @@ msgstr "Élargissez vos critères, ou laissez-nous vous prévenir dès qu’un b
 msgid "Wilaya"
 msgstr "Wilaya"
 
-#: inc/taxonomies.php:60
+#: inc/taxonomies.php:61
 msgid "Wilaya (parent)"
 msgstr "Wilaya (parente)"
 
-#: inc/taxonomies.php:56
+#: inc/taxonomies.php:57
 msgid "Wilaya / commune"
 msgstr "Wilaya / commune"
 
-#: inc/taxonomies.php:203
+#: inc/taxonomies.php:204
 msgid "Wilaya number"
 msgstr "Numéro de wilaya"
 
-#: inc/taxonomies.php:61
+#: inc/taxonomies.php:62
 msgid "Wilayas"
 msgstr "Wilayas"
 
-#: inc/taxonomies.php:55
-#: inc/admin.php:191
+#: inc/taxonomies.php:56
+#: inc/admin.php:206
 msgid "Wilayas and communes"
 msgstr "Wilayas et communes"
 
@@ -2252,7 +2244,7 @@ msgstr "Oui. Nous demandons l’acte notarié et, quand il existe, le livret fon
 
 #: inc/demo-import.php:450
 #: inc/demo-import.php:473
-#: inc/admin.php:435
+#: inc/admin.php:450
 msgid "You do not have permission to do this."
 msgstr "Vous n’avez pas l’autorisation d’effectuer cette action."
 
@@ -2264,6 +2256,17 @@ msgstr "Votre conseiller"
 #: inc/forms.php:266
 msgid "[%1$s] %2$s from %3$s"
 msgstr "[%1$s] %2$s de %3$s"
+
+#: inc/admin.php:25
+#: inc/admin.php:26
+msgctxt "admin menu"
+msgid "Agency"
+msgstr "Agence"
+
+#: inc/post-types.php:41
+msgctxt "admin menu"
+msgid "Properties"
+msgstr "Biens immobiliers"
 
 #: inc/forms.php:247
 msgid "afternoon"

@@ -21,11 +21,11 @@ Requires WordPress 6.4+ and PHP 7.4+. No plugin is needed.
 
 ## Managing properties (back office)
 
-Everything is under one **Properties** menu in the WordPress admin:
+The admin has three menus: **Biens immobiliers** (Properties: *All properties*, *Add a property*), **Demandes** (Requests, administrators only) and **Agence** (Overview, agents, testimonials, the lists, site settings). Details:
 
 | Screen | What it is for |
 |---|---|
-| **Overview** | Counts (published, available, reserved, sold or rented, drafts, requests), shortcuts, a step-by-step guide, latest requests |
+| **Agence > Overview** | Counts (published, available, reserved, sold or rented, drafts, requests), shortcuts, a step-by-step guide, latest requests |
 | **All properties** | The list: photo, reference, price, transaction, wilaya, type, availability and a home-page star. Filters by transaction, wilaya, type and availability. Row links: Edit, Quick Edit, Trash, Mark as reserved, Mark as sold or rented, Make available again, **Duplicate** |
 | **Add new** | The full form with every field visible (classic editor): details, documents, Arabic version, availability, agent, photo gallery |
 | **Bulk actions** | Select several properties: mark available / reserved / sold or rented, show or remove from the home page, move to the trash |
