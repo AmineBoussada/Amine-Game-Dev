@@ -23,6 +23,7 @@ $tassili_langs = tassili_supported_languages();
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 
+<?php if ( ! tassili_elementor_location( 'header' ) ) : ?>
 <header id="site-header" class="site-header">
 	<div class="utility">
 		<div class="container utility-in">
@@ -97,3 +98,4 @@ $tassili_langs = tassili_supported_languages();
 		</div>
 	</div>
 </header>
+<?php endif; ?>

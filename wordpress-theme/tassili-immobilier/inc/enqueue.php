@@ -43,7 +43,7 @@ function tassili_enqueue_assets() {
 	if ( is_singular( 'property' ) ) {
 		wp_enqueue_script( 'tassili-property', TASSILI_URI . 'assets/js/property.js', array( 'tassili-app', 'tassili-forms' ), $ver, $defer );
 	}
-	if ( is_singular( 'property' ) || is_page_template( 'templates/page-contact.php' ) ) {
+	if ( is_singular( 'property' ) || is_page_template( 'templates/page-contact.php' ) || tassili_is_elementor_post( get_queried_object_id() ) ) {
 		wp_enqueue_script( 'tassili-forms', TASSILI_URI . 'assets/js/forms.js', array( 'tassili-app' ), $ver, $defer );
 	}
 

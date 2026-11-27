@@ -16,6 +16,7 @@ $tassili_ig    = (string) tassili_mod( 'instagram' );
 $tassili_wa    = tassili_whatsapp_url( __( 'Hello Tassili Immobilier, I would like some information.', 'tassili-immobilier' ) );
 $tassili_priv  = get_privacy_policy_url();
 ?>
+<?php if ( ! tassili_elementor_location( 'footer' ) ) : ?>
 <footer id="site-footer" class="site-footer">
 	<div class="container">
 		<div class="footer-grid">
@@ -103,6 +104,7 @@ $tassili_priv  = get_privacy_policy_url();
 		</div>
 	</div>
 </footer>
+<?php endif; ?>
 
 <a class="wa-fab" id="wa-fab" href="<?php echo esc_url( $tassili_wa ); ?>" target="_blank" rel="noopener" aria-label="<?php esc_attr_e( 'Contact us on WhatsApp', 'tassili-immobilier' ); ?>">
 	<?php tassili_the_icon( 'wa' ); ?>

@@ -13,6 +13,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 get_header();
+
+if ( tassili_render_builder_page() ) {
+	get_footer();
+	return;
+}
 ?>
 <main id="main" class="site-main">
 	<?php

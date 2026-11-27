@@ -12,6 +12,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 get_header();
 
+if ( tassili_render_builder_page() ) {
+	get_footer();
+	return;
+}
+
 $tassili_agents = new WP_Query(
 	array(
 		'post_type'      => 'agent',

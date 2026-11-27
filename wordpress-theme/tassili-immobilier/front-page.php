@@ -13,20 +13,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 get_header();
 
 // A front page built with Elementor replaces the built-in sections.
-if ( tassili_is_elementor_post( get_queried_object_id() ) ) :
-	?>
-	<main id="main" class="site-main site-main--builder">
-		<?php
-		while ( have_posts() ) :
-			the_post();
-			the_content();
-		endwhile;
-		?>
-	</main>
-	<?php
+if ( tassili_render_builder_page() ) {
 	get_footer();
 	return;
-endif;
+}
 
 $tassili_hero_title = tassili_mod_l( 'hero_title' );
 $tassili_hero_title = '' !== $tassili_hero_title ? $tassili_hero_title : __( 'Find the property that suits you, with the papers in order', 'tassili-immobilier' );

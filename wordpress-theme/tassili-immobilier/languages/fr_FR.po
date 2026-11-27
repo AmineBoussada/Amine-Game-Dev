@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tassili Immobilier 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-27 11:20+0000\n"
-"PO-Revision-Date: 2026-11-27 11:20+0000\n"
+"POT-Creation-Date: 2026-11-27 11:33+0000\n"
+"PO-Revision-Date: 2026-11-27 11:33+0000\n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 msgid "%1$s in %2$s"
 msgstr "%1$s à %2$s"
 
-#: front-page.php:64
+#: front-page.php:54
 msgid "%1$s properties sold since %2$d"
 msgstr "%1$s biens vendus depuis %2$d"
 
@@ -45,7 +45,7 @@ msgid_plural "%s comments"
 msgstr[0] "%s commentaire"
 msgstr[1] "%s commentaires"
 
-#: front-page.php:154
+#: front-page.php:144
 msgid "%s listing"
 msgid_plural "%s listings"
 msgstr[0] "%s annonce"
@@ -154,7 +154,7 @@ msgstr "Ajouter à la galerie"
 msgid "Added to your favourites"
 msgstr "Ajouté à vos favoris"
 
-#: templates/page-contact.php:143
+#: templates/page-contact.php:63
 msgid "Address"
 msgstr "Adresse"
 
@@ -219,7 +219,7 @@ msgid "All our properties"
 msgstr "Tous nos biens"
 
 #: 404.php:21
-#: templates/page-favorites.php:46
+#: templates/page-favorites.php:51
 #: inc/post-types.php:40
 #: inc/admin.php:204
 msgid "All properties"
@@ -254,7 +254,7 @@ msgstr "Toutes les wilayas"
 msgid "All wilayas and communes"
 msgstr "Toutes les wilayas et communes"
 
-#: front-page.php:168
+#: front-page.php:158
 msgid "An adviser goes with you, at the times that suit you."
 msgstr "Un conseiller vous accompagne, aux horaires qui vous arrangent."
 
@@ -270,7 +270,7 @@ msgstr "Indifférent"
 msgid "Any availability"
 msgstr "Toutes les disponibilités"
 
-#: front-page.php:54
+#: front-page.php:44
 msgid "Apartments, villas, land and new developments, checked by our team, from Algiers to Oran."
 msgstr "Appartements, villas, terrains et programmes neufs, vérifiés par notre équipe, d’Alger à Oran."
 
@@ -280,7 +280,7 @@ msgstr "Appartements, villas, terrains et programmes neufs, vérifiés par notre
 msgid "Arabic version"
 msgstr "Version arabe"
 
-#: templates/page-contact.php:166
+#: templates/page-contact.php:86
 msgid "Are the documents checked?"
 msgstr "Les papiers sont-ils vérifiés ?"
 
@@ -331,7 +331,7 @@ msgstr "Planifier une visite"
 msgid "Breadcrumb"
 msgstr "Fil d’Ariane"
 
-#: front-page.php:81
+#: front-page.php:71
 msgid "Browse by wilaya"
 msgstr "Parcourir par wilaya"
 
@@ -349,17 +349,17 @@ msgstr "Acheter"
 msgid "Buy a property"
 msgstr "Acheter un bien"
 
-#: front-page.php:200
+#: front-page.php:190
 msgid "Buy off plan with staged payments."
 msgstr "Achetez sur plan avec un paiement échelonné."
 
 #: single-property.php:209
 #: single-property.php:275
-#: header.php:93
+#: header.php:94
 msgid "Call"
 msgstr "Appeler"
 
-#: templates/page-contact.php:167
+#: templates/page-contact.php:87
 msgid "Can I visit at the weekend?"
 msgstr "Puis-je visiter le week-end ?"
 
@@ -375,7 +375,7 @@ msgstr "Modifier les textes, le téléphone et le logo"
 msgid "Change the Availability in the box on the right of the property, or use the quick links under its title in the list. You can also select several properties and use Bulk actions. A sold or rented property gets a label and leaves the searches and the home page, unless you tick the option in Site settings."
 msgstr "Changez la Disponibilité dans le cadre à droite du bien, ou utilisez les liens rapides sous son titre dans la liste. Vous pouvez aussi sélectionner plusieurs biens et utiliser les Actions groupées. Un bien vendu ou loué reçoit une étiquette et disparaît des recherches et de l’accueil, sauf si vous cochez l’option dans Réglages du site."
 
-#: templates/page-contact.php:83
+#: template-parts/contact-form.php:46
 #: single-property.php:304
 #: inc/enqueue.php:155
 #: inc/forms.php:370
@@ -396,7 +396,7 @@ msgstr "Choisissez un jour et un créneau. Votre conseiller vous rappelle pour c
 msgid "Choose photos"
 msgstr "Choisir des photos"
 
-#: front-page.php:125
+#: front-page.php:115
 msgid "Chosen this week by our advisers."
 msgstr "Sélectionnés cette semaine par nos conseillers."
 
@@ -419,7 +419,7 @@ msgid "Close the filters"
 msgstr "Fermer les filtres"
 
 #: inc/enqueue.php:120
-#: header.php:81
+#: header.php:82
 msgid "Close the menu"
 msgstr "Fermer le menu"
 
@@ -431,7 +431,7 @@ msgstr "Note du jour de fermeture (arabe)"
 msgid "Closed day note (French)"
 msgstr "Note du jour de fermeture (français)"
 
-#: templates/page-about.php:158
+#: templates/page-about.php:163
 msgid "Come and meet us at the agency"
 msgstr "Rencontrez-nous à l’agence"
 
@@ -444,7 +444,7 @@ msgstr "Les commentaires sont fermés."
 msgid "Commune"
 msgstr "Commune"
 
-#: templates/page-contact.php:52
+#: templates/page-contact.php:30
 #: inc/nav.php:40
 msgid "Contact"
 msgstr "Contact"
@@ -461,12 +461,12 @@ msgstr "Les demandes de contact et de visite sont envoyées à cette adresse. La
 msgid "Contact and visit requests arrive by e-mail and are kept in Properties > Requests, which only administrators can see."
 msgstr "Les demandes de contact et de visite arrivent par e-mail et sont conservées dans Biens > Demandes, visibles uniquement par les administrateurs."
 
-#: footer.php:60
-#: templates/page-about.php:161
+#: footer.php:61
+#: templates/page-about.php:166
 msgid "Contact us"
 msgstr "Nous contacter"
 
-#: footer.php:107
+#: footer.php:109
 msgid "Contact us on WhatsApp"
 msgstr "Nous contacter sur WhatsApp"
 
@@ -494,11 +494,11 @@ msgstr "Date"
 msgid "Day visits cannot be booked"
 msgstr "Jour où les visites ne sont pas possibles"
 
-#: front-page.php:167
+#: front-page.php:157
 msgid "Deed, land registry booklet and permit checked before every listing."
 msgstr "Acte, livret foncier et permis contrôlés avant chaque publication."
 
-#: templates/page-about.php:74
+#: templates/page-about.php:79
 msgid "Deed, land registry booklet, permit and co-ownership status."
 msgstr "Acte, livret foncier, permis et situation de copropriété."
 
@@ -531,7 +531,7 @@ msgstr "Contenu de démonstration importé. %d biens ont été créés."
 msgid "Demo content removed."
 msgstr "Contenu de démonstration supprimé."
 
-#: templates/page-contact.php:113
+#: template-parts/contact-form.php:76
 #: single-property.php:329
 msgid "Describe your project: wilaya, budget, timing…"
 msgstr "Décrivez votre projet : wilaya, budget, délai…"
@@ -552,7 +552,7 @@ msgstr "Ignorer"
 msgid "Display"
 msgstr "Affichage"
 
-#: templates/page-about.php:74
+#: templates/page-about.php:79
 msgid "Document check"
 msgstr "Vérification des papiers"
 
@@ -569,11 +569,11 @@ msgstr "Papiers et situation juridique"
 msgid "Documents available"
 msgstr "Papiers disponibles"
 
-#: front-page.php:167
+#: front-page.php:157
 msgid "Documents checked"
 msgstr "Papiers vérifiés"
 
-#: front-page.php:59
+#: front-page.php:49
 msgid "Documents checked before publication"
 msgstr "Papiers vérifiés avant publication"
 
@@ -589,13 +589,13 @@ msgstr "Brouillons"
 msgid "Duplicate"
 msgstr "Dupliquer"
 
-#: templates/page-contact.php:71
+#: templates/page-contact.php:49
 #: inc/meta-boxes.php:497
 #: inc/forms.php:241
 msgid "E-mail"
 msgstr "E-mail"
 
-#: templates/page-contact.php:95
+#: template-parts/contact-form.php:58
 msgid "E-mail (optional)"
 msgstr "E-mail (facultatif)"
 
@@ -662,7 +662,7 @@ msgstr "Exclusivité"
 msgid "Exclusive listing"
 msgstr "Bien en exclusivité"
 
-#: footer.php:36
+#: footer.php:37
 msgid "Facebook"
 msgstr "Facebook"
 
@@ -670,7 +670,7 @@ msgstr "Facebook"
 msgid "Facebook page URL"
 msgstr "Adresse de la page Facebook"
 
-#: templates/page-favorites.php:48
+#: templates/page-favorites.php:53
 msgid "Favourites need JavaScript to be displayed."
 msgstr "L’affichage des favoris nécessite JavaScript."
 
@@ -678,7 +678,7 @@ msgstr "L’affichage des favoris nécessite JavaScript."
 msgid "Feature"
 msgstr "Équipement"
 
-#: front-page.php:124
+#: front-page.php:114
 msgid "Featured properties"
 msgstr "Biens à la une"
 
@@ -700,7 +700,7 @@ msgstr "Filtres"
 msgid "Filters (%d)"
 msgstr "Filtres (%d)"
 
-#: front-page.php:32
+#: front-page.php:22
 msgid "Find the property that suits you, with the papers in order"
 msgstr "Trouvez le bien qui vous ressemble, papiers en règle"
 
@@ -721,7 +721,7 @@ msgstr "Liens du pied de page"
 msgid "Footer widgets"
 msgstr "Widgets du pied de page"
 
-#: templates/page-contact.php:165
+#: templates/page-contact.php:85
 msgid "For a sale, 1% of the price paid by each party. For a rental, the equivalent of one month’s rent."
 msgstr "Pour une vente, 1 % du prix à la charge de chaque partie. Pour une location, l’équivalent d’un mois de loyer."
 
@@ -739,15 +739,15 @@ msgstr "Location"
 msgid "For sale"
 msgstr "Vente"
 
-#: templates/page-about.php:42
+#: templates/page-about.php:47
 msgid "Founded in %1$d, we help buyers, sellers and tenants in %2$d wilayas. Our rule has never changed: we only publish properties whose documents we have seen."
 msgstr "Fondée en %1$d, l’agence accompagne acheteurs, vendeurs et locataires dans %2$d wilayas. Notre règle n’a pas changé : ne publier que des biens dont nous avons vu les papiers."
 
-#: front-page.php:270
+#: front-page.php:260
 msgid "Free valuation within 48 hours, professional photos and exposure to buyers who are already qualified."
 msgstr "Estimation gratuite sous 48 h, photos professionnelles et diffusion auprès d’acheteurs déjà qualifiés."
 
-#: templates/page-contact.php:163
+#: templates/page-contact.php:83
 msgid "Frequently asked questions"
 msgstr "Questions fréquentes"
 
@@ -764,7 +764,7 @@ msgstr "À partir de %s DA"
 msgid "Front"
 msgstr "Façade"
 
-#: templates/page-contact.php:85
+#: template-parts/contact-form.php:48
 #: single-property.php:306
 msgid "Full name"
 msgstr "Nom complet"
@@ -798,11 +798,11 @@ msgstr "Grille"
 msgid "Ground floor"
 msgstr "Rez-de-chaussée"
 
-#: templates/page-about.php:77
+#: templates/page-about.php:82
 msgid "Handing over the keys"
 msgstr "Remise des clés"
 
-#: templates/page-about.php:143
+#: templates/page-about.php:148
 msgid "Head office"
 msgstr "Siège"
 
@@ -819,16 +819,16 @@ msgid "Hello Tassili Immobilier, I am looking for: %s. Could you let me know whe
 msgstr "Bonjour Tassili Immobilier, je cherche : %s. Pouvez-vous me prévenir quand un bien correspond ?"
 
 #: footer.php:16
-#: templates/page-about.php:128
-#: templates/page-contact.php:61
-#: templates/page-contact.php:131
+#: template-parts/contact-form.php:94
+#: templates/page-about.php:133
+#: templates/page-contact.php:39
 #: inc/template-tags.php:33
-#: header.php:66
-#: header.php:88
+#: header.php:67
+#: header.php:89
 msgid "Hello Tassili Immobilier, I would like some information."
 msgstr "Bonjour Tassili Immobilier, je souhaite avoir des informations."
 
-#: front-page.php:274
+#: front-page.php:264
 msgid "Hello Tassili Immobilier, I would like to have my property valued."
 msgstr "Bonjour Tassili Immobilier, je souhaite faire estimer mon bien."
 
@@ -853,7 +853,7 @@ msgid "Hero text (French)"
 msgstr "Texte de l’accueil (français)"
 
 #: template-parts/archive-properties.php:60
-#: templates/page-favorites.php:28
+#: templates/page-favorites.php:33
 #: single-property.php:45
 #: inc/nav.php:20
 #: inc/admin.php:355
@@ -872,11 +872,11 @@ msgstr "Réglage de la page d’accueil mis à jour."
 msgid "How to manage your properties"
 msgstr "Comment gérer vos biens"
 
-#: templates/page-contact.php:117
+#: template-parts/contact-form.php:80
 msgid "I agree to be contacted about my request."
 msgstr "J’accepte d’être recontacté(e) au sujet de ma demande."
 
-#: templates/page-contact.php:168
+#: templates/page-contact.php:88
 msgid "I live abroad, what can I do?"
 msgstr "J’habite à l’étranger, comment faire ?"
 
@@ -889,7 +889,7 @@ msgstr "Icône"
 msgid "Import demo content"
 msgstr "Importer le contenu de démonstration"
 
-#: footer.php:39
+#: footer.php:40
 msgid "Instagram"
 msgstr "Instagram"
 
@@ -906,7 +906,7 @@ msgstr "Intérieur"
 msgid "International format, digits only, for example 213555123456."
 msgstr "Format international, chiffres uniquement, par exemple 213555123456."
 
-#: templates/page-about.php:77
+#: templates/page-about.php:82
 msgid "Inventory of fixtures and transfer of the meters."
 msgstr "État des lieux et transfert des compteurs."
 
@@ -951,7 +951,7 @@ msgstr "Langues parlées"
 msgid "Languages spoken, in Arabic"
 msgstr "Langues parlées, en arabe"
 
-#: templates/page-about.php:124
+#: templates/page-about.php:129
 msgid "Languages: %s"
 msgstr "Langues : %s"
 
@@ -987,15 +987,15 @@ msgstr "Laissez vide pour utiliser le texte par défaut."
 msgid "Leave this field empty"
 msgstr "Laissez ce champ vide"
 
-#: footer.php:92
+#: footer.php:93
 msgid "Legal"
 msgstr "Mentions légales"
 
-#: templates/page-about.php:141
+#: templates/page-about.php:146
 msgid "Legal information"
 msgstr "Informations légales"
 
-#: footer.php:97
+#: footer.php:98
 msgid "Legal notice"
 msgstr "Mentions légales"
 
@@ -1013,8 +1013,8 @@ msgid "List"
 msgstr "Liste"
 
 #: inc/nav.php:161
-#: header.php:65
-#: header.php:87
+#: header.php:66
+#: header.php:88
 msgid "List my property"
 msgstr "Déposer mon bien"
 
@@ -1034,7 +1034,7 @@ msgstr "Chargement…"
 msgid "Location"
 msgstr "Localisation"
 
-#: header.php:52
+#: header.php:53
 msgid "Main navigation"
 msgstr "Navigation principale"
 
@@ -1072,7 +1072,7 @@ msgstr "Budget max (DA)"
 msgid "Maximum price"
 msgstr "Prix maximum"
 
-#: header.php:78
+#: header.php:79
 msgid "Menu"
 msgstr "Menu"
 
@@ -1080,7 +1080,7 @@ msgstr "Menu"
 msgid "Menus"
 msgstr "Menus"
 
-#: templates/page-contact.php:112
+#: template-parts/contact-form.php:75
 #: single-property.php:328
 #: inc/meta-boxes.php:513
 #: inc/post-types.php:249
@@ -1088,7 +1088,7 @@ msgstr "Menus"
 msgid "Message"
 msgstr "Message"
 
-#: templates/page-contact.php:128
+#: template-parts/contact-form.php:91
 #: inc/forms.php:291
 #: inc/forms.php:362
 msgid "Message sent"
@@ -1119,7 +1119,7 @@ msgid "Most recent"
 msgstr "Plus récents"
 
 #: inc/enqueue.php:127
-#: header.php:57
+#: header.php:58
 msgid "My favourites"
 msgstr "Mes favoris"
 
@@ -1149,7 +1149,7 @@ msgstr "Neuf"
 msgid "New development"
 msgstr "Programme neuf"
 
-#: front-page.php:199
+#: front-page.php:189
 #: inc/template-tags.php:271
 msgid "New developments"
 msgstr "Programmes neufs"
@@ -1179,7 +1179,7 @@ msgstr "Photo suivante"
 msgid "Next post:"
 msgstr "Article suivant :"
 
-#: templates/page-favorites.php:44
+#: templates/page-favorites.php:49
 msgid "No favourites yet"
 msgstr "Pas encore de favoris"
 
@@ -1222,7 +1222,7 @@ msgstr "Non fourni"
 msgid "Notarial deed"
 msgstr "Acte notarié"
 
-#: templates/page-about.php:76
+#: templates/page-about.php:81
 msgid "Notary"
 msgstr "Notaire"
 
@@ -1242,11 +1242,11 @@ msgstr "Proposer comme filtre de recherche"
 msgid "Official number, from 1 to 58. Leave empty for communes."
 msgstr "Numéro officiel, de 1 à 58. Laissez vide pour les communes."
 
-#: front-page.php:170
+#: front-page.php:160
 msgid "On WhatsApp or by phone, in Arabic or French."
 msgstr "Sur WhatsApp ou par téléphone, en arabe ou en français."
 
-#: templates/page-about.php:88
+#: templates/page-about.php:93
 msgid "One contact person from the first call to the signature."
 msgstr "Un interlocuteur unique du premier appel à la signature."
 
@@ -1254,12 +1254,12 @@ msgstr "Un interlocuteur unique du premier appel à la signature."
 msgid "Open Properties > All properties and move the mouse over a row: Edit opens the full form, Quick Edit changes the title and the date, Trash removes it. To delete for good, open the Trash view and click Delete permanently."
 msgstr "Ouvrez Biens > Tous les biens et passez la souris sur une ligne : Modifier ouvre le formulaire complet, Modification rapide change le titre et la date, Corbeille le retire. Pour supprimer définitivement, ouvrez la vue Corbeille et cliquez sur Supprimer définitivement."
 
-#: templates/page-contact.php:158
+#: templates/page-contact.php:78
 msgid "Open in Google Maps"
 msgstr "Ouvrir dans Google Maps"
 
 #: inc/enqueue.php:119
-#: header.php:69
+#: header.php:70
 msgid "Open the menu"
 msgstr "Ouvrir le menu"
 
@@ -1267,7 +1267,7 @@ msgstr "Ouvrir le menu"
 msgid "Open the overview"
 msgstr "Ouvrir la vue d’ensemble"
 
-#: templates/page-contact.php:144
+#: templates/page-contact.php:64
 msgid "Opening hours"
 msgstr "Horaires"
 
@@ -1279,27 +1279,27 @@ msgstr "Horaires (arabe)"
 msgid "Opening hours (French)"
 msgstr "Horaires (français)"
 
-#: front-page.php:168
+#: front-page.php:158
 msgid "Organised visits"
 msgstr "Visites organisées"
 
-#: templates/page-about.php:75
+#: templates/page-about.php:80
 msgid "Organised visits, with a report sent on WhatsApp."
 msgstr "Visites organisées, compte rendu envoyé sur WhatsApp."
 
-#: front-page.php:82
+#: front-page.php:72
 msgid "Our advisers know every neighbourhood."
 msgstr "Nos conseillers connaissent chaque quartier."
 
-#: templates/page-contact.php:141
+#: templates/page-contact.php:61
 msgid "Our agency"
 msgstr "Notre agence"
 
-#: templates/page-about.php:68
+#: templates/page-about.php:73
 msgid "Our method"
 msgstr "Notre méthode"
 
-#: footer.php:51
+#: footer.php:52
 msgid "Our wilayas"
 msgstr "Nos wilayas"
 
@@ -1321,8 +1321,8 @@ msgstr "Pages"
 msgid "Pagination"
 msgstr "Pagination"
 
-#: templates/page-contact.php:66
-#: templates/page-contact.php:90
+#: template-parts/contact-form.php:53
+#: templates/page-contact.php:44
 #: single-property.php:311
 #: inc/meta-boxes.php:167
 #: inc/meta-boxes.php:496
@@ -1391,8 +1391,8 @@ msgstr "Prix croissant"
 msgid "Primary menu (header and mobile drawer)"
 msgstr "Menu principal (en-tête et menu mobile)"
 
-#: footer.php:100
-#: templates/page-about.php:148
+#: footer.php:101
+#: templates/page-about.php:153
 msgid "Privacy"
 msgstr "Confidentialité"
 
@@ -1447,7 +1447,7 @@ msgstr "Photos du bien"
 msgid "Property reference"
 msgstr "Référence du bien"
 
-#: templates/page-contact.php:108
+#: template-parts/contact-form.php:71
 msgid "Property reference (optional)"
 msgstr "Référence du bien (facultatif)"
 
@@ -1474,7 +1474,7 @@ msgstr "Biens publiés"
 msgid "Publishing"
 msgstr "Publication"
 
-#: front-page.php:170
+#: front-page.php:160
 msgid "Quick answers"
 msgstr "Réponse rapide"
 
@@ -1488,11 +1488,11 @@ msgstr "Lire la suite"
 msgid "Real estate"
 msgstr "Immobilier"
 
-#: footer.php:28
+#: footer.php:29
 msgid "Real estate agency since %1$d. Sales, rentals and new developments in %2$d wilayas, with documents checked before every listing."
 msgstr "Agence immobilière depuis %1$d. Vente, location et programmes neufs dans %2$d wilayas, avec des papiers vérifiés avant chaque publication."
 
-#: front-page.php:50
+#: front-page.php:40
 msgid "Real estate agency · %d wilayas"
 msgstr "Agence immobilière · %d wilayas"
 
@@ -1548,7 +1548,7 @@ msgstr "Louer un bien"
 msgid "Rented"
 msgstr "Loué"
 
-#: templates/page-contact.php:62
+#: templates/page-contact.php:40
 msgid "Reply within 15 minutes during opening hours"
 msgstr "Réponse en moins de 15 min aux heures d’ouverture"
 
@@ -1588,7 +1588,7 @@ msgstr "Réinitialiser"
 msgid "Residence"
 msgstr "Résidence"
 
-#: front-page.php:169
+#: front-page.php:159
 msgid "Right to the notary"
 msgstr "Jusqu’au notaire"
 
@@ -1661,8 +1661,8 @@ msgstr "Rechercher des biens"
 msgid "Search results for “%s”"
 msgstr "Résultats pour « %s »"
 
-#: front-page.php:127
-#: front-page.php:202
+#: front-page.php:117
+#: front-page.php:192
 #: single-property.php:249
 msgid "See all properties"
 msgstr "Voir tous les biens"
@@ -1679,15 +1679,15 @@ msgstr "Voir le quartier sur Google Maps"
 msgid "Sell or let my property"
 msgstr "Vendre ou louer mon bien"
 
-#: front-page.php:269
+#: front-page.php:259
 msgid "Selling or letting a property?"
 msgstr "Vous vendez ou louez un bien ?"
 
-#: templates/page-contact.php:79
+#: template-parts/contact-form.php:42
 msgid "Send a message"
 msgstr "Envoyer un message"
 
-#: templates/page-contact.php:132
+#: template-parts/contact-form.php:95
 msgid "Send another message"
 msgstr "Envoyer un autre message"
 
@@ -1695,7 +1695,7 @@ msgstr "Envoyer un autre message"
 msgid "Send requests to"
 msgstr "Envoyer les demandes à"
 
-#: templates/page-contact.php:121
+#: template-parts/contact-form.php:84
 msgid "Send the message"
 msgstr "Envoyer le message"
 
@@ -1733,7 +1733,7 @@ msgstr "Afficher sur la page d’accueil"
 msgid "Show sold and rented properties in the listings"
 msgstr "Afficher les biens vendus et loués dans les listes"
 
-#: header.php:43
+#: header.php:44
 msgid "Show the site in this language"
 msgstr "Afficher le site dans cette langue"
 
@@ -1793,7 +1793,7 @@ msgstr "Une erreur est survenue. Veuillez réessayer."
 msgid "Sort by"
 msgstr "Trier par"
 
-#: templates/page-contact.php:100
+#: template-parts/contact-form.php:63
 #: inc/meta-boxes.php:498
 msgid "Subject"
 msgstr "Objet"
@@ -1819,7 +1819,7 @@ msgid "Surface (m²)"
 msgstr "Surface (m²)"
 
 #: inc/enqueue.php:121
-#: header.php:61
+#: header.php:62
 msgid "Switch to dark mode"
 msgstr "Passer en mode sombre"
 
@@ -1831,7 +1831,7 @@ msgstr "Passer en mode clair"
 msgid "Tags:"
 msgstr "Mots-clés :"
 
-#: templates/page-favorites.php:45
+#: templates/page-favorites.php:50
 msgid "Tap the heart on a property to find it here, on this device."
 msgstr "Touchez le cœur sur un bien pour le retrouver ici, sur cet appareil."
 
@@ -1851,7 +1851,7 @@ msgstr "Tassili Immobilier est activé. Envie de le voir avec des biens d’exem
 msgid "Tassili Immobilier theme, version %s"
 msgstr "Thème Tassili Immobilier, version %s"
 
-#: templates/page-about.php:145
+#: templates/page-about.php:150
 #: inc/customizer.php:156
 msgid "Tax identification number"
 msgstr "Identifiant fiscal"
@@ -1889,7 +1889,7 @@ msgstr "Merci %1$s. Nous vous répondons sous 24 h ouvrées au %2$s."
 msgid "Thank you. We will answer within 24 working hours."
 msgstr "Merci. Nous vous répondons sous 24 h ouvrées."
 
-#: templates/page-about.php:36
+#: templates/page-about.php:41
 #: inc/nav.php:36
 msgid "The agency"
 msgstr "L’agence"
@@ -1899,7 +1899,7 @@ msgstr "L’agence"
 msgid "The agency is closed that day. Choose another day."
 msgstr "L’agence est fermée ce jour-là. Choisissez un autre jour."
 
-#: templates/page-contact.php:54
+#: templates/page-contact.php:32
 msgid "The fastest way is WhatsApp. You can also call us or fill in the form."
 msgstr "Le plus rapide, c’est WhatsApp. Vous pouvez aussi nous appeler ou remplir le formulaire."
 
@@ -1911,7 +1911,7 @@ msgstr "L’image mise en avant est la première photo. Ajoutez-en ici et glisse
 msgid "The featured image is the first photo. Add the others in the “Photo gallery” box and drag them to change the order. Without photos, the site shows a neutral illustration."
 msgstr "L’image mise en avant est la première photo. Ajoutez les autres dans le cadre « Galerie photos » et glissez-les pour changer l’ordre. Sans photo, le site affiche une illustration neutre."
 
-#: templates/page-about.php:149
+#: templates/page-about.php:154
 msgid "The information sent through our forms is used only to answer your request. Your favourite properties stay saved on your own device."
 msgstr "Les informations envoyées par nos formulaires servent uniquement à répondre à votre demande. Les favoris restent enregistrés sur votre appareil."
 
@@ -1923,7 +1923,7 @@ msgstr "Le lien est peut-être erroné, ou le bien a été vendu ou loué."
 msgid "The property was duplicated. You are editing the copy, which is a draft."
 msgstr "Le bien a été dupliqué. Vous modifiez la copie, qui est un brouillon."
 
-#: templates/page-about.php:69
+#: templates/page-about.php:74
 msgid "The same steps for every property, from valuation to handing over the keys."
 msgstr "Les mêmes étapes pour chaque bien, de l’estimation à la remise des clés."
 
@@ -1931,7 +1931,7 @@ msgstr "Les mêmes étapes pour chaque bien, de l’estimation à la remise des 
 msgid "The site remembers your language in a cookie and your favourite properties and light or dark theme in your browser storage. This information never leaves your device."
 msgstr "Le site mémorise votre langue dans un cookie, ainsi que vos biens favoris et votre thème clair ou sombre dans le stockage de votre navigateur. Ces informations ne quittent jamais votre appareil."
 
-#: templates/page-about.php:87
+#: templates/page-about.php:92
 msgid "The team"
 msgstr "L’équipe"
 
@@ -1943,7 +1943,7 @@ msgstr "Le bouton « Déposer mon bien ». Laissez vide pour pointer vers la pag
 msgid "They always keep a “Sold” or “Rented” label. When off, they disappear from searches and the home page."
 msgstr "Ils gardent toujours l’étiquette « Vendu » ou « Loué ». Désactivé, ils disparaissent des recherches et de l’accueil."
 
-#: front-page.php:239
+#: front-page.php:229
 msgid "They trusted us"
 msgstr "Ils nous ont fait confiance"
 
@@ -1991,7 +1991,7 @@ msgstr "Titre en arabe"
 msgid "Too many requests. Please wait a few minutes or contact us on WhatsApp."
 msgstr "Trop de demandes. Patientez quelques minutes ou contactez-nous sur WhatsApp."
 
-#: templates/page-about.php:144
+#: templates/page-about.php:149
 msgid "Trade register"
 msgstr "Registre du commerce"
 
@@ -2042,7 +2042,7 @@ msgstr "Utilisé pour le lien « Ouvrir dans Google Maps »."
 msgid "Used to compute the years of experience."
 msgstr "Sert à calculer les années d’expérience."
 
-#: footer.php:46
+#: footer.php:47
 msgid "Useful links"
 msgstr "Liens utiles"
 
@@ -2050,11 +2050,11 @@ msgstr "Liens utiles"
 msgid "Usually replies within 15 minutes"
 msgstr "Répond en général en moins de 15 min"
 
-#: templates/page-about.php:73
+#: templates/page-about.php:78
 msgid "Valuation"
 msgstr "Estimation"
 
-#: front-page.php:273
+#: front-page.php:263
 msgid "Value my property"
 msgstr "Estimer mon bien"
 
@@ -2105,15 +2105,15 @@ msgstr "Date de visite"
 msgid "Visit request"
 msgstr "Demande de visite"
 
-#: templates/page-about.php:75
+#: templates/page-about.php:80
 msgid "Visits"
 msgstr "Visites"
 
-#: templates/page-contact.php:167
+#: templates/page-contact.php:87
 msgid "Visits take place from Sunday to Thursday and on Saturday morning. The agency is closed on Fridays."
 msgstr "Les visites ont lieu du dimanche au jeudi et le samedi matin. L’agence est fermée le vendredi."
 
-#: templates/page-contact.php:80
+#: template-parts/contact-form.php:43
 msgid "We answer within 24 working hours."
 msgstr "Réponse sous 24 h ouvrées."
 
@@ -2121,15 +2121,15 @@ msgstr "Réponse sous 24 h ouvrées."
 msgid "We could not send your request. Please try again or contact us on WhatsApp."
 msgstr "Nous n’avons pas pu envoyer votre demande. Réessayez ou contactez-nous sur WhatsApp."
 
-#: templates/page-contact.php:168
+#: templates/page-contact.php:88
 msgid "We organise video visits and prepare a power of attorney with the notary if needed."
 msgstr "Nous organisons des visites vidéo et préparons une procuration avec le notaire si besoin."
 
-#: front-page.php:169
+#: front-page.php:159
 msgid "We prepare the file and stay with you until the signature."
 msgstr "Nous préparons le dossier et vous accompagnons jusqu’à la signature."
 
-#: templates/page-about.php:76
+#: templates/page-about.php:81
 msgid "We prepare the file and the appointment at the notary."
 msgstr "Préparation du dossier et rendez-vous chez le notaire."
 
@@ -2137,7 +2137,7 @@ msgstr "Préparation du dossier et rendez-vous chez le notaire."
 msgid "We send you the properties that match this search, nothing else."
 msgstr "Nous vous envoyons les biens qui correspondent à cette recherche, rien d’autre."
 
-#: templates/page-about.php:73
+#: templates/page-about.php:78
 msgid "We visit the property and set a price based on recent sales in the area."
 msgstr "Visite du bien et prix fondé sur les ventes récentes du quartier."
 
@@ -2145,17 +2145,17 @@ msgstr "Visite du bien et prix fondé sur les ventes récentes du quartier."
 msgid "Wednesday"
 msgstr "Mercredi"
 
-#: front-page.php:144
+#: front-page.php:134
 msgid "What are you looking for?"
 msgstr "Que cherchez-vous ?"
 
-#: templates/page-contact.php:165
+#: templates/page-contact.php:85
 msgid "What are your agency fees?"
 msgstr "Quels sont vos frais d’agence ?"
 
-#: front-page.php:274
-#: templates/page-about.php:128
-#: templates/page-contact.php:62
+#: front-page.php:264
+#: templates/page-about.php:133
+#: templates/page-contact.php:40
 #: single-property.php:274
 msgid "WhatsApp"
 msgstr "WhatsApp"
@@ -2169,7 +2169,7 @@ msgstr "WhatsApp à propos du bien %s"
 msgid "WhatsApp number"
 msgstr "Numéro WhatsApp"
 
-#: front-page.php:70
+#: front-page.php:60
 msgid "WhatsApp reply within 15 minutes"
 msgstr "Réponse WhatsApp en 15 min"
 
@@ -2177,7 +2177,7 @@ msgstr "Réponse WhatsApp en 15 min"
 msgid "When you send a message or request a visit, we store your name, phone number, optional e-mail address and message in our back office so that an adviser can answer you. We keep them only as long as needed to handle your request."
 msgstr "Lorsque vous envoyez un message ou demandez une visite, nous enregistrons votre nom, votre numéro de téléphone, votre adresse e-mail (facultative) et votre message dans notre back-office afin qu’un conseiller puisse vous répondre. Nous ne les conservons que le temps nécessaire au traitement de votre demande."
 
-#: front-page.php:165
+#: front-page.php:155
 msgid "Why choose us"
 msgstr "Pourquoi nous choisir"
 
@@ -2215,7 +2215,7 @@ msgstr "Wilayas et communes"
 msgid "Wilayas covered"
 msgstr "Wilayas couvertes"
 
-#: templates/page-about.php:159
+#: templates/page-about.php:164
 msgid "Without appointment Sunday to Thursday, or by appointment on Saturday morning."
 msgstr "Sans rendez-vous du dimanche au jeudi, ou sur rendez-vous le samedi matin."
 
@@ -2224,12 +2224,12 @@ msgstr "Sans rendez-vous du dimanche au jeudi, ou sur rendez-vous le samedi mati
 msgid "Write at least 10 characters."
 msgstr "Écrivez au moins 10 caractères."
 
-#: footer.php:41
-#: footer.php:66
-#: templates/page-contact.php:131
+#: footer.php:42
+#: footer.php:67
+#: template-parts/contact-form.php:94
 #: single-property.php:207
-#: header.php:66
-#: header.php:89
+#: header.php:67
+#: header.php:90
 msgid "Write on WhatsApp"
 msgstr "Écrire sur WhatsApp"
 
@@ -2242,7 +2242,7 @@ msgstr "Construction"
 msgid "Year founded"
 msgstr "Année de création"
 
-#: templates/page-contact.php:166
+#: templates/page-contact.php:86
 msgid "Yes. We ask for the notarial deed and, when there is one, the land registry booklet before publishing a property."
 msgstr "Oui. Nous demandons l’acte notarié et, quand il existe, le livret foncier avant de publier un bien."
 
@@ -2301,7 +2301,7 @@ msgstr "wilayas couvertes"
 msgid "years of experience"
 msgstr "ans d’expérience"
 
-#: footer.php:86
+#: footer.php:87
 msgid "© %1$s %2$s"
 msgstr "© %1$s %2$s"
 

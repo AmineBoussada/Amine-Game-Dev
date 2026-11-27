@@ -151,3 +151,55 @@ function tassili_shortcode_wilayas( $atts ) {
 	return (string) ob_get_clean();
 }
 add_shortcode( 'tassili_wilayas', 'tassili_shortcode_wilayas' );
+
+/**
+ * Print the current page's Elementor content full width, if it was built with Elementor.
+ *
+ * @return bool True when the page was printed.
+ */
+function tassili_render_builder_page() {
+	if ( ! is_singular() || ! tassili_is_elementor_post( get_queried_object_id() ) ) {
+		return false;
+	}
+	echo '<main id="main" class="site-main site-main--builder">';
+	while ( have_posts() ) {
+		the_post();
+		the_content();
+	}
+	echo '</main>';
+	return true;
+}
+
+/**
+ * Let Elementor Pro's Theme Builder replace the header or footer, when it has a template for them.
+ *
+ * @param string $location Location name.
+ * @return bool True when Elementor printed it.
+ */
+function tassili_elementor_location( $location ) {
+	return function_exists( 'elementor_theme_do_location' ) && elementor_theme_do_location( $location );
+}
+
+/**
+ * Register the Theme Builder locations (Elementor Pro).
+ *
+ * @param object $manager Locations manager.
+ */
+function tassili_register_elementor_locations( $manager ) {
+	$manager->register_all_core_location();
+}
+add_action( 'elementor/theme/register_locations', 'tassili_register_elementor_locations' );
+
+/**
+ * Shortcode [tassili_contact_form]: the contact form.
+ *
+ * @return string
+ */
+function tassili_shortcode_contact_form() {
+	ob_start();
+	echo '<div class="container tassili-sc-form">';
+	get_template_part( 'template-parts/contact-form' );
+	echo '</div>';
+	return (string) ob_get_clean();
+}
+add_shortcode( 'tassili_contact_form', 'tassili_shortcode_contact_form' );

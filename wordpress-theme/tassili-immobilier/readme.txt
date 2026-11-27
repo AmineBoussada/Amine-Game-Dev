@@ -56,6 +56,10 @@ It registers custom post types and taxonomies, which the directory only allows i
 
 == Changelog ==
 
+= 1.3.0 =
+* About, Contact and Favourites pages can also be built with Elementor; new [tassili_contact_form] shortcode.
+* Elementor Pro Theme Builder can replace the header and footer.
+
 = 1.2.0 =
 * Home page and pages can be edited with Elementor. Shortcodes: [tassili_search], [tassili_listings], [tassili_wilayas].
 
