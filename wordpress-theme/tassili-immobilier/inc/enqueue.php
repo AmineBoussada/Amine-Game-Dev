@@ -37,7 +37,7 @@ function tassili_enqueue_assets() {
 	wp_enqueue_script( 'tassili-app', TASSILI_URI . 'assets/js/app.js', array(), $ver, $defer );
 	wp_localize_script( 'tassili-app', 'TassiliData', tassili_script_data() );
 
-	if ( is_front_page() || tassili_is_property_archive() || is_page_template( 'templates/page-favorites.php' ) ) {
+	if ( is_front_page() || tassili_is_elementor_post( get_queried_object_id() ) || tassili_is_property_archive() || is_page_template( 'templates/page-favorites.php' ) ) {
 		wp_enqueue_script( 'tassili-search', TASSILI_URI . 'assets/js/search.js', array( 'tassili-app' ), $ver, $defer );
 	}
 	if ( is_singular( 'property' ) ) {

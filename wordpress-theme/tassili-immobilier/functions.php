@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'TASSILI_VERSION', '1.1.0' );
+define( 'TASSILI_VERSION', '1.2.0' );
 define( 'TASSILI_DIR', trailingslashit( get_template_directory() ) );
 define( 'TASSILI_URI', trailingslashit( get_template_directory_uri() ) );
 
@@ -35,6 +35,7 @@ $tassili_modules = array(
 	'nav',
 	'rest',
 	'forms',
+	'elementor',
 	'demo-import',
 );
 

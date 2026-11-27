@@ -56,6 +56,9 @@ It registers custom post types and taxonomies, which the directory only allows i
 
 == Changelog ==
 
+= 1.2.0 =
+* Home page and pages can be edited with Elementor. Shortcodes: [tassili_search], [tassili_listings], [tassili_wilayas].
+
 = 1.1.0 =
 * New back office: "Biens immobiliers" menu (All properties, Add a property), Requests menu, Agency menu with overview.
 * Availability status (Available / Reserved / Sold or rented), list filters, home-page star, bulk actions, Duplicate.

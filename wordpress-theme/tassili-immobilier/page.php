@@ -15,6 +15,10 @@ get_header();
 	<?php
 	while ( have_posts() ) :
 		the_post();
+		if ( tassili_is_elementor_post( get_the_ID() ) ) :
+			the_content();
+			continue;
+		endif;
 		?>
 		<div class="page-head">
 			<div class="container">

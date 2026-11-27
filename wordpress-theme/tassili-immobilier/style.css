@@ -4,7 +4,7 @@ Theme URI: https://example.com/tassili-immobilier
 Author: Tassili Immobilier
 Author URI: https://example.com
 Description: A bilingual French / Arabic real estate theme for Algerian agencies. Property listings with advanced search, galleries, WhatsApp contact, visit requests and lead capture. Full RTL support, light and dark mode, responsive from 360 px up.
-Version: 1.1.0
+Version: 1.2.0
 Requires at least: 6.4
 Tested up to: 6.7
 Requires PHP: 7.4
@@ -170,3 +170,8 @@ a.clear-all { text-decoration: underline; }
 .status-banner { justify-self: start; display: inline-block; padding: 6px 14px; border-radius: var(--r-sm); font-weight: 600; font-size: 14px; margin: 0; }
 .status-banner--reserved { background: var(--orange); color: #023047; }
 .status-banner--closed { background: #3F5C6D; color: #fff; }
+
+/* ---------- Pages built with Elementor ---------- */
+.is-elementor-page .site-main--builder > .elementor,
+.is-elementor-page .site-main > .elementor { width: 100%; }
+.tassili-sc-search { padding-block: var(--s-5); }
