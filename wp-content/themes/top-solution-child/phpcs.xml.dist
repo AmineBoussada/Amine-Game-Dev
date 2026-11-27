@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<ruleset name="Top Solution Child">
+	<description>WordPress Coding Standards for the Top Solution child theme.</description>
+	<file>.</file>
+	<exclude-pattern>*/node_modules/*</exclude-pattern>
+	<exclude-pattern>*/vendor/*</exclude-pattern>
+	<arg name="extensions" value="php"/>
+	<arg name="colors"/>
+	<arg value="ps"/>
+	<config name="minimum_supported_wp_version" value="6.4"/>
+	<config name="testVersion" value="7.4-"/>
+	<rule ref="WordPress-Extra"/>
+	<rule ref="WordPress-Docs"/>
+	<rule ref="PHPCompatibilityWP"/>
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array"><element value="top-solution-child"/></property>
+		</properties>
+	</rule>
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" type="array"><element value="ts_child"/><element value="TS_CHILD"/></property>
+		</properties>
+	</rule>
+	<!-- Template files are included from within WordPress functions (get_template_part / load_template), so their variables are local, not global. -->
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound">
+		<exclude-pattern>*/template-parts/*</exclude-pattern>
+		<exclude-pattern>*/templates/*</exclude-pattern>
+		<exclude-pattern>*/header.php</exclude-pattern>
+		<exclude-pattern>*/footer.php</exclude-pattern>
+		<exclude-pattern>*/front-page.php</exclude-pattern>
+		<exclude-pattern>*/searchform.php</exclude-pattern>
+	</rule>
+</ruleset>
