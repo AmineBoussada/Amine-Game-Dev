@@ -83,25 +83,20 @@ $city = trim((string) end($city_parts));
 
 <section class="section" aria-labelledby="cat-title">
     <div class="container">
-        <div class="section-heading reveal">
-            <div>
-                <span class="eyebrow"><?php echo esc_html(nova_t('Explorer')); ?></span>
-                <h2 id="cat-title" class="section-heading__title"><?php echo esc_html(nova_t('Trouvez par type de bien')); ?></h2>
-                <p class="lead"><?php echo esc_html(nova_t('Appartements, villas, terrains ou locaux : accédez directement aux biens qui correspondent à votre projet.')); ?></p>
-            </div>
-        </div>
-        <div class="categories">
-            <?php foreach ($categories as $i => [$type, $text, $scene]) : $n = nova_count_type($type); $label = nova_t(nova_type_plural_labels()[$type]); ?>
-                <a href="<?php echo esc_url(add_query_arg('bien', $type, $archive)); ?>" class="category-card reveal reveal-delay-<?php echo $i; ?>">
-                    <?php echo nova_image(['id' => 0, 'alt' => $label, 'scene' => $scene, 'seed' => "cat-{$type}"], 'nova-card', 'category-card__img'); ?>
-                    <div class="category-card__body">
-                        <span class="category-card__count"><?php echo esc_html($n . ' ' . nova_t($n > 1 ? 'biens' : 'bien')); ?></span>
-                        <h3><?php echo esc_html($label); ?></h3>
-                        <p><?php echo esc_html(nova_t($text)); ?></p>
-                        <span class="category-card__arrow" aria-hidden="true"><?php echo nova_icon('arrow', 18, 'rtl-flip'); ?></span>
-                    </div>
-                </a>
-            <?php endforeach; ?>
+        <h2 id="cat-title" class="type-row__title reveal"><?php echo esc_html(nova_t('Rechercher par type de bien')); ?></h2>
+        <div class="type-row" data-type-row>
+            <ul class="type-row__list" data-type-list>
+                <?php foreach ($categories as [$type, $text, $scene]) : $n = nova_count_type($type); $label = nova_t(nova_type_plural_labels()[$type]); ?>
+                    <li>
+                        <a href="<?php echo esc_url(add_query_arg('bien', $type, $archive)); ?>" class="type-card">
+                            <?php echo nova_image(['id' => 0, 'alt' => '', 'scene' => $scene, 'seed' => "cat-{$type}"], 'nova-card', 'type-card__img'); ?>
+                            <span class="type-card__name"><?php echo esc_html($label); ?></span>
+                            <span class="type-card__count"><?php echo esc_html($n . ' ' . nova_t($n > 1 ? 'biens' : 'bien')); ?></span>
+                        </a>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+            <button type="button" class="type-row__next" data-type-next aria-label="<?php echo esc_attr(nova_t('Suivant')); ?>" hidden><?php echo nova_icon('chevronRight', 22, 'rtl-flip'); ?></button>
         </div>
     </div>
 </section>

@@ -253,3 +253,13 @@
   right: -9999px;
   left: auto;
 }
+[dir="rtl"] .type-row__next {
+  left: -0.5rem;
+  right: auto;
+}
+@media (max-width: 600px) {
+  [dir="rtl"] .type-row__next {
+    left: 0;
+    right: auto;
+  }
+}

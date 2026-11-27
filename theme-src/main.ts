@@ -380,6 +380,28 @@ function initThemeToggle() {
   paint();
 }
 
+/* ---------- Home: row of property types, "next" arrow on small screens ---------- */
+function initTypeRow() {
+  const row = $('[data-type-row]');
+  const list = row && $('[data-type-list]', row);
+  const next = row && $<HTMLButtonElement>('[data-type-next]', row);
+  if (!row || !list || !next) return;
+  const rtl = () => getComputedStyle(list).direction === 'rtl';
+  const paint = () => {
+    const max = list.scrollWidth - list.clientWidth;
+    const pos = Math.abs(list.scrollLeft);
+    next.hidden = max <= 2 || pos >= max - 2;
+  };
+  next.addEventListener('click', () => {
+    const card = list.querySelector('li');
+    const step = card ? card.getBoundingClientRect().width + 16 : list.clientWidth * 0.8;
+    list.scrollBy({ left: rtl() ? -step : step, behavior: reduceMotion ? 'auto' : 'smooth' });
+  });
+  list.addEventListener('scroll', paint, { passive: true });
+  window.addEventListener('resize', paint);
+  paint();
+}
+
 // Lets the Elementor editor redraw illustrations of re-rendered widgets.
 (window as unknown as { NOVA_REFRESH?: () => void }).NOVA_REFRESH = () => {
   fillIllustrations();
@@ -388,6 +410,7 @@ function initThemeToggle() {
 
 fillIllustrations();
 initThemeToggle();
+initTypeRow();
 initHeader();
 initReveal();
 initFavorites();

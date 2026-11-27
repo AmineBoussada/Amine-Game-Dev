@@ -337,6 +337,7 @@ return [
     'Trier par' => 'الترتيب حسب',
     'Trouvez le bien qui correspond à votre projet.' => 'اعثروا على العقار الذي يناسب مشروعكم.',
     'Trouvez par type de bien' => 'ابحثوا حسب نوع العقار',
+    'Rechercher par type de bien' => 'ابحثوا حسب نوع العقار',
     'Type de transaction' => 'نوع المعاملة',
     'Un accompagnement exigeant, du premier appel à la remise des clés.' => 'مرافقة دقيقة، من أول اتصال إلى تسليم المفاتيح.',
     'Une agence oranaise, une exigence européenne.' => 'وكالة جزائرية بمعايير عالية.',
