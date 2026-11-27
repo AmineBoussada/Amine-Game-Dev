@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Top Solution — Visual Prototype (static, placeholder content)</title>
+<style>
+:root{--bg:#fff;--surface:#F5F5F4;--surface2:#ECECEA;--ink:#1F1F1D;--ink2:#5B5B57;--wood:#B98B5E;--wood-d:#8A5F37;--tint:#F3E9DE;--ok:#2F7D4F;--warn:#B26B00;--bad:#B3261E;--line:#E2E2DF;--r:8px;
+--font:"IBM Plex Sans Arabic","Noto Kufi Arabic",Tajawal,system-ui,"Segoe UI",Tahoma,sans-serif}
+*{box-sizing:border-box}body{margin:0;font-family:var(--font);color:var(--ink);background:#E9E7E3;line-height:1.7}
+h1,h2,h3,p{margin:0}
+.board{max-width:1500px;margin:0 auto;padding:24px 16px 64px}
+.board>h1{font-size:26px}.board>p{color:var(--ink2);margin-bottom:24px}
+.row{display:flex;gap:24px;flex-wrap:wrap;align-items:flex-start;margin-bottom:40px}
+.lbl{font-weight:700;margin:24px 0 12px;font-size:18px;border-inline-start:4px solid var(--wood);padding-inline-start:10px}
+.phone{width:390px;background:var(--bg);border-radius:28px;border:8px solid #222;overflow:hidden;position:relative}
+.phone .scr{height:760px;overflow:hidden;position:relative}
+.cap{width:390px;text-align:center;font-size:13px;color:var(--ink2);margin-top:6px}
+/* storefront components */
+.hdr{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--line);background:#fff}
+.logo{font-weight:800;color:var(--wood-d);letter-spacing:0}
+.ic{width:24px;height:24px;border:2px solid var(--ink);border-radius:6px;display:inline-block}
+.ann{background:var(--wood-d);color:#fff;text-align:center;font-size:13px;padding:6px}
+.hero{background:linear-gradient(135deg,#E4D3BF,#C9A27A 60%,#8A5F37);height:230px;position:relative;display:flex;align-items:flex-end;padding:20px}
+.hero.light{background:linear-gradient(135deg,#F3E9DE,#E4D3BF)}
+.hero h1{font-size:26px;line-height:1.35;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.25)}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;height:48px;padding:0 20px;border-radius:var(--r);border:2px solid var(--wood-d);background:var(--wood-d);color:#fff;font:700 16px var(--font);width:100%}
+.btn.sec{background:#fff;color:var(--wood-d)}.btn.l{height:56px;font-size:18px}
+.btn.inl{width:auto}
+.sec-p{padding:20px 16px}.surf{background:var(--surface)}
+.h2{font-size:20px;font-weight:700;margin-bottom:12px}
+.trust{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center;font-size:12px}
+.trust div{background:var(--surface);border-radius:var(--r);padding:10px 4px}
+.trust i{display:block;width:28px;height:28px;margin:0 auto 4px;border-radius:50%;background:var(--tint);border:2px solid var(--wood)}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tile{height:110px;border-radius:12px;background:linear-gradient(160deg,#DCC6AB,#B98B5E);color:#fff;font-weight:700;display:flex;align-items:flex-end;padding:10px}
+.tile.g{background:linear-gradient(160deg,#E5E4E1,#BDBBB6);color:var(--ink)}
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pc .img{aspect-ratio:1/1;background:var(--surface);border-radius:12px;margin-bottom:8px;position:relative}
+.pc .t{font-size:14px;font-weight:600;line-height:1.5}.pc .p{font-weight:700}
+.pc s{color:var(--ink2);font-size:13px;font-weight:400;margin-inline-start:6px}
+.tag{display:inline-block;font-size:12px;padding:2px 10px;border-radius:999px;background:var(--tint);color:var(--wood-d);font-weight:600}
+.tag.ok{background:#E3F1E8;color:var(--ok)}.tag.warn{background:#FBEBD2;color:var(--warn)}
+.gal{aspect-ratio:4/5;background:linear-gradient(150deg,#EFE3D3,#D8BC9B);position:relative;max-height:300px;width:100%}
+.dots{position:absolute;bottom:10px;inset-inline:0;display:flex;gap:6px;justify-content:center}.dots i{width:7px;height:7px;border-radius:50%;background:#fff;opacity:.6}.dots i:first-child{opacity:1}
+.price{font-size:26px;font-weight:700}.price s{font-size:16px;color:var(--ink2);font-weight:400;margin-inline-start:8px}
+.save{background:var(--tint);color:var(--wood-d);border-radius:999px;padding:2px 12px;font-size:13px;font-weight:700;margin-inline-start:8px}
+.card{border:1.5px solid var(--line);border-radius:12px;padding:12px;display:flex;gap:12px;align-items:center;background:#fff;margin-bottom:10px}
+.card.sel{border-color:var(--wood-d);background:var(--tint)}
+.rd{width:22px;height:22px;border-radius:50%;border:2px solid var(--ink2);flex:none;position:relative}
+.sel .rd{border-color:var(--wood-d)}.sel .rd:after{content:"";position:absolute;inset:4px;background:var(--wood-d);border-radius:50%}
+.card b{display:block}.card small{color:var(--ink2)}
+.card .am{margin-inline-start:auto;font-weight:700;text-align:end}
+.fld{margin-bottom:12px}.fld label{display:block;font-size:14px;font-weight:600;margin-bottom:4px}
+.in{height:48px;border:1px solid var(--line);background:var(--surface);border-radius:var(--r);padding:0 12px;display:flex;align-items:center;color:var(--ink2)}
+.in.err{border-color:var(--bad);background:#fff}
+.errm{color:var(--bad);font-size:13px;margin-top:2px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sum{background:var(--surface);border-radius:12px;padding:14px}.sum div{display:flex;justify-content:space-between;padding:3px 0}.sum .tot{border-top:1px solid var(--line);margin-top:6px;padding-top:8px;font-weight:700;font-size:18px}
+.sw{display:flex;gap:10px}.sw i{width:40px;height:40px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px var(--line)}.sw i.on{box-shadow:0 0 0 2px var(--wood-d)}
+.stk{position:absolute;bottom:0;inset-inline:0;background:#fff;border-top:1px solid var(--line);padding:10px 16px;display:flex;gap:12px;align-items:center;box-shadow:0 -2px 12px rgba(0,0,0,.06)}
+.stk .btn{flex:1}.stk .pr{font-weight:700;line-height:1.2}.stk small{display:block;color:var(--ink2);font-weight:400;font-size:12px}
+.promo{background:var(--wood-d);color:#fff;padding:10px 16px;font-weight:600;display:flex;justify-content:space-between}
+.chk{width:72px;height:72px;border-radius:50%;background:#E3F1E8;margin:24px auto 12px;position:relative;border:3px solid var(--ok)}
+.chk:after{content:"";position:absolute;width:20px;height:36px;border:solid var(--ok);border-width:0 5px 5px 0;transform:rotate(45deg);inset:10px 0 0 22px}
+.step{display:flex;gap:10px;margin:8px 0;align-items:center}.step i{width:26px;height:26px;border-radius:50%;background:var(--wood-d);color:#fff;font-style:normal;text-align:center;font-weight:700;flex:none}
+/* admin */
+.adm{background:#F0F0F1;border-radius:10px;border:1px solid #c3c4c7;overflow:hidden;font-size:14px;width:100%;max-width:1180px}
+.adm .bar{background:#1d2327;color:#fff;padding:8px 16px;display:flex;gap:16px;font-size:13px}
+.adm .main{display:grid;grid-template-columns:200px 1fr}
+.adm .nav{background:#1d2327;color:#c3c4c7;padding:8px 0}.adm .nav div{padding:8px 16px}.adm .nav .on{background:var(--wood-d);color:#fff;font-weight:700}
+.adm .cont{padding:20px}
+.panel{background:#fff;border:1px solid #c3c4c7;border-radius:6px}
+.panel .hd{padding:12px 16px;border-bottom:1px solid #e0e0e0;display:flex;justify-content:space-between;align-items:center;font-weight:700}
+.tabs{display:flex;gap:2px;padding:8px 16px 0;border-bottom:1px solid #e0e0e0;flex-wrap:wrap}
+.tabs span{padding:8px 14px;border:1px solid transparent;border-radius:6px 6px 0 0;color:var(--ink2)}.tabs .on{background:#fff;border-color:#e0e0e0;border-bottom-color:#fff;margin-bottom:-1px;color:var(--wood-d);font-weight:700}
+.tabs .dot:after{content:"";display:inline-block;width:7px;height:7px;background:var(--bad);border-radius:50%;margin-inline-start:6px}
+.cols{display:grid;grid-template-columns:150px 1fr 230px;gap:0}
+.rail{border-inline-end:1px solid #e0e0e0;padding:12px}.rail div{padding:8px 10px;border-radius:6px;margin-bottom:4px}.rail .on{background:var(--tint);color:var(--wood-d);font-weight:700}
+.canvas{padding:16px}.side{border-inline-start:1px solid #e0e0e0;padding:12px;background:#FAFAFA;font-size:13px}
+.side h4{margin:0 0 8px}.chkl div{padding:2px 0}.chkl .y:before{content:"✓ ";color:var(--ok);font-weight:700}.chkl .w:before{content:"! ";color:var(--warn);font-weight:700}
+.tpls{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}
+.tpl{border:2px solid var(--line);border-radius:10px;padding:8px;background:#fff}.tpl.on{border-color:var(--wood-d);background:var(--tint)}
+.tpl .pv{height:90px;background:var(--surface);border-radius:6px;margin-bottom:6px;display:flex;flex-direction:column;gap:4px;padding:6px}
+.tpl .pv i{display:block;background:#d9d6d0;border-radius:3px;height:8px}.tpl .pv i.h{height:34px;background:#C9A27A}.tpl .pv i.b{height:12px;background:var(--wood-d);width:50%}
+.sec-row{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:#fff;margin-bottom:6px}
+.sec-row .gr{color:#999;cursor:grab;font-size:18px}.sec-row .nm{flex:1;font-weight:600}.sec-row small{color:var(--ink2)}
+.tg{width:38px;height:22px;border-radius:999px;background:var(--wood-d);position:relative;flex:none}.tg:after{content:"";position:absolute;top:3px;inset-inline-end:3px;width:16px;height:16px;background:#fff;border-radius:50%}
+.tg.off{background:#c3c4c7}.tg.off:after{inset-inline-end:auto;inset-inline-start:3px}
+.btn-a{display:inline-block;padding:6px 14px;border-radius:6px;background:var(--wood-d);color:#fff;font-weight:700;font-size:13px}.btn-a.s{background:#fff;color:var(--wood-d);border:1px solid var(--wood-d)}
+.unsaved{background:#FFF8E5;border-top:1px solid #f0d58a;padding:8px 16px;display:flex;justify-content:space-between;align-items:center}
+table.t{width:100%;border-collapse:collapse;background:#fff;font-size:13px}table.t th,table.t td{padding:8px 10px;border-bottom:1px solid #eee;text-align:start}table.t th{background:#fafafa}
+.pill{padding:2px 10px;border-radius:999px;font-size:12px;font-weight:600;background:var(--surface);}
+.pill.g{background:#E3F1E8;color:var(--ok)}.pill.w{background:#FBEBD2;color:var(--warn)}.pill.r{background:#FBE1DF;color:var(--bad)}
+.dev{display:flex;gap:6px;margin-bottom:8px}.dev span{padding:4px 12px;border:1px solid var(--line);border-radius:6px;background:#fff}.dev .on{background:var(--tint);border-color:var(--wood-d)}
+@media(max-width:900px){.row{flex-direction:column}.adm,.adm .cont{min-width:0;max-width:100%}table.t{display:block;overflow-x:auto}.adm .main{grid-template-columns:1fr}.adm .nav{display:none}.cols{grid-template-columns:1fr}.side,.rail{border:0}.tpls{grid-template-columns:1fr}}
+@media(max-width:430px){.phone{width:100%}.cap{width:100%}}
+</style>
+</head>
+<body>
+<div class="board">
+<h1>Top Solution — نموذج بصري (Visual prototype)</h1>
+<p>Static design prototype. All Arabic text, labels and numbers are <b>placeholders</b>; no real products, prices or business data. Tokens = DESIGN_SYSTEM.md.</p>
+
+<div class="lbl">Storefront — mobile (RTL, 390px)</div>
+<div class="row">
+
+<!-- Homepage -->
+<div><div class="phone"><div class="scr">
+ <div class="ann">الدفع عند الاستلام — توصيل إلى (نص تجريبي)</div>
+ <div class="hdr"><span class="ic"></span><span class="logo">Top Solution</span><span class="ic" style="border-radius:50%"></span></div>
+ <div class="hero"><div><h1>ديكور عصري لمنزلك (نص تجريبي)</h1><div class="btn inl" style="margin-top:12px;background:#fff;color:var(--wood-d);border-color:#fff">تسوّق الآن</div></div></div>
+ <div class="sec-p"><div class="trust"><div><i></i>الدفع عند الاستلام</div><div><i></i>توصيل للمنزل</div><div><i></i>نقاط استلام</div></div></div>
+ <div class="sec-p" style="padding-top:0"><div class="h2">الأقسام</div>
+  <div class="tiles"><div class="tile">المطابخ</div><div class="tile g">الحمامات</div><div class="tile g">المكاتب</div><div class="tile">المحلات</div></div></div>
+ <div class="sec-p surf"><div class="h2">منتجات مختارة</div>
+  <div class="pgrid"><div class="pc"><div class="img"></div><div class="t">اسم منتج تجريبي</div><div class="p">000 د.ج</div></div><div class="pc"><div class="img"></div><div class="t">اسم منتج تجريبي</div><div class="p">000 د.ج <s>000</s></div></div></div></div>
+</div></div><div class="cap">1 · الصفحة الرئيسية</div></div>
+
+<!-- Listing -->
+<div><div class="phone"><div class="scr">
+ <div class="hdr"><span class="ic"></span><span class="logo">Top Solution</span><span class="ic" style="border-radius:50%"></span></div>
+ <div class="sec-p" style="padding-bottom:8px"><small style="color:var(--ink2)">الرئيسية › المطابخ</small><h1 style="font-size:24px">المطابخ <small style="font-size:14px;color:var(--ink2);font-weight:400">(00 منتج)</small></h1></div>
+ <div style="display:flex;gap:8px;padding:0 16px 12px"><div class="btn sec inl" style="height:40px;font-size:14px;flex:1">ترتيب ▾</div><div class="btn sec inl" style="height:40px;font-size:14px;flex:1">تصفية ▾</div></div>
+ <div class="sec-p" style="padding-top:0"><div class="pgrid">
+  <div class="pc"><div class="img"></div><div class="t">منتج تجريبي</div><div class="p">000 د.ج</div><span class="tag ok">متوفر</span></div>
+  <div class="pc"><div class="img"></div><div class="t">منتج تجريبي</div><div class="p">000 د.ج <s>000</s></div><span class="tag warn">حسب الطلب</span></div>
+  <div class="pc"><div class="img"></div><div class="t">منتج تجريبي</div><div class="p">000 د.ج</div><span class="tag">عرض خاص</span></div>
+  <div class="pc"><div class="img"></div><div class="t">منتج تجريبي</div><div class="p">000 د.ج</div><span class="tag ok">متوفر</span></div></div>
+  <div class="btn sec" style="margin-top:16px">عرض المزيد</div></div>
+</div></div><div class="cap">3 · قائمة المنتجات</div></div>
+
+<!-- Standard landing -->
+<div><div class="phone"><div class="scr">
+ <div class="hdr"><span class="ic"></span><span class="logo">Top Solution</span><span class="ic" style="border-radius:50%"></span></div>
+ <div class="gal"><div class="dots"><i></i><i></i><i></i><i></i></div></div>
+ <div class="sec-p"><span class="tag ok">متوفر</span><h1 style="font-size:24px;margin:6px 0">اسم المنتج (تجريبي)</h1>
+  <div class="price">000 د.ج <s>000</s><span class="save">وفّر 00</span></div>
+  <p style="color:var(--ink2);margin:6px 0 14px">وصف قصير للمنتج يظهر هنا من ووكومرس (نص تجريبي).</p>
+  <div class="sw" style="margin-bottom:14px"><i style="background:#C9A27A" class="on"></i><i style="background:#6B4A2E"></i><i style="background:#E8E6E1"></i></div>
+  <div class="btn l">اطلب الآن</div><p style="text-align:center;font-size:13px;color:var(--ink2);margin-top:6px">الدفع عند الاستلام</p></div>
+ <div class="sec-p surf"><div class="h2">المزايا</div><div class="trust"><div><i></i>ميزة 1</div><div><i></i>ميزة 2</div><div><i></i>ميزة 3</div></div></div>
+ <div class="stk"><div class="pr">000 د.ج<small>الدفع عند الاستلام</small></div><div class="btn">اطلب الآن</div></div>
+</div></div><div class="cap">4 · صفحة المنتج القياسية (+ شريط الطلب اللاصق)</div></div>
+
+<!-- Standard landing: order form -->
+<div><div class="phone"><div class="scr">
+ <div class="sec-p"><div class="h2">اطلب الآن</div>
+  <div class="card sel"><span class="rd"></span><div><b>قطعة واحدة</b><small>السعر العادي</small></div><div class="am">000 د.ج</div></div>
+  <div class="card"><span class="rd"></span><div><b>قطعتان</b><small>وفّر 00 على القطعة</small></div><div class="am">000 د.ج</div></div>
+  <div class="fld"><label>الاسم الكامل</label><div class="in">محمد (مثال)</div></div>
+  <div class="fld"><label>رقم الهاتف</label><div class="in err" dir="ltr" style="justify-content:flex-end">05 ••</div><div class="errm">أدخل رقم هاتف صحيح</div></div>
+  <div class="two"><div class="fld"><label>الولاية</label><div class="in">اختر ▾</div></div><div class="fld"><label>البلدية</label><div class="in">اختر ▾</div></div></div>
+  <div class="two"><div class="card sel" style="padding:10px"><span class="rd"></span><b>للمنزل</b></div><div class="card" style="padding:10px"><span class="rd"></span><b>نقطة استلام</b></div></div>
+  <div class="sum"><div><span>المنتجات</span><span>000 د.ج</span></div><div><span>التوصيل</span><span>00 د.ج</span></div><div class="tot"><span>المبلغ عند الاستلام</span><span>000 د.ج</span></div></div>
+  <div class="btn l" style="margin-top:12px">تأكيد الطلب</div>
+ </div>
+</div></div><div class="cap">4b · نموذج الطلب (مضمّن) — مثال لخطأ إدخال</div></div>
+
+<!-- Promo -->
+<div><div class="phone"><div class="scr">
+ <div class="promo"><span>عرض خاص (تجريبي)</span><span dir="ltr">ينتهي: 00:00:00</span></div>
+ <div class="hdr"><span class="ic"></span><span class="logo">Top Solution</span><span class="ic" style="border-radius:50%"></span></div>
+ <div class="gal" style="max-height:220px"><div class="dots"><i></i><i></i><i></i></div></div>
+ <div class="sec-p"><h1 style="font-size:22px">اسم المنتج (تجريبي)</h1><div class="price" style="color:var(--wood-d)">000 د.ج <s>000</s><span class="save">وفّر 00</span></div></div>
+ <div class="sec-p surf" style="padding-top:14px"><div class="h2">اختر عرضك</div>
+  <div class="card"><span class="rd"></span><div><b>قطعة واحدة</b><small>000 د.ج للقطعة</small></div><div class="am">000</div></div>
+  <div class="card sel"><span class="rd"></span><div><b>قطعتان</b> <span class="tag">الأكثر توفيراً</span><small>000 د.ج للقطعة</small></div><div class="am">000</div></div>
+  <div class="card"><span class="rd"></span><div><b>3 قطع + هدية</b><small>هدية: (منتج تجريبي)</small></div><div class="am">000</div></div>
+  <div class="btn l">اطلب الآن</div></div>
+</div></div><div class="cap">5 · صفحة العرض الترويجي</div></div>
+
+<!-- Premium -->
+<div><div class="phone"><div class="scr">
+ <div class="hdr" style="position:absolute;z-index:2;inset-inline:0;background:transparent;border:0"><span class="ic" style="border-color:#fff"></span><span class="logo" style="color:#fff">Top Solution</span><span></span></div>
+ <div class="hero" style="height:420px;background:linear-gradient(170deg,#CBB190,#7A5230)"><div><small style="color:#F3E9DE">المجموعة الفاخرة</small><h1 style="font-size:32px">اسم المنتج الفاخر (تجريبي)</h1><p style="color:#F3E9DE">000 د.ج</p></div></div>
+ <div style="padding:48px 24px"><div style="width:48px;height:3px;background:var(--wood);margin-bottom:16px"></div><p style="font-size:20px;line-height:1.9">قصة المنتج والحرفية والخامات — فقرة كبيرة بمساحة بيضاء واسعة (نص تجريبي).</p></div>
+ <div class="stk"><div class="pr">000 د.ج</div><div class="btn" style="flex:1">اطلب الآن</div></div>
+</div></div><div class="cap">6 · صفحة المنتج الفاخر</div></div>
+
+<!-- Success -->
+<div><div class="phone"><div class="scr">
+ <div class="hdr"><span class="ic"></span><span class="logo">Top Solution</span><span class="ic" style="border-radius:50%"></span></div>
+ <div style="text-align:center;padding:0 16px"><div class="chk"></div><h1 style="font-size:24px">تم استلام طلبك</h1><p style="color:var(--ink2)">رقم الطلب</p><div style="font-size:30px;font-weight:800;color:var(--wood-d)" dir="ltr">#0000</div></div>
+ <div class="sec-p"><div class="h2">الخطوات القادمة</div><div class="step"><i>1</i>التأكيد (حسب سياسة المتجر)</div><div class="step"><i>2</i>التجهيز والشحن</div><div class="step"><i>3</i>الدفع عند الاستلام</div>
+  <div class="sum" style="margin-top:12px"><div><span>منتج تجريبي ×1</span><span>000</span></div><div><span>التوصيل</span><span>00</span></div><div class="tot"><span>المبلغ عند الاستلام</span><span>000 د.ج</span></div></div>
+  <div class="btn sec" style="margin-top:12px">تتبّع الطلب</div></div>
+</div></div><div class="cap">9 · نجاح الطلب</div></div>
+
+<!-- Tracking -->
+<div><div class="phone"><div class="scr">
+ <div class="hdr"><span class="ic"></span><span class="logo">Top Solution</span><span class="ic" style="border-radius:50%"></span></div>
+ <div class="sec-p"><h1 style="font-size:24px;margin-bottom:12px">تتبّع طلبك</h1>
+  <div class="fld"><label>رقم الطلب</label><div class="in">#0000</div></div><div class="fld"><label>رقم الهاتف</label><div class="in">05 ••</div></div><div class="btn">بحث</div>
+  <div class="h2" style="margin-top:24px">حالة الطلب</div>
+  <div class="step"><i>✓</i><b>تم الاستلام</b></div><div style="border-inline-start:2px solid var(--wood-d);height:18px;margin-inline-start:12px"></div>
+  <div class="step"><i>✓</i><b>قيد التجهيز</b></div><div style="border-inline-start:2px dashed var(--line);height:18px;margin-inline-start:12px"></div>
+  <div class="step"><i style="background:var(--surface2);color:var(--ink2)">3</i><span style="color:var(--ink2)">تم الشحن</span></div><div style="border-inline-start:2px dashed var(--line);height:18px;margin-inline-start:12px"></div>
+  <div class="step"><i style="background:var(--surface2);color:var(--ink2)">4</i><span style="color:var(--ink2)">تم التسليم</span></div></div>
+</div></div><div class="cap">10 · تتبّع الطلب (يحتاج موافقة على النطاق)</div></div>
+
+</div>
+
+<div class="lbl">Admin — product editor (desktop)</div>
+<div class="row"><div class="adm">
+ <div class="bar"><b>Top Solution</b><span>لوحة التحكم</span><span>المنتجات</span></div>
+ <div class="main"><div class="nav"><div>لوحة التحكم</div><div>المنتجات</div><div>الطلبات</div><div class="on">Top Solution</div><div>صفحات الهبوط</div><div>العروض</div><div>النماذج</div><div>المخزون</div><div>الموردون</div><div>التوصيل</div><div>التقارير</div></div>
+ <div class="cont"><div class="panel">
+  <div class="hd"><span>Top Solution — اسم المنتج (تجريبي)</span><span style="display:flex;gap:8px"><span class="btn-a s">معاينة</span><span class="btn-a">نشر التعديلات</span></span></div>
+  <div class="tabs"><span>عام</span><span class="on">صفحة الهبوط</span><span>العروض</span><span>نموذج الطلب</span><span class="dot">خيارات المنتج</span><span>التوفر</span><span>المورد والتكلفة 🔒</span></div>
+  <div class="cols">
+   <div class="rail"><div>١ القالب</div><div class="on">٢ الأقسام</div><div>٣ المحتوى</div><div>٤ زر الطلب</div><div>٥ النموذج</div><div>٦ المعاينة</div></div>
+   <div class="canvas">
+    <div style="font-weight:700;margin-bottom:8px">القالب</div>
+    <div class="tpls">
+     <div class="tpl on"><div class="pv"><i class="h"></i><i></i><i></i><i class="b"></i></div><b>منتج قياسي ✓</b><br><small>الأنسب لمعظم المنتجات</small></div>
+     <div class="tpl"><div class="pv"><i class="b" style="width:100%"></i><i class="h"></i><i></i><i></i></div><b>عرض ترويجي</b><br><small>تركيز على العروض</small></div>
+     <div class="tpl"><div class="pv"><i class="h" style="height:50px"></i><i></i><i style="width:60%"></i></div><b>منتج فاخر</b><br><small>صور كبيرة وقصة</small></div>
+    </div>
+    <div style="font-weight:700;margin-bottom:8px">الأقسام — اسحب لإعادة الترتيب</div>
+    <div class="sec-row"><span class="gr">⠿</span><span class="tg"></span><span class="nm">الواجهة (Hero)</span><small>من ووكومرس</small><span class="pill">مقفل</span></div>
+    <div class="sec-row"><span class="gr">⠿</span><span class="tg"></span><span class="nm">المزايا</span><small>مخصص</small><span class="btn-a s">تعديل ▾</span></div>
+    <div class="sec-row"><span class="gr">⠿</span><span class="tg"></span><span class="nm">العروض</span><small>2 عرض مرتبط</small><span class="btn-a s">تعديل ▾</span></div>
+    <div class="sec-row"><span class="gr">⠿</span><span class="tg"></span><span class="nm">الوصف</span><small>من ووكومرس</small><span class="btn-a s">تعديل ▾</span></div>
+    <div class="sec-row"><span class="gr">⠿</span><span class="tg off"></span><span class="nm" style="color:var(--ink2)">المواصفات</span><small>مخفي</small></div>
+    <div class="sec-row"><span class="gr">⠿</span><span class="tg"></span><span class="nm">نموذج الطلب</span><small>الموضع: بعد العروض · مضمّن</small><span class="btn-a s">إعداد</span></div>
+    <div class="sec-row"><span class="gr">⠿</span><span class="tg"></span><span class="nm">الأسئلة الشائعة</span><small>مخصص</small><span class="btn-a s">تعديل ▾</span></div>
+   </div>
+   <div class="side"><h4>ملخّص</h4><div>الحالة: <span class="pill w">مسودة</span></div><div>القالب: قياسي</div><div>النموذج: النموذج الافتراضي</div><div>العروض: 2</div><div>التوفر: <span class="pill g">متوفر</span></div>
+    <h4 style="margin-top:12px">قائمة التحقق</h4><div class="chkl"><div class="y">السعر من ووكومرس</div><div class="y">الصورة الرئيسية</div><div class="y">القالب</div><div class="y">نموذج الطلب</div><div class="w">خيارات: متغير بلا سعر</div></div></div>
+  </div>
+  <div class="unsaved"><span>لديك تغييرات غير محفوظة</span><span style="display:flex;gap:8px"><span class="btn-a s">تجاهل</span><span class="btn-a s">حفظ كمسودة</span><span class="btn-a">نشر</span></span></div>
+ </div></div></div>
+</div></div>
+
+<div class="lbl">Admin — preview mode & orders view</div>
+<div class="row">
+ <div class="adm" style="max-width:640px;min-width:0"><div class="cont"><div class="panel"><div class="hd"><span>٦ المعاينة</span><span class="btn-a">نشر</span></div>
+  <div style="padding:16px"><div class="dev"><span>📱 390</span><span>📟 768</span><span class="on">🖥 1280</span></div>
+  <div style="background:#FFF1D6;border:1px solid #f0d58a;padding:6px 12px;border-radius:6px;margin-bottom:8px;font-size:13px">نسخة تجريبية — غير منشورة · الطلبات معطّلة في المعاينة</div>
+  <div style="height:230px;border:1px solid var(--line);border-radius:8px;background:linear-gradient(120deg,#fff 50%,var(--surface))"></div>
+  <div style="display:flex;gap:8px;margin-top:12px"><span class="btn-a s">فتح في تبويب جديد</span><span class="btn-a s">نسخ رابط المعاينة</span><span class="btn-a s">اختبار الطلب</span></div></div></div></div></div>
+ <div class="adm" style="flex:1;min-width:0"><div class="cont"><div class="panel"><div class="hd"><span>الطلبات — صفحات الهبوط</span><span class="pill">عرض فقط على طلبات ووكومرس</span></div>
+  <div class="tabs"><span>الكل</span><span class="on">صفحات الهبوط</span><span>بانتظار التأكيد</span><span>تحتاج شراء</span><span>مشتبه بها</span></div>
+  <table class="t"><tr><th>#</th><th>العميل</th><th>المنتجات</th><th>العرض</th><th>الولاية / التوصيل</th><th>الإجمالي</th><th>الحالة</th><th>علامات</th></tr>
+  <tr><td>0000</td><td>اسم · 05••</td><td>منتج ×2</td><td>خصم كمية</td><td>— / منزل</td><td>000</td><td><span class="pill w">قيد المعالجة</span></td><td></td></tr>
+  <tr><td>0000</td><td>اسم · 05••</td><td>منتج ×1</td><td>—</td><td>— / نقطة استلام</td><td>000</td><td><span class="pill g">مكتمل</span></td><td></td></tr>
+  <tr><td>0000</td><td>اسم · 05••</td><td>منتج ×1</td><td>هدية</td><td>— / منزل</td><td>000</td><td><span class="pill w">قيد المعالجة</span></td><td><span class="pill r">تكرار محتمل</span></td></tr></table></div></div></div>
+</div>
+</div>
+</body></html>
