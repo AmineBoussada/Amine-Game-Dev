@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#CFE0EE"/><stop offset="1" stop-color="#F4F1EA"/></linearGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2D5E86"/><stop offset="1" stop-color="#0E2A47"/></linearGradient>
+    <linearGradient id="pool" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7FB2D3"/><stop offset="1" stop-color="#3C79A6"/></linearGradient>
+  </defs>
+  <rect width="1200" height="900" fill="url(#sky)"/>
+  <rect x="0" y="330" width="1200" height="170" fill="url(#sea)"/>
+  <path d="M780 330 h110 l-14 18 h-82 Z" fill="#FFFFFF"/><path d="M832 330 V250 L878 326 Z" fill="#FFFFFF"/>
+  <rect x="0" y="480" width="1200" height="420" fill="#F3EEE6"/>
+  <g stroke="#E2DBCF" stroke-width="2"><path d="M0 560 H1200 M0 660 H1200 M0 780 H1200 M150 480 V900 M400 480 V900 M650 480 V900 M900 480 V900"/></g>
+  <rect x="140" y="560" width="760" height="210" fill="url(#pool)"/>
+  <rect x="140" y="556" width="760" height="8" fill="#FFFFFF"/>
+  <g stroke="#FFFFFF" stroke-opacity="0.45" stroke-width="3" fill="none"><path d="M200 620 q40 -10 80 0"/><path d="M420 680 q50 -10 100 0"/><path d="M650 630 q40 -10 80 0"/><path d="M280 730 q50 -10 100 0"/></g>
+  <g>
+    <rect x="980" y="460" width="6" height="260" fill="#0E2A47"/>
+    <path d="M880 470 Q983 380 1086 470 Z" fill="#FFFFFF"/>
+    <g fill="#0E2A47"><path d="M900 462 Q912 430 930 424 L936 470 Z"/><path d="M968 470 L972 412 Q984 410 996 412 L1000 470 Z"/><path d="M1036 470 L1032 424 Q1052 430 1066 462 Z"/></g>
+  </g>
+  <g>
+    <rect x="940" y="730" width="200" height="22" fill="#FFFFFF" stroke="#0E2A47" stroke-width="2"/>
+    <g fill="#0E2A47"><rect x="952" y="730" width="14" height="22"/><rect x="982" y="730" width="14" height="22"/><rect x="1012" y="730" width="14" height="22"/><rect x="1042" y="730" width="14" height="22"/><rect x="1072" y="730" width="14" height="22"/><rect x="1102" y="730" width="14" height="22"/></g>
+    <rect x="950" y="752" width="6" height="40" fill="#B8975A"/><rect x="1124" y="752" width="6" height="40" fill="#B8975A"/>
+  </g>
+  <g fill="#3F5A3C"><ellipse cx="60" cy="380" rx="44" ry="140"/><ellipse cx="120" cy="420" rx="36" ry="110"/></g>
+</svg>

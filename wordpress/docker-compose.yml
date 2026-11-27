@@ -1,0 +1,50 @@
+# Local WordPress for developing / testing a theme in this folder.
+#   docker compose up -d                                   → NOVA theme on http://localhost:8080
+#   THEME=atlas-immobilier WP_PORT=8081 docker compose -p atlas up -d   → another theme, separate database
+#   docker compose run --rm cli wp <command>
+services:
+  db:
+    image: mariadb:11.4
+    environment:
+      MARIADB_DATABASE: nova
+      MARIADB_USER: nova
+      MARIADB_PASSWORD: nova
+      MARIADB_ROOT_PASSWORD: nova-root
+    volumes:
+      - db:/var/lib/mysql
+
+  wordpress:
+    image: wordpress:6.6-php8.3-apache
+    depends_on: [db]
+    ports:
+      - "${WP_PORT:-8080}:80"
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: nova
+      WORDPRESS_DB_PASSWORD: nova
+      WORDPRESS_DB_NAME: nova
+      WORDPRESS_DEBUG: "1"
+      WORDPRESS_CONFIG_EXTRA: |
+        define('WP_DEBUG_LOG', true);
+        define('WP_DEBUG_DISPLAY', true);
+    volumes:
+      - wp:/var/www/html
+      - ./${THEME:-nova-immobilier}:/var/www/html/wp-content/themes/${THEME:-nova-immobilier}
+
+  cli:
+    image: wordpress:cli-2.11-php8.3
+    profiles: [cli]
+    user: "33:33"
+    depends_on: [db, wordpress]
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: nova
+      WORDPRESS_DB_PASSWORD: nova
+      WORDPRESS_DB_NAME: nova
+    volumes:
+      - wp:/var/www/html
+      - ./${THEME:-nova-immobilier}:/var/www/html/wp-content/themes/${THEME:-nova-immobilier}
+
+volumes:
+  db:
+  wp:
