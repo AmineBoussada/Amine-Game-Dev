@@ -1,0 +1,465 @@
+<title>Top Solution Product Page</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;600;700&family=Noto+Kufi+Arabic:wght@600;700&display=swap">
+<style>
+/* Layout: long-form COD product landing page — centred-logo header, early order form, stacked selling sections (each one an editable section of the template), mid CTA, FAQ, dark footer, sticky order bar. Single column, max 560px (phone-first, like the reference). */
+:root {
+  /* Brand palette only: Moss, Mustard, Eggshell, White. Ink = text. ok/bad = form feedback only. */
+  --moss: #576238;
+  --mustard: #FFD95D;
+  --eggshell: #F0EADC;
+  --white: #FFFFFF;
+  --ink: #1E2218;
+  --ink-2: #565A48;
+  --line: rgba(87, 98, 56, 0.22);   /* Moss at low opacity */
+  --ok: #266A42;
+  --bad: #B3261E;
+  --shadow: 0 6px 24px rgba(87, 98, 56, 0.16);
+  --font-body: "IBM Plex Sans Arabic", system-ui, "Segoe UI", Tahoma, sans-serif;
+  --font-display: "Noto Kufi Arabic", "IBM Plex Sans Arabic", system-ui, Tahoma, sans-serif;
+  color-scheme: light;
+}
+/* Deliberately one light look so the brand colours never shift. */
+
+* { box-sizing: border-box; }
+body { background: var(--white); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.75; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 60; background: var(--white); }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.45; margin: 0; text-wrap: balance; }
+p { margin: 0; }
+button, input, select { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.num { font-variant-numeric: tabular-nums; unicode-bidi: isolate; }
+
+/* The page column: phone width even on desktop, like the reference. */
+.page { max-width: 560px; margin-inline: auto; background: var(--white); box-shadow: 0 0 0 1px var(--line); }
+.gut { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+
+.demo-note { background: var(--eggshell); color: var(--ink-2); font-size: 12.5px; text-align: center; padding-block: 6px; border-bottom: 1px solid var(--line); }
+
+/* Header: menu / centred logo / search */
+.hdr { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; background: var(--white); border-bottom: 1px solid var(--line); }
+.hdr-in { display: grid; grid-template-columns: 44px 1fr 44px; align-items: center; min-height: 72px; }
+.logo { text-align: center; line-height: 1.1; color: var(--moss); text-decoration: none; }
+.logo b { display: block; font-family: var(--font-display); font-size: 26px; color: var(--moss); letter-spacing: 0.5px; }
+.logo small { font-size: 11px; letter-spacing: 3px; color: var(--ink-2); text-transform: uppercase; }
+.icon-btn { width: 44px; height: 44px; border: 0; background: transparent; display: grid; place-items: center; cursor: pointer; color: var(--ink); border-radius: 10px; }
+.icon-btn svg { width: 26px; height: 26px; }
+
+/* Rating / social proof strip (admin-entered, shown only when reviews exist) */
+.proof { display: grid; grid-template-columns: 1.15fr 1fr; align-items: stretch; background: var(--eggshell); }
+.proof-score { background: var(--moss); color: var(--white); display: flex; align-items: center; justify-content: center; gap: 12px; padding: 12px; border-start-end-radius: 0; border-end-end-radius: 40px; }
+.proof-score b { font-family: var(--font-display); font-size: 30px; line-height: 1; }
+.proof-score span { font-size: 14px; line-height: 1.4; }
+.proof-who { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 6px; padding: 10px; font-size: 13px; font-weight: 600; color: var(--ink); }
+.avatars { display: flex; }
+.avatars i { width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--white); margin-inline-start: -8px; }
+.avatars i:first-child { margin-inline-start: 0; }
+
+/* Generic section */
+.sec { padding-block: 32px; display: grid; gap: 18px; }
+.sec + .sec { border-top: 1px solid var(--line); }
+.sec-alt { background: var(--eggshell); }
+.pill-title { justify-self: center; background: var(--moss); color: var(--white); border-radius: 22px; padding: 10px 22px; text-align: center; font-size: 22px; }
+.big-title { font-size: 26px; color: var(--moss); }
+.big-title em { font-style: normal; color: var(--ink); }
+
+/* Hero creative */
+.hero { display: grid; gap: 14px; padding-block: 24px; }
+.hero h1 { font-size: 28px; color: var(--moss); }
+.hero h1 span { color: var(--ink); display: block; }
+.hero-art { position: relative; border-radius: 16px; overflow: hidden; aspect-ratio: 4 / 3; max-width: 100%; }
+.hero-art svg { width: 100%; height: 100%; display: block; }
+.ba { position: absolute; top: 12px; padding: 2px 10px; border-radius: 6px; font-size: 12px; font-weight: 700; background: var(--white); color: var(--ink); }
+.ba-before { inset-inline-start: 12px; }
+.ba-after { inset-inline-end: 12px; }
+.quote { background: var(--eggshell); border-radius: 12px; padding: 12px 14px; font-size: 14px; color: var(--ink-2); }
+.quote b { color: var(--ink); }
+
+/* Order form card */
+.order-wrap { padding-block: 20px 28px; background: var(--white); }
+.order { background: var(--white); border-radius: 16px; box-shadow: var(--shadow); padding: 22px 18px; display: grid; gap: 14px; border: 1px solid var(--line); }
+.order h2 { font-size: 21px; text-align: center; }
+.order input, .order select { width: 100%; min-height: 54px; border: 1px solid var(--line); border-radius: 10px; background: var(--white); padding: 0 16px; font-size: 16px; }
+.order select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23576238' stroke-width='2.2' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: left 14px center; background-size: 20px 20px; padding-left: 44px; }
+.order input:focus, .order select:focus { border-color: var(--moss); outline: none; box-shadow: 0 0 0 3px var(--eggshell); }
+.order [aria-invalid="true"] { border-color: var(--bad); }
+.err { color: var(--bad); font-size: 13px; margin-top: -8px; }
+.err:empty { display: none; }
+.qty-offers { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.qo { display: grid; gap: 2px; padding: 10px 12px; border: 1.5px solid var(--line); border-radius: 12px; cursor: pointer; text-align: start; position: relative; }
+.qo:has(input:checked) { border-color: var(--moss); background: var(--eggshell); }
+.qo input { position: absolute; opacity: 0; pointer-events: none; }
+.qo b { font-size: 15px; }
+.qo small { color: var(--ink-2); font-size: 13px; }
+.qo .flag { position: absolute; top: -10px; inset-inline-end: 10px; background: var(--mustard); color: var(--ink); font-size: 11px; font-weight: 700; padding: 0 8px; border-radius: 99px; }
+.ship { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.ship label { display: flex; align-items: center; gap: 8px; padding: 12px; border: 1.5px solid var(--line); border-radius: 12px; cursor: pointer; font-weight: 600; font-size: 15px; }
+.ship label:has(input:checked) { border-color: var(--moss); background: var(--eggshell); }
+.ship input { accent-color: var(--moss); width: 18px; height: 18px; margin: 0; }
+.line { display: grid; grid-template-columns: 64px 1fr auto; gap: 12px; align-items: center; border-block: 1px solid var(--line); padding-block: 14px; }
+.line .thumb { position: relative; width: 64px; height: 64px; border-radius: 10px; background: var(--eggshell); overflow: hidden; }
+.line .thumb svg { width: 100%; height: 100%; }
+.line .q { position: absolute; top: -2px; inset-inline-end: -2px; width: 22px; height: 22px; border-radius: 50%; background: var(--ink-2); color: var(--white); font-size: 12px; font-weight: 700; display: grid; place-items: center; }
+.line .nm { font-weight: 700; line-height: 1.4; min-width: 0; }
+.line .nm small { display: block; font-weight: 400; color: var(--ink-2); font-size: 13px; }
+.line .pr { font-weight: 700; font-size: 18px; }
+.sums { display: grid; gap: 2px; font-size: 14px; color: var(--ink-2); }
+.sums div { display: flex; justify-content: space-between; }
+.sums .tot { color: var(--ink); font-weight: 700; font-size: 17px; }
+.cta { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; min-height: 58px; border: 0; border-radius: 12px; background: var(--moss); color: #fff; font-size: 19px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 0 rgba(87,98,56,.35); }
+.cta:hover { filter: brightness(1.08); }
+.cta svg { width: 24px; height: 24px; }
+.fine { text-align: center; font-size: 12.5px; color: var(--ink-2); }
+.done { display: grid; gap: 10px; text-align: center; padding: 10px 0; }
+.done .ok { width: 60px; height: 60px; border-radius: 50%; background: var(--eggshell); color: var(--ok); display: grid; place-items: center; margin-inline: auto; }
+.done h2 { color: var(--ok); }
+
+/* Pain points */
+.pains { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.pain { display: grid; justify-items: center; gap: 8px; text-align: center; font-weight: 700; color: var(--moss); font-size: 15px; line-height: 1.4; }
+.pain .circle { position: relative; width: 112px; height: 112px; border-radius: 50%; background: var(--eggshell); border: 4px solid var(--white); box-shadow: 0 2px 10px rgba(0,0,0,.08); overflow: hidden; }
+.pain .circle svg { width: 100%; height: 100%; }
+.pain .x { position: absolute; top: -4px; inset-inline-start: 50%; transform: translateX(50%); width: 26px; height: 26px; border-radius: 50%; background: var(--white); color: var(--bad); display: grid; place-items: center; font-size: 15px; box-shadow: 0 1px 4px rgba(0,0,0,.15); }
+
+/* Benefits */
+.benefits { display: grid; gap: 10px; list-style: none; margin: 0; padding: 0; }
+.benefits li { display: flex; gap: 12px; align-items: flex-start; background: var(--white); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; }
+.benefits .ck { flex: none; width: 26px; height: 26px; border-radius: 50%; background: var(--ok); color: #fff; display: grid; place-items: center; margin-top: 2px; }
+.benefits b { display: block; }
+.benefits span { color: var(--ink-2); font-size: 14px; }
+
+/* Materials (like "ingredients") */
+.mats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.mat { display: grid; gap: 4px; }
+.mat .sw { height: 70px; border-radius: 12px; background: var(--eggshell); color: var(--moss); display: grid; place-items: center; }
+.mat .sw svg { width: 36px; height: 36px; }
+.mat h3 { font-size: 17px; color: var(--moss); }
+.mat p { font-size: 14px; color: var(--ink-2); }
+.specs { width: 100%; border-collapse: collapse; font-size: 14px; }
+.specs th, .specs td { padding: 10px 12px; border-bottom: 1px solid var(--line); text-align: start; }
+.specs th { color: var(--ink-2); font-weight: 600; width: 40%; }
+
+/* Before / after pairs */
+.pairs { display: grid; gap: 18px; }
+.pair { display: grid; gap: 8px; }
+.pair .cap { justify-self: center; border: 1.5px solid var(--moss); border-radius: 10px; padding: 4px 14px; font-weight: 700; font-size: 14px; color: var(--moss); text-align: center; }
+.pair .imgs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.pair figure { margin: 0; position: relative; border-radius: 10px; overflow: hidden; aspect-ratio: 1; max-width: 100%; transform: rotate(-1.2deg); box-shadow: 0 2px 8px rgba(0,0,0,.12); }
+.pair figure:last-child { transform: rotate(1.4deg); }
+.pair figure svg { width: 100%; height: 100%; display: block; }
+.pair figcaption { position: absolute; bottom: 6px; inset-inline-start: 8px; background: var(--white); color: var(--ink); font-size: 12px; font-weight: 700; padding: 0 8px; border-radius: 6px; }
+
+/* Timeline */
+.steps { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; list-style: none; margin: 0; padding: 0; text-align: center; }
+.steps::before { content: ""; position: absolute; top: 46px; inset-inline: 8%; height: 2px; background: var(--moss); }
+.steps li { position: relative; display: grid; justify-items: center; gap: 6px; font-size: 12.5px; color: var(--ink-2); line-height: 1.45; }
+.steps .ic { width: 40px; height: 40px; color: var(--moss); }
+.steps .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--moss); border: 3px solid var(--white); box-shadow: 0 0 0 1px var(--moss); position: relative; z-index: 1; }
+.steps b { color: var(--ink); font-size: 13.5px; }
+
+/* Mid CTA band */
+.band { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; border: 0; cursor: pointer; background: var(--moss); color: var(--white); padding: 18px; border-radius: 0 0 22px 22px; font-family: var(--font-display); font-size: 20px; }
+.band svg { width: 26px; height: 26px; }
+
+/* Trust badges */
+.badges { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.badge { display: grid; justify-items: center; gap: 6px; text-align: center; font-size: 13px; font-weight: 600; }
+.badge .ring { width: 64px; height: 64px; border-radius: 50%; border: 2px dashed var(--moss); display: grid; place-items: center; color: var(--moss); }
+.badge svg { width: 28px; height: 28px; }
+
+/* FAQ */
+.faq { display: grid; gap: 10px; }
+.faq details { background: var(--eggshell); border-radius: 12px; padding: 0 14px; }
+.faq summary { list-style: none; cursor: pointer; padding: 14px 0; font-weight: 700; color: var(--moss); display: flex; justify-content: space-between; gap: 12px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; font-size: 20px; line-height: 1; }
+.faq details[open] summary::after { content: "−"; }
+.faq p { padding-bottom: 14px; color: var(--ink-2); font-size: 15px; border-inline-start: 2px solid var(--moss); padding-inline-start: 10px; margin-bottom: 14px; }
+
+/* Footer */
+.ftr { background: var(--moss); color: var(--white); padding-block: 36px 110px; display: grid; gap: 22px; }
+.ftr .fl { text-align: center; }
+.ftr .fl b { display: block; font-family: var(--font-display); font-size: 34px; color: #fff; }
+.ftr .fl small { letter-spacing: 3px; font-size: 11px; opacity: .8; }
+.ftr h3 { font-size: 20px; color: #fff; }
+.ftr ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; font-size: 16px; }
+.ftr .social { display: flex; gap: 18px; }
+.ftr .social span { width: 36px; height: 36px; display: grid; place-items: center; border: 1.5px solid rgba(255,255,255,.6); border-radius: 8px; font-weight: 700; }
+
+/* Sticky order bar + back to top */
+.sticky { position: fixed; inset-inline: 0; bottom: 0; z-index: 40; transition: transform .25s ease; }
+.sticky.is-hidden { transform: translateY(110%); }
+.sticky-in { max-width: 560px; margin-inline: auto; background: var(--moss); color: #fff; border-radius: 18px 18px 0 0; padding-top: 14px; padding-bottom: calc(14px + env(safe-area-inset-bottom, 0px)); padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: grid; grid-template-columns: 32px 1fr; align-items: center; gap: 10px; border: 0; width: 100%; cursor: pointer; text-align: center; font-family: var(--font-display); font-size: 19px; }
+.sticky-in svg { width: 30px; height: 30px; }
+.sticky-in small { display: block; font-family: var(--font-body); font-size: 13px; opacity: .85; }
+.totop { position: fixed; bottom: calc(96px + env(safe-area-inset-bottom, 0px)); inset-inline-end: max(16px, env(safe-area-inset-right, 0px)); z-index: 41; width: 54px; height: 54px; border-radius: 50%; border: 0; background: var(--moss); color: #fff; display: grid; place-items: center; cursor: pointer; box-shadow: var(--shadow); }
+.totop svg { width: 26px; height: 26px; }
+@media (min-width: 600px) { .totop { inset-inline-end: calc(50% - 280px + 16px); } }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+</style>
+
+<div class="page" dir="rtl" lang="ar">
+  <p class="demo-note gut">نموذج تصميم لصفحة منتج Top Solution · الصور والنصوص والأرقام أمثلة يستبدلها صاحب المتجر</p>
+
+  <header class="hdr gut">
+    <div class="hdr-in">
+      <button class="icon-btn" aria-label="القائمة"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+      <a class="logo" href="#top" id="top"><b>Top Solution</b><small>Home décor</small></a>
+      <button class="icon-btn" aria-label="بحث"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></button>
+    </div>
+  </header>
+
+  <!-- Section: proof strip (template section "reviews summary") -->
+  <div class="proof" aria-label="تقييم العملاء">
+    <div class="proof-score"><b class="num">4.8/5</b><span>تقييم<br>العملاء</span></div>
+    <div class="proof-who"><div class="avatars" aria-hidden="true"><i style="background:#FFD95D"></i><i style="background:#576238"></i><i style="background:#FFD95D"></i><i style="background:#576238"></i><i style="background:#F0EADC"></i></div><span class="num">+120 طلب لهذا المنتج (مثال)</span></div>
+  </div>
+
+  <!-- Section: hero creative -->
+  <section class="hero gut">
+    <h1>رتّب مطبخك في دقائق<span>رف حائط خشبي بثلاث طبقات</span></h1>
+    <div class="hero-art" id="hero-art"></div>
+    <p class="quote"><b>★★★★★ سارة ب.</b> — مثال لرأي عميل يضيفه صاحب المتجر من التقييمات الحقيقية للمنتج.</p>
+  </section>
+
+  <!-- Section: order form (always near the top) -->
+  <section class="order-wrap gut" id="order-section">
+    <form class="order" id="order" novalidate>
+      <div id="form-body" style="display:grid;gap:14px">
+        <h2>للطلب يرجى إدخال معلوماتك</h2>
+        <label class="sr" for="f-name">الاسم الكامل</label>
+        <input id="f-name" placeholder="الاسم الكامل" autocomplete="name">
+        <p class="err" id="e-name"></p>
+        <label class="sr" for="f-phone">رقم الهاتف</label>
+        <input id="f-phone" type="tel" inputmode="tel" placeholder="رقم الهاتف" autocomplete="tel">
+        <p class="err" id="e-phone"></p>
+        <label class="sr" for="f-wilaya">الولاية</label>
+        <select id="f-wilaya">
+          <option value="">الولاية</option>
+          <option>الجزائر</option><option>وهران</option><option>قسنطينة</option>
+          <option disabled>… القائمة الكاملة يحددها المتجر</option>
+        </select>
+        <p class="err" id="e-wilaya"></p>
+        <label class="sr" for="f-commune">البلدية</label>
+        <input id="f-commune" placeholder="البلدية">
+        <p class="err" id="e-commune"></p>
+
+        <fieldset class="ship" style="border:0;padding:0;margin:0">
+          <legend class="sr">طريقة التوصيل</legend>
+          <label><input type="radio" name="ship" value="home" checked>التوصيل للمنزل</label>
+          <label><input type="radio" name="ship" value="office">مكتب التوصيل</label>
+        </fieldset>
+
+        <fieldset class="qty-offers" style="border:0;padding:0;margin:0">
+          <legend class="sr">الكمية</legend>
+          <label class="qo"><input type="radio" name="qty" value="1" checked><b>قطعة واحدة</b><small class="num" data-p="1"></small></label>
+          <label class="qo"><span class="flag">وفّر 10%</span><input type="radio" name="qty" value="2"><b>قطعتان</b><small class="num" data-p="2"></small></label>
+        </fieldset>
+
+        <div class="line">
+          <div class="thumb"><span class="q num" id="q-badge">1</span><svg viewBox="0 0 200 200" aria-hidden="true"><rect width="200" height="200" fill="var(--eggshell)"/><rect x="40" y="62" width="120" height="9" rx="2" fill="#576238"/><rect x="40" y="104" width="120" height="9" rx="2" fill="#576238"/><rect x="40" y="146" width="120" height="9" rx="2" fill="#576238"/><rect x="56" y="38" width="16" height="24" fill="#576238"/><circle cx="128" cy="92" r="11" fill="#ffd95d"/></svg></div>
+          <div class="nm">رف حائط خشبي بثلاث طبقات<small>اللون: خشب طبيعي</small></div>
+          <div class="pr num" id="line-price"></div>
+        </div>
+        <div class="sums">
+          <div><span>سعر التوصيل</span><span id="ship-fee">اختر الولاية</span></div>
+          <div class="tot"><span>المبلغ عند الاستلام</span><span class="num" id="total"></span></div>
+        </div>
+        <button class="cta" type="submit">إتمام الطلب <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+        <p class="fine">الدفع نقداً عند الاستلام · لن يُرسل هذا النموذج أي طلب (مثال)</p>
+      </div>
+      <div class="done" id="done" hidden>
+        <div class="ok"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+        <h2>تم استلام طلبك (مثال)</h2>
+        <p>في المتجر الحقيقي: رقم طلب ووكومرس، ملخص الطلب، والمبلغ المطلوب عند الاستلام.</p>
+        <button class="cta" type="button" id="again">طلب مثال جديد</button>
+      </div>
+    </form>
+  </section>
+
+  <!-- Section: pain points -->
+  <section class="sec sec-alt gut">
+    <h2 class="pill-title">هل تعاني أنت أيضاً من…؟</h2>
+    <div class="pains" id="pains"></div>
+  </section>
+
+  <!-- Section: benefits -->
+  <section class="sec gut">
+    <h2 class="big-title">5 مزايا <em>لهذا الرف</em></h2>
+    <ul class="benefits">
+      <li><span class="ck">✓</span><div><b>يوفّر مساحة على السطح</b><span>ثلاث طبقات على الحائط بدل الأدراج المزدحمة.</span></div></li>
+      <li><span class="ck">✓</span><div><b>تركيب سهل</b><span>براغي وقطع التثبيت مرفقة مع الطلب.</span></div></li>
+      <li><span class="ck">✓</span><div><b>يناسب المطبخ والحمام والمكتب</b><span>تصميم بسيط ينسجم مع أي ديكور.</span></div></li>
+      <li><span class="ck">✓</span><div><b>تنظيف سريع</b><span>سطح مُعالج يُمسح بقطعة قماش رطبة.</span></div></li>
+      <li><span class="ck">✓</span><div><b>الدفع عند الاستلام</b><span>تعاين المنتج ثم تدفع.</span></div></li>
+    </ul>
+  </section>
+
+  <!-- Section: materials + specs -->
+  <section class="sec sec-alt gut">
+    <h2 class="pill-title">المواد والمقاسات</h2>
+    <div class="mats">
+      <div class="mat"><div class="sw"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 7h18v10H3z"/><path d="M3 11c4 1 7-1 10 0s5 1 8 0M3 14c3 1 6-1 9 0"/></svg></div><h3>خشب طبيعي</h3><p>ألواح بلون الخشب الطبيعي.</p></div>
+      <div class="mat"><div class="sw"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 4v16M18 4v16M6 8h12M6 16h12"/></svg></div><h3>حوامل معدنية</h3><p>حوامل بلون أسود مطفأ.</p></div>
+    </div>
+    <div style="overflow-x:auto"><table class="specs">
+      <tr><th>الأبعاد</th><td>يحددها المتجر لكل منتج</td></tr>
+      <tr><th>عدد الطبقات</th><td>3</td></tr>
+      <tr><th>الألوان</th><td>خشب طبيعي · جوز · أبيض</td></tr>
+      <tr><th>محتوى العلبة</th><td>الرف + قطع التثبيت</td></tr>
+    </table></div>
+  </section>
+
+  <!-- Section: before / after -->
+  <section class="sec gut">
+    <h2 class="big-title">قبل <em>و بعد</em></h2>
+    <div class="pairs" id="pairs"></div>
+  </section>
+
+  <!-- Mid CTA band -->
+  <button class="band" type="button" data-go-order><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>اطلب الآن / الدفع عند الاستلام</button>
+
+  <!-- Section: how ordering works -->
+  <section class="sec gut">
+    <h2 class="pill-title">كيف يصلك طلبك؟</h2>
+    <ol class="steps">
+      <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg><span class="dot"></span><b>الطلب</b>تملأ النموذج</li>
+      <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg><span class="dot"></span><b>التأكيد</b>يتواصل معك المتجر</li>
+      <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 6h11v10H3zM14 9h4l3 3v4h-7"/><circle cx="7" cy="18" r="1.8"/><circle cx="17" cy="18" r="1.8"/></svg><span class="dot"></span><b>التوصيل</b>للمنزل أو المكتب</li>
+      <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M16 14.5h2"/></svg><span class="dot"></span><b>الدفع</b>عند الاستلام</li>
+    </ol>
+  </section>
+
+  <!-- Section: trust badges -->
+  <section class="sec sec-alt gut">
+    <div class="badges">
+      <div class="badge"><span class="ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18"/></svg></span>الدفع عند الاستلام</div>
+      <div class="badge"><span class="ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 6h11v10H3zM14 9h4l3 3v4h-7"/><circle cx="7" cy="18" r="1.8"/><circle cx="17" cy="18" r="1.8"/></svg></span>توصيل للمنزل</div>
+      <div class="badge"><span class="ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 9l1.5-5h13L20 9M4 9v10h16V9M10 19v-5h4v5"/></svg></span>مكتب التوصيل</div>
+    </div>
+  </section>
+
+  <!-- Section: FAQ -->
+  <section class="sec gut">
+    <h2 class="pill-title">الأسئلة الأكثر شيوعاً</h2>
+    <div class="faq">
+      <details open><summary>كيف أدفع ثمن الطلب؟</summary><p>الدفع نقداً عند استلام الطلب، سواء في المنزل أو في مكتب التوصيل.</p></details>
+      <details><summary>كم يستغرق التوصيل؟</summary><p>يكتب صاحب المتجر هنا مدة التوصيل الحقيقية حسب الولاية.</p></details>
+      <details><summary>هل يمكنني تغيير الكمية بعد الطلب؟</summary><p>نعم عند تأكيد الطلب. يضيف صاحب المتجر سياسته هنا.</p></details>
+    </div>
+  </section>
+
+  <footer class="ftr gut">
+    <div class="fl"><b>Top Solution</b><small>HOME DÉCOR</small></div>
+    <h3>روابط سريعة</h3>
+    <ul><li>بحث</li><li>اتصل بنا</li><li>الشروط العامة للبيع</li></ul>
+    <div class="social" aria-label="شبكات التواصل (تُضاف من الإعدادات)"><span>f</span><span>◎</span></div>
+  </footer>
+</div>
+
+<button class="totop" type="button" id="totop" aria-label="العودة للأعلى"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg></button>
+<div class="sticky" id="sticky" dir="rtl">
+  <button class="sticky-in" type="button" data-go-order><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg><span>اطلب الآن<small>الدفع عند الاستلام</small></span></button>
+</div>
+
+<script>
+(function () {
+  var UNIT = 4900; // example price only
+  function fmt(n) { return n.toLocaleString('fr-FR').replace(/ | /g, ' ') + ' د.ج'; }
+
+  // Illustrations (no external images): kitchen wall, cluttered vs tidy.
+  function room(tidy, wall) {
+    var w = wall || '#F0EADC';
+    var s = '<svg viewBox="0 0 200 150" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="150" fill="' + w + '"/><rect y="112" width="200" height="38" fill="#FFFFFF"/><rect y="108" width="200" height="6" fill="#576238"/><rect y="146" width="200" height="4" fill="#576238" opacity=".25"/>';
+    if (tidy) {
+      s += '<rect x="45" y="32" width="110" height="5" rx="1" fill="#576238"/><rect x="45" y="60" width="110" height="5" rx="1" fill="#576238"/><rect x="45" y="88" width="110" height="5" rx="1" fill="#576238"/>' +
+        '<rect x="55" y="18" width="12" height="14" fill="#576238"/><rect x="72" y="22" width="12" height="10" fill="#FFD95D"/><circle cx="135" cy="25" r="7" fill="#ffd95d"/>' +
+        '<rect x="60" y="48" width="22" height="12" rx="2" fill="#FFFFFF" stroke="#FFD95D"/><rect x="100" y="45" width="10" height="15" fill="#576238"/><rect x="115" y="47" width="10" height="13" fill="#576238"/>' +
+        '<rect x="58" y="76" width="30" height="12" rx="2" fill="#F0EADC"/><circle cx="125" cy="81" r="7" fill="#FFD95D"/>';
+    } else {
+      s += '<rect x="30" y="92" width="16" height="16" fill="#FFD95D" transform="rotate(-12 38 100)"/><rect x="52" y="86" width="12" height="22" fill="#576238"/><rect x="68" y="96" width="26" height="12" rx="2" fill="#FFFFFF" stroke="#FFD95D"/>' +
+        '<circle cx="104" cy="100" r="8" fill="#ffd95d"/><rect x="114" y="84" width="10" height="24" fill="#576238" transform="rotate(10 119 96)"/><rect x="128" y="94" width="20" height="14" fill="#F0EADC"/>' +
+        '<rect x="150" y="88" width="14" height="20" fill="#576238" transform="rotate(-8 157 98)"/><rect x="40" y="70" width="22" height="18" fill="#FFFFFF" transform="rotate(14 51 79)"/><rect x="132" y="74" width="18" height="14" fill="#FFD95D" transform="rotate(-18 141 81)"/>';
+    }
+    return s + '</svg>';
+  }
+  document.getElementById('hero-art').innerHTML = '<div style="display:grid;grid-template-columns:1fr 1fr;height:100%">' +
+    '<div style="position:relative">' + room(false) + '<span class="ba ba-before">قبل</span></div>' +
+    '<div style="position:relative">' + room(true, '#F0EADC') + '<span class="ba ba-after">بعد</span></div></div>';
+
+  var PAINS = [
+    ['سطح مطبخ مزدحم', false], ['أدراج ممتلئة', false], ['مساحة صغيرة', false], ['أغراض بلا مكان', false]
+  ];
+  document.getElementById('pains').innerHTML = PAINS.map(function (p, i) {
+    return '<div class="pain"><span class="circle">' + room(false, ['#F0EADC', '#F0EADC', '#F0EADC', '#F0EADC'][i]) + '<span class="x" aria-hidden="true">✕</span></span>' + p[0] + '</div>';
+  }).join('');
+
+  var PAIRS = ['مطبخ مرتب في أقل من ساعة', 'مساحة إضافية على الحائط'];
+  document.getElementById('pairs').innerHTML = PAIRS.map(function (c, i) {
+    return '<div class="pair"><span class="cap">' + c + '</span><div class="imgs">' +
+      '<figure>' + room(false, i ? '#F0EADC' : '#F0EADC') + '<figcaption>قبل</figcaption></figure>' +
+      '<figure>' + room(true, i ? '#F0EADC' : '#F0EADC') + '<figcaption>بعد</figcaption></figure></div></div>';
+  }).join('');
+
+  // Prices (example) and totals
+  var p1 = UNIT, p2 = Math.round(UNIT * 2 * 0.9);
+  document.querySelector('[data-p="1"]').textContent = fmt(p1);
+  document.querySelector('[data-p="2"]').textContent = fmt(p2);
+  var form = document.getElementById('order');
+  function refresh() {
+    var q = form.querySelector('input[name="qty"]:checked').value;
+    var items = q === '2' ? p2 : p1;
+    document.getElementById('q-badge').textContent = q;
+    document.getElementById('line-price').textContent = fmt(items);
+    var w = document.getElementById('f-wilaya').value;
+    document.getElementById('ship-fee').textContent = w ? 'يحدده المتجر لولاية ' + w : 'اختر الولاية';
+    document.getElementById('total').textContent = fmt(items) + (w ? ' + التوصيل' : '');
+  }
+  form.addEventListener('change', refresh);
+  refresh();
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var first = null;
+    function check(id, ok, msg) {
+      var el = document.getElementById(id), err = document.getElementById('e-' + id.slice(2));
+      var bad = !ok(el.value.trim());
+      el.setAttribute('aria-invalid', bad ? 'true' : 'false');
+      err.textContent = bad ? msg : '';
+      if (bad && !first) first = el;
+    }
+    check('f-name', function (v) { return v.length >= 3; }, 'اكتب الاسم الكامل');
+    check('f-phone', function (v) { return /^[0-9+\s]{9,15}$/.test(v); }, 'أدخل رقم هاتف صحيح');
+    check('f-wilaya', function (v) { return v !== ''; }, 'اختر الولاية');
+    check('f-commune', function (v) { return v.length >= 2; }, 'اكتب البلدية');
+    if (first) { first.focus(); return; }
+    document.getElementById('form-body').hidden = true;
+    document.getElementById('done').hidden = false;
+  });
+  document.getElementById('again').addEventListener('click', function () {
+    form.reset(); document.getElementById('form-body').hidden = false; document.getElementById('done').hidden = true; refresh();
+  });
+
+  // "Order now" buttons scroll to the form and focus the first field.
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('[data-go-order]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      document.getElementById('order-section').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+      setTimeout(function () { document.getElementById('f-name').focus({ preventScroll: true }); }, reduce ? 0 : 450);
+    });
+  });
+  document.getElementById('totop').addEventListener('click', function () { window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); });
+
+  // Sticky bar hides while the order form is on screen.
+  var sticky = document.getElementById('sticky');
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) {
+      sticky.classList.toggle('is-hidden', entries[0].isIntersecting);
+    }, { threshold: 0.15 }).observe(document.getElementById('order-section'));
+  }
+})();
+</script>

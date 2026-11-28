@@ -95,3 +95,40 @@ Assets only on landing pages; critical CSS inline for hero (optional).
 ## 9. Testing
 Template contract tests (no price/DB access), snapshot HTML tests per
 template, RTL visual tests, accessibility checks, config schema fuzzing.
+
+## 10. Template `longform` — long-form COD product page (requested 2026-11-28)
+Reference: the common Algerian COD landing pattern (owner-supplied
+screenshots). Structure only is reused; no third-party brand, images or claims.
+Prototype: `docs/design/prototype/product-longform.html`.
+
+**Colours: brand palette only** — Moss `#576238`, Mustard `#FFD95D`,
+Eggshell `#F0EADC`, White. No derived/dark greens, no off-palette fills; text
+ink and form-feedback colours (success/error) are the only additions. The
+page is single light theme so the palette never shifts. Mustard always carries
+dark text. **No countdown / Black-Friday style urgency bar** (and urgency only
+from real offer data, per §3).
+
+Section order (each section: show/hide + reorder per product, §4–§6):
+1. Header: menu · centred logo · search (theme header, compact variant).
+2. Reviews summary strip (rating + count) — **only when real reviews exist**.
+3. Hero: headline + main creative (image upload; before/after optional).
+4. **Order form near the top** (Forms module): name, phone, wilaya,
+   commune, delivery method (home / office), quantity offers, product line
+   with thumbnail and server-computed price, totals, submit "إتمام الطلب".
+5. Pain points (circular images + caption, repeater).
+6. Benefits list (check items, repeater).
+7. Materials / specifications (icon tiles + spec table from WC attributes).
+8. Before / after pairs (image pairs + caption, repeater).
+9. Mid-page CTA band (scrolls to the form).
+10. How ordering works (4 steps: order, confirmation, delivery, pay).
+11. Trust badges (COD, home delivery, office pickup).
+12. FAQ accordion (repeater).
+13. Footer (theme footer).
+Persistent: sticky bottom bar "اطلب الآن — الدفع عند الاستلام" (hidden while
+the form is on screen; tapping scrolls to the form and focuses the name
+field) and a back-to-top button.
+
+**Image-section type:** any section may instead be a full-width uploaded
+creative (sellers often design these in external tools): attachment id,
+required alt text, responsive `srcset`, lazy-loaded except the first.
+Page column max 560 px on desktop (phone-first layout, as in the reference).
