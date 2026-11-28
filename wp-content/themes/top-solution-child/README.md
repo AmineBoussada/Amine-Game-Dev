@@ -61,11 +61,12 @@ Recommended: Settings > Permalinks > "Post name".
 | `languages/` | Reserved. Arabic is the source language of theme strings (text domain `top-solution-child`). |
 
 ## Design tokens (`:root` in `main.css`)
-`--ts-bg #fff`, `--ts-surface #f5f5f4`, `--ts-surface-2`, `--ts-ink`,
-`--ts-ink-2`, `--ts-wood #b98b5e`, `--ts-wood-d #8a5f37` (buttons/links),
-`--ts-wood-dd`, `--ts-tint`, status colours, `--ts-line`, fonts, spacing,
-radii, header height. Proposed values from the approved design system;
-adjust once the brand/logo is supplied.
+`--ts-bg #fff`, `--ts-surface-2`, `--ts-ink`,
+`--ts-ink-2`, `--ts-brand #576238` Moss (buttons/links/icons),
+`--ts-brand-d` (hover), `--ts-accent #ffd95d` Mustard (highlights, always with
+dark text), `--ts-surface #f0eadc` Eggshell, `--ts-tint`, status colours,
+`--ts-line`, fonts, spacing, radii, header height. Brand colours supplied by
+the owner; see `docs/design/DESIGN_SYSTEM.md` for the contrast table.
 
 ## Customizer (Appearance > Customize > Top Solution)
 Contact data (phone, WhatsApp, email, address, hours), header (announcement,

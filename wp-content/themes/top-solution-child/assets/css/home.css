@@ -6,7 +6,7 @@
 	align-items: flex-end;
 	min-height: 360px;
 	overflow: hidden;
-	background: linear-gradient(135deg, #e4d3bf, #c9a27a 60%, var(--ts-wood-d));
+	background: linear-gradient(135deg, #66733f, var(--ts-brand) 55%, #3d4727);
 	color: #fff;
 }
 

@@ -6,31 +6,37 @@ and prices come from the owner. No real products/prices are implied.
 
 ## 1. Direction
 Modern minimalist interior-design store: white canvas, quiet light-gray
-surfaces, natural wood as the single warm accent, generous whitespace,
+surfaces, and the brand palette (Moss green, Mustard, Eggshell) as the accents, generous whitespace,
 large product photography, restrained motion. Trust and clarity first
 (COD market: reassurance about delivery, payment on receipt, returns).
 
 ## 2. Design tokens (CSS custom properties, defined once in child theme;
 plugin templates consume them)
 ### Colour
-| Token | Value (proposal) | Use |
+**Brand palette (supplied by the owner, 2026-11-28):** Moss `#576238`,
+Mustard `#FFD95D`, Eggshell `#F0EADC`, plus white. This replaces the earlier
+wood-tone proposal. Moss is the primary/action colour, Mustard is the
+highlight (always with dark text), Eggshell is the secondary surface, white is
+the page background.
+| Token | Value | Use |
 |---|---|---|
 | `--ts-bg` | `#FFFFFF` | page background |
-| `--ts-surface` | `#F5F5F4` | cards, sections, inputs bg |
-| `--ts-surface-2` | `#ECECEA` | dividers, hover, disabled |
-| `--ts-ink` | `#1F1F1D` | primary text |
-| `--ts-ink-2` | `#5B5B57` | secondary text |
-| `--ts-wood` | `#B98B5E` | accent (oak/walnut tone), icons, highlights |
-| `--ts-wood-dark` | `#8A5F37` | primary buttons, links, focus (AA with white) |
-| `--ts-wood-tint` | `#F3E9DE` | selected state, badges bg |
-| `--ts-success` | `#2F7D4F` | in stock, confirmations |
-| `--ts-warn` | `#B26B00` | supplier-sourced, low stock |
-| `--ts-danger` | `#B3261E` | errors, unavailable |
-| `--ts-line` | `#E2E2DF` | borders |
-Wood texture: optional subtle grain image used ONLY in hero strips/footers
-(≤ 30 KB, CSS background, decorative). Colours must be verified with the
-owner's logo/brand (Q12 in PROJECT_SPEC). Contrast: body text ≥ 4.5:1,
-large text/UI ≥ 3:1; `--ts-wood-dark` on white passes AA for text/buttons.
+| `--ts-surface` | `#F0EADC` (Eggshell) | cards, sections, inputs, footer |
+| `--ts-surface-2` | `#E6DFCB` | dividers, disabled, hover |
+| `--ts-ink` | `#1E2218` | primary text |
+| `--ts-ink-2` | `#565A48` | secondary text |
+| `--ts-brand` | `#576238` (Moss) | buttons, links, icons, focus ring, hero |
+| `--ts-brand-d` | `#454E2C` | hover / pressed, text on tint |
+| `--ts-accent` | `#FFD95D` (Mustard) | announcement bar, sale badge, hero CTA, footer rule. Text on it is always `--ts-ink` |
+| `--ts-accent-d` | `#F2C63A` | accent hover |
+| `--ts-tint` | `#FBF3D1` | selected state, icon circles, chip hover |
+| `--ts-star` | `#B88A00` | rating stars |
+| `--ts-ok` / `--ts-warn` / `--ts-bad` | `#266A42` / `#8F5700` / `#B3261E` | success, supplier-sourced, error (each with a light background) |
+| `--ts-line` | `#DDD5BF` | borders |
+Checked contrast (WCAG): white on Moss 6.5:1, Moss on white 6.5:1, Moss on
+Eggshell 5.5:1, ink on Mustard 11.8:1, ink-2 on Eggshell 5.9:1, white on the
+hero gradient start 5.1:1. **Never put white text on Mustard** (1.3:1) and never
+use Mustard as text colour on white.
 Dark mode: not in release 1.
 
 ### Typography (Arabic-first)
@@ -90,7 +96,7 @@ Performance budget per page: ≤ 150 KB CSS+JS gz (landing ≤ 60 KB JS-free
 critical path), fonts ≤ 2 files, hero image preloaded.
 
 ## 5. Accessibility
-WCAG 2.2 AA target: visible focus ring (2 px `--ts-wood-dark` + 2 px white
+WCAG 2.2 AA target: visible focus ring (2 px `--ts-brand` + 2 px white
 offset), semantic landmarks, one H1, labels bound to inputs, error text
 with `aria-describedby`, `aria-live` for price updates, keyboard operable
 selectors/accordions/modals (focus trap), alt text from media library,
@@ -100,14 +106,14 @@ reduced-motion support, no colour-only status (icon + text).
 Each component: purpose · anatomy · states · responsive · a11y.
 | Component | Anatomy / notes |
 |---|---|
-| **Button** | Primary (wood-dark fill, white text), Secondary (outline), Ghost, Whatsapp/Call (only if numbers provided). Sizes: M 48h, L 56h (landing CTA). States: default/hover/focus/active/disabled/loading (spinner, label kept). Full width on mobile for primary CTAs. |
+| **Button** | Primary (Moss fill, white text), Secondary (outline), Ghost, Whatsapp/Call (only if numbers provided). Sizes: M 48h, L 56h (landing CTA). States: default/hover/focus/active/disabled/loading (spinner, label kept). Full width on mobile for primary CTAs. |
 | **Input / Select / Textarea** | 48h, `--ts-surface` bg + 1px line, label above, helper text, error state (danger border + icon + message), RTL caret. |
-| **Choice card (radio/checkbox)** | Large tappable card, wood-tint when selected, check icon; used for delivery method, offers, options. |
+| **Choice card (radio/checkbox)** | Large tappable card, light-mustard tint when selected, check icon; used for delivery method, offers, options. |
 | **Quantity stepper** | − 1 + with bounds, numeric input between, 44px buttons. |
 | **Option swatch/chips** | Colour swatches (circle 40px, ring when selected, name on select), size/finish chips; unavailable = diagonal strike + aria-disabled. |
 | **Price block** | Final price (large), old price struck-through, savings badge "وفّر …" computed by server data; tabular numerals; `aria-live`. |
-| **Offer card** | Radio card: label, tier description, price per unit, total, badge (Best value) only when computed; selected = wood-tint + border. Layouts: cards (grid) / list. |
-| **Badge/Tag** | Neutral, wood, success, warn, danger. Text always present. |
+| **Offer card** | Radio card: label, tier description, price per unit, total, badge (Best value) only when computed; selected = light-mustard tint + border. Layouts: cards (grid) / list. |
+| **Badge/Tag** | Neutral, brand, accent, success, warn, danger. Text always present. |
 | **Product card** | Image (1:1, hover second image desktop), title (2 lines clamp), price, availability tag, quick CTA "اطلب الآن" optional. Entire card = link. |
 | **Category tile** | Image + label overlay on gradient; 2-col mobile. |
 | **Gallery** | Mobile: swipe carousel with dots + counter, tap → lightbox. Desktop: main + thumbnails (vertical, inline-start side). |
@@ -126,7 +132,7 @@ Each component: purpose · anatomy · states · responsive · a11y.
 ## 7. Admin design language (WordPress admin)
 Native WP admin look is kept (no re-skinning of core), our screens use
 WP components + a light layer: same palette tokens, 8-pt spacing, cards on
-`#F0F0F1` WP bg, wood-dark for primary buttons on our screens only. RTL
+`#F0F0F1` WP bg, Moss for primary buttons on our screens only. RTL
 tested. Patterns: page header (title + primary action), tab bar (WP
 `nav-tab` style), filter bar, table lists (WP_List_Table look) with row
 actions, two-column editors (main + sidebar summary), drawers for

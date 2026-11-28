@@ -266,7 +266,7 @@ Charts: line (orders/revenue), bar (by wilaya/template/offer) with data-table to
 Tables: sortable, drill-down to filtered orders list
 ```
 Charts are accessible (patterns + labels + table fallback); colours from
-tokens (wood series + neutral grays; status colours separate).
+tokens (Moss + Mustard + neutrals; status colours separate).
 
 ### B9. Dashboard (landing screen of the menu)
 Tiles (today's orders, awaiting confirmation, needs purchase, low stock),
