@@ -50,7 +50,7 @@ const submit = async (p, locator) => { await Promise.all([p.waitForNavigation({ 
   await p.goto(PAGE + '&tab=geography', { waitUntil: 'load' });
   const before = await p.locator('table.widefat tbody tr').count();
   await p.locator('details.ts-import summary').first().click();
-  await p.fill('#ts-text-geography', 'wilaya_code,wilaya_name_ar,commune_code,commune_name_ar\n56,ولاية تجريبية ج,5601,بلدية تجريبية 4\n56,ولاية تجريبية ج,5602,بلدية تجريبية 5\nzz,خطأ,,\n');
+  await p.fill('#ts-text-geography', 'wilaya_code,wilaya_name_ar,commune_code,commune_name_ar\n56,ولاية تجريبية ج,5601,بلدية تجريبية 4\n56,ولاية تجريبية ج,5602,بلدية تجريبية 5\n90,ولاية تجريبية خارج ووكومرس,,\nzz,خطأ,,\n');
   await p.fill('#ts-source', 'بيانات اختبار');
   await submit(p, 'details.ts-import form input[type="submit"]');
   ok(await p.locator('.ts-preview').count() === 1, 'geography: dry-run preview shown');
@@ -75,7 +75,7 @@ const submit = async (p, locator) => { await Promise.all([p.waitForNavigation({ 
 
   // ---- rates matrix
   await p.goto(PAGE + '&tab=rates', { waitUntil: 'load' });
-  ok(await p.locator('.notice-warning').innerText().then(t => t.includes('ولاية تجريبية ج')).catch(() => false) || await p.locator('.ts-default-row input.ts-fee').first().inputValue() !== '', 'rates: coverage report lists wilayas without a price (unless a default exists)');
+  ok(await p.locator('.notice-warning:has-text("ولايات مفعّلة بلا سعر"):has-text("ولاية تجريبية خارج ووكومرس")').count() === 1 || await p.locator('.ts-default-row input.ts-fee').first().inputValue() !== '', 'rates: coverage report lists wilayas without a price (unless a default exists)');
   const w56 = p.locator('tr:has(th:has-text("ولاية تجريبية ج"))');
   await w56.locator('input[type="checkbox"]').nth(0).uncheck();
   await w56.locator('input[type="checkbox"]').nth(1).uncheck();
