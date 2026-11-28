@@ -1522,3 +1522,13 @@ a.ts-contact-card__link:focus {
 	justify-content: center;
 	margin-block: 24px;
 }
+
+/* Contact cards inside prose: not a text list (no list indent/spacing). */
+.ts-prose .ts-contact-cards {
+	margin: 24px 0 0;
+	padding: 0;
+}
+
+.ts-prose .ts-contact-cards li {
+	margin: 0;
+}
