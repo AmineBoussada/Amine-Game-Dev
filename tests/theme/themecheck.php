@@ -4,8 +4,8 @@ $_SERVER['HTTP_HOST']='127.0.0.1:8080';$_SERVER['REQUEST_URI']='/';
 require __DIR__.'/wordpress/wp-load.php';
 wp_set_current_user(1);
 require_once WP_PLUGIN_DIR . '/theme-check/checkbase.php';
-$theme = wp_get_theme( 'top-solution-child' );
-$ok = run_themechecks_against_theme( $theme, 'top-solution-child' );
+$theme = wp_get_theme( 'deco-store-child' );
+$ok = run_themechecks_against_theme( $theme, 'deco-store-child' );
 global $themechecks;
 $counts = array();
 foreach ( $themechecks as $check ) {

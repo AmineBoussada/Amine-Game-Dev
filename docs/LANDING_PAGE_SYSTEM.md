@@ -3,14 +3,14 @@
 ## 1. Principles (decision A)
 - Dedicated rendering system with predefined PHP templates; not page-builder
   documents per product.
-- Each product stores selected template + configuration (`_ts_lp_*`).
+- Each product stores selected template + configuration (`_ds_lp_*`).
 - Templates are presentation-only and independent from order/offer logic.
 - Elementor **Free** remains for general site pages. Landing pages, the order
   form (including its modal / sticky-bar modes) never use Elementor Pro
   (no Popup Builder, no Pro forms, no Theme Builder).
 
 ## 2. Activation
-Product with `_ts_lp_enabled=yes` and a valid template → on `template_include`
+Product with `_ds_lp_enabled=yes` and a valid template → on `template_include`
 for `is_singular('product')`, the plugin renders its own template. Else the
 native WC single-product page is used (child theme styled). Landing mode is a
 per-product switch, so rollout can be gradual. Fallback if config invalid:
@@ -57,7 +57,7 @@ Show/hide + reorder per product within `allowed` rules (`hero` and
 `order_form` cannot both be hidden: product must remain orderable unless
 availability = unavailable).
 
-## 5. Per-product configuration (`_ts_lp_config`, JSON, schema-validated)
+## 5. Per-product configuration (`_ds_lp_config`, JSON, schema-validated)
 ```
 { "schema":1, "template":"standard",
   "sections":[{"id":"hero","visible":true,"data":{...}}, ...],
@@ -72,12 +72,12 @@ Validation: unknown section/keys dropped; rich text via `wp_kses` allow-list;
 images by attachment id; URLs allow-listed.
 
 ## 6. Admin editing
-Product data → "Top Solution" tab: Landing Page (enable/template), Sections
+Product data → "Déco Store" tab: Landing Page (enable/template), Sections
 (drag reorder, toggle, edit data), Order Form (form picker, position, display
 mode), Offers (attach/order), Preview. Template change keeps shared section
 data, drops unsupported sections with a warning. Copy-config-from-product
 action for speed.
-Draft/publish: edits stay in `_ts_lp_config_draft` until "Publish"; preview
+Draft/publish: edits stay in `_ds_lp_config_draft` until "Publish"; preview
 URL token (signed, TTL, capability-bound) renders draft with an admin banner,
 `noindex`. Revisions: last published config kept once (rollback).
 
@@ -87,7 +87,7 @@ remove it; page `<h1>` single; canonical = product permalink; compatible
 with SEO plugins; RTL `dir`/`lang="ar"`.
 
 ## 8. Performance & caching
-Fragment cache of rendered sections (key: product id, `_ts_lp_version`,
+Fragment cache of rendered sections (key: product id, `_ds_lp_version`,
 modified time, offer/form versions, locale). Dynamic parts (price display,
 availability) read live from WC or cached with product-invalidation hooks.
 Assets only on landing pages; critical CSS inline for hero (optional).

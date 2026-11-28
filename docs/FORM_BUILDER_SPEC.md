@@ -1,6 +1,6 @@
 # FORM_BUILDER_SPEC
 
-Decision C: configurable form builder. Forms are reusable entities (`ts_form`
+Decision C: configurable form builder. Forms are reusable entities (`ds_form`
 CPT) referenced by products; independent from templates and from pricing.
 
 ## 1. Form entity
@@ -24,7 +24,7 @@ wilaya, delivery method; commune/address required per delivery rule).
 
 ## 3. Field types
 text, textarea, phone (normalising), number, select, radio, checkbox,
-checkbox group, quantity (bounded), wilaya select (from `ts_geo_units`),
+checkbox group, quantity (bounded), wilaya select (from `ds_geo_units`),
 commune select (dependent on wilaya), delivery method (home/pickup, from
 Delivery config), pickup point select (dependent), hidden (server-set only,
 never trusted), heading/divider/info text, product option (see §7),
@@ -60,9 +60,9 @@ Two kinds, both resolved on the server:
 1. **Variation options (native)**: WC attributes → variation. Rendered as
    swatches/selects from product data; submitted as attribute values; server
    resolves variation id, price, stock. Price differences come only from WC.
-2. **Custom non-priced options** (`_ts_option_defs` on product): e.g.
+2. **Custom non-priced options** (`_ds_option_defs` on product): e.g.
    text note, choice list that does not change price. Stored as line item
-   meta `_ts_options`. **Priced add-ons are out of release 1** (would be
+   meta `_ds_options`. **Priced add-ons are out of release 1** (would be
    modelled as offer/bundle items; avoids a parallel pricing path).
 A form includes a `product_option` field per option group; the product's
 available groups are provided by the Product module, so one form works for
@@ -70,7 +70,7 @@ many products.
 
 ## 8. Mapping to WooCommerce order
 `maps_to` fills billing/shipping fields; `order_note` → customer note;
-`meta` → `_ts_form_answers` (label+value snapshot). Phone stored in
+`meta` → `_ds_form_answers` (label+value snapshot). Phone stored in
 `billing_phone`; country fixed `DZ`; state from wilaya mapping (WC state
 code mapping table in Geography config; Q8).
 

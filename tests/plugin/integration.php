@@ -1,8 +1,8 @@
 <?php
 /**
- * Integration checks for Top Solution Core against a real WordPress + WooCommerce.
+ * Integration checks for Déco Store Core against a real WordPress + WooCommerce.
  * Run from the folder that contains wordpress/:  php integration.php
- * The plugin must already be installed (e.g. from dist/top-solution-core.zip) and active.
+ * The plugin must already be installed (e.g. from dist/deco-store-core.zip) and active.
  * Exit code 0 = all passed.
  */
 
@@ -11,11 +11,11 @@ $_SERVER['REQUEST_URI'] = '/';
 require __DIR__ . '/wordpress/wp-load.php';
 wp_set_current_user( 1 );
 
-use TopSolution\Core\Capabilities;
-use TopSolution\Core\Logger;
-use TopSolution\Core\Migrator;
-use TopSolution\Core\Settings;
-use TopSolution\Core\Activator;
+use DecoStore\Core\Capabilities;
+use DecoStore\Core\Logger;
+use DecoStore\Core\Migrator;
+use DecoStore\Core\Settings;
+use DecoStore\Core\Activator;
 
 $failed = 0;
 function check( $ok, $label ) {
@@ -26,10 +26,10 @@ function check( $ok, $label ) {
 	}
 }
 
-$plugin = 'top-solution-core/top-solution-core.php';
+$plugin = 'deco-store-core/deco-store-core.php';
 check( is_plugin_active( $plugin ), 'plugin is active' );
-check( defined( 'TS_CORE_VERSION' ), 'plugin booted (constants defined)' );
-check( empty( \TopSolution\Core\Plugin::problems() ), 'no requirement problems reported' );
+check( defined( 'DS_CORE_VERSION' ), 'plugin booted (constants defined)' );
+check( empty( \DecoStore\Core\Plugin::problems() ), 'no requirement problems reported' );
 
 // ---- Capabilities
 $admin = get_role( 'administrator' );
@@ -38,10 +38,10 @@ $missing = array_filter( Capabilities::all(), static function ( $c ) use ( $admi
 	return ! $admin->has_cap( $c );
 } );
 check( empty( $missing ), 'administrator has all 9 capabilities' );
-foreach ( array( 'ts_view_costs', 'ts_manage_suppliers', 'ts_manage_settings' ) as $cap ) {
+foreach ( array( 'ds_view_costs', 'ds_manage_suppliers', 'ds_manage_settings' ) as $cap ) {
 	check( ! $mgr->has_cap( $cap ), "shop_manager does NOT have $cap (costs/suppliers/settings stay private)" );
 }
-check( $mgr->has_cap( 'ts_manage_landing' ) && $mgr->has_cap( 'ts_view_reports' ), 'shop_manager has the day-to-day capabilities' );
+check( $mgr->has_cap( 'ds_manage_landing' ) && $mgr->has_cap( 'ds_view_reports' ), 'shop_manager has the day-to-day capabilities' );
 foreach ( array( 'customer', 'subscriber', 'editor' ) as $r ) {
 	$role = get_role( $r );
 	$any  = $role ? array_filter( Capabilities::all(), array( $role, 'has_cap' ) ) : array();
@@ -52,7 +52,7 @@ foreach ( array( 'customer', 'subscriber', 'editor' ) as $r ) {
 $s = Settings::all();
 check( 'processing' === $s['initial_order_status'], 'default initial order status is processing' );
 check( (int) get_option( Migrator::OPTION ) === Migrator::CURRENT, 'database version = ' . Migrator::CURRENT );
-check( \TopSolution\Core\Schema::tables_exist(), 'custom tables exist' );
+check( \DecoStore\Core\Schema::tables_exist(), 'custom tables exist' );
 
 update_option( Settings::OPTION, array_merge( Settings::all(), array( 'initial_order_status' => 'on-hold', 'debug_logging' => true ) ) );
 Activator::activate();
@@ -76,8 +76,8 @@ update_option( Settings::OPTION, Settings::defaults() );
 // ---- HPOS
 $util = '\Automattic\WooCommerce\Utilities\FeaturesUtil';
 $plugins = method_exists( $util, 'get_compatible_plugins_for_feature' ) ? $util::get_compatible_plugins_for_feature( 'custom_order_tables' ) : array();
-check( in_array( plugin_basename( TS_CORE_FILE ), $plugins['compatible'] ?? array(), true ), 'declared compatible with HPOS (custom_order_tables)' );
-check( ! in_array( plugin_basename( TS_CORE_FILE ), $plugins['incompatible'] ?? array(), true ), 'not listed as incompatible with HPOS' );
+check( in_array( plugin_basename( DS_CORE_FILE ), $plugins['compatible'] ?? array(), true ), 'declared compatible with HPOS (custom_order_tables)' );
+check( ! in_array( plugin_basename( DS_CORE_FILE ), $plugins['incompatible'] ?? array(), true ), 'not listed as incompatible with HPOS' );
 
 // ---- Orders through WooCommerce CRUD with the plugin active (HPOS or legacy, whichever the store uses)
 $hpos_on = \Automattic\WooCommerce\Utilities\OrderUtil::custom_orders_table_usage_is_enabled();
@@ -85,10 +85,10 @@ echo '  (store order storage: ' . ( $hpos_on ? 'HPOS custom tables' : 'legacy po
 $order = wc_create_order();
 $order->set_billing_first_name( 'Test' );
 $order->set_payment_method( 'cod' );
-$order->update_meta_data( '_ts_probe', 'ok' );
+$order->update_meta_data( '_ds_probe', 'ok' );
 $order->save();
 $read = wc_get_order( $order->get_id() );
-check( $read && 'ok' === $read->get_meta( '_ts_probe' ), 'an order (with custom meta) is created and read back through WC CRUD' );
+check( $read && 'ok' === $read->get_meta( '_ds_probe' ), 'an order (with custom meta) is created and read back through WC CRUD' );
 if ( $hpos_on ) {
 	global $wpdb;
 	$in_hpos = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM {$wpdb->prefix}wc_orders WHERE id = %d", $order->get_id() ) ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
@@ -98,8 +98,8 @@ $order->delete( true );
 check( false === wc_get_order( $order->get_id() ) || 0 === $order->get_id(), 'the probe order is removed again' );
 
 // ---- Admin menu / status checks
-check( class_exists( 'TopSolution\Admin\StatusChecks' ), 'status checks available' );
-$rows = \TopSolution\Admin\StatusChecks::run();
+check( class_exists( 'DecoStore\Admin\StatusChecks' ), 'status checks available' );
+$rows = \DecoStore\Admin\StatusChecks::run();
 $ids  = wp_list_pluck( $rows, 'id' );
 check( array() === array_diff( array( 'versions', 'hpos', 'cod', 'currency', 'theme', 'rtl', 'permalinks', 'delivery', 'elementor' ), $ids ), 'status dashboard has all 9 checks' );
 $hpos = array_values( array_filter( $rows, static function ( $r ) {
@@ -113,18 +113,18 @@ check( ! empty( $elem ) && 'ok' === $elem[0]['status'], 'Elementor check never f
 
 // ---- Logger writes to WooCommerce logs without personal data
 Logger::info( 'integration probe', array( 'order_id' => 99, 'customer_phone' => '0555123456', 'unit_cost' => 4321 ) );
-$logs = glob( WP_CONTENT_DIR . '/uploads/wc-logs/top-solution-*.log' );
+$logs = glob( WP_CONTENT_DIR . '/uploads/wc-logs/deco-store-*.log' );
 $text = '';
 foreach ( (array) $logs as $f ) {
 	$text .= file_get_contents( $f );
 }
-check( false !== strpos( $text, 'integration probe' ), 'log message reaches WooCommerce logs (source top-solution)' );
+check( false !== strpos( $text, 'integration probe' ), 'log message reaches WooCommerce logs (source deco-store)' );
 check( false === strpos( $text, '0555123456' ) && false === strpos( $text, '4321' ), 'phone number and cost are NOT in the log file' );
 check( false !== strpos( $text, '[redacted]' ), 'sensitive context shows [redacted]' );
 
 // ---- No Elementor Pro dependency in the plugin code
 $bad = 0;
-$it  = new RecursiveIteratorIterator( new RecursiveDirectoryIterator( TS_CORE_DIR, FilesystemIterator::SKIP_DOTS ) );
+$it  = new RecursiveIteratorIterator( new RecursiveDirectoryIterator( DS_CORE_DIR, FilesystemIterator::SKIP_DOTS ) );
 foreach ( $it as $file ) {
 	if ( 'php' !== $file->getExtension() ) {
 		continue;
@@ -136,7 +136,7 @@ foreach ( $it as $file ) {
 	}
 }
 check( 0 === $bad, 'no Elementor Pro API/dependency in plugin code' );
-check( false === strpos( (string) file_get_contents( TS_CORE_FILE ), 'Requires Plugins:  elementor' ), 'plugin header does not require Elementor' );
+check( false === strpos( (string) file_get_contents( DS_CORE_FILE ), 'Requires Plugins:  elementor' ), 'plugin header does not require Elementor' );
 
 echo $failed ? "\n$failed FAILED\n" : "\nALL PASSED\n";
 exit( $failed ? 1 : 0 );

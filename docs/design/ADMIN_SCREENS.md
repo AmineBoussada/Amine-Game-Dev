@@ -6,22 +6,22 @@ WP admin collapses to a single column < 782 px; our layouts follow WP's
 breakpoint (782) rather than the storefront's.
 
 ## 0. Navigation
-Top-level menu **Top Solution**: لوحة التحكم · صفحات الهبوط · العروض ·
+Top-level menu **Déco Store**: لوحة التحكم · صفحات الهبوط · العروض ·
 النماذج · الطلبات · المخزون · الموردون · التوصيل · التقارير · الإعدادات.
 (Each item gated by capability; absent if not permitted.) Orders item opens
-the WooCommerce orders list with a Top Solution view (screen 4 below), not a
+the WooCommerce orders list with a Déco Store view (screen 4 below), not a
 separate order store. Admin bar shortcut: "معاينة صفحة الهبوط" on product
 screens.
 
-## A. Product editor (native WC product screen + "Top Solution" integration)
-Keep the native WooCommerce "Product data" box. We add a **Top Solution
+## A. Product editor (native WC product screen + "Déco Store" integration)
+Keep the native WooCommerce "Product data" box. We add a **Déco Store
 panel** below it (full-width card) with a vertical/horizontal tab set. Tabs
 requested: General · Landing Page · Offers · Order Form · Product Options ·
-Availability. (Supplier & Cost is a 7th tab visible only with `ts_view_costs`.)
+Availability. (Supplier & Cost is a 7th tab visible only with `ds_view_costs`.)
 
 Common chrome of the panel:
 ```
-┌ Top Solution ───────────────────────────────  [معاينة] [نشر التعديلات] ┐
+┌ Déco Store ───────────────────────────────  [معاينة] [نشر التعديلات] ┐
 │ [عام] [صفحة الهبوط] [العروض] [نموذج الطلب] [خيارات المنتج] [التوفر] [(المورد والتكلفة)] │
 │ ─────────────────────────────────────────────────────────────────── │
 │  tab content                                    │ Sidebar summary     │
@@ -212,7 +212,7 @@ Not a new order store: a **view layer** on the WC orders list (HPOS).
 [Row actions]: عرض · تأكيد · إلغاء · طباعة بطاقة · اتصال · ملاحظة
 [Bulk]: change status, print labels/lists, export (no costs unless cap)
 ```
-Order detail: native WC screen + **Top Solution meta box** (read-only
+Order detail: native WC screen + **Déco Store meta box** (read-only
 formatted snapshots): Landing template, pricing breakdown (base → offer →
 final), gifts, delivery snapshot, form answers, flags (duplicate/spam with
 reason), procurement status per line, margin block (cost cap only).
@@ -240,7 +240,7 @@ Purchases: table + [+ عملية شراء]: supplier, reference, date, lines
   (product/variation, qty, unit cost), receive-to-stock checkbox
 Cost settings: method (manual/last/weighted average), margin warnings
 ```
-Permission states: without `ts_view_costs`, cost columns/tabs not rendered.
+Permission states: without `ds_view_costs`, cost columns/tabs not rendered.
 Soft-archive suppliers with history.
 
 ### B7. Delivery settings

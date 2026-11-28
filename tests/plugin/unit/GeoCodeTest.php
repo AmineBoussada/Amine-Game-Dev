@@ -1,6 +1,6 @@
 <?php
 use PHPUnit\Framework\TestCase;
-use TopSolution\Delivery\GeoCode;
+use DecoStore\Delivery\GeoCode;
 
 class GeoCodeTest extends TestCase {
 

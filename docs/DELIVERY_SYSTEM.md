@@ -8,12 +8,12 @@ structure; contents are admin-entered or imported from owner-approved data.
   pickup). Extensible registry.
 - **Carrier** (delivery company): name, status, notes; optional per-method
   availability. Carrier API integration is out of release 1.
-- **Geography**: hierarchy wilaya → commune (`ts_geo_units`), active flags,
+- **Geography**: hierarchy wilaya → commune (`ds_geo_units`), active flags,
   imported from a source approved by owner (Q8). Maps to WooCommerce
   country DZ + state code for orders.
 - **Zone**: named group of geo units (e.g. for pricing) — optional layer.
 - **Rate**: price for (method [+carrier], zone or geo unit, quantity/weight
-  band) in `ts_delivery_rates`; resolution order: commune-specific → wilaya
+  band) in `ds_delivery_rates`; resolution order: commune-specific → wilaya
   → zone → method default → "unavailable".
 - **Pickup point**: office name, geo unit, address, hours (owner data),
   active flag, carrier link. Only offered where defined.
@@ -38,7 +38,7 @@ Weight/volume bands: only if owner needs (large decor items may), requires
 product weight/dimensions in WC — decision Q7.
 
 ## 4. WooCommerce integration
-`TopSolution\Delivery\ShippingMethod extends WC_Shipping_Method` registered
+`DecoStore\Delivery\ShippingMethod extends WC_Shipping_Method` registered
 and enabled via a shipping zone for country DZ (created by setup tool). Our
 order flow builds the shipping line item from the server-resolved rate;
 WC reports include it. Cart/checkout fallback pages call the same
@@ -51,7 +51,7 @@ read-only endpoint (versioned URL, immutable cache) to keep landing pages
 fast; fee preview displayed from the same endpoint, but order recomputes.
 
 ## 6. Snapshot
-`_ts_delivery_snapshot`: method, carrier, geo ids + names (Arabic),
+`_ds_delivery_snapshot`: method, carrier, geo ids + names (Arabic),
 pickup point, fee, rate id/version, rule applied. Later rate edits don't
 alter past orders.
 
@@ -60,7 +60,7 @@ Orders by wilaya/method/carrier, delivery revenue, failed/refused delivery
 counts (needs status workflow, Q16).
 
 ## 8. Security/performance
-Admin caps `ts_manage_delivery`; rates cached (object cache) with
+Admin caps `ds_manage_delivery`; rates cached (object cache) with
 version-bumped invalidation; composite index lookup; CSV import validated,
 size-limited, dry-run preview before commit.
 

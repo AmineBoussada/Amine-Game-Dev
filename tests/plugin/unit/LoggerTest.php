@@ -1,6 +1,6 @@
 <?php
 use PHPUnit\Framework\TestCase;
-use TopSolution\Core\Logger;
+use DecoStore\Core\Logger;
 
 class LoggerTest extends TestCase {
 

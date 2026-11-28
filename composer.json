@@ -1,6 +1,6 @@
 {
-	"name": "top-solution/top-solution",
-	"description": "Development tooling for the Top Solution store (theme and core plugin). Not needed on the server.",
+	"name": "deco-store/deco-store",
+	"description": "Development tooling for the Déco Store shop (theme and core plugin). Not needed on the server.",
 	"type": "project",
 	"license": "GPL-2.0-or-later",
 	"require": { "php": ">=7.4" },
@@ -13,6 +13,6 @@
 	"config": { "allow-plugins": { "dealerdirect/phpcodesniffer-composer-installer": true } },
 	"scripts": {
 		"test": "phpunit -c tests/plugin/phpunit.xml.dist",
-		"lint": "phpcs --standard=wp-content/plugins/top-solution-core/phpcs.xml.dist wp-content/plugins/top-solution-core && phpcs --standard=wp-content/themes/top-solution-child/phpcs.xml.dist wp-content/themes/top-solution-child"
+		"lint": "phpcs --standard=wp-content/plugins/deco-store-core/phpcs.xml.dist wp-content/plugins/deco-store-core && phpcs --standard=wp-content/themes/deco-store-child/phpcs.xml.dist wp-content/themes/deco-store-child"
 	}
 }

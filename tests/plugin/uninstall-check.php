@@ -10,25 +10,25 @@ require __DIR__ . '/wordpress/wp-load.php';
 wp_set_current_user( 1 );
 $mode = $argv[1] ?? 'off';
 
-$o = get_option( 'ts_core_settings', array() );
+$o = get_option( 'ds_core_settings', array() );
 $o['delete_data_on_uninstall'] = ( 'on' === $mode );
-update_option( 'ts_core_settings', $o );
+update_option( 'ds_core_settings', $o );
 
-define( 'WP_UNINSTALL_PLUGIN', 'top-solution-core/top-solution-core.php' );
-require WP_PLUGIN_DIR . '/top-solution-core/uninstall.php';
+define( 'WP_UNINSTALL_PLUGIN', 'deco-store-core/deco-store-core.php' );
+require WP_PLUGIN_DIR . '/deco-store-core/uninstall.php';
 
 wp_cache_flush();
 $roles = wp_roles();
 $roles->for_site();
-$admin_has = get_role( 'administrator' )->has_cap( 'ts_manage_settings' );
-$opt       = false !== get_option( 'ts_core_settings', false );
+$admin_has = get_role( 'administrator' )->has_cap( 'ds_manage_settings' );
+$opt       = false !== get_option( 'ds_core_settings', false );
 $orders    = wc_get_orders( array( 'limit' => 1, 'return' => 'ids' ) );
-$tables    = \TopSolution\Core\Schema::tables_exist();
+$tables    = \DecoStore\Core\Schema::tables_exist();
 $ok        = ( 'on' === $mode ) ? ( ! $admin_has && ! $opt && ! $tables ) : ( $admin_has && $opt && $tables );
 echo "uninstall ($mode): capability kept=" . var_export( $admin_has, true ) . ' option kept=' . var_export( $opt, true ) . ' tables kept=' . var_export( $tables, true ) . ' orders untouched=' . var_export( ! empty( $orders ), true ) . "\n";
 echo ( $ok && ! empty( $orders ) ? 'PASS' : 'FAIL' ) . " uninstall behaviour ($mode)\n";
 
 // Restore the site.
-\TopSolution\Core\Activator::activate();
-echo 'after restore: tables exist=' . var_export( \TopSolution\Core\Schema::tables_exist(), true ) . "\n";
+\DecoStore\Core\Activator::activate();
+echo 'after restore: tables exist=' . var_export( \DecoStore\Core\Schema::tables_exist(), true ) . "\n";
 exit( $ok && ! empty( $orders ) ? 0 : 1 );

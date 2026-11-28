@@ -1,4 +1,4 @@
-# Theme test harness (Top Solution Child)
+# Theme test harness (Déco Store Child)
 
 Scripts used to test the child theme in a throw-away WordPress. Nothing here
 is shipped with the theme and nothing touches a real site.
@@ -16,7 +16,7 @@ phone numbers). It is never a source of real business data.
    (WP_DEBUG + WP_DEBUG_LOG on, `WP_HOME`/`WP_SITEURL` = `http://127.0.0.1:8080`).
 3. Download the Arabic language packs (core + WooCommerce) into
    `wp-content/languages/` so `is_rtl()` is true.
-4. Symlink `wp-content/themes/top-solution-child` to the repo theme.
+4. Symlink `wp-content/themes/deco-store-child` to the repo theme.
 5. From the folder that contains `wordpress/`: `php install.php`, `php seed.php`,
    `php opt.php` (turns off WooCommerce "coming soon", sets 0 decimals).
 6. `php -S 127.0.0.1:8080 -t wordpress router.php`
@@ -42,7 +42,7 @@ phone numbers). It is never a source of real business data.
 11. `php elementor-toggle.php on|off`: run validate.js in both modes to prove
     the store works with Elementor Free active AND with Elementor deactivated.
 12. `php kit.php`: runs the Elementor kit brand sync as admin (idempotency check).
-13. `node install-zip.js <zip> <out-dir>`: installs `dist/top-solution-child.zip`
+13. `node install-zip.js <zip> <out-dir>`: installs `dist/deco-store-child.zip`
     through the real wp-admin upload screen and activates it.
 14. `php themecheck.php`: runs the official Theme Check plugin (place
     `theme-check` in plugins) against the installed theme.
@@ -52,5 +52,5 @@ phone numbers). It is never a source of real business data.
 Elementor Pro is never installed in this environment; the suite asserts no
 Pro reference appears in any rendered page.
 
-PHPCS: `phpcs --standard=wp-content/themes/top-solution-child/phpcs.xml.dist wp-content/themes/top-solution-child`
+PHPCS: `phpcs --standard=wp-content/themes/deco-store-child/phpcs.xml.dist wp-content/themes/deco-store-child`
 (needs `wp-coding-standards/wpcs` and `phpcompatibility/phpcompatibility-wp`).

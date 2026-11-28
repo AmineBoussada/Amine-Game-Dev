@@ -1,6 +1,6 @@
 <?php
 use PHPUnit\Framework\TestCase;
-use TopSolution\Forms\PhoneRule;
+use DecoStore\Forms\PhoneRule;
 
 class PhoneRuleTest extends TestCase {
 

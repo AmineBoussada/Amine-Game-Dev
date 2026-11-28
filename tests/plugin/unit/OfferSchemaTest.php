@@ -1,6 +1,6 @@
 <?php
 use PHPUnit\Framework\TestCase;
-use TopSolution\Offers\OfferSchema;
+use DecoStore\Offers\OfferSchema;
 
 class OfferSchemaTest extends TestCase {
 

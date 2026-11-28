@@ -8,13 +8,13 @@ $_SERVER['REQUEST_URI'] = '/';
 require __DIR__ . '/wordpress/wp-load.php';
 wp_set_current_user( 1 );
 
-use TopSolution\Delivery\DeliveryService;
-use TopSolution\Delivery\DeliverySettings;
-use TopSolution\Delivery\GeoRepository;
-use TopSolution\Delivery\RateRepository;
-use TopSolution\Offers\EngineInputs;
-use TopSolution\Offers\OfferRepository;
-use TopSolution\Offers\OfferSchema;
+use DecoStore\Delivery\DeliveryService;
+use DecoStore\Delivery\DeliverySettings;
+use DecoStore\Delivery\GeoRepository;
+use DecoStore\Delivery\RateRepository;
+use DecoStore\Offers\EngineInputs;
+use DecoStore\Offers\OfferRepository;
+use DecoStore\Offers\OfferSchema;
 
 $failed = 0;
 function check( $ok, $label ) {
@@ -34,9 +34,9 @@ function mk_offer( array $in ) {
 $d = DeliveryService::decimals();
 $u = (int) pow( 10, $d );
 
-check( post_type_exists( 'ts_offer' ), 'ts_offer registered' );
-$pt = get_post_type_object( 'ts_offer' );
-check( ! $pt->public && ! $pt->show_in_rest, 'ts_offer is private and not in REST' );
+check( post_type_exists( 'ds_offer' ), 'ds_offer registered' );
+$pt = get_post_type_object( 'ds_offer' );
+check( ! $pt->public && ! $pt->show_in_rest, 'ds_offer is private and not in REST' );
 
 // Fixtures.
 $cat  = wp_insert_term( 'تصنيف تجريبي ' . wp_rand(), 'product_cat' );
@@ -54,10 +54,10 @@ $gid = $gift->save();
 $wil = GeoRepository::upsert_wilaya( '91', 'ولاية تجريبية ث' );
 $wid = is_array( $wil ) ? (int) $wil['id'] : (int) $wil;
 RateRepository::upsert( 'home', $wid, 600 * $u, true, $d );
-$delivery_backup = get_option( 'ts_delivery_settings' );
+$delivery_backup = get_option( 'ds_delivery_settings' );
 $ds              = DeliverySettings::all();
 $ds['methods']['home']['enabled'] = '1';
-update_option( 'ts_delivery_settings', $ds );
+update_option( 'ds_delivery_settings', $ds );
 $created = array();
 
 $base = EngineInputs::price_single( array( 'product_id' => $pid, 'qty' => 1, 'wilaya_id' => $wid, 'method' => 'home' ) );
@@ -137,7 +137,7 @@ $bad = OfferRepository::get( $copy );
 check( 'draft' === $bad['status'] && ! empty( $bad['invalid'] ), 'a stored offer that no longer validates is forced to draft' );
 check( ! OfferRepository::set_status( $copy, 'active' ), 'an invalid offer cannot be activated' );
 check( OfferRepository::delete( $copy ) && ! OfferRepository::get( $copy ), 'delete' );
-check( ! in_array( 'ts_offer', get_post_types( array( 'public' => true ) ), true ), 'not a public post type' );
+check( ! in_array( 'ds_offer', get_post_types( array( 'public' => true ) ), true ), 'not a public post type' );
 
 // Cleanup.
 foreach ( $created as $id ) {
@@ -145,6 +145,6 @@ foreach ( $created as $id ) {
 }
 wp_delete_post( $pid, true );
 wp_delete_post( $gid, true );
-update_option( 'ts_delivery_settings', $delivery_backup );
+update_option( 'ds_delivery_settings', $delivery_backup );
 echo $failed ? "FAILED $failed\n" : "ALL OK\n";
 exit( $failed ? 1 : 0 );

@@ -1,4 +1,4 @@
-# DESIGN_SYSTEM — Top Solution (UI/UX)
+# DESIGN_SYSTEM — Déco Store (UI/UX)
 
 Status: DRAFT for approval. Design only; no backend. All Arabic copy in these
 documents is **placeholder** (clearly marked) — real copy, logo, photography
@@ -31,9 +31,9 @@ from the image pixels.*
 | Hover shades | `#013234` (Everglade darker), `#D4983A` (Cornfield lighter) | Button hover only |
 | Text | `#0D2A2C` ink, `#42585A` ink-2 | Dark teal-black text |
 | Feedback (not brand) | `#266A42` success, `#8F5700` warning, `#B3261E` error | Form and stock messages only |
-Tokens: `--ts-everglade`, `--ts-whirlpool`, `--ts-aqua`, `--ts-cornfield`,
-`--ts-sisal`; components use the role tokens (`--ts-brand` = Everglade,
-`--ts-accent` = Cornfield, `--ts-surface`, `--ts-tint`, `--ts-line`).
+Tokens: `--ds-everglade`, `--ds-whirlpool`, `--ds-aqua`, `--ds-cornfield`,
+`--ds-sisal`; components use the role tokens (`--ds-brand` = Everglade,
+`--ds-accent` = Cornfield, `--ds-surface`, `--ds-tint`, `--ds-line`).
 Checked contrast (WCAG AA): white on Everglade 10.5:1, Everglade on white 10.5:1,
 Everglade on surface 9.3:1, white on Whirlpool 7.0:1, ink on Cornfield 5.1:1,
 ink-2 on surface 6.7:1. Rules: never white text on Cornfield, Aqua Cove or
@@ -97,7 +97,7 @@ Performance budget per page: ≤ 150 KB CSS+JS gz (landing ≤ 60 KB JS-free
 critical path), fonts ≤ 2 files, hero image preloaded.
 
 ## 5. Accessibility
-WCAG 2.2 AA target: visible focus ring (2 px `--ts-brand` + 2 px white
+WCAG 2.2 AA target: visible focus ring (2 px `--ds-brand` + 2 px white
 offset), semantic landmarks, one H1, labels bound to inputs, error text
 with `aria-describedby`, `aria-live` for price updates, keyboard operable
 selectors/accordions/modals (focus trap), alt text from media library,
@@ -108,7 +108,7 @@ Each component: purpose · anatomy · states · responsive · a11y.
 | Component | Anatomy / notes |
 |---|---|
 | **Button** | Primary (Everglade fill, white text), Secondary (outline), Ghost, Whatsapp/Call (only if numbers provided). Sizes: M 48h, L 56h (landing CTA). States: default/hover/focus/active/disabled/loading (spinner, label kept). Full width on mobile for primary CTAs. |
-| **Input / Select / Textarea** | 48h, `--ts-surface` bg + 1px line, label above, helper text, error state (danger border + icon + message), RTL caret. |
+| **Input / Select / Textarea** | 48h, `--ds-surface` bg + 1px line, label above, helper text, error state (danger border + icon + message), RTL caret. |
 | **Choice card (radio/checkbox)** | Large tappable card, light Aqua tint when selected, check icon; used for delivery method, offers, options. |
 | **Quantity stepper** | − 1 + with bounds, numeric input between, 44px buttons. |
 | **Option swatch/chips** | Colour swatches (circle 40px, ring when selected, name on select), size/finish chips; unavailable = diagonal strike + aria-disabled. |

@@ -9,9 +9,9 @@ implemented until this documentation set is approved.
 |---|---|---|---|---|
 | 0 | Planning | These 10 documents + answers to open questions | Approval | Approved |
 | 1 | Foundation | Plugin skeleton, Composer/PSR-4, requirements check, HPOS declaration, Migrator, capabilities, settings framework, Logger, child theme (RTL, Arabic font, tokens), PHPCS/PHPStan/PHPUnit/CI setup, local WP+WC test env | Activation/deactivation, lint, HPOS on/off boot | Approved |
-| 2 | Geography & Delivery | `ts_geo_units`, import tool, methods/carriers/zones/rates/pickup, RateCalculator, WC ShippingMethod, Delivery admin | Unit tests rates; coverage report | Approved |
-| 3 | Forms | `ts_form`, field registry, builder UI, validators, renderer, dependent selects | Validation matrix; RTL render | Approved |
-| 4 | Offers | `ts_offer`, OfferEngine, resolver, simulator, DisplayProvider | Table-driven + property tests | Built, awaiting approval (DisplayProvider moves to Phase 6) |
+| 2 | Geography & Delivery | `ds_geo_units`, import tool, methods/carriers/zones/rates/pickup, RateCalculator, WC ShippingMethod, Delivery admin | Unit tests rates; coverage report | Approved |
+| 3 | Forms | `ds_form`, field registry, builder UI, validators, renderer, dependent selects | Validation matrix; RTL render | Approved |
+| 4 | Offers | `ds_offer`, OfferEngine, resolver, simulator, DisplayProvider | Table-driven + property tests | Built, awaiting approval (DisplayProvider moves to Phase 6) |
 | 5 | Orders | CheckoutController, tokens, idempotency, PricingService, OrderFactory, confirmation page, order admin meta box, anti-spam | Tamper/race/HPOS tests; manual COD walk-through | Not started |
 | 6 | Landing pages | Registries, 3 templates, sections, product data tab, draft/preview, cache | Template contract + visual/RTL/mobile tests | Not started |
 | 7 | Inventory & Suppliers | Availability, ledger, pending-supplier queue, suppliers, purchases, costs, CostGuard | Cost-leak tests; stock tests | Not started |
@@ -24,7 +24,7 @@ Phase 5 requires 2–4 complete (it consumes delivery, forms, offers).
 - Build order: **plugin foundation, then the order system**, then landing pages (the owner's choice).
 - Every product uses the landing page; new COD orders start as `processing`.
 - Elementor **Free** only; Pro is never required (theme and plugin).
-- Phase 1 delivered and approved: `wp-content/plugins/top-solution-core` (see `docs/PLUGIN_PHASE1.md`). The theme (`top-solution-child`, v0.3.0) is approved.
+- Phase 1 delivered and approved: `wp-content/plugins/deco-store-core` (see `docs/PLUGIN_PHASE1.md`). The theme (`deco-store-child`, v0.3.0) is approved.
 - Order chosen by the owner: phases 2, 3, 4, then 5. Phase 2 approved. Phase 3 approved. Phase 4 delivered: see `docs/PLUGIN_PHASE4.md`.
 
 ## Cross-phase rules

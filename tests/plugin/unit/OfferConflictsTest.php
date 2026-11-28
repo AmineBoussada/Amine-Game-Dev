@@ -1,7 +1,7 @@
 <?php
 use PHPUnit\Framework\TestCase;
-use TopSolution\Offers\OfferConflicts;
-use TopSolution\Offers\OfferSchema;
+use DecoStore\Offers\OfferConflicts;
+use DecoStore\Offers\OfferSchema;
 
 class OfferConflictsTest extends TestCase {
 

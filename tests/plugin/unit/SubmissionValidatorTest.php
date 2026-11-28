@@ -1,10 +1,10 @@
 <?php
 use PHPUnit\Framework\TestCase;
-use TopSolution\Forms\DefaultForm;
-use TopSolution\Forms\FormSchema;
-use TopSolution\Forms\PhoneRule;
-use TopSolution\Forms\SubmissionValidator;
-use TopSolution\Forms\ValidationContext;
+use DecoStore\Forms\DefaultForm;
+use DecoStore\Forms\FormSchema;
+use DecoStore\Forms\PhoneRule;
+use DecoStore\Forms\SubmissionValidator;
+use DecoStore\Forms\ValidationContext;
 
 /**
  * Fake world: wilaya 1 has communes 11, 12; wilaya 2 has none; wilaya 3 is

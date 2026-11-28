@@ -1,0 +1,205 @@
+/* Déco Store Core — admin styles (only on this plugin's screens). Logical properties: RTL-safe. */
+.ds-admin {
+	--ds-everglade: #014749;
+	--ds-whirlpool: #395c7a;
+	--ds-cornfield: #c88928;
+	--ds-line: #e3d0bc;
+	--ds-surface: #f6f0ea;
+	--ds-ok: #266a42;
+	--ds-ok-bg: #e3f1e8;
+	--ds-warn: #8f5700;
+	--ds-warn-bg: #fbebd2;
+	--ds-bad: #b3261e;
+	--ds-bad-bg: #fbe1df;
+}
+
+.ds-admin h1 {
+	color: var(--ds-everglade);
+}
+
+.ds-lead {
+	max-width: 70ch;
+	color: #42585a;
+}
+
+.ds-summary {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	margin-block: 16px;
+}
+
+.ds-pill,
+.ds-badge {
+	display: inline-block;
+	padding: 2px 12px;
+	border-radius: 999px;
+	background: var(--ds-surface);
+	border: 1px solid var(--ds-line);
+	color: #0d2a2c;
+	font-weight: 600;
+	line-height: 1.8;
+}
+
+.ds-pill--ok,
+.ds-badge--ok {
+	background: var(--ds-ok-bg);
+	border-color: var(--ds-ok);
+	color: var(--ds-ok);
+}
+
+.ds-pill--warn,
+.ds-badge--warn {
+	background: var(--ds-warn-bg);
+	border-color: var(--ds-warn);
+	color: var(--ds-warn);
+}
+
+.ds-pill--fail,
+.ds-badge--fail {
+	background: var(--ds-bad-bg);
+	border-color: var(--ds-bad);
+	color: var(--ds-bad);
+}
+
+.ds-status {
+	max-width: 960px;
+}
+
+.ds-status th[scope="row"] {
+	width: 22%;
+}
+
+.ds-status td:nth-child(2) {
+	width: 14%;
+	white-space: nowrap;
+}
+
+.ds-form .form-table th {
+	width: 220px;
+}
+
+@media (max-width: 782px) {
+	.ds-status th[scope="row"],
+	.ds-status td:nth-child(2) {
+		width: auto;
+	}
+}
+
+/* Delivery screen */
+.ds-card {
+	max-width: 960px;
+	margin-block: 16px;
+	padding: 16px 20px;
+	border: 1px solid var(--ds-line);
+	border-inline-start: 4px solid var(--ds-whirlpool);
+	border-radius: 8px;
+	background: #fff;
+}
+
+.ds-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	margin-block-start: 12px;
+}
+
+.ds-import {
+	max-width: 960px;
+	margin-block: 16px;
+	padding: 8px 16px;
+	border: 1px solid var(--ds-line);
+	border-radius: 8px;
+	background: var(--ds-surface);
+}
+
+.ds-import summary {
+	cursor: pointer;
+	font-weight: 600;
+	padding-block: 8px;
+	color: var(--ds-everglade);
+}
+
+.ds-code {
+	overflow-x: auto;
+	padding: 8px 12px;
+	background: #fff;
+	border: 1px solid var(--ds-line);
+	border-radius: 6px;
+}
+
+.ds-scroll {
+	max-width: 100%;
+	overflow-x: auto;
+}
+
+.ds-matrix .ds-fee {
+	width: 7em;
+}
+
+.ds-matrix .ds-off {
+	display: block;
+	margin-block-start: 4px;
+	font-size: 12px;
+}
+
+.ds-matrix .ds-default-row th,
+.ds-matrix .ds-default-row td {
+	background: var(--ds-surface);
+	font-weight: 600;
+}
+
+.ds-inline {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	margin: 0;
+}
+
+.ds-row-actions {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 6px;
+}
+
+.ds-empty {
+	padding: 16px;
+	border: 1px dashed var(--ds-line);
+	border-radius: 8px;
+	color: #42585a;
+	max-width: 960px;
+}
+
+.ds-preview-form {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-end;
+	gap: 12px 20px;
+}
+
+.ds-preview-form p {
+	margin: 0;
+}
+
+.ds-list {
+	list-style: disc;
+	padding-inline-start: 20px;
+}
+
+/* Form builder */
+.ds-b-list { list-style: none; margin: 0 0 12px; padding: 0; max-width: 960px; }
+.ds-b-item { background: #fff; border: 1px solid var(--ds-line); border-radius: 8px; margin-block-end: 8px; }
+.ds-b-item.is-open { border-color: var(--ds-brand, #014749); }
+.ds-b-head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 8px 12px; }
+.ds-b-type { font-size: 12px; color: #42585a; background: var(--ds-surface, #f6f0ea); border-radius: 4px; padding: 2px 8px; }
+.ds-b-title { flex: 1 1 140px; }
+.ds-b-tools { display: inline-flex; flex-wrap: wrap; gap: 4px; }
+.ds-b-panel { border-block-start: 1px solid var(--ds-line); padding: 8px 12px 12px; }
+.ds-b-row { margin: 8px 0; }
+.ds-b-row label { display: block; font-weight: 600; margin-block-end: 4px; }
+.ds-b-rules { border: 1px solid var(--ds-line); border-radius: 6px; padding: 8px 12px; margin-block-start: 12px; }
+.ds-b-rule { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+.ds-b-builder-add, .ds-builder-add { margin: 12px 0; }
+.ds-inline-form { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.ds-form-preview { max-width: 640px; }

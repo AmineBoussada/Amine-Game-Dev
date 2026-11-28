@@ -10,16 +10,16 @@ $_SERVER['REQUEST_URI'] = '/';
 require __DIR__ . '/wordpress/wp-load.php';
 wp_set_current_user( 1 );
 
-use TopSolution\Core\Migrator;
-use TopSolution\Core\Schema;
-use TopSolution\Delivery\CsvImporter;
-use TopSolution\Delivery\DeliveryService;
-use TopSolution\Delivery\DeliverySettings;
-use TopSolution\Delivery\GeoRepository;
-use TopSolution\Delivery\Importer;
-use TopSolution\Delivery\PickupRepository;
-use TopSolution\Delivery\RateRepository;
-use TopSolution\Delivery\ZoneSetup;
+use DecoStore\Core\Migrator;
+use DecoStore\Core\Schema;
+use DecoStore\Delivery\CsvImporter;
+use DecoStore\Delivery\DeliveryService;
+use DecoStore\Delivery\DeliverySettings;
+use DecoStore\Delivery\GeoRepository;
+use DecoStore\Delivery\Importer;
+use DecoStore\Delivery\PickupRepository;
+use DecoStore\Delivery\RateRepository;
+use DecoStore\Delivery\ZoneSetup;
 
 $failed = 0;
 function check( $ok, $label ) {
@@ -31,7 +31,7 @@ function check( $ok, $label ) {
 }
 $d = DeliveryService::decimals();
 
-check( (int) get_option( Migrator::OPTION ) === 2, 'database upgraded to version 2' );
+check( (int) get_option( Migrator::OPTION ) >= 2, 'database upgraded to at least version 2 (delivery tables)' );
 check( Schema::tables_exist(), 'delivery tables exist (geo_units, delivery_rates, pickup_points)' );
 
 // ---- Geography import: dry run writes nothing, commit writes, re-import updates.
@@ -87,7 +87,7 @@ GeoRepository::set_active( $w57['id'], true );
 
 update_option( DeliverySettings::OPTION, DeliverySettings::sanitize( array( 'methods' => array( 'home' => array( 'enabled' => 1 ), 'office' => array( 'enabled' => 0 ) ), 'free_threshold' => '10000' ), $d )['settings'] );
 check( 'method_disabled' === DeliveryService::quote( 'office', $w57['id'], 0, 0 )['reason'], 'a disabled method is not offered' );
-$q = DeliveryService::quote( 'home', $w57['id'], $c1['id'], (int) \TopSolution\Delivery\Money::to_minor( '10000', $d ) );
+$q = DeliveryService::quote( 'home', $w57['id'], $c1['id'], (int) \DecoStore\Delivery\Money::to_minor( '10000', $d ) );
 check( $q['available'] && 0 === $q['fee_minor'] && 'free_threshold' === $q['reason'], 'free delivery from the threshold' );
 update_option( DeliverySettings::OPTION, DeliverySettings::defaults() );
 
@@ -103,9 +103,9 @@ $zone = ZoneSetup::ensure();
 check( $zone['zone_id'] > 0, 'WooCommerce shipping zone exists with the method' );
 check( ZoneSetup::ensure()['created'] === false, 'zone setup is idempotent (no duplicate zone)' );
 WC()->shipping()->load_shipping_methods();
-check( isset( WC()->shipping()->get_shipping_method_class_names()['ts_delivery'] ), 'shipping method registered in WooCommerce' );
+check( isset( WC()->shipping()->get_shipping_method_class_names()['ds_delivery'] ), 'shipping method registered in WooCommerce' );
 
-function ts_test_rates( $state, $city, $cost ) {
+function ds_test_rates( $state, $city, $cost ) {
 	$package = array(
 		'contents'        => array(),
 		'contents_cost'   => $cost,
@@ -114,20 +114,20 @@ function ts_test_rates( $state, $city, $cost ) {
 		'destination'     => array( 'country' => 'DZ', 'state' => $state, 'postcode' => '', 'city' => $city, 'address' => '', 'address_2' => '' ),
 	);
 	WC()->shipping()->reset_shipping();
-	$result = WC()->shipping()->calculate_shipping_for_package( $package, 'ts-test-' . md5( $state . $city . $cost . microtime() ) );
+	$result = WC()->shipping()->calculate_shipping_for_package( $package, 'ds-test-' . md5( $state . $city . $cost . microtime() ) );
 	$out    = array();
 	foreach ( $result['rates'] as $rate ) {
-		$out[ $rate->get_meta_data()['ts_method'] ?? $rate->get_id() ] = (float) $rate->get_cost();
+		$out[ $rate->get_meta_data()['ds_method'] ?? $rate->get_id() ] = (float) $rate->get_cost();
 	}
 	return $out;
 }
-$r = ts_test_rates( 'DZ-57', 'بلدية تجريبية 2', 3000 );
+$r = ds_test_rates( 'DZ-57', 'بلدية تجريبية 2', 3000 );
 check( isset( $r['home'] ) && 650.0 === $r['home'] && isset( $r['office'] ) && 250.0 === $r['office'], 'WooCommerce rates for DZ-57 / commune 2: home 650, office 250' );
-$r = ts_test_rates( 'DZ-57', 'مدينة غير معروفة', 3000 );
+$r = ds_test_rates( 'DZ-57', 'مدينة غير معروفة', 3000 );
 check( isset( $r['home'] ) && 400.0 === $r['home'], 'unknown city falls back to the wilaya price' );
-$r = ts_test_rates( 'DZ-58', 'بلدية تجريبية 3', 3000 );
+$r = ds_test_rates( 'DZ-58', 'بلدية تجريبية 3', 3000 );
 check( ! isset( $r['home'] ), 'not-served commune gets no home-delivery rate in WooCommerce' );
-check( null === \TopSolution\Delivery\GeoCode::to_wc_state( '90' ), 'wilaya 90 has no WooCommerce state code (shown as a warning in the admin)' );
+check( null === \DecoStore\Delivery\GeoCode::to_wc_state( '90' ), 'wilaya 90 has no WooCommerce state code (shown as a warning in the admin)' );
 
 echo $failed ? "\n$failed FAILED\n" : "\nALL PASSED\n";
 exit( $failed ? 1 : 0 );

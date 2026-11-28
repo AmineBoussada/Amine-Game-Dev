@@ -1,4 +1,4 @@
-// Installs dist/top-solution-child.zip through the real WordPress admin upload screen.
+// Installs dist/deco-store-child.zip through the real WordPress admin upload screen.
 const { chromium } = require('playwright');
 const ZIP = process.argv[2], OUT = process.argv[3];
 (async () => {

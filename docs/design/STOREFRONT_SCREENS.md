@@ -35,7 +35,7 @@ trust note "الدفع عند الاستلام" (placeholder), copyright.
 [Category tiles 2-col grid (WC categories)]
 [Featured products carousel/grid (WC featured/ manual)]
 [Promo banner (optional): offer product link, light Aqua tint bg]
-[Why Top Solution: 3 benefit cards (owner copy)]
+[Why Déco Store: 3 benefit cards (owner copy)]
 [Customer proof: reviews/photos — ONLY if real content exists]
 [Delivery & payment explainer: 3 steps (Order → Confirm → Pay on receipt)]
 [FAQ short (3–5)]

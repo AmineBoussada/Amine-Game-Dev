@@ -13,7 +13,7 @@ update_option( 'timezone_string', 'Africa/Algiers' );
 update_option( 'blogdescription', 'وصف تجريبي للموقع: ديكور وتحسينات منزلية' );
 activate_plugin( 'woocommerce/woocommerce.php' );
 echo "wc active\n";
-switch_theme( 'top-solution-child' );
+switch_theme( 'deco-store-child' );
 update_option( 'woocommerce_currency', 'DZD' );
 update_option( 'woocommerce_price_decimals', 0 );
 update_option( 'woocommerce_price_thousand_sep', ' ' );
@@ -27,7 +27,7 @@ if ( class_exists( 'WC_Install' ) ) {
 	WC_Install::create_pages();
 }
 
-function ts_test_image( $seed, $w = 900, $h = 900 ) {
+function ds_test_image( $seed, $w = 900, $h = 900 ) {
 	$img   = imagecreatetruecolor( $w, $h );
 	$bases = array( array( 214, 190, 160 ), array( 190, 150, 110 ), array( 160, 120, 80 ), array( 230, 226, 220 ), array( 200, 200, 196 ), array( 138, 95, 55 ) );
 	$b     = $bases[ $seed % count( $bases ) ];
@@ -40,12 +40,12 @@ function ts_test_image( $seed, $w = 900, $h = 900 ) {
 	for ( $i = 0; $i < 12; $i++ ) {
 		imageline( $img, 0, 60 + $i * 70 + ( $seed * 7 ) % 30, $w, 20 + $i * 70, $line );
 	}
-	$file = sys_get_temp_dir() . "/ts-test-$seed-$w.jpg";
+	$file = sys_get_temp_dir() . "/ds-test-$seed-$w.jpg";
 	imagejpeg( $img, $file, 80 );
 	return $file;
 }
-function ts_test_attach( $seed, $w = 900, $h = 900 ) {
-	$tmp = ts_test_image( $seed, $w, $h );
+function ds_test_attach( $seed, $w = 900, $h = 900 ) {
+	$tmp = ds_test_image( $seed, $w, $h );
 	$id  = media_handle_sideload( array( 'name' => "test-$seed.jpg", 'tmp_name' => $tmp ), 0 );
 	return is_wp_error( $id ) ? 0 : $id;
 }
@@ -63,7 +63,7 @@ $seed    = 0;
 foreach ( $cats as $name => $kids ) {
 	$t = term_exists( $name, 'product_cat' ) ?: wp_insert_term( $name, 'product_cat' );
 	$id = is_array( $t ) ? $t['term_id'] : $t;
-	update_term_meta( $id, 'thumbnail_id', ts_test_attach( $seed++, 640, 480 ) );
+	update_term_meta( $id, 'thumbnail_id', ds_test_attach( $seed++, 640, 480 ) );
 	$cat_ids[ $name ] = $id;
 	foreach ( $kids as $kid ) {
 		$kt = term_exists( $kid, 'product_cat' ) ?: wp_insert_term( $kid, 'product_cat', array( 'parent' => $id ) );
@@ -84,7 +84,7 @@ foreach ( $names as $i => $n ) {
 	$p->set_status( 'publish' );
 	$p->set_short_description( 'وصف قصير تجريبي للمنتج.' );
 	$p->set_description( 'وصف مفصل تجريبي للمنتج. هذا النص للاختبار فقط.' );
-	$p->set_image_id( ts_test_attach( $i + 10 ) );
+	$p->set_image_id( ds_test_attach( $i + 10 ) );
 	$p->set_category_ids( array( $cat_ids[ $cat_names[ $i % count( $cat_names ) ] ] ) );
 	if ( 7 !== $i ) {
 		$p->set_regular_price( (string) ( 4000 + $i * 1250 ) );
@@ -158,13 +158,13 @@ set_theme_mod( 'nav_menu_locations', array( 'menu-1' => $m, 'menu-2' => $f ) );
 
 // Customizer test values (fake).
 foreach ( array(
-	'ts_announcement'   => 'نص تجريبي لشريط الإعلان',
-	'ts_phone'          => '0555 00 00 00',
-	'ts_whatsapp'       => '+213 555 00 00 00',
-	'ts_email'          => 'test@example.com',
-	'ts_address'        => 'عنوان تجريبي للاختبار',
-	'ts_hours'          => 'ساعات العمل التجريبية',
-	'ts_footer_about'   => 'نبذة تجريبية قصيرة عن المتجر لاختبار التذييل.',
+	'ds_announcement'   => 'نص تجريبي لشريط الإعلان',
+	'ds_phone'          => '0555 00 00 00',
+	'ds_whatsapp'       => '+213 555 00 00 00',
+	'ds_email'          => 'test@example.com',
+	'ds_address'        => 'عنوان تجريبي للاختبار',
+	'ds_hours'          => 'ساعات العمل التجريبية',
+	'ds_footer_about'   => 'نبذة تجريبية قصيرة عن المتجر لاختبار التذييل.',
 ) as $k => $v ) {
 	set_theme_mod( $k, $v );
 }

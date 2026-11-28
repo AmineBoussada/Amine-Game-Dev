@@ -40,8 +40,8 @@ field present → ignored and flagged.
 ## 5. Order creation (WC CRUD only)
 - `wc_create_order(['status'=>'pending'])` → add product line items with
   `set_subtotal/set_total` from engine result (line prices come only from
-  PricingResult); gift lines at 0 with `_ts_is_gift`; shipping line via the
-  TS WC shipping method (rate = server fee); set billing address (country DZ,
+  PricingResult); gift lines at 0 with `_ds_is_gift`; shipping line via the
+  DS WC shipping method (rate = server fee); set billing address (country DZ,
   state, city, address, phone, name); payment method `cod`
   (title from gateway); `calculate_totals(false)` then **assert**
   `get_total()` equals engine grand_total (else abort + log + delete draft).
@@ -55,15 +55,15 @@ field present → ignored and flagged.
 
 ## 6. Duplicate-submission prevention (layers)
 1. Client: disable button, single in-flight request.
-2. **Atomic idempotency**: `add_option('ts_idem_'.hash(key), state, '', 'no')`
+2. **Atomic idempotency**: `add_option('ds_idem_'.hash(key), state, '', 'no')`
    — unique option name ⇒ only first request proceeds; states: `processing` →
    `done:<order_id>`; concurrent duplicates receive `409 in_progress` or the
    completed result. Stale `processing` (> N seconds) recoverable by cron
-   after verifying no order carries that key (`_ts_idempotency_key` lookup via
+   after verifying no order carries that key (`_ds_idempotency_key` lookup via
    `wc_get_orders` meta query).
-3. Order meta `_ts_idempotency_key` for audit/recovery.
+3. Order meta `_ds_idempotency_key` for audit/recovery.
 4. Heuristic duplicate warning: same normalised phone + same product within
-   window (setting) → order created but flagged `_ts_flags.duplicate_suspect`
+   window (setting) → order created but flagged `_ds_flags.duplicate_suspect`
    for admin review (blocking policy is a business decision, Q13).
 5. Cleanup cron removes expired idempotency rows.
 
@@ -77,7 +77,7 @@ Gift items follow stock rules; if gift unavailable → gift dropped and
 recorded in snapshot (`rejected`), customer informed in preview.
 
 ## 8. Confirmation page
-Custom endpoint/page `Order Confirmation` reached with `?ts_order=<id>&key=<wc_order_key>&t=<token>`;
+Custom endpoint/page `Order Confirmation` reached with `?ds_order=<id>&key=<wc_order_key>&t=<token>`;
 validated against WC order key (`$order->key_is_valid`). Shows: WC order number
 (unique, from WC — optionally sequential-number plugin later), items with
 offer labels, options, delivery method/fee/pickup point, total payable on
@@ -93,7 +93,7 @@ Customer-facing generic message in Arabic; support reference id.
 ## 10. Admin experience
 WC Orders list: column/filter "Source: Landing page", template, offer,
 flags (duplicate/spam), delivery type. Order edit screen: read-only meta box
-"Top Solution" (snapshots, formatted); cost cap users also see costs/margin.
+"Déco Store" (snapshots, formatted); cost cap users also see costs/margin.
 Status workflow: owner-defined COD confirmation/dispatch (custom statuses
 optional — decide Q16/Q1; otherwise native statuses).
 

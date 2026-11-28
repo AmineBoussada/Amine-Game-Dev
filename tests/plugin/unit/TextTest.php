@@ -1,6 +1,6 @@
 <?php
 use PHPUnit\Framework\TestCase;
-use TopSolution\Core\Text;
+use DecoStore\Core\Text;
 
 class TextTest extends TestCase {
 

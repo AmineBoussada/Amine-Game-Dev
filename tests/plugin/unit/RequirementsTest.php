@@ -1,6 +1,6 @@
 <?php
 use PHPUnit\Framework\TestCase;
-use TopSolution\Core\Requirements;
+use DecoStore\Core\Requirements;
 
 class RequirementsTest extends TestCase {
 

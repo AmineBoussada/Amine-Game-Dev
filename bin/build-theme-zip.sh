@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-# Build an installable WordPress theme archive: dist/top-solution-child.zip
-# The archive root is the folder "top-solution-child/" (required by WordPress).
+# Build an installable WordPress theme archive: dist/deco-store-child.zip
+# The archive root is the folder "deco-store-child/" (required by WordPress).
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 THEMES="$ROOT/wp-content/themes"
-SLUG="top-solution-child"
+SLUG="deco-store-child"
 OUT="$ROOT/dist/$SLUG.zip"
 
 [ -f "$THEMES/$SLUG/style.css" ] || { echo "style.css not found in $THEMES/$SLUG" >&2; exit 1; }

@@ -3,16 +3,16 @@
 ## 1. Inventory model
 - WooCommerce stock is the authority for physical quantities
   (manage stock per product/variation).
-- Availability state per product/variation (`_ts_availability`):
+- Availability state per product/variation (`_ds_availability`):
   `in_stock`, `from_supplier` (sourced after order), `unavailable`.
   Mapping with WC stock status is synchronised by `AvailabilityService`
   (e.g. `from_supplier` ⇒ WC "on backorder"-like behaviour allowing orders,
   but kept distinct in our logic and UI).
-- `ts_stock_movements` ledger: every stock-affecting event records delta +
+- `ds_stock_movements` ledger: every stock-affecting event records delta +
   reason + reference; writes happen from hooks on WC stock changes
   (`woocommerce_product_set_stock`, `woocommerce_variation_set_stock`,
   order stock reduce/restore) and manual adjustments in our UI (capability
-  `ts_manage_inventory`). Ledger is informational/audit; never the source
+  `ds_manage_inventory`). Ledger is informational/audit; never the source
   for storefront availability.
 - Low-stock threshold uses WC setting per product with a dashboard widget.
 - Reconciliation tool (Tools tab): compare ledger running balance vs WC stock,
@@ -20,24 +20,24 @@
 
 ## 2. Supplier-sourced orders ("needs purchase" queue)
 Orders containing `from_supplier` lines get order meta flag
-`_ts_needs_purchase`. Inventory → "Pending supplier items" screen lists
+`_ds_needs_purchase`. Inventory → "Pending supplier items" screen lists
 lines awaiting purchase (grouped by supplier). Actions: create purchase lot
 (qty, unit cost, supplier, reference) → marks lines as purchased/received;
 on receipt optionally increases WC stock. Statuses of procurement per line:
-`pending`, `ordered`, `received`, `cancelled` (item meta `_ts_proc_status`).
+`pending`, `ordered`, `received`, `cancelled` (item meta `_ds_proc_status`).
 Whether procurement affects WC order statuses (e.g. custom status) is a
 business decision (Q16); default: separate procurement flag, order status
 untouched.
 
 ## 3. Suppliers
-CPT `ts_supplier` (name, contact JSON, notes, status). No supplier data is
-seeded. Product ↔ default supplier (`_ts_supplier_id`); a product may have
+CPT `ds_supplier` (name, contact JSON, notes, status). No supplier data is
+seeded. Product ↔ default supplier (`_ds_supplier_id`); a product may have
 multiple historical suppliers via purchase lots. Supplier screens require
-`ts_manage_suppliers`; contact/financial details are admin-only.
+`ds_manage_suppliers`; contact/financial details are admin-only.
 
 ## 4. Purchase costs
-- `ts_purchase_lots` stores each purchase with unit cost.
-- Current cost per product/variation: `_ts_purchase_cost` set manually or
+- `ds_purchase_lots` stores each purchase with unit cost.
+- Current cost per product/variation: `_ds_purchase_cost` set manually or
   derived by a setting: `manual` (default) | `last_purchase` | `weighted_average`
   (owner picks, Q15). Derived value recalculated on lot insert.
 - At order time, unit cost snapshot saved to order/line meta (cost cap) →
@@ -46,7 +46,7 @@ multiple historical suppliers via purchase lots. Supplier screens require
   includes it; delivery cost data requires its own input, Q15).
 
 ## 5. Cost protection requirements (enforced + tested)
-1. Capability `ts_view_costs` (administrator only by default).
+1. Capability `ds_view_costs` (administrator only by default).
 2. Stored only in underscore meta / custom tables / CPT with
    `show_in_rest=false`; never in WC REST `meta_data`, never in
    storefront/templates, emails, order notes, invoices, CSV exports without

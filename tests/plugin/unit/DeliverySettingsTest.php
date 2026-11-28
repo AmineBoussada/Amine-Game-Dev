@@ -1,6 +1,6 @@
 <?php
 use PHPUnit\Framework\TestCase;
-use TopSolution\Delivery\DeliverySettings;
+use DecoStore\Delivery\DeliverySettings;
 
 class DeliverySettingsTest extends TestCase {
 

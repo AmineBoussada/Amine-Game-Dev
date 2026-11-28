@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-# Build an installable WordPress plugin archive: dist/top-solution-core.zip
-# The archive root is the folder "top-solution-core/" (required by WordPress).
+# Build an installable WordPress plugin archive: dist/deco-store-core.zip
+# The archive root is the folder "deco-store-core/" (required by WordPress).
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 PLUGINS="$ROOT/wp-content/plugins"
-SLUG="top-solution-core"
+SLUG="deco-store-core"
 OUT="$ROOT/dist/$SLUG.zip"
 
 [ -f "$PLUGINS/$SLUG/$SLUG.php" ] || { echo "$SLUG.php not found in $PLUGINS/$SLUG" >&2; exit 1; }

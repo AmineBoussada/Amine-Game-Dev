@@ -54,8 +54,8 @@ let failures = 0;
       const html = await p.content();
       const info = await p.evaluate(() => ({
         overflow: document.documentElement.scrollWidth - innerWidth,
-        dir: document.documentElement.dir, header: !!document.querySelector('header.ts-header'),
-        footer: !!document.querySelector('footer.ts-footer'), mains: document.querySelectorAll('main').length,
+        dir: document.documentElement.dir, header: !!document.querySelector('header.ds-header'),
+        footer: !!document.querySelector('footer.ds-footer'), mains: document.querySelectorAll('main').length,
         h1: document.querySelectorAll('h1').length,
       }));
       await p.evaluate(axeSrc);

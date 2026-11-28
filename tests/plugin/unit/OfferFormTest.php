@@ -1,7 +1,7 @@
 <?php
 use PHPUnit\Framework\TestCase;
-use TopSolution\Offers\OfferForm;
-use TopSolution\Offers\OfferSchema;
+use DecoStore\Offers\OfferForm;
+use DecoStore\Offers\OfferSchema;
 
 class OfferFormTest extends TestCase {
 

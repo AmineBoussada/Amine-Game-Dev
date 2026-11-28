@@ -1,6 +1,6 @@
 <?php
 use PHPUnit\Framework\TestCase;
-use TopSolution\Forms\Visibility;
+use DecoStore\Forms\Visibility;
 
 class VisibilityTest extends TestCase {
 

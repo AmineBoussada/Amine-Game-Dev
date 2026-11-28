@@ -1,11 +1,11 @@
-# Top Solution Core — Phase 2 (delivery and geography)
+# Déco Store Core — Phase 2 (delivery and geography)
 
-Version 0.2.0 · database version 2 · ZIP: `dist/top-solution-core.zip`.
+Version 0.2.0 · database version 2 · ZIP: `dist/deco-store-core.zip`.
 **No real data is shipped.** Wilayas, communes, prices and pickup offices are
 entered or imported by the owner; the plugin contains none. Tests use
 fictional data only ("ولاية تجريبية").
 
-## What it does (Top Solution > Delivery, capability `ts_manage_delivery`)
+## What it does (Déco Store > Delivery, capability `ds_manage_delivery`)
 | Tab | Function |
 |---|---|
 | Settings | Turn home delivery / delivery-office pickup on or off, customer-facing labels, optional free-delivery threshold. One-click WooCommerce shipping zone "Algeria" using the method. |
@@ -26,10 +26,10 @@ Amounts are integers in minor units (store decimals), never floats; Arabic-Indic
 CSV, UTF-8, `,` or `;`, max 2 MB / 20 000 rows. Every import shows a **dry run first** (new / updated / rejected lines with reasons); the confirmed import applies exactly the previewed rows, kept on the server (the browser cannot change them between preview and confirm). Re-importing the same file updates, never duplicates. A commune code cannot be moved to another wilaya by import.
 
 ## WooCommerce
-Shipping method `ts_delivery` ("Top Solution — التوصيل"), one rate per available method, cost from `DeliveryService`. Wilaya ↔ WooCommerce state: `DZ-01` … `DZ-58`. A wilaya numbered above 58 has no WooCommerce state code; the admin shows a warning. This matters only for the standard WooCommerce cart, not for landing pages (Phase 5 uses `DeliveryService` directly). The city typed in a WooCommerce address is matched to a commune by name; no match → wilaya price.
+Shipping method `ds_delivery` ("Déco Store — التوصيل"), one rate per available method, cost from `DeliveryService`. Wilaya ↔ WooCommerce state: `DZ-01` … `DZ-58`. A wilaya numbered above 58 has no WooCommerce state code; the admin shows a warning. This matters only for the standard WooCommerce cart, not for landing pages (Phase 5 uses `DeliveryService` directly). The city typed in a WooCommerce address is matched to a commune by name; no match → wilaya price.
 
 ## Data (custom tables, justified in DATABASE_SCHEMA)
-`ts_geo_units` (wilaya/commune, code, Arabic/French name, active, source), `ts_delivery_rates` (method, geo id or 0 for default, fee, active), `ts_pickup_points`. Created by migration 2 (`dbDelta`), dropped only by uninstall with "delete data" ticked.
+`ds_geo_units` (wilaya/commune, code, Arabic/French name, active, source), `ds_delivery_rates` (method, geo id or 0 for default, fee, active), `ds_pickup_points`. Created by migration 2 (`dbDelta`), dropped only by uninstall with "delete data" ticked.
 
 ## Simplifications versus the original spec (deliberate, can be added later)
 - No separate "zone" or "carrier" entities: prices are per method and area; the carrier is a text field on offices. Add carriers per price only if you work with several companies at different prices.

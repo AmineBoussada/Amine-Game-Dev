@@ -5,9 +5,9 @@
  */
 
 define( 'ABSPATH', __DIR__ . '/' );
-define( 'TS_CORE_MIN_PHP', '7.4' );
-define( 'TS_CORE_MIN_WP', '6.4' );
-define( 'TS_CORE_MIN_WC', '8.0' );
+define( 'DS_CORE_MIN_PHP', '7.4' );
+define( 'DS_CORE_MIN_WP', '6.4' );
+define( 'DS_CORE_MIN_WC', '8.0' );
 
 // Minimal stubs of the few WordPress functions the pure classes may touch.
 if ( ! function_exists( '__' ) ) {
@@ -22,5 +22,5 @@ if ( ! function_exists( '__' ) ) {
 	}
 }
 
-require_once dirname( __DIR__, 2 ) . '/wp-content/plugins/top-solution-core/src/Core/Autoloader.php';
-\TopSolution\Core\Autoloader::register( 'TopSolution\\', dirname( __DIR__, 2 ) . '/wp-content/plugins/top-solution-core/src/' );
+require_once dirname( __DIR__, 2 ) . '/wp-content/plugins/deco-store-core/src/Core/Autoloader.php';
+\DecoStore\Core\Autoloader::register( 'DecoStore\\', dirname( __DIR__, 2 ) . '/wp-content/plugins/deco-store-core/src/' );

@@ -1,7 +1,7 @@
 <?php
 use PHPUnit\Framework\TestCase;
-use TopSolution\Offers\OfferSchema;
-use TopSolution\Offers\PricingEngine;
+use DecoStore\Offers\OfferSchema;
+use DecoStore\Offers\PricingEngine;
 
 class PricingEngineTest extends TestCase {
 

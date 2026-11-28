@@ -1,4 +1,4 @@
-# PROJECT_SPEC — Top Solution
+# PROJECT_SPEC — Déco Store
 
 Status: DRAFT for approval. No application code exists. Supersedes the earlier
 Phase 0 drafts (removed). Companion documents: SYSTEM_ARCHITECTURE,
@@ -16,20 +16,20 @@ is invented anywhere in these documents; all of it is admin-entered config.
 ## 2. Stack & language
 WordPress, WooCommerce, Hello Elementor child theme, **Elementor Free (Elementor Pro is never required)**, PHP, MySQL,
 HTML5/CSS3/JS. Arabic only in release 1 (storefront + our admin screens),
-full RTL. All strings use i18n (`top-solution` text domain) so languages can
+full RTL. All strings use i18n (`deco-store` text domain) so languages can
 be added later; Arabic is the only shipped translation.
 
 ## 3. Product principles (the 14 rules, operationalised)
 | Rule | How it is enforced |
 |---|---|
 | WooCommerce is source of truth | Products/customers/orders only in WC objects; our data = config + snapshots |
-| No parallel order system | Orders created only via `wc_create_order()`; "Top Solution Orders" admin menu is a filtered view of WC orders |
+| No parallel order system | Orders created only via `wc_create_order()`; "Déco Store Orders" admin menu is a filtered view of WC orders |
 | Separation templates / offers / forms | Three independent entities referenced by ID (see SYSTEM_ARCHITECTURE §4) |
 | Never modify core | Hooks/filters only; child theme for design |
-| Logic in plugin, design in child theme | Plugin `top-solution-core`; theme has zero business logic |
+| Logic in plugin, design in child theme | Plugin `deco-store-core`; theme has zero business logic |
 | HPOS | Declared compatible; only WC CRUD for orders; tested with HPOS on and off |
 | Server validates prices/forms | Client sends IDs/choices only; see ORDER_WORKFLOW |
-| Protect costs/suppliers | Capability `ts_view_costs`, underscore meta, no REST/email/export exposure, leak tests |
+| Protect costs/suppliers | Capability `ds_view_costs`, underscore meta, no REST/email/export exposure, leak tests |
 | Modular & documented | Module boundaries, PHPDoc, PHPCS, tests |
 
 ### Elementor Free only (binding requirement, 2026-11-28)
@@ -44,19 +44,19 @@ page content; the store must keep working with Elementor deactivated.
 My Account — kept installed for WooCommerce compatibility; the primary flow
 bypasses cart/checkout. Fallback use (e.g. products without landing page) is
 a decision below (Q4).
-**Top Solution pages (created on activation, editable, Elementor allowed):**
+**Déco Store pages (created on activation, editable, Elementor allowed):**
 | Page | Purpose | Built with |
 |---|---|---|
 | Home | Merchandising | Elementor |
 | Categories / Shop | Product browsing | WC archive + child theme |
-| Order Confirmation | Thank-you for landing orders (`[ts_order_confirmation]`) | Plugin shortcode/endpoint, styled by theme |
+| Order Confirmation | Thank-you for landing orders (`[ds_order_confirmation]`) | Plugin shortcode/endpoint, styled by theme |
 | Delivery Information | Policy (content from you) | Elementor/editor |
 | Returns Policy | Content from you | editor |
 | About / Contact | Content from you | Elementor |
 | Terms & Conditions, Privacy | Content from you | editor |
 | 404 / Search | Child theme templates | theme |
 **Virtual (no page object):** per-product landing page = product permalink
-rendered by plugin; preview URL `?ts_preview=<token>`.
+rendered by plugin; preview URL `?ds_preview=<token>`.
 Not planned: customer account area, order tracking, blog (confirm Q9).
 
 ## 5. WooCommerce product types
@@ -64,10 +64,10 @@ Not planned: customer account area, order tracking, blog (confirm Q9).
 |---|---|---|
 | Simple | Yes | Core case |
 | Variable | Yes | Options = variation attributes; per-variation price/stock |
-| Grouped | No | Replaced by TS Bundle offers |
+| Grouped | No | Replaced by DS Bundle offers |
 | External/affiliate | No | Not a COD flow |
 | Virtual / downloadable | No | Physical goods + delivery only |
-| Third-party bundle/composite plugin types | No | Bundles are TS offers, avoids plugin dependency |
+| Third-party bundle/composite plugin types | No | Bundles are DS offers, avoids plugin dependency |
 Free-gift products: simple or variable WC products, flagged as gift-only
 (hidden from catalogue, price ignored in order).
 
@@ -106,6 +106,7 @@ validated); WCAG-conscious RTL markup.
 - **Q4:** every product uses the landing page. One COD order flow; WooCommerce cart/checkout stay installed but are not the main path.
 - **Q1:** a new COD order starts as **`processing`** (setting `initial_order_status`, can be changed to `on-hold` later).
 - Build order: plugin foundation first, then the order system (landing pages after).
+- **Name (2026-11-28):** the project is renamed **Déco Store** (formerly "Top Solution"), visible name and technical identifiers: theme `deco-store-child`, plugin `deco-store-core`, PHP namespace `DecoStore`, prefix `ds_` / `ds-` (options, capabilities, post types, tables, meta, CSS), REST `ds-core/v1`. Done before launch, so no data migration is needed.
 
 ## 9. Missing business decisions (must be answered; none assumed)
 1. Initial COD order status: `processing` or `on-hold` (phone confirmation)?

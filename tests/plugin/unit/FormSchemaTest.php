@@ -1,8 +1,8 @@
 <?php
 use PHPUnit\Framework\TestCase;
-use TopSolution\Forms\DefaultForm;
-use TopSolution\Forms\FieldTypes;
-use TopSolution\Forms\FormSchema;
+use DecoStore\Forms\DefaultForm;
+use DecoStore\Forms\FieldTypes;
+use DecoStore\Forms\FormSchema;
 
 class FormSchemaTest extends TestCase {
 

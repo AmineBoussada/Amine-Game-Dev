@@ -1,6 +1,6 @@
 <?php
 use PHPUnit\Framework\TestCase;
-use TopSolution\Core\Capabilities;
+use DecoStore\Core\Capabilities;
 
 class CapabilitiesTest extends TestCase {
 
@@ -9,7 +9,7 @@ class CapabilitiesTest extends TestCase {
 		$this->assertCount( 9, $all );
 		$this->assertSame( $all, array_unique( $all ) );
 		foreach ( $all as $cap ) {
-			$this->assertStringStartsWith( 'ts_', $cap );
+			$this->assertStringStartsWith( 'ds_', $cap );
 		}
 	}
 

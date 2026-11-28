@@ -32,8 +32,8 @@ const results = [];
         font: getComputedStyle(document.body).fontFamily.split(',')[0],
         fontsLoaded: [...document.fonts].filter(f => f.status === 'loaded').map(f => f.family + ' ' + f.weight).join('|'),
         mains: document.querySelectorAll('main').length,
-        header: !!document.querySelector('.ts-header'),
-        footer: !!document.querySelector('.ts-footer'),
+        header: !!document.querySelector('.ds-header'),
+        footer: !!document.querySelector('.ds-footer'),
       }));
       let axe = null;
       if (vn === 'm' || vn === 'd') {

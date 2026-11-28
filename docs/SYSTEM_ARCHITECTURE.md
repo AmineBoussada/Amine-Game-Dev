@@ -2,7 +2,7 @@
 
 ## 1. Deployable units
 ```
-wp-content/plugins/top-solution-core/     all business logic, admin UI, rendering
+wp-content/plugins/deco-store-core/     all business logic, admin UI, rendering
 wp-content/themes/hello-elementor-child/  global design, RTL tokens, fonts, header/footer; NO business logic
 ```
 Elementor: used for general pages (Home, About, Contact, policies). The
@@ -15,7 +15,7 @@ Builder, Popup Builder or Pro forms. The plugin's landing pages, order forms
 and popups (if any) are built natively, not with Pro features. Every store
 screen renders with Elementor deactivated.
 
-## 2. Plugin modules (PSR-4, namespace `TopSolution\`)
+## 2. Plugin modules (PSR-4, namespace `DecoStore\`)
 ```
 Core        Bootstrap, Container, Hooks loader, Migrator, Capabilities,
             Settings, Assets, Logger, HPOS declaration, Requirements check
@@ -40,7 +40,7 @@ Layers: Domain services (pure PHP, no WP calls; unit-testable) → Repositories
 services) → Views (escape, output only). Dependency direction is one-way.
 
 ## 3. Integration with WooCommerce
-- Products: WC product objects; our data in `_ts_*` product meta.
+- Products: WC product objects; our data in `_ds_*` product meta.
 - Orders: `wc_create_order()`, WC CRUD only (HPOS safe). Never `get_post_meta`
   / `WP_Query` for orders; use `wc_get_orders()` / data stores.
 - Stock: WC native stock management (`wc_update_product_stock`, order stock
@@ -64,35 +64,35 @@ services) → Views (escape, output only). Dependency direction is one-way.
 ## 5. Native-first storage summary (details: DATABASE_SCHEMA)
 Native: products, orders, customers, stock, shipping lines, options,
 product/order meta, private CPTs for offers/forms/suppliers.
-Custom tables (justified only): `ts_purchase_lots`, `ts_stock_movements`,
-`ts_delivery_rates`, `ts_geo_units`, `ts_submission_log` (optional).
+Custom tables (justified only): `ds_purchase_lots`, `ds_stock_movements`,
+`ds_delivery_rates`, `ds_geo_units`, `ds_submission_log` (optional).
 Note: this revises the earlier draft which put offers in a custom table.
 
-## 6. Admin navigation (top-level menu "Top Solution", Arabic labels at build)
+## 6. Admin navigation (top-level menu "Déco Store", Arabic labels at build)
 | Menu | Tabs / contents | Capability |
 |---|---|---|
-| Dashboard | Today's orders, low stock, pending supplier items, quick links | ts_view_reports |
-| Landing Pages | List of products with LP status/template; bulk template assign | ts_manage_landing |
-| Offers | List · Add/Edit · Simulator | ts_manage_offers |
-| Forms | List · Builder · Field library | ts_manage_forms |
-| Orders | Link to WC Orders pre-filtered by `_ts_source` + COD status filters | manage_woocommerce |
-| Inventory | Availability · Stock ledger · Low stock | ts_manage_inventory |
-| Suppliers | Suppliers · Purchases · Costs (cost tabs need ts_view_costs) | ts_manage_suppliers |
-| Delivery | Methods · Zones & Rates · Pickup Points · Carriers · Geography | ts_manage_delivery |
-| Reports | Sales · Offers · Delivery · Stock · Margin(cost cap) · Export | ts_view_reports |
-| Settings | General · Orders · Anti-spam · Landing defaults · Permissions · Tools(diagnostics, data uninstall) | ts_manage_settings |
-**Product edit screen** (native WC "Product data" gets a "Top Solution" tab with
+| Dashboard | Today's orders, low stock, pending supplier items, quick links | ds_view_reports |
+| Landing Pages | List of products with LP status/template; bulk template assign | ds_manage_landing |
+| Offers | List · Add/Edit · Simulator | ds_manage_offers |
+| Forms | List · Builder · Field library | ds_manage_forms |
+| Orders | Link to WC Orders pre-filtered by `_ds_source` + COD status filters | manage_woocommerce |
+| Inventory | Availability · Stock ledger · Low stock | ds_manage_inventory |
+| Suppliers | Suppliers · Purchases · Costs (cost tabs need ds_view_costs) | ds_manage_suppliers |
+| Delivery | Methods · Zones & Rates · Pickup Points · Carriers · Geography | ds_manage_delivery |
+| Reports | Sales · Offers · Delivery · Stock · Margin(cost cap) · Export | ds_view_reports |
+| Settings | General · Orders · Anti-spam · Landing defaults · Permissions · Tools(diagnostics, data uninstall) | ds_manage_settings |
+**Product edit screen** (native WC "Product data" gets a "Déco Store" tab with
 sub-tabs): Landing Page · Sections · Order Form · Offers · Availability ·
 Supplier & Cost (cost cap only) · Preview.
 
 ## 7. Capabilities (custom, mapped to roles on activation)
-`ts_manage_landing, ts_manage_offers, ts_manage_forms, ts_manage_delivery,
-ts_manage_inventory, ts_manage_suppliers, ts_view_costs, ts_view_reports,
-ts_manage_settings`. Administrator gets all; `ts_view_costs` is granted to
+`ds_manage_landing, ds_manage_offers, ds_manage_forms, ds_manage_delivery,
+ds_manage_inventory, ds_manage_suppliers, ds_view_costs, ds_view_reports,
+ds_manage_settings`. Administrator gets all; `ds_view_costs` is granted to
 no other role by default (Q10).
 
 ## 8. Request flows
-- **Render**: product request → `Renderer` loads `_ts_lp_config` → TemplateRegistry
+- **Render**: product request → `Renderer` loads `_ds_lp_config` → TemplateRegistry
   → SectionRegistry → output (fragment cache keyed by product modified time +
   config version + offer versions).
 - **Submit**: see ORDER_WORKFLOW.
@@ -105,7 +105,7 @@ no other role by default (Q10).
    (IP + phone + product), body size limit, optional CAPTCHA, JSON/field allow-list.
 3. Admin: capability check + nonce on every action; no `nopriv` for admin ops.
 4. Sanitise on input, escape on output, `$wpdb->prepare` always.
-5. Costs/suppliers: `_ts_` underscore meta (not exposed in WC REST `meta_data`),
+5. Costs/suppliers: `_ds_` underscore meta (not exposed in WC REST `meta_data`),
    CPT `show_in_rest=false`, `public=false`, cap gated, excluded from exports
    and emails; automated leak tests on REST, front-end HTML and emails.
 6. Confirmation page access by order key + unguessable token, not order ID.

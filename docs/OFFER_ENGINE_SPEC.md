@@ -21,7 +21,7 @@ OrderFactory, not here.
 ## 3. Offer types
 | Type | Definition | Effect |
 |---|---|---|
-| `sale_price` | Native WC sale price (+ schedule); optional TS "campaign price" override per offer with dates | sets unit price |
+| `sale_price` | Native WC sale price (+ schedule); optional DS "campaign price" override per offer with dates | sets unit price |
 | `qty_discount` | Tiers [{min_qty, percent | fixed_off | unit_price}] on a product/variation scope | unit price by matching tier (highest min_qty ≤ qty) |
 | `bundle` | Fixed set of items [{product/variation, qty}] with bundle price or percent | replaces line prices of those items; all items must be present |
 | `free_gift` | Gift product(+variation), qty, condition | adds zero-priced gift line; stock checked |
@@ -32,7 +32,7 @@ Conditions: min_qty, min_subtotal, product_in, category_in, geo_in
 Actions: percent_off, fixed_off_line, fixed_off_order, set_unit_price,
 free_delivery, add_gift, delivery_discount (percent/fixed).
 
-## 4. Offer entity (CPT `ts_offer`)
+## 4. Offer entity (CPT `ds_offer`)
 type, status (draft/active/archived), scope, priority (int, higher wins),
 group, exclusive flag, selectable flag (customer chooses vs auto), starts_at,
 ends_at, usage_limit (optional global cap — decision Q), label (Arabic text

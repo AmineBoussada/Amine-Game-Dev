@@ -1,6 +1,6 @@
 <?php
 use PHPUnit\Framework\TestCase;
-use TopSolution\Delivery\Money;
+use DecoStore\Delivery\Money;
 
 class MoneyTest extends TestCase {
 

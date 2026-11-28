@@ -1,6 +1,6 @@
 <?php
 use PHPUnit\Framework\TestCase;
-use TopSolution\Core\Settings;
+use DecoStore\Core\Settings;
 
 class SettingsTest extends TestCase {
 

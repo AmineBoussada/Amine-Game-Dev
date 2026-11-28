@@ -1,6 +1,6 @@
 <?php
 use PHPUnit\Framework\TestCase;
-use TopSolution\Delivery\RateCalculator;
+use DecoStore\Delivery\RateCalculator;
 
 class RateCalculatorTest extends TestCase {
 

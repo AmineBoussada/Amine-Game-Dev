@@ -1,6 +1,6 @@
 <?php
 use PHPUnit\Framework\TestCase;
-use TopSolution\Delivery\CsvImporter;
+use DecoStore\Delivery\CsvImporter;
 
 class CsvImporterTest extends TestCase {
 
