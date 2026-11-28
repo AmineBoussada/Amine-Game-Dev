@@ -25,7 +25,7 @@
 }
 
 body {
-	color: #1e2218;
+	color: #0d2a2c;
 	background: #fff;
 	font-family: "IBM Plex Sans Arabic", system-ui, "Segoe UI", Tahoma, sans-serif;
 	font-size: 17px;
@@ -38,27 +38,27 @@ h3,
 h4,
 h5,
 h6 {
-	color: #1e2218;
+	color: #0d2a2c;
 	font-family: "Noto Kufi Arabic", "IBM Plex Sans Arabic", system-ui, sans-serif;
 	font-weight: 700;
 	line-height: 1.45;
 }
 
 a {
-	color: #576238;
+	color: #014749;
 	text-decoration: underline;
 }
 
 blockquote {
 	padding: 8px 20px;
-	border-inline-start: 4px solid #ffd95d;
-	background: #f0eadc;
-	color: #565a48;
+	border-inline-start: 4px solid #c88928;
+	background: #f6f0ea;
+	color: #42585a;
 }
 
 .wp-block-button__link {
 	border-radius: 8px;
-	background: #576238;
+	background: #014749;
 	color: #fff;
 	font-weight: 700;
 }

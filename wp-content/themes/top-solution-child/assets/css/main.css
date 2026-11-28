@@ -53,25 +53,35 @@
 
 /* ----------------------------------------------------------------- Tokens */
 :root {
-	/* Colour — brand palette: Moss, Mustard, Eggshell + white. */
+	/* Colour: see the brand palette below. */
 	--ts-bg: #fff;
-	--ts-surface: #f0eadc; /* Eggshell */
-	--ts-surface-2: #e6dfcb;
-	--ts-ink: #1e2218;
-	--ts-ink-2: #565a48;
-	--ts-brand: #576238; /* Moss: buttons, links, icons. White text on it = 6.4:1. */
-	--ts-brand-d: #454e2c; /* Moss, darker: hover / pressed. */
-	--ts-accent: #ffd95d; /* Mustard: highlights. Always pair with dark ink text. */
-	--ts-accent-d: #f2c63a;
-	--ts-star: #b88a00;
-	--ts-tint: #fbf3d1; /* Light mustard: selected states, icon circles. */
+	/* Brand palette (sampled from the owner's palette image) + white. */
+	--ts-everglade: #014749; /* primary: buttons, links, footer. White text on it = 10.5:1 */
+	--ts-whirlpool: #395c7a; /* secondary: hero, step numbers, info notices. White text = 7.0:1 */
+	--ts-aqua: #53978a; /* supporting: decoration, tiles, icons. NOT for text (3.4:1) */
+	--ts-cornfield: #c88928; /* highlight: announcement, sale badge, hero button. Always dark text (5.1:1), never white (3.0:1) */
+	--ts-sisal: #c0976b; /* warm neutral: tints become surfaces and borders */
+	/* Tints of the palette (palette colour mixed with white). */
+	--ts-surface: #f6f0ea; /* Sisal Beige 14% */
+	--ts-surface-2: #efe4d9; /* Sisal Beige 26% */
+	--ts-tint: #e0ecea; /* Aqua Cove 18%: selected states, icon circles */
+	--ts-line: #e3d0bc; /* Sisal Beige 45% */
+	/* Text. */
+	--ts-ink: #0d2a2c;
+	--ts-ink-2: #42585a;
+	/* Roles used by components (do not hard-code colours in components). */
+	--ts-brand: var(--ts-everglade);
+	--ts-brand-d: #013234; /* Everglade, darker: hover / pressed */
+	--ts-accent: var(--ts-cornfield);
+	--ts-accent-d: #d4983a; /* Cornfield, lighter: hover */
+	--ts-star: var(--ts-cornfield);
+	/* Feedback only (not brand). */
 	--ts-ok: #266a42;
 	--ts-ok-bg: #e3f1e8;
 	--ts-warn: #8f5700;
 	--ts-warn-bg: #fbebd2;
 	--ts-bad: #b3261e;
 	--ts-bad-bg: #fbe1df;
-	--ts-line: #ddd5bf;
 
 	/* Type */
 	--ts-font: "IBM Plex Sans Arabic", system-ui, "Segoe UI", Tahoma, sans-serif;
@@ -82,7 +92,7 @@
 	--ts-section-y: 48px;
 	--ts-radius: 8px;
 	--ts-radius-lg: 12px;
-	--ts-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+	--ts-shadow: 0 2px 12px rgba(13, 42, 44, 0.10);
 	--ts-header-h: 64px;
 	--ts-container: 1200px;
 	--ts-prose: 760px;
@@ -741,7 +751,7 @@ body button.ts-btn--secondary:hover {
 .ts-drawer__overlay {
 	position: absolute;
 	inset: 0;
-	background: rgba(31, 31, 29, 0.5);
+	background: rgba(13, 42, 44, 0.5);
 	opacity: 0;
 	transition: opacity 250ms ease-out;
 }
@@ -1197,12 +1207,12 @@ body.ts-wide-content .ts-prose {
 	aspect-ratio: 4 / 3;
 	overflow: hidden;
 	border-radius: var(--ts-radius-lg);
-	background: linear-gradient(160deg, #d9dcb8, var(--ts-brand));
+	background: linear-gradient(160deg, var(--ts-aqua), var(--ts-everglade));
 	color: #fff;
 }
 
 .ts-tile:nth-child(even) .ts-tile__link {
-	background: linear-gradient(160deg, var(--ts-surface), #b9b08f);
+	background: linear-gradient(160deg, var(--ts-sisal), var(--ts-whirlpool));
 }
 
 .ts-tile__img {
@@ -1222,7 +1232,7 @@ body.ts-wide-content .ts-prose {
 	content: "";
 	position: absolute;
 	inset: 0;
-	background: linear-gradient(to top, rgba(31, 31, 29, 0.65), rgba(31, 31, 29, 0) 60%);
+	background: linear-gradient(to top, rgba(13, 42, 44, 0.65), rgba(13, 42, 44, 0) 60%);
 }
 
 .ts-tile__label {
@@ -1331,7 +1341,7 @@ body.ts-wide-content .ts-prose {
 	width: 40px;
 	height: 40px;
 	border-radius: 50%;
-	background: var(--ts-brand);
+	background: var(--ts-whirlpool);
 	color: #fff;
 	font-weight: 700;
 }

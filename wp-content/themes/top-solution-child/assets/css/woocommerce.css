@@ -27,6 +27,7 @@
 	list-style: none;
 }
 
+.woocommerce-info { border-inline-start-color: var(--ts-whirlpool); }
 .woocommerce-message { border-inline-start-color: var(--ts-ok); background: var(--ts-ok-bg); }
 .woocommerce-error { border-inline-start-color: var(--ts-bad); background: var(--ts-bad-bg); }
 
@@ -322,7 +323,7 @@ ul.products li.product-category a {
 	display: block;
 	overflow: hidden;
 	border-radius: var(--ts-radius-lg);
-	background: linear-gradient(160deg, #d9dcb8, var(--ts-brand));
+	background: linear-gradient(160deg, var(--ts-aqua), var(--ts-everglade));
 	aspect-ratio: 4 / 3;
 }
 
@@ -340,7 +341,7 @@ ul.products li.product-category a::after {
 	content: "";
 	position: absolute;
 	inset: 0;
-	background: linear-gradient(to top, rgba(31, 31, 29, 0.65), rgba(31, 31, 29, 0) 60%);
+	background: linear-gradient(to top, rgba(13, 42, 44, 0.65), rgba(13, 42, 44, 0) 60%);
 }
 
 ul.products li.product-category .woocommerce-loop-category__title {

@@ -101,12 +101,13 @@ Reference: the common Algerian COD landing pattern (owner-supplied
 screenshots). Structure only is reused; no third-party brand, images or claims.
 Prototype: `docs/design/prototype/product-longform.html`.
 
-**Colours: brand palette only** — Moss `#576238`, Mustard `#FFD95D`,
-Eggshell `#F0EADC`, White. No derived/dark greens, no off-palette fills; text
-ink and form-feedback colours (success/error) are the only additions. The
-page is single light theme so the palette never shifts. Mustard always carries
-dark text. **No countdown / Black-Friday style urgency bar** (and urgency only
-from real offer data, per §3).
+**Colours: brand palette only** — Everglade `#014749` (primary),
+Whirlpool `#395C7A` (secondary), Aqua Cove `#53978A` (decoration), Cornfield
+`#C88928` (highlight, dark text only), Sisal Beige `#C0976B` (warm neutral,
+used as tints), White. No off-palette fills; text ink and form-feedback
+colours are the only additions (see `docs/design/DESIGN_SYSTEM.md`). The page
+is a single light theme so the palette never shifts. **No countdown /
+Black-Friday style urgency bar** (urgency only from real offer data, per §3).
 
 Section order (each section: show/hide + reorder per product, §4–§6):
 1. Header: menu · centred logo · search (theme header, compact variant).

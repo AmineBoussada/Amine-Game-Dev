@@ -6,37 +6,38 @@ and prices come from the owner. No real products/prices are implied.
 
 ## 1. Direction
 Modern minimalist interior-design store: white canvas, quiet light-gray
-surfaces, and the brand palette (Moss green, Mustard, Eggshell) as the accents, generous whitespace,
+surfaces, and the brand palette (Everglade, Whirlpool, Aqua Cove, Cornfield, Sisal Beige) as the accents, generous whitespace,
 large product photography, restrained motion. Trust and clarity first
 (COD market: reassurance about delivery, payment on receipt, returns).
 
 ## 2. Design tokens (CSS custom properties, defined once in child theme;
 plugin templates consume them)
 ### Colour
-**Brand palette (supplied by the owner, 2026-11-28):** Moss `#576238`,
-Mustard `#FFD95D`, Eggshell `#F0EADC`, plus white. This replaces the earlier
-wood-tone proposal. Moss is the primary/action colour, Mustard is the
-highlight (always with dark text), Eggshell is the secondary surface, white is
-the page background.
-| Token | Value | Use |
+**Brand palette (supplied by the owner as an image, 2026-11-28; hex values
+sampled from it):** Sisal Beige `#C0976B`, Cornfield `#C88928`, Everglade
+`#014749`, Aqua Cove `#53978A`, Whirlpool `#395C7A`, plus white. This replaces
+the earlier Moss / Mustard / Eggshell palette and the wood proposal before it.
+*If the palette has official hex codes, send them: the values here are read
+from the image pixels.*
+| Colour | Hex | Role |
 |---|---|---|
-| `--ts-bg` | `#FFFFFF` | page background |
-| `--ts-surface` | `#F0EADC` (Eggshell) | cards, sections, inputs, footer |
-| `--ts-surface-2` | `#E6DFCB` | dividers, disabled, hover |
-| `--ts-ink` | `#1E2218` | primary text |
-| `--ts-ink-2` | `#565A48` | secondary text |
-| `--ts-brand` | `#576238` (Moss) | buttons, links, icons, focus ring, hero |
-| `--ts-brand-d` | `#454E2C` | hover / pressed, text on tint |
-| `--ts-accent` | `#FFD95D` (Mustard) | announcement bar, sale badge, hero CTA, footer rule. Text on it is always `--ts-ink` |
-| `--ts-accent-d` | `#F2C63A` | accent hover |
-| `--ts-tint` | `#FBF3D1` | selected state, icon circles, chip hover |
-| `--ts-star` | `#B88A00` | rating stars |
-| `--ts-ok` / `--ts-warn` / `--ts-bad` | `#266A42` / `#8F5700` / `#B3261E` | success, supplier-sourced, error (each with a light background) |
-| `--ts-line` | `#DDD5BF` | borders |
-Checked contrast (WCAG): white on Moss 6.5:1, Moss on white 6.5:1, Moss on
-Eggshell 5.5:1, ink on Mustard 11.8:1, ink-2 on Eggshell 5.9:1, white on the
-hero gradient start 5.1:1. **Never put white text on Mustard** (1.3:1) and never
-use Mustard as text colour on white.
+| Everglade | `#014749` | **Primary**: buttons, links, icons, focus ring, footer. White text on it 10.5:1 |
+| Whirlpool | `#395C7A` | **Secondary**: hero gradient, step numbers, info notices. White text on it 7.0:1 |
+| Aqua Cove | `#53978A` | **Supporting, decoration only**: tiles, icon tints, borders. Not for text (3.4:1 on white) |
+| Cornfield | `#C88928` | **Highlight**: announcement bar, sale badge, hero button, footer rule. **Always dark text** (5.1:1). Never white text (3.0:1) |
+| Sisal Beige | `#C0976B` | **Warm neutral**: its tints become the surfaces and borders |
+| White | `#FFFFFF` | Page background |
+| Tints (palette colour mixed with white) | `#F6F0EA` surface (Sisal 14%), `#EFE4D9` surface-2 (Sisal 26%), `#E0ECEA` tint (Aqua 18%, selected states), `#E3D0BC` line (Sisal 45%) | Backgrounds and borders |
+| Hover shades | `#013234` (Everglade darker), `#D4983A` (Cornfield lighter) | Button hover only |
+| Text | `#0D2A2C` ink, `#42585A` ink-2 | Dark teal-black text |
+| Feedback (not brand) | `#266A42` success, `#8F5700` warning, `#B3261E` error | Form and stock messages only |
+Tokens: `--ts-everglade`, `--ts-whirlpool`, `--ts-aqua`, `--ts-cornfield`,
+`--ts-sisal`; components use the role tokens (`--ts-brand` = Everglade,
+`--ts-accent` = Cornfield, `--ts-surface`, `--ts-tint`, `--ts-line`).
+Checked contrast (WCAG AA): white on Everglade 10.5:1, Everglade on white 10.5:1,
+Everglade on surface 9.3:1, white on Whirlpool 7.0:1, ink on Cornfield 5.1:1,
+ink-2 on surface 6.7:1. Rules: never white text on Cornfield, Aqua Cove or
+Sisal Beige; never Cornfield or Aqua Cove as text colour on white.
 Dark mode: not in release 1.
 
 ### Typography (Arabic-first)
@@ -106,13 +107,13 @@ reduced-motion support, no colour-only status (icon + text).
 Each component: purpose · anatomy · states · responsive · a11y.
 | Component | Anatomy / notes |
 |---|---|
-| **Button** | Primary (Moss fill, white text), Secondary (outline), Ghost, Whatsapp/Call (only if numbers provided). Sizes: M 48h, L 56h (landing CTA). States: default/hover/focus/active/disabled/loading (spinner, label kept). Full width on mobile for primary CTAs. |
+| **Button** | Primary (Everglade fill, white text), Secondary (outline), Ghost, Whatsapp/Call (only if numbers provided). Sizes: M 48h, L 56h (landing CTA). States: default/hover/focus/active/disabled/loading (spinner, label kept). Full width on mobile for primary CTAs. |
 | **Input / Select / Textarea** | 48h, `--ts-surface` bg + 1px line, label above, helper text, error state (danger border + icon + message), RTL caret. |
-| **Choice card (radio/checkbox)** | Large tappable card, light-mustard tint when selected, check icon; used for delivery method, offers, options. |
+| **Choice card (radio/checkbox)** | Large tappable card, light Aqua tint when selected, check icon; used for delivery method, offers, options. |
 | **Quantity stepper** | − 1 + with bounds, numeric input between, 44px buttons. |
 | **Option swatch/chips** | Colour swatches (circle 40px, ring when selected, name on select), size/finish chips; unavailable = diagonal strike + aria-disabled. |
 | **Price block** | Final price (large), old price struck-through, savings badge "وفّر …" computed by server data; tabular numerals; `aria-live`. |
-| **Offer card** | Radio card: label, tier description, price per unit, total, badge (Best value) only when computed; selected = light-mustard tint + border. Layouts: cards (grid) / list. |
+| **Offer card** | Radio card: label, tier description, price per unit, total, badge (Best value) only when computed; selected = light Aqua tint + border. Layouts: cards (grid) / list. |
 | **Badge/Tag** | Neutral, brand, accent, success, warn, danger. Text always present. |
 | **Product card** | Image (1:1, hover second image desktop), title (2 lines clamp), price, availability tag, quick CTA "اطلب الآن" optional. Entire card = link. |
 | **Category tile** | Image + label overlay on gradient; 2-col mobile. |
@@ -132,7 +133,7 @@ Each component: purpose · anatomy · states · responsive · a11y.
 ## 7. Admin design language (WordPress admin)
 Native WP admin look is kept (no re-skinning of core), our screens use
 WP components + a light layer: same palette tokens, 8-pt spacing, cards on
-`#F0F0F1` WP bg, Moss for primary buttons on our screens only. RTL
+`#F0F0F1` WP bg, Everglade for primary buttons on our screens only. RTL
 tested. Patterns: page header (title + primary action), tab bar (WP
 `nav-tab` style), filter bar, table lists (WP_List_Table look) with row
 actions, two-column editors (main + sidebar summary), drawers for

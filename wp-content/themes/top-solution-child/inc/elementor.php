@@ -67,20 +67,53 @@ add_action( 'elementor/page_templates/canvas/after_content', 'ts_child_elementor
 
 /**
  * Version of the brand defaults written to the Elementor kit. Bump to re-run.
+ * 1 = first Moss/Mustard palette, 2 = Everglade/Whirlpool/Aqua Cove/Cornfield/Sisal Beige.
  */
-define( 'TS_CHILD_ELEMENTOR_KIT_VERSION', '1' );
+define( 'TS_CHILD_ELEMENTOR_KIT_VERSION', '2' );
 
 /**
- * Elementor Free's factory-default system colours (used to detect untouched kits).
+ * Colour lists that count as "not chosen by the owner": Elementor Free's
+ * factory defaults and the theme's own earlier palettes. A kit that still
+ * holds one of these is safe to update; anything else is left untouched.
  *
- * @return string[]
+ * @return array<string,string[]> Map of label => upper-case hex list (system colours, in order).
  */
-function ts_child_elementor_default_colors() {
-	return array( '#6EC1E4', '#54595F', '#7A7A7A', '#61CE70' );
+function ts_child_elementor_replaceable_color_sets() {
+	return array(
+		'elementor-default' => array( '#6EC1E4', '#54595F', '#7A7A7A', '#61CE70' ),
+		'theme-v1'          => array( '#576238', '#1E2218', '#565A48', '#576238' ),
+	);
 }
 
 /**
- * Does a kit colour list still hold Elementor's factory defaults?
+ * Custom colours written by earlier theme versions (replaceable).
+ *
+ * @return string[][]
+ */
+function ts_child_elementor_replaceable_custom_sets() {
+	return array(
+		array( '#FFD95D', '#F0EADC', '#FFFFFF' ),
+	);
+}
+
+/**
+ * Extract an ordered, upper-case list of hex colours from a kit colour repeater.
+ *
+ * @param mixed $items Kit repeater value.
+ * @return string[]
+ */
+function ts_child_elementor_color_list( $items ) {
+	$values = array();
+	if ( is_array( $items ) ) {
+		foreach ( $items as $item ) {
+			$values[] = isset( $item['color'] ) ? strtoupper( $item['color'] ) : '';
+		}
+	}
+	return $values;
+}
+
+/**
+ * Does a kit's system colour list still hold a replaceable set?
  *
  * @param mixed $colors The kit's `system_colors` setting.
  * @return bool
@@ -89,11 +122,32 @@ function ts_child_elementor_colors_are_default( $colors ) {
 	if ( empty( $colors ) || ! is_array( $colors ) ) {
 		return true;
 	}
-	$values = array();
-	foreach ( $colors as $color ) {
-		$values[] = isset( $color['color'] ) ? strtoupper( $color['color'] ) : '';
+	$list = ts_child_elementor_color_list( $colors );
+	foreach ( ts_child_elementor_replaceable_color_sets() as $set ) {
+		if ( $list === $set ) {
+			return true;
+		}
 	}
-	return array_values( $values ) === ts_child_elementor_default_colors();
+	return false;
+}
+
+/**
+ * Do the kit's custom colours still hold a replaceable (or no) set?
+ *
+ * @param mixed $colors The kit's `custom_colors` setting.
+ * @return bool
+ */
+function ts_child_elementor_custom_colors_are_default( $colors ) {
+	if ( empty( $colors ) || ! is_array( $colors ) ) {
+		return true;
+	}
+	$list = ts_child_elementor_color_list( $colors );
+	foreach ( ts_child_elementor_replaceable_custom_sets() as $set ) {
+		if ( $list === $set ) {
+			return true;
+		}
+	}
+	return false;
 }
 
 /**
@@ -120,8 +174,9 @@ function ts_child_elementor_typography_is_default( $typography ) {
  * Elementor Free kit (Site Settings > Global Colors / Global Fonts / Layout).
  *
  * Runs once per TS_CHILD_ELEMENTOR_KIT_VERSION, only for administrators, and
- * only replaces values that are still Elementor's factory defaults, so choices
- * the owner already made in Site Settings are never overwritten.
+ * only replaces values that are still Elementor's factory defaults or this
+ * theme's own earlier palette, so choices the owner made in Site Settings are
+ * never overwritten.
  *
  * @return bool Whether the kit was changed.
  */
@@ -142,43 +197,48 @@ function ts_child_elementor_sync_kit() {
 	$changed  = false;
 
 	if ( ts_child_elementor_colors_are_default( isset( $settings['system_colors'] ) ? $settings['system_colors'] : null ) ) {
-		// Buttons use "accent" with white text, so accent is Moss (6.5:1), not Mustard.
+		// Elementor buttons use "accent" with white text, so accent is Everglade (10.5:1), not Cornfield.
 		$settings['system_colors'] = array(
 			array(
 				'_id'   => 'primary',
-				'title' => __( 'أساسي — طحلبي', 'top-solution-child' ),
-				'color' => '#576238',
+				'title' => __( 'أساسي — إيفرغليد', 'top-solution-child' ),
+				'color' => '#014749',
 			),
 			array(
 				'_id'   => 'secondary',
-				'title' => __( 'ثانوي — حبر', 'top-solution-child' ),
-				'color' => '#1E2218',
+				'title' => __( 'ثانوي — ويربول', 'top-solution-child' ),
+				'color' => '#395C7A',
 			),
 			array(
 				'_id'   => 'text',
 				'title' => __( 'النص', 'top-solution-child' ),
-				'color' => '#565A48',
+				'color' => '#42585A',
 			),
 			array(
 				'_id'   => 'accent',
-				'title' => __( 'الأزرار — طحلبي', 'top-solution-child' ),
-				'color' => '#576238',
+				'title' => __( 'الأزرار — إيفرغليد', 'top-solution-child' ),
+				'color' => '#014749',
 			),
 		);
 		$changed                   = true;
 	}
 
-	if ( empty( $settings['custom_colors'] ) ) {
+	if ( ts_child_elementor_custom_colors_are_default( isset( $settings['custom_colors'] ) ? $settings['custom_colors'] : null ) ) {
 		$settings['custom_colors'] = array(
 			array(
-				'_id'   => 'ts_mustard',
-				'title' => __( 'خردلي (نص داكن فقط)', 'top-solution-child' ),
-				'color' => '#FFD95D',
+				'_id'   => 'ts_cornfield',
+				'title' => __( 'كورنفيلد (نص داكن فقط)', 'top-solution-child' ),
+				'color' => '#C88928',
 			),
 			array(
-				'_id'   => 'ts_eggshell',
-				'title' => __( 'قشر البيض', 'top-solution-child' ),
-				'color' => '#F0EADC',
+				'_id'   => 'ts_aqua',
+				'title' => __( 'أكوا كوف (للزخرفة فقط)', 'top-solution-child' ),
+				'color' => '#53978A',
+			),
+			array(
+				'_id'   => 'ts_sisal',
+				'title' => __( 'سيزال بيج', 'top-solution-child' ),
+				'color' => '#C0976B',
 			),
 			array(
 				'_id'   => 'ts_white',

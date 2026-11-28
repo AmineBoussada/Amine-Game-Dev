@@ -79,11 +79,13 @@ Recommended: Settings > Permalinks > "Post name".
 
 ## Design tokens (`:root` in `main.css`)
 `--ts-bg #fff`, `--ts-surface-2`, `--ts-ink`,
-`--ts-ink-2`, `--ts-brand #576238` Moss (buttons/links/icons),
-`--ts-brand-d` (hover), `--ts-accent #ffd95d` Mustard (highlights, always with
-dark text), `--ts-surface #f0eadc` Eggshell, `--ts-tint`, status colours,
-`--ts-line`, fonts, spacing, radii, header height. Brand colours supplied by
-the owner; see `docs/design/DESIGN_SYSTEM.md` for the contrast table.
+`--ts-ink-2`, and the palette: `--ts-everglade #014749` (primary: buttons,
+links, footer), `--ts-whirlpool #395c7a` (secondary), `--ts-aqua #53978a`
+(decoration only), `--ts-cornfield #c88928` (highlights, always dark text),
+`--ts-sisal #c0976b` (warm neutral; its tints are `--ts-surface`,
+`--ts-surface-2`, `--ts-line`). Components use the role tokens `--ts-brand`,
+`--ts-accent`, `--ts-tint`. Colours were supplied by the owner (palette
+image); see `docs/design/DESIGN_SYSTEM.md` for the contrast table.
 
 ## Customizer (Appearance > Customize > Top Solution)
 Contact data (phone, WhatsApp, email, address, hours), header (announcement,
@@ -97,12 +99,14 @@ delivery, office pickup).
 ## Elementor Free usage
 - Build the homepage and general pages with Elementor Free; for edge-to-edge
   pages use "Top Solution - عرض كامل" or Elementor's "Elementor Full Width".
-- Site Settings (kit) are pre-filled once with the brand: Primary = Moss,
-  Secondary = ink, Text = #565A48, Accent (buttons) = Moss; custom colours
-  Mustard, Eggshell, White; fonts Noto Kufi Arabic / IBM Plex Sans Arabic
+- Site Settings (kit) are pre-filled once with the brand: Primary = Everglade,
+  Secondary = Whirlpool, Text = #42585A, Accent (buttons) = Everglade; custom
+  colours Cornfield, Aqua Cove, Sisal Beige, White (a kit still holding
+  Elementor's defaults or this theme's earlier palette is updated; anything the
+  owner changed is left alone); fonts Noto Kufi Arabic / IBM Plex Sans Arabic
   (self-hosted by the theme); content width 1200px. Anything already changed
   by the owner is left untouched.
-- Never use Mustard as a text colour or under white text (contrast 1.3:1).
+- Never put white text on Cornfield, Aqua Cove or Sisal Beige, and never use Cornfield or Aqua Cove as a text colour on white.
 
 ## WooCommerce recommendations
 - Settings > Products > "Shop page display" / "Category display": "Show

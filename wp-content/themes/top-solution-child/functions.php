@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'TS_CHILD_VERSION', '0.2.0' );
+define( 'TS_CHILD_VERSION', '0.3.0' );
 define( 'TS_CHILD_DIR', get_stylesheet_directory() );
 define( 'TS_CHILD_URI', get_stylesheet_directory_uri() );
 

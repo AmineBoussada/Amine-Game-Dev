@@ -3,7 +3,7 @@ Contributors: topsolution
 Requires at least: 6.4
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 0.2.0
+Stable tag: 0.3.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -11,7 +11,7 @@ Arabic / RTL child theme of Hello Elementor for the Top Solution WooCommerce sto
 
 == Description ==
 
-Global design system (Moss, Mustard, Eggshell and white), header, navigation,
+Global design system (Everglade, Whirlpool, Aqua Cove, Cornfield, Sisal Beige and white), header, navigation,
 mobile drawer, footer, homepage, category and content layouts, and visual
 styling for WooCommerce: product cards, archives, single product and gallery,
 cart, checkout (classic and block) and My Account.
@@ -47,13 +47,18 @@ Bundled fonts, licensed under the SIL Open Font License 1.1:
 
 == Changelog ==
 
+= 0.3.0 =
+* New brand palette: Everglade #014749, Whirlpool #395C7A, Aqua Cove #53978A,
+  Cornfield #C88928, Sisal Beige #C0976B, white. Replaces Moss/Mustard/Eggshell.
+* Elementor kit palette upgraded (only where still at defaults or the previous theme palette).
+
 = 0.2.0 =
 * Elementor Free only: removed all Elementor Pro Theme Builder calls; own index.php.
 * Elementor Free page templates (Full Width, Canvas) get a <main> landmark.
 * Elementor kit receives the brand colours and fonts once, only if still at factory defaults.
 * Product gallery, out-of-stock badge, cash-on-delivery note, responsive shop tables,
   My Account layouts, classic checkout two-column layout.
-* Brand palette: Moss #576238, Mustard #FFD95D, Eggshell #F0EADC, white.
+* Brand palette (superseded in 0.3.0): Moss, Mustard, Eggshell, white.
 * Contact page template replaces the [ts_contact_cards] / [ts_trust_bar] shortcodes
   (shortcodes are plugin territory). Block editor styles added.
 

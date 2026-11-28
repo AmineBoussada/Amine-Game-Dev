@@ -34,7 +34,7 @@ trust note "الدفع عند الاستلام" (placeholder), copyright.
 [Trust bar: ٣–٤ icons]
 [Category tiles 2-col grid (WC categories)]
 [Featured products carousel/grid (WC featured/ manual)]
-[Promo banner (optional): offer product link, light-mustard tint bg]
+[Promo banner (optional): offer product link, light Aqua tint bg]
 [Why Top Solution: 3 benefit cards (owner copy)]
 [Customer proof: reviews/photos — ONLY if real content exists]
 [Delivery & payment explainer: 3 steps (Order → Confirm → Pay on receipt)]
@@ -99,7 +99,7 @@ Same skeleton as Standard with changes:
 [Offer cards as the focal block directly under hero (above benefits)]
 [Quick CTA + form directly after offers]
 [Benefits compact] [Description/specs collapsed accordions]
-[Social proof (real)] [FAQ] [Final CTA band light-mustard tint]
+[Social proof (real)] [FAQ] [Final CTA band light Aqua tint]
 ```
 Urgency rules: countdown, savings, stock-left appear only from real data.
 Offer cards are larger, selected state strong, "الأكثر توفيراً" badge
@@ -119,7 +119,7 @@ total. Desktop: offers displayed as 3-column row under hero.
 ```
 Tone: more whitespace (section padding 64/128), lighter UI chrome,
 serif-like Arabic display (e.g., Noto Naskh display) optional for H1 only,
-a thin Mustard accent line as divider. Desktop: hero overlay left/start aligned,
+a thin Cornfield accent line as divider. Desktop: hero overlay left/start aligned,
 sections with 2-col asymmetric layouts.
 
 ## 7. Cart (secondary path, WooCommerce page)
@@ -185,7 +185,7 @@ Form submissions → email to admin (+ stored as WP entries? decide Q14).
 
 ---
 ## Cross-screen UX rules
-- One primary CTA per viewport; colour = Moss.
+- One primary CTA per viewport; colour = Everglade.
 - Price shown with currency after number; savings from server.
 - Always show "الدفع عند الاستلام" near every order CTA.
 - Errors: inline + summary; never clear typed data.

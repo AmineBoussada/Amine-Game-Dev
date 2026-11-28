@@ -6,7 +6,7 @@
 	align-items: flex-end;
 	min-height: 360px;
 	overflow: hidden;
-	background: linear-gradient(135deg, #66733f, var(--ts-brand) 55%, #3d4727);
+	background: linear-gradient(135deg, var(--ts-whirlpool), var(--ts-everglade) 70%);
 	color: #fff;
 }
 
@@ -22,7 +22,7 @@
 	content: "";
 	position: absolute;
 	inset: 0;
-	background: linear-gradient(to top, rgba(31, 31, 29, 0.6), rgba(31, 31, 29, 0.1) 70%);
+	background: linear-gradient(to top, rgba(13, 42, 44, 0.6), rgba(13, 42, 44, 0.1) 70%);
 }
 
 .ts-hero__inner {
