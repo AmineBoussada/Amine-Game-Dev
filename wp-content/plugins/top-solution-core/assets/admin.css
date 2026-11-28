@@ -85,3 +85,104 @@
 		width: auto;
 	}
 }
+
+/* Delivery screen */
+.ts-card {
+	max-width: 960px;
+	margin-block: 16px;
+	padding: 16px 20px;
+	border: 1px solid var(--ts-line);
+	border-inline-start: 4px solid var(--ts-whirlpool);
+	border-radius: 8px;
+	background: #fff;
+}
+
+.ts-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	margin-block-start: 12px;
+}
+
+.ts-import {
+	max-width: 960px;
+	margin-block: 16px;
+	padding: 8px 16px;
+	border: 1px solid var(--ts-line);
+	border-radius: 8px;
+	background: var(--ts-surface);
+}
+
+.ts-import summary {
+	cursor: pointer;
+	font-weight: 600;
+	padding-block: 8px;
+	color: var(--ts-everglade);
+}
+
+.ts-code {
+	overflow-x: auto;
+	padding: 8px 12px;
+	background: #fff;
+	border: 1px solid var(--ts-line);
+	border-radius: 6px;
+}
+
+.ts-scroll {
+	max-width: 100%;
+	overflow-x: auto;
+}
+
+.ts-matrix .ts-fee {
+	width: 7em;
+}
+
+.ts-matrix .ts-off {
+	display: block;
+	margin-block-start: 4px;
+	font-size: 12px;
+}
+
+.ts-matrix .ts-default-row th,
+.ts-matrix .ts-default-row td {
+	background: var(--ts-surface);
+	font-weight: 600;
+}
+
+.ts-inline {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	margin: 0;
+}
+
+.ts-row-actions {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 6px;
+}
+
+.ts-empty {
+	padding: 16px;
+	border: 1px dashed var(--ts-line);
+	border-radius: 8px;
+	color: #42585a;
+	max-width: 960px;
+}
+
+.ts-preview-form {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-end;
+	gap: 12px 20px;
+}
+
+.ts-preview-form p {
+	margin: 0;
+}
+
+.ts-list {
+	list-style: disc;
+	padding-inline-start: 20px;
+}

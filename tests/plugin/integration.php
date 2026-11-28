@@ -52,6 +52,7 @@ foreach ( array( 'customer', 'subscriber', 'editor' ) as $r ) {
 $s = Settings::all();
 check( 'processing' === $s['initial_order_status'], 'default initial order status is processing' );
 check( (int) get_option( Migrator::OPTION ) === Migrator::CURRENT, 'database version = ' . Migrator::CURRENT );
+check( \TopSolution\Core\Schema::tables_exist(), 'custom tables exist' );
 
 update_option( Settings::OPTION, array_merge( Settings::all(), array( 'initial_order_status' => 'on-hold', 'debug_logging' => true ) ) );
 Activator::activate();
@@ -100,7 +101,7 @@ check( false === wc_get_order( $order->get_id() ) || 0 === $order->get_id(), 'th
 check( class_exists( 'TopSolution\Admin\StatusChecks' ), 'status checks available' );
 $rows = \TopSolution\Admin\StatusChecks::run();
 $ids  = wp_list_pluck( $rows, 'id' );
-check( array() === array_diff( array( 'versions', 'hpos', 'cod', 'currency', 'theme', 'rtl', 'permalinks', 'elementor' ), $ids ), 'status dashboard has all 8 checks' );
+check( array() === array_diff( array( 'versions', 'hpos', 'cod', 'currency', 'theme', 'rtl', 'permalinks', 'delivery', 'elementor' ), $ids ), 'status dashboard has all 9 checks' );
 $hpos = array_values( array_filter( $rows, static function ( $r ) {
 	return 'hpos' === $r['id'];
 } ) );

@@ -92,9 +92,12 @@ note TEXT, created_by, created_at. Idx(product_id, purchased_at), Idx(supplier_i
 ENUM-like VARCHAR(30) (`order`,`manual`,`purchase`,`return`,`correction`),
 ref_type, ref_id (order id / purchase id), balance_after INT NULL,
 user_id, created_at. Idx(product_id, created_at), Idx(ref_type, ref_id).
-`ts_delivery_rates`: id PK, method_id, geo_id (NULL=default for zone), zone_id,
-min_qty, max_qty (NULL band), fee DECIMAL(18,4), is_free TINYINT, active,
-version, updated_at. Unique(method_id, zone_id, geo_id, min_qty).
+`ts_delivery_rates` (**as built in Phase 2**): id PK, method (home|office), geo_id
+(0 = default for the method), fee DECIMAL(18,4), active (0 = not served), updated_at.
+Unique(method, geo_id). Zones, carriers per rate and weight/quantity bands from the
+original design are deferred (see docs/PLUGIN_PHASE2.md).
+`ts_pickup_points` (added in Phase 2): id, geo_id (commune or wilaya), carrier,
+name, address, hours, active. Index (geo_id, active).
 Methods, carriers, zones, pickup points: small config → options/CPT
 (`ts_delivery_*` JSON options, not autoloaded) unless Phase 3 shows need.
 `ts_geo_units`: id PK, parent_id, level (`wilaya`/`commune`), code,

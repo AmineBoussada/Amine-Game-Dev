@@ -22,7 +22,7 @@ async function login(ctx, user, pass) {
   ok(await p.locator('h1:has-text("Top Solution")').count() === 1, 'admin: dashboard renders');
   ok(await p.locator('html[dir="rtl"]').count() === 1, 'admin: RTL layout');
   const rows = await p.locator('table.ts-status tbody tr').count();
-  ok(rows === 8, `admin: status table has 8 rows (got ${rows})`);
+  ok(rows === 9, `admin: status table has 9 rows (got ${rows})`);
   ok(await p.locator('#adminmenu a:has-text("Top Solution")').count() >= 1, 'admin: menu item present');
   ok(await p.locator('#adminmenu a[href*="top-solution-settings"]').count() === 1, 'admin: settings sub-page present');
   const css = await p.locator('link#ts-core-admin-css').count();
@@ -30,7 +30,7 @@ async function login(ctx, user, pass) {
   await p.screenshot({ path: OUT + '/plugin-dashboard.png', fullPage: true });
   // every status badge carries text, not colour alone
   const badges = await p.locator('.ts-badge').allInnerTexts();
-  ok(badges.length === 8 && badges.every(t => /[✓!✕]/.test(t) && t.trim().length > 2), 'admin: status badges have symbol + word (not colour only)');
+  ok(badges.length === 9 && badges.every(t => /[✓!✕]/.test(t) && t.trim().length > 2), 'admin: status badges have symbol + word (not colour only)');
   // stylesheet only on our screens
   await p.goto(B + '/wp-admin/index.php', { waitUntil: 'load' });
   ok(await p.locator('link#ts-core-admin-css').count() === 0, 'admin: stylesheet NOT loaded on other admin screens');

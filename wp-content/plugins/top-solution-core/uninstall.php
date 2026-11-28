@@ -12,7 +12,10 @@ $ts_core_settings = get_option( 'ts_core_settings', array() );
 
 if ( is_array( $ts_core_settings ) && ! empty( $ts_core_settings['delete_data_on_uninstall'] ) ) {
 	require_once __DIR__ . '/src/Core/Capabilities.php';
+	require_once __DIR__ . '/src/Core/Schema.php';
 	\TopSolution\Core\Capabilities::revoke_all();
+	\TopSolution\Core\Schema::uninstall();
 	delete_option( 'ts_core_settings' );
 	delete_option( 'ts_core_db_version' );
+	delete_option( 'ts_delivery_settings' );
 }

@@ -34,6 +34,7 @@ class StatusChecks {
 			self::check_theme(),
 			self::check_rtl(),
 			self::check_permalinks(),
+			self::check_delivery(),
 			self::check_elementor(),
 		);
 		return array_values( array_filter( $checks ) );
@@ -166,6 +167,31 @@ class StatusChecks {
 			return self::row( 'permalinks', $label, self::OK, __( 'روابط مقروءة مفعّلة.', 'top-solution-core' ) );
 		}
 		return self::row( 'permalinks', $label, self::WARN, __( 'اختر «اسم المقالة» من الإعدادات ← الروابط الدائمة.', 'top-solution-core' ) );
+	}
+
+	/**
+	 * Delivery data: geography loaded, prices present, WooCommerce zone set up.
+	 *
+	 * @return array
+	 */
+	private static function check_delivery() {
+		$label = __( 'التوصيل', 'top-solution-core' );
+		if ( ! \TopSolution\Core\Schema::tables_exist() ) {
+			return self::row( 'delivery', $label, self::FAIL, __( 'جداول التوصيل غير موجودة. أعد تفعيل الإضافة.', 'top-solution-core' ) );
+		}
+		$wilayas = \TopSolution\Delivery\GeoRepository::count( 'wilaya' );
+		if ( 0 === $wilayas ) {
+			return self::row( 'delivery', $label, self::WARN, __( 'لم تُستورد الولايات بعد (Top Solution ← التوصيل ← الولايات والبلديات).', 'top-solution-core' ) );
+		}
+		$matrix = \TopSolution\Delivery\RateRepository::matrix( \TopSolution\Delivery\DeliveryService::decimals() );
+		if ( empty( $matrix ) ) {
+			return self::row( 'delivery', $label, self::WARN, __( 'لا توجد أسعار توصيل بعد (Top Solution ← التوصيل ← الأسعار).', 'top-solution-core' ) );
+		}
+		if ( ! \TopSolution\Delivery\ZoneSetup::existing_zone_id() ) {
+			return self::row( 'delivery', $label, self::WARN, __( 'أنشئ منطقة الشحن من Top Solution ← التوصيل ← الإعدادات.', 'top-solution-core' ) );
+		}
+		/* translators: 1: wilayas, 2: communes. */
+		return self::row( 'delivery', $label, self::OK, sprintf( __( '%1$d ولاية · %2$d بلدية · الأسعار ومنطقة الشحن جاهزة', 'top-solution-core' ), $wilayas, \TopSolution\Delivery\GeoRepository::count( 'commune' ) ) );
 	}
 
 	/**

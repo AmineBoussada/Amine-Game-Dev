@@ -53,6 +53,7 @@ class Plugin {
 
 		Migrator::maybe_run();
 		Settings::register_hooks();
+		\TopSolution\Delivery\Module::init();
 
 		if ( is_admin() ) {
 			Menu::init();

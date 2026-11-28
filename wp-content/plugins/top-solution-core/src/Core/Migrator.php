@@ -16,7 +16,7 @@ defined( 'ABSPATH' ) || exit;
 class Migrator {
 
 	const OPTION  = 'ts_core_db_version';
-	const CURRENT = 1;
+	const CURRENT = 2;
 
 	/**
 	 * Migrations: target version => callable.
@@ -26,6 +26,7 @@ class Migrator {
 	public static function migrations() {
 		return array(
 			1 => array( __CLASS__, 'migrate_1' ),
+			2 => array( __CLASS__, 'migrate_2' ),
 		);
 	}
 
@@ -71,5 +72,14 @@ class Migrator {
 	public static function migrate_1() {
 		Settings::ensure_defaults();
 		Capabilities::grant_defaults();
+	}
+
+	/**
+	 * Version 2: delivery tables (geography, rates, pickup points).
+	 *
+	 * @return void
+	 */
+	public static function migrate_2() {
+		Schema::install();
 	}
 }

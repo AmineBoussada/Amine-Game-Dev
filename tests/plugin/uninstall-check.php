@@ -23,10 +23,12 @@ $roles->for_site();
 $admin_has = get_role( 'administrator' )->has_cap( 'ts_manage_settings' );
 $opt       = false !== get_option( 'ts_core_settings', false );
 $orders    = wc_get_orders( array( 'limit' => 1, 'return' => 'ids' ) );
-$ok        = ( 'on' === $mode ) ? ( ! $admin_has && ! $opt ) : ( $admin_has && $opt );
-echo "uninstall ($mode): capability kept=" . var_export( $admin_has, true ) . ' option kept=' . var_export( $opt, true ) . ' orders untouched=' . var_export( ! empty( $orders ), true ) . "\n";
+$tables    = \TopSolution\Core\Schema::tables_exist();
+$ok        = ( 'on' === $mode ) ? ( ! $admin_has && ! $opt && ! $tables ) : ( $admin_has && $opt && $tables );
+echo "uninstall ($mode): capability kept=" . var_export( $admin_has, true ) . ' option kept=' . var_export( $opt, true ) . ' tables kept=' . var_export( $tables, true ) . ' orders untouched=' . var_export( ! empty( $orders ), true ) . "\n";
 echo ( $ok && ! empty( $orders ) ? 'PASS' : 'FAIL' ) . " uninstall behaviour ($mode)\n";
 
 // Restore the site.
 \TopSolution\Core\Activator::activate();
+echo 'after restore: tables exist=' . var_export( \TopSolution\Core\Schema::tables_exist(), true ) . "\n";
 exit( $ok && ! empty( $orders ) ? 0 : 1 );
