@@ -130,6 +130,7 @@ no other role by default (Q10).
 
 ## 11. Conventions & quality
 WordPress Coding Standards (PHPCS), PHPStan, PHPUnit (unit + WP integration
-incl. HPOS matrix), Playwright E2E (RTL, mobile viewport). Composer
-autoload; `languages/` POT; semantic versioning; changelog; no commits of
+incl. HPOS matrix), Playwright E2E (RTL, mobile viewport). The plugin
+ships its own PSR-4 autoloader (no Composer on the server; Composer is
+development tooling only); `languages/` POT; semantic versioning; changelog; no commits of
 secrets; DB version constant + Migrator.

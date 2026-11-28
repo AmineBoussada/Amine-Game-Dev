@@ -1,0 +1,41 @@
+=== Top Solution Core ===
+Contributors: topsolution
+Requires at least: 6.4
+Tested up to: 7.1
+Requires PHP: 7.4
+Requires Plugins: woocommerce
+Stable tag: 0.1.0
+License: GPLv2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+
+Business logic for the Top Solution store: landing pages, cash-on-delivery orders, offers, delivery, inventory and reports. Works with Elementor Free; Elementor Pro is never required.
+
+== Description ==
+
+Phase 1 (this version) is the foundation:
+
+* Requirements check (PHP, WordPress, WooCommerce) with a clear admin notice.
+* HPOS (High-Performance Order Storage) compatibility declared; orders are only ever handled through WooCommerce order objects.
+* Custom capabilities (ts_manage_landing, ts_manage_offers, ts_manage_forms, ts_manage_delivery, ts_manage_inventory, ts_manage_suppliers, ts_view_costs, ts_view_reports, ts_manage_settings). Purchase costs and suppliers are administrator-only by default.
+* Settings (Top Solution > Settings): initial order status (default: processing), diagnostics logging, delete-data-on-uninstall.
+* Status dashboard (Top Solution > Dashboard).
+* Versioned migrations, privacy-safe logging through WooCommerce logs.
+
+Landing pages, the order form, offers, delivery, inventory and reports arrive in later versions.
+
+Elementor: the plugin does not use Elementor at all. It never requires Elementor Pro (no Theme Builder, WooCommerce Builder, Popup Builder or Pro forms).
+
+== Installation ==
+
+1. Install and activate WooCommerce.
+2. Upload top-solution-core.zip in Plugins > Add New > Upload Plugin, then activate.
+3. Open Top Solution > Dashboard and review the status list.
+
+== Uninstall ==
+
+Deactivating or deleting the plugin keeps your data unless "delete data on uninstall" is ticked in Top Solution > Settings > General. Orders are WooCommerce data and are never deleted by this plugin.
+
+== Changelog ==
+
+= 0.1.0 =
+* Foundation: requirements, HPOS declaration, capabilities, settings, migrations, logger, status dashboard.

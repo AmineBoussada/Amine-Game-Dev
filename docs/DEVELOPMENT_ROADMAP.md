@@ -5,20 +5,26 @@ Method: planning first, then phases; each phase ends with a report
 issues, tests run) and **waits for explicit approval**. Nothing is
 implemented until this documentation set is approved.
 
-| Phase | Name | Deliverables | Exit tests |
-|---|---|---|---|
-| 0 | Planning | These 10 documents + answers to open questions | Approval |
-| 1 | Foundation | Plugin skeleton, Composer/PSR-4, requirements check, HPOS declaration, Migrator, capabilities, settings framework, Logger, child theme (RTL, Arabic font, tokens), PHPCS/PHPStan/PHPUnit/CI setup, local WP+WC test env | Activation/deactivation, lint, HPOS on/off boot |
-| 2 | Geography & Delivery | `ts_geo_units`, import tool, methods/carriers/zones/rates/pickup, RateCalculator, WC ShippingMethod, Delivery admin | Unit tests rates; coverage report |
-| 3 | Forms | `ts_form`, field registry, builder UI, validators, renderer, dependent selects | Validation matrix; RTL render |
-| 4 | Offers | `ts_offer`, OfferEngine, resolver, simulator, DisplayProvider | Table-driven + property tests |
-| 5 | Orders | CheckoutController, tokens, idempotency, PricingService, OrderFactory, confirmation page, order admin meta box, anti-spam | Tamper/race/HPOS tests; manual COD walk-through |
-| 6 | Landing pages | Registries, 3 templates, sections, product data tab, draft/preview, cache | Template contract + visual/RTL/mobile tests |
-| 7 | Inventory & Suppliers | Availability, ledger, pending-supplier queue, suppliers, purchases, costs, CostGuard | Cost-leak tests; stock tests |
-| 8 | Reports & Dashboard | Report queries/screens, CSV, dashboard | Data verification vs raw orders |
-| 9 | Hardening & Launch | Security review, performance pass, plugin-compat checklist, staging UAT, docs, backup/rollback plan | UAT sign-off, go-live checklist |
+| Phase | Name | Deliverables | Exit tests | Status |
+|---|---|---|---|---|
+| 0 | Planning | These 10 documents + answers to open questions | Approval | Approved |
+| 1 | Foundation | Plugin skeleton, Composer/PSR-4, requirements check, HPOS declaration, Migrator, capabilities, settings framework, Logger, child theme (RTL, Arabic font, tokens), PHPCS/PHPStan/PHPUnit/CI setup, local WP+WC test env | Activation/deactivation, lint, HPOS on/off boot | Built, awaiting approval |
+| 2 | Geography & Delivery | `ts_geo_units`, import tool, methods/carriers/zones/rates/pickup, RateCalculator, WC ShippingMethod, Delivery admin | Unit tests rates; coverage report | Not started |
+| 3 | Forms | `ts_form`, field registry, builder UI, validators, renderer, dependent selects | Validation matrix; RTL render | Not started |
+| 4 | Offers | `ts_offer`, OfferEngine, resolver, simulator, DisplayProvider | Table-driven + property tests | Not started |
+| 5 | Orders | CheckoutController, tokens, idempotency, PricingService, OrderFactory, confirmation page, order admin meta box, anti-spam | Tamper/race/HPOS tests; manual COD walk-through | Not started |
+| 6 | Landing pages | Registries, 3 templates, sections, product data tab, draft/preview, cache | Template contract + visual/RTL/mobile tests | Not started |
+| 7 | Inventory & Suppliers | Availability, ledger, pending-supplier queue, suppliers, purchases, costs, CostGuard | Cost-leak tests; stock tests | Not started |
+| 8 | Reports & Dashboard | Report queries/screens, CSV, dashboard | Data verification vs raw orders | Not started |
+| 9 | Hardening & Launch | Security review, performance pass, plugin-compat checklist, staging UAT, docs, backup/rollback plan | UAT sign-off, go-live checklist | Not started |
 Order note: Phases 5 and 6 may swap if you want visual progress earlier;
 Phase 5 requires 2–4 complete (it consumes delivery, forms, offers).
+
+## Decisions taken (2026-11-28)
+- Build order: **plugin foundation, then the order system**, then landing pages (the owner's choice).
+- Every product uses the landing page; new COD orders start as `processing`.
+- Elementor **Free** only; Pro is never required (theme and plugin).
+- Phase 1 delivered: `wp-content/plugins/top-solution-core` (see `docs/PLUGIN_PHASE1.md`). The theme (`top-solution-child`, v0.3.0) is approved.
 
 ## Cross-phase rules
 Branch per phase, small commits, changelog, no core edits, i18n strings

@@ -102,6 +102,11 @@ validated); WCAG-conscious RTL markup.
 | R11 | Plugin conflicts (caching, SEO, security plugins) | Compatibility checklist at launch |
 | R12 | Scope creep from "custom rules" | Constrained rule schema, no arbitrary code |
 
+## 9a. Decisions taken (2026-11-28, owner)
+- **Q4:** every product uses the landing page. One COD order flow; WooCommerce cart/checkout stay installed but are not the main path.
+- **Q1:** a new COD order starts as **`processing`** (setting `initial_order_status`, can be changed to `on-hold` later).
+- Build order: plugin foundation first, then the order system (landing pages after).
+
 ## 9. Missing business decisions (must be answered; none assumed)
 1. Initial COD order status: `processing` or `on-hold` (phone confirmation)?
 2. Hosting/environment, PHP/WP/WC versions, staging availability.

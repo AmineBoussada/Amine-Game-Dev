@@ -1,0 +1,18 @@
+{
+	"name": "top-solution/top-solution",
+	"description": "Development tooling for the Top Solution store (theme and core plugin). Not needed on the server.",
+	"type": "project",
+	"license": "GPL-2.0-or-later",
+	"require": { "php": ">=7.4" },
+	"require-dev": {
+		"wp-coding-standards/wpcs": "^3.1",
+		"phpcompatibility/phpcompatibility-wp": "^2.1",
+		"phpunit/phpunit": "^9.6",
+		"dealerdirect/phpcodesniffer-composer-installer": "^1.0"
+	},
+	"config": { "allow-plugins": { "dealerdirect/phpcodesniffer-composer-installer": true } },
+	"scripts": {
+		"test": "phpunit -c tests/plugin/phpunit.xml.dist",
+		"lint": "phpcs --standard=wp-content/plugins/top-solution-core/phpcs.xml.dist wp-content/plugins/top-solution-core && phpcs --standard=wp-content/themes/top-solution-child/phpcs.xml.dist wp-content/themes/top-solution-child"
+	}
+}

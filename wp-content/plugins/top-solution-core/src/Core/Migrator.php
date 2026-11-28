@@ -1,0 +1,75 @@
+<?php
+/**
+ * Versioned, idempotent upgrade steps. Later phases add steps here (custom
+ * tables, post types). Nothing is ever deleted by a migration.
+ *
+ * @package TopSolution
+ */
+
+namespace TopSolution\Core;
+
+defined( 'ABSPATH' ) || exit;
+
+/**
+ * Runs pending migrations.
+ */
+class Migrator {
+
+	const OPTION  = 'ts_core_db_version';
+	const CURRENT = 1;
+
+	/**
+	 * Migrations: target version => callable.
+	 *
+	 * @return array<int,callable>
+	 */
+	public static function migrations() {
+		return array(
+			1 => array( __CLASS__, 'migrate_1' ),
+		);
+	}
+
+	/**
+	 * Run pending migrations if the stored version is behind.
+	 *
+	 * @return void
+	 */
+	public static function maybe_run() {
+		$from = (int) get_option( self::OPTION, 0 );
+		if ( $from < self::CURRENT ) {
+			self::run( $from );
+		}
+	}
+
+	/**
+	 * Run every migration newer than $from, in order.
+	 *
+	 * @param int $from Installed version.
+	 * @return int The version reached.
+	 */
+	public static function run( $from ) {
+		$reached = (int) $from;
+		$steps   = self::migrations();
+		ksort( $steps );
+		foreach ( $steps as $version => $callback ) {
+			if ( $version <= $from ) {
+				continue;
+			}
+			call_user_func( $callback );
+			$reached = $version;
+			update_option( self::OPTION, $version, false );
+			Logger::info( 'Migration applied', array( 'version' => $version ) );
+		}
+		return $reached;
+	}
+
+	/**
+	 * Version 1: default settings and capabilities.
+	 *
+	 * @return void
+	 */
+	public static function migrate_1() {
+		Settings::ensure_defaults();
+		Capabilities::grant_defaults();
+	}
+}

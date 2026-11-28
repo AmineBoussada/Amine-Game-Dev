@@ -1,0 +1,87 @@
+/* Top Solution Core — admin styles (only on this plugin's screens). Logical properties: RTL-safe. */
+.ts-admin {
+	--ts-everglade: #014749;
+	--ts-whirlpool: #395c7a;
+	--ts-cornfield: #c88928;
+	--ts-line: #e3d0bc;
+	--ts-surface: #f6f0ea;
+	--ts-ok: #266a42;
+	--ts-ok-bg: #e3f1e8;
+	--ts-warn: #8f5700;
+	--ts-warn-bg: #fbebd2;
+	--ts-bad: #b3261e;
+	--ts-bad-bg: #fbe1df;
+}
+
+.ts-admin h1 {
+	color: var(--ts-everglade);
+}
+
+.ts-lead {
+	max-width: 70ch;
+	color: #42585a;
+}
+
+.ts-summary {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	margin-block: 16px;
+}
+
+.ts-pill,
+.ts-badge {
+	display: inline-block;
+	padding: 2px 12px;
+	border-radius: 999px;
+	background: var(--ts-surface);
+	border: 1px solid var(--ts-line);
+	color: #0d2a2c;
+	font-weight: 600;
+	line-height: 1.8;
+}
+
+.ts-pill--ok,
+.ts-badge--ok {
+	background: var(--ts-ok-bg);
+	border-color: var(--ts-ok);
+	color: var(--ts-ok);
+}
+
+.ts-pill--warn,
+.ts-badge--warn {
+	background: var(--ts-warn-bg);
+	border-color: var(--ts-warn);
+	color: var(--ts-warn);
+}
+
+.ts-pill--fail,
+.ts-badge--fail {
+	background: var(--ts-bad-bg);
+	border-color: var(--ts-bad);
+	color: var(--ts-bad);
+}
+
+.ts-status {
+	max-width: 960px;
+}
+
+.ts-status th[scope="row"] {
+	width: 22%;
+}
+
+.ts-status td:nth-child(2) {
+	width: 14%;
+	white-space: nowrap;
+}
+
+.ts-form .form-table th {
+	width: 220px;
+}
+
+@media (max-width: 782px) {
+	.ts-status th[scope="row"],
+	.ts-status td:nth-child(2) {
+		width: auto;
+	}
+}
