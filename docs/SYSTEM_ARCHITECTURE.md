@@ -9,7 +9,11 @@ Elementor: used for general pages (Home, About, Contact, policies). The
 single-product view of landing-enabled products is rendered by the plugin;
 Elementor is not involved there (decision A).
 Required plugins: WooCommerce (hard dependency, checked on activation).
-Elementor (soft dependency for general pages only).
+Elementor **Free** (soft dependency for general pages only). Elementor Pro is
+never required or used: no Theme Builder locations, Pro widgets, WooCommerce
+Builder, Popup Builder or Pro forms. The plugin's landing pages, order forms
+and popups (if any) are built natively, not with Pro features. Every store
+screen renders with Elementor deactivated.
 
 ## 2. Plugin modules (PSR-4, namespace `TopSolution\`)
 ```

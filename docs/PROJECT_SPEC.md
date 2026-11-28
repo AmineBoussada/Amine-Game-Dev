@@ -14,7 +14,7 @@ No business data (products, prices, suppliers, carriers, fees, wilaya lists)
 is invented anywhere in these documents; all of it is admin-entered config.
 
 ## 2. Stack & language
-WordPress, WooCommerce, Hello Elementor child theme, Elementor, PHP, MySQL,
+WordPress, WooCommerce, Hello Elementor child theme, **Elementor Free (Elementor Pro is never required)**, PHP, MySQL,
 HTML5/CSS3/JS. Arabic only in release 1 (storefront + our admin screens),
 full RTL. All strings use i18n (`top-solution` text domain) so languages can
 be added later; Arabic is the only shipped translation.
@@ -31,6 +31,13 @@ be added later; Arabic is the only shipped translation.
 | Server validates prices/forms | Client sends IDs/choices only; see ORDER_WORKFLOW |
 | Protect costs/suppliers | Capability `ts_view_costs`, underscore meta, no REST/email/export exposure, leak tests |
 | Modular & documented | Module boundaries, PHPDoc, PHPCS, tests |
+
+### Elementor Free only (binding requirement, 2026-11-28)
+No Elementor Pro widgets, Theme Builder, WooCommerce Builder, Popup Builder or
+Pro forms at any stage, in the theme or the plugin. Header, footer and every
+store template (archives, single product, cart, checkout, My Account) are
+native theme/WooCommerce templates. Elementor Free is used only for editable
+page content; the store must keep working with Elementor deactivated.
 
 ## 4. WordPress pages (all)
 **Created/required (WooCommerce standard):** Shop (archive), Cart, Checkout,

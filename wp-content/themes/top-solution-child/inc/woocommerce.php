@@ -125,6 +125,31 @@ function ts_child_wc_sale_flash() {
 add_filter( 'woocommerce_sale_flash', 'ts_child_wc_sale_flash' );
 
 /**
+ * Out-of-stock badge on product cards (native WooCommerce stock status).
+ *
+ * @return void
+ */
+function ts_child_wc_loop_stock_badge() {
+	global $product;
+	if ( $product instanceof WC_Product && ! $product->is_in_stock() ) {
+		echo '<span class="ts-badge ts-badge--out">' . esc_html__( 'نفدت الكمية', 'top-solution-child' ) . '</span>';
+	}
+}
+add_action( 'woocommerce_before_shop_loop_item_title', 'ts_child_wc_loop_stock_badge', 9 );
+
+/**
+ * Payment-method reassurance under the add-to-cart form (single product).
+ *
+ * @return void
+ */
+function ts_child_wc_cod_note() {
+	echo '<p class="ts-cod-note">';
+	ts_child_the_icon( 'wallet' );
+	echo '<span>' . esc_html__( 'الدفع عند الاستلام', 'top-solution-child' ) . '</span></p>';
+}
+add_action( 'woocommerce_after_add_to_cart_form', 'ts_child_wc_cod_note' );
+
+/**
  * Keep the header cart count in sync via WooCommerce cart fragments.
  *
  * @param array $fragments Fragments keyed by CSS selector.

@@ -1,0 +1,16 @@
+<?php
+// TEST-ONLY fixtures: gallery, out-of-stock product, customer + order, classic cart/checkout pages, Elementor Free full-width page.
+$_SERVER['HTTP_HOST']='127.0.0.1:8080';$_SERVER['REQUEST_URI']='/';
+require __DIR__.'/wordpress/wp-load.php';
+require_once ABSPATH.'wp-admin/includes/file.php';require_once ABSPATH.'wp-admin/includes/media.php';require_once ABSPATH.'wp-admin/includes/image.php';
+function att($seed){$img=imagecreatetruecolor(900,900);$c=[[200,205,170],[150,160,110],[240,234,220],[87,98,56]][$seed%4];for($y=0;$y<900;$y++){$k=$y/900;$col=imagecolorallocate($img,(int)($c[0]-30*$k),(int)($c[1]-30*$k),(int)($c[2]-30*$k));imageline($img,0,$y,900,$y,$col);}$f=sys_get_temp_dir()."/g$seed.jpg";imagejpeg($img,$f,80);$id=media_handle_sideload(['name'=>"g$seed.jpg",'tmp_name'=>$f],0);return is_wp_error($id)?0:$id;}
+$ids = wc_get_products(['limit'=>3,'orderby'=>'date','order'=>'ASC','return'=>'ids','type'=>'simple']);
+$p = wc_get_product($ids[0]); $p->set_gallery_image_ids([att(1),att(2),att(3)]); $p->save(); echo "gallery on ".$p->get_slug()."\n";
+$o = wc_get_product($ids[1]); $o->set_stock_quantity(0); $o->set_stock_status('outofstock'); $o->save(); echo "out of stock ".$o->get_slug()."\n";
+$uid = username_exists('client') ?: wp_create_user('client','client-pass','client@example.com');
+$c = new WC_Customer($uid); $c->set_first_name('عميل'); $c->set_last_name('تجريبي'); $c->set_billing_first_name('عميل'); $c->set_billing_last_name('تجريبي'); $c->set_billing_address_1('عنوان تجريبي'); $c->set_billing_city('مدينة تجريبية'); $c->set_billing_country('DZ'); $c->set_billing_phone('0555000000'); $c->save();
+$order = wc_create_order(['customer_id'=>$uid]); $order->add_product(wc_get_product($ids[2]),2); $order->set_address(['first_name'=>'عميل','last_name'=>'تجريبي','address_1'=>'عنوان تجريبي','city'=>'مدينة تجريبية','country'=>'DZ','phone'=>'0555000000','email'=>'client@example.com'],'billing'); $order->set_payment_method('cod'); $order->set_payment_method_title('الدفع عند الاستلام'); $order->calculate_totals(); $order->update_status('processing'); echo "order ".$order->get_id()."\n";
+foreach(['cart-classic'=>['سلة (كلاسيكي)','[woocommerce_cart]'],'checkout-classic'=>['إتمام الطلب (كلاسيكي)','[woocommerce_checkout]']] as $slug=>$d){ if(!get_page_by_path($slug)) wp_insert_post(['post_type'=>'page','post_status'=>'publish','post_title'=>$d[0],'post_name'=>$slug,'post_content'=>$d[1]]); }
+if(!get_page_by_path('elementor-fw')){ $pid=wp_insert_post(['post_type'=>'page','post_status'=>'publish','post_title'=>'صفحة Elementor','post_name'=>'elementor-fw','post_content'=>'<h2>نسخة HTML احتياطية</h2>']);
+ update_post_meta($pid,'_wp_page_template','elementor_header_footer'); update_post_meta($pid,'_elementor_edit_mode','builder'); update_post_meta($pid,'_elementor_template_type','wp-page');
+ update_post_meta($pid,'_elementor_data',wp_slash(wp_json_encode([['id'=>'c1d2e3f','elType'=>'container','settings'=>[],'elements'=>[['id'=>'w1x2y3z','elType'=>'widget','widgetType'=>'heading','settings'=>['title'=>'قسم مرئي من Elementor المجاني','header_size'=>'h1'],'elements'=>[]],['id'=>'w9x8y7z','elType'=>'widget','widgetType'=>'text-editor','settings'=>['editor'=>'<p>نص تجريبي داخل محرر نصوص Elementor.</p>'],'elements'=>[]]],'isInner'=>false]]))); echo "elementor page $pid\n"; }

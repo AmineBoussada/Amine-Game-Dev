@@ -205,3 +205,57 @@ function ts_child_cart_link_html() {
 		esc_html( number_format_i18n( $count ) )
 	);
 }
+
+/**
+ * Contact cards (tap-to-call, WhatsApp, email, address, hours) built only from
+ * the values entered in the Customizer. Used by the Contact page template.
+ *
+ * @return string Escaped markup; empty when nothing is configured (admins see a hint).
+ */
+function ts_child_contact_cards_html() {
+	$cards = array();
+
+	$phone_url = ts_child_phone_url();
+	if ( '' !== $phone_url ) {
+		$cards[] = array( 'phone', __( 'اتصل بنا', 'top-solution-child' ), ts_child_get( 'phone' ), $phone_url, true );
+	}
+	$wa_url = ts_child_whatsapp_url();
+	if ( '' !== $wa_url ) {
+		$cards[] = array( 'whatsapp', __( 'واتساب', 'top-solution-child' ), ts_child_get( 'whatsapp' ), $wa_url, true );
+	}
+	if ( '' !== ts_child_get( 'email' ) ) {
+		$cards[] = array( 'mail', __( 'البريد الإلكتروني', 'top-solution-child' ), ts_child_get( 'email' ), 'mailto:' . antispambot( ts_child_get( 'email' ) ), true );
+	}
+	if ( '' !== ts_child_get( 'address' ) ) {
+		$cards[] = array( 'pin', __( 'العنوان', 'top-solution-child' ), ts_child_get( 'address' ), '', false );
+	}
+	if ( '' !== ts_child_get( 'hours' ) ) {
+		$cards[] = array( 'clock', __( 'ساعات العمل', 'top-solution-child' ), ts_child_get( 'hours' ), '', false );
+	}
+
+	if ( empty( $cards ) ) {
+		return current_user_can( 'edit_theme_options' )
+			? '<p class="ts-note">' . esc_html__( 'أضف بيانات التواصل من المظهر ← تخصيص ← Top Solution ← بيانات التواصل.', 'top-solution-child' ) . '</p>'
+			: '';
+	}
+
+	ob_start();
+	echo '<ul class="ts-contact-cards">';
+	foreach ( $cards as $card ) {
+		list( $icon, $label, $value, $url, $ltr ) = $card;
+		echo '<li class="ts-contact-card">';
+		if ( '' !== $url ) {
+			echo '<a class="ts-contact-card__link" href="' . esc_url( $url, array( 'http', 'https', 'tel', 'mailto' ) ) . '">';
+		} else {
+			echo '<div class="ts-contact-card__link">';
+		}
+		echo '<span class="ts-contact-card__icon">';
+		ts_child_the_icon( $icon );
+		echo '</span><span class="ts-contact-card__body"><span class="ts-contact-card__label">' . esc_html( $label ) . '</span>';
+		echo '<span class="ts-contact-card__value"' . ( $ltr ? ' dir="ltr"' : '' ) . '>' . esc_html( $value ) . '</span></span>';
+		echo '' !== $url ? '</a>' : '</div>';
+		echo '</li>';
+	}
+	echo '</ul>';
+	return ob_get_clean();
+}

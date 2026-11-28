@@ -5,7 +5,9 @@
   documents per product.
 - Each product stores selected template + configuration (`_ts_lp_*`).
 - Templates are presentation-only and independent from order/offer logic.
-- Elementor remains for general site pages.
+- Elementor **Free** remains for general site pages. Landing pages, the order
+  form (including its modal / sticky-bar modes) never use Elementor Pro
+  (no Popup Builder, no Pro forms, no Theme Builder).
 
 ## 2. Activation
 Product with `_ts_lp_enabled=yes` and a valid template → on `template_include`

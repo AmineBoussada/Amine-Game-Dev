@@ -2,8 +2,8 @@
 /**
  * Document head, opening body and site header.
  *
- * Replaces the parent header.php. Elementor Pro theme-builder headers still
- * take precedence through elementor_theme_do_location().
+ * Replaces the parent header.php. The header is always rendered by this theme
+ * (Elementor Free only; no Elementor Pro Theme Builder locations are used).
  *
  * @package TopSolutionChild
  */
@@ -28,8 +28,7 @@ $ts_skip_url = apply_filters( 'hello_elementor_skip_link_url', '#content' ); // 
 <a class="skip-link screen-reader-text" href="<?php echo esc_url( $ts_skip_url ); ?>"><?php esc_html_e( 'انتقل إلى المحتوى', 'top-solution-child' ); ?></a>
 
 <?php
-if ( ! function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_location( 'header' ) ) {
-	if ( function_exists( 'hello_elementor_display_header_footer' ) ? hello_elementor_display_header_footer() : true ) {
-		get_template_part( 'template-parts/site-header' );
-	}
+// Hello Elementor's own (free) setting can hide the header and footer, e.g. for canvas pages.
+if ( function_exists( 'hello_elementor_display_header_footer' ) ? hello_elementor_display_header_footer() : true ) {
+	get_template_part( 'template-parts/site-header' );
 }

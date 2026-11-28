@@ -121,7 +121,7 @@ $lorem = '<p>نص تجريبي للاختبار فقط. هذه فقرة طويل
 $pages  = array(
 	'home'       => array( 'الرئيسية', '' ),
 	'about'      => array( 'من نحن', $lorem ),
-	'contact'    => array( 'اتصل بنا', '<p>يمكنكم التواصل معنا عبر الوسائل التالية.</p>[ts_contact_cards]' ),
+	'contact'    => array( 'اتصل بنا', '<p>يمكنكم التواصل معنا عبر الوسائل التالية.</p>' ),
 	'delivery'   => array( 'سياسة التوصيل', $lorem ),
 	'categories' => array( 'الأقسام', '<p>تصفّح جميع أقسام المتجر.</p>' ),
 );
@@ -130,6 +130,7 @@ foreach ( $pages as $slug => $d ) {
 	$pid[ $slug ] = wp_insert_post( array( 'post_type' => 'page', 'post_status' => 'publish', 'post_title' => $d[0], 'post_name' => $slug, 'post_content' => $d[1] ) );
 }
 update_post_meta( $pid['categories'], '_wp_page_template', 'templates/page-categories.php' );
+update_post_meta( $pid['contact'], '_wp_page_template', 'templates/page-contact.php' );
 update_option( 'show_on_front', 'page' );
 update_option( 'page_on_front', $pid['home'] );
 update_option( 'permalink_structure', '/%postname%/' );
