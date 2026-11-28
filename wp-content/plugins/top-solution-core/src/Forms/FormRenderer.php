@@ -1,0 +1,255 @@
+<?php
+/**
+ * Server-side form rendering: semantic, accessible, RTL-friendly markup.
+ * Conditional fields and dependent selects are enhanced by assets/forms.js;
+ * the server validator remains the authority (SubmissionValidator).
+ *
+ * @package TopSolution
+ */
+
+namespace TopSolution\Forms;
+
+use TopSolution\Core\Settings;
+use TopSolution\Delivery\DeliverySettings;
+use TopSolution\Delivery\GeoRepository;
+
+defined( 'ABSPATH' ) || exit;
+
+/**
+ * Renders a form definition as HTML.
+ */
+class FormRenderer {
+
+	/**
+	 * Messages used by the browser-side checks (Arabic; same codes as the server).
+	 *
+	 * @return array<string,string>
+	 */
+	public static function messages() {
+		return array(
+			'required'      => __( 'هذا الحقل مطلوب.', 'top-solution-core' ),
+			'invalid'       => __( 'القيمة غير صالحة.', 'top-solution-core' ),
+			'not_allowed'   => __( 'اختر قيمة من القائمة.', 'top-solution-core' ),
+			'too_short'     => __( 'النص أقصر من المطلوب.', 'top-solution-core' ),
+			'too_long'      => __( 'النص أطول من المسموح.', 'top-solution-core' ),
+			'too_small'     => __( 'القيمة أصغر من المسموح.', 'top-solution-core' ),
+			'too_large'     => __( 'القيمة أكبر من المسموح.', 'top-solution-core' ),
+			'phone'         => __( 'أدخل رقم هاتف صحيحاً.', 'top-solution-core' ),
+			'summary'       => __( 'يرجى تصحيح الحقول التالية:', 'top-solution-core' ),
+			'choose_wilaya' => __( 'اختر الولاية أولاً', 'top-solution-core' ),
+			'choose'        => __( 'اختر', 'top-solution-core' ),
+			'loading'       => __( 'جارٍ التحميل…', 'top-solution-core' ),
+			'no_pickup'     => __( 'لا يوجد مكتب استلام لهذه المنطقة.', 'top-solution-core' ),
+			'load_failed'   => __( 'تعذّر تحميل القائمة. أعد المحاولة.', 'top-solution-core' ),
+			'preview_done'  => __( 'معاينة: البيانات صحيحة ولم يُرسَل أي طلب.', 'top-solution-core' ),
+		);
+	}
+
+	/**
+	 * Render a form.
+	 *
+	 * @param array $form Normalised definition with `id`.
+	 * @param array $args preview (bool): show the form without sending anything.
+	 * @return string HTML (escaped).
+	 */
+	public static function render( array $form, array $args = array() ) {
+		$args    = array_merge( array( 'preview' => true ), $args );
+		$form_id = (int) $form['id'];
+		$rule    = (string) Settings::get( 'phone_rule' );
+		self::enqueue();
+
+		$attrs = array(
+			'class'              => 'ts-form-front',
+			'id'                 => 'ts-form-' . $form_id,
+			'data-ts-form'       => '1',
+			'data-form-id'       => (string) $form_id,
+			'data-form-version'  => (string) ( isset( $form['version'] ) ? $form['version'] : 0 ),
+			'data-rest'          => esc_url_raw( rest_url( 'ts-core/v1/' ) ),
+			'data-phone-pattern' => PhoneRule::js_pattern( $rule ),
+			'data-phone-prefix'  => PhoneRule::js_prefix( $rule ),
+			'data-i18n'          => wp_json_encode( self::messages() ),
+			'novalidate'         => 'novalidate',
+		);
+		if ( ! empty( $args['preview'] ) ) {
+			$attrs['data-preview'] = '1';
+		}
+		$html  = '<form' . self::attributes( $attrs ) . '>';
+		$html .= '<div class="ts-errors" role="alert" aria-live="assertive" tabindex="-1" hidden></div>';
+		$html .= '<div class="ts-fields">';
+		foreach ( $form['fields'] as $field ) {
+			$html .= self::render_field( $form_id, $field );
+		}
+		$html .= '</div>';
+		$label = '' !== $form['settings']['submit_label'] ? $form['settings']['submit_label'] : __( 'تأكيد الطلب', 'top-solution-core' );
+		$html .= '<div class="ts-form-actions"><button type="submit" class="ts-submit">' . esc_html( $label ) . '</button></div>';
+		$html .= '<p class="ts-preview-note" role="status" aria-live="polite" hidden></p>';
+		$html .= '</form>';
+		return $html;
+	}
+
+	/**
+	 * Enqueue front-end assets (only when a form is rendered).
+	 *
+	 * @return void
+	 */
+	private static function enqueue() {
+		wp_enqueue_style( 'ts-core-forms', TS_CORE_URL . 'assets/forms.css', array(), TS_CORE_VERSION );
+		wp_enqueue_script(
+			'ts-core-forms',
+			TS_CORE_URL . 'assets/forms.js',
+			array(),
+			TS_CORE_VERSION,
+			array(
+				'in_footer' => true,
+				'strategy'  => 'defer',
+			)
+		);
+	}
+
+	/**
+	 * Build an escaped attribute string.
+	 *
+	 * @param array $attrs name => value ('' / true = boolean attribute).
+	 * @return string
+	 */
+	private static function attributes( array $attrs ) {
+		$out = '';
+		foreach ( $attrs as $name => $value ) {
+			if ( false === $value || null === $value ) {
+				continue;
+			}
+			$out .= ' ' . esc_attr( $name );
+			if ( true !== $value ) {
+				$out .= '="' . esc_attr( (string) $value ) . '"';
+			}
+		}
+		return $out;
+	}
+
+	/**
+	 * Render one field.
+	 *
+	 * @param int   $form_id Form id.
+	 * @param array $field   Field definition.
+	 * @return string
+	 */
+	private static function render_field( $form_id, array $field ) {
+		$type = $field['type'];
+		$id   = 'ts-' . $form_id . '-' . $field['key'];
+		$wrap = array(
+			'class'         => 'ts-field ts-field--' . $type . ' ts-field--' . $field['width'],
+			'data-key'      => $field['key'],
+			'data-type'     => $type,
+			'data-maps-to'  => $field['maps_to'],
+			'data-required' => ! empty( $field['required'] ) ? '1' : false,
+			'data-min'      => null !== $field['min'] ? (string) $field['min'] : false,
+			'data-max'      => null !== $field['max'] ? (string) $field['max'] : false,
+		);
+		if ( 'conditional' === $field['visibility']['mode'] ) {
+			$wrap['data-visibility'] = wp_json_encode( $field['visibility']['rules'] );
+			// Hidden until the script evaluates the rules (the server discards hidden fields anyway).
+			$wrap['hidden'] = true;
+		}
+		$html = '<div' . self::attributes( $wrap ) . '>';
+
+		if ( 'info' === $type ) {
+			return $html . '<p class="ts-info">' . nl2br( esc_html( $field['text'] ) ) . '</p></div>';
+		}
+
+		$describedby = array();
+		$help        = '' !== $field['help'] ? '<p class="ts-help" id="' . esc_attr( $id . '-help' ) . '">' . esc_html( $field['help'] ) . '</p>' : '';
+		if ( '' !== $help ) {
+			$describedby[] = $id . '-help';
+		}
+		$describedby[] = $id . '-err';
+		$aria          = ' aria-describedby="' . esc_attr( implode( ' ', $describedby ) ) . '"';
+		$required      = ! empty( $field['required'] );
+		$req_mark      = $required ? ' <span class="ts-req" aria-hidden="true">*</span><span class="screen-reader-text"> (' . esc_html__( 'إلزامي', 'top-solution-core' ) . ')</span>' : '';
+		$label         = '<label class="ts-label" for="' . esc_attr( $id ) . '">' . esc_html( $field['label'] ) . $req_mark . '</label>';
+		$err           = '<p class="ts-error" id="' . esc_attr( $id . '-err' ) . '" hidden></p>';
+		$req_attr      = $required ? ' required aria-required="true"' : '';
+		$name          = ' name="' . esc_attr( $field['key'] ) . '"';
+		$ph            = '' !== $field['placeholder'] ? ' placeholder="' . esc_attr( $field['placeholder'] ) . '"' : '';
+
+		switch ( $type ) {
+			case 'text':
+				$autocomplete = 'customer_name' === $field['maps_to'] ? ' autocomplete="name"' : '';
+				$maxlength    = null !== $field['max'] ? ' maxlength="' . (int) $field['max'] . '"' : '';
+				$html        .= $label . '<input type="text" id="' . esc_attr( $id ) . '"' . $name . $ph . $req_attr . $aria . $autocomplete . $maxlength . '>' . $help . $err;
+				break;
+			case 'textarea':
+				$maxlength = null !== $field['max'] ? ' maxlength="' . (int) $field['max'] . '"' : '';
+				$html     .= $label . '<textarea id="' . esc_attr( $id ) . '" rows="3"' . $name . $ph . $req_attr . $aria . $maxlength . '></textarea>' . $help . $err;
+				break;
+			case 'phone':
+				$html .= $label . '<input type="tel" inputmode="tel" dir="ltr" autocomplete="tel" id="' . esc_attr( $id ) . '"' . $name . $ph . $req_attr . $aria . '>' . $help . $err;
+				break;
+			case 'number':
+			case 'quantity':
+				$min   = null !== $field['min'] ? ' min="' . (int) $field['min'] . '"' : '';
+				$max   = null !== $field['max'] ? ' max="' . (int) $field['max'] . '"' : '';
+				$value = 'quantity' === $type ? ' value="' . (int) $field['min'] . '"' : '';
+				$html .= $label . '<input type="number" inputmode="numeric" dir="ltr" step="1" id="' . esc_attr( $id ) . '"' . $name . $ph . $min . $max . $value . $req_attr . $aria . '>' . $help . $err;
+				break;
+			case 'select':
+				$html .= $label . '<select id="' . esc_attr( $id ) . '"' . $name . $req_attr . $aria . '><option value="">' . esc_html__( 'اختر', 'top-solution-core' ) . '</option>';
+				foreach ( $field['options'] as $option ) {
+					$html .= '<option value="' . esc_attr( $option['value'] ) . '">' . esc_html( $option['label'] ) . '</option>';
+				}
+				$html .= '</select>' . $help . $err;
+				break;
+			case 'radio':
+				$html = rtrim( $html ) . self::choice_group( $id, $field, $field['options'], $help, $err, $required );
+				break;
+			case 'delivery_method':
+				$options = array();
+				foreach ( DeliverySettings::enabled_methods() as $method ) {
+					$options[] = array(
+						'value' => $method,
+						'label' => DeliverySettings::label( $method ),
+					);
+				}
+				$html = rtrim( $html ) . self::choice_group( $id, $field, $options, $help, $err, $required );
+				break;
+			case 'checkbox':
+			case 'terms':
+				$html .= '<label class="ts-check" for="' . esc_attr( $id ) . '"><input type="checkbox" id="' . esc_attr( $id ) . '"' . $name . ' value="1"' . $req_attr . $aria . '> <span>' . esc_html( $field['label'] ) . $req_mark . '</span></label>' . $help . $err;
+				break;
+			case 'wilaya':
+				$html .= $label . '<select id="' . esc_attr( $id ) . '"' . $name . $req_attr . $aria . ' autocomplete="address-level1"><option value="">' . esc_html__( 'اختر الولاية', 'top-solution-core' ) . '</option>';
+				foreach ( GeoRepository::wilayas( true ) as $wilaya ) {
+					$html .= '<option value="' . (int) $wilaya['id'] . '">' . esc_html( $wilaya['name_ar'] ) . '</option>';
+				}
+				$html .= '</select>' . $help . $err;
+				break;
+			case 'commune':
+				$html .= $label . '<select id="' . esc_attr( $id ) . '"' . $name . $req_attr . $aria . ' disabled><option value="">' . esc_html__( 'اختر الولاية أولاً', 'top-solution-core' ) . '</option></select>' . $help . $err;
+				break;
+			case 'pickup_point':
+				$html .= $label . '<select id="' . esc_attr( $id ) . '"' . $name . $req_attr . $aria . ' disabled><option value="">' . esc_html__( 'اختر الولاية أولاً', 'top-solution-core' ) . '</option></select>' . $help . $err;
+				break;
+		}
+		return $html . '</div>';
+	}
+
+	/**
+	 * Radio card group (fieldset + legend).
+	 *
+	 * @param string $id       Base id.
+	 * @param array  $field    Field.
+	 * @param array  $options  Options (value,label).
+	 * @param string $help     Help HTML.
+	 * @param string $err      Error HTML.
+	 * @param bool   $required Required.
+	 * @return string HTML that continues inside the open wrapper div.
+	 */
+	private static function choice_group( $id, array $field, array $options, $help, $err, $required ) {
+		$mark = $required ? ' <span class="ts-req" aria-hidden="true">*</span>' : '';
+		$html = '<fieldset class="ts-choices" aria-describedby="' . esc_attr( $id . '-err' ) . '"><legend class="ts-label">' . esc_html( $field['label'] ) . $mark . '</legend><div class="ts-choice-list">';
+		foreach ( $options as $i => $option ) {
+			$oid   = $id . '-' . ( $i + 1 );
+			$html .= '<label class="ts-choice" for="' . esc_attr( $oid ) . '"><input type="radio" id="' . esc_attr( $oid ) . '" name="' . esc_attr( $field['key'] ) . '" value="' . esc_attr( $option['value'] ) . '"' . ( $required ? ' required' : '' ) . '> <span>' . esc_html( $option['label'] ) . '</span></label>';
+		}
+		return $html . '</div>' . $help . $err . '</fieldset>';
+	}
+}

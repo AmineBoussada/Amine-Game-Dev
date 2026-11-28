@@ -28,6 +28,7 @@ class SettingsPage {
 		return array(
 			'general' => __( 'عام', 'top-solution-core' ),
 			'orders'  => __( 'الطلبات', 'top-solution-core' ),
+			'forms'   => __( 'النماذج', 'top-solution-core' ),
 		);
 	}
 
@@ -73,6 +74,8 @@ class SettingsPage {
 					<?php
 					if ( 'orders' === $tab ) {
 						self::render_orders_tab( $values );
+					} elseif ( 'forms' === $tab ) {
+						self::render_forms_tab( $values );
 					} else {
 						self::render_general_tab( $values );
 					}
@@ -111,6 +114,37 @@ class SettingsPage {
 					<?php esc_html_e( 'احذف إعدادات الإضافة وصلاحياتها نهائياً', 'top-solution-core' ); ?>
 				</label>
 				<p class="description"><?php esc_html_e( 'تعطيل الإضافة لا يحذف شيئاً. الطلبات تبقى دائماً في ووكومرس.', 'top-solution-core' ); ?></p>
+			</td>
+		</tr>
+		<?php
+	}
+
+	/**
+	 * Forms tab.
+	 *
+	 * @param array $values Current settings.
+	 * @return void
+	 */
+	private static function render_forms_tab( array $values ) {
+		$name    = Settings::OPTION;
+		$current = isset( $values['phone_rule'] ) ? $values['phone_rule'] : 'generic';
+		?>
+		<tr>
+			<th scope="row"><?php esc_html_e( 'قاعدة رقم الهاتف', 'top-solution-core' ); ?></th>
+			<td>
+				<fieldset>
+					<legend class="screen-reader-text"><?php esc_html_e( 'قاعدة رقم الهاتف', 'top-solution-core' ); ?></legend>
+					<label>
+						<input type="radio" name="<?php echo esc_attr( $name ); ?>[phone_rule]" value="generic" <?php checked( 'generic', $current ); ?>>
+						<?php esc_html_e( 'عامة (افتراضي)', 'top-solution-core' ); ?>
+					</label>
+					<p class="description"><?php esc_html_e( 'من 8 إلى 15 رقماً، وعلامة + اختيارية في البداية. تُقبل المسافات والشرطات والأرقام العربية.', 'top-solution-core' ); ?></p>
+					<label>
+						<input type="radio" name="<?php echo esc_attr( $name ); ?>[phone_rule]" value="dz_mobile" <?php checked( 'dz_mobile', $current ); ?>>
+						<?php esc_html_e( 'هاتف جزائري محمول', 'top-solution-core' ); ?>
+					</label>
+					<p class="description"><?php esc_html_e( 'يقبل الأرقام التي تبدأ بـ 05 أو 06 أو 07 (10 أرقام). تُحوَّل البادئات +213 و00213 و213 إلى الصيغة المحلية 0… تلقائياً. لا يقبل الهاتف الثابت. تحقق من أنها تناسب عملاءك قبل التفعيل.', 'top-solution-core' ); ?></p>
+				</fieldset>
 			</td>
 		</tr>
 		<?php

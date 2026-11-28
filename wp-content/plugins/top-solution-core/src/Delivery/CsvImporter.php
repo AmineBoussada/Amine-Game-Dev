@@ -253,10 +253,7 @@ class CsvImporter {
 	 * @return string
 	 */
 	public static function clean_name( $value ) {
-		$value = preg_replace( '/<[^>]*>/', '', (string) $value );
-		$value = preg_replace( '/[\x00-\x1F\x7F]+/u', ' ', $value );
-		$value = trim( preg_replace( '/\s+/u', ' ', $value ) );
-		return function_exists( 'mb_substr' ) ? mb_substr( $value, 0, 191 ) : substr( $value, 0, 191 );
+		return \TopSolution\Core\Text::line( $value, 191 );
 	}
 
 	/**
@@ -266,9 +263,6 @@ class CsvImporter {
 	 * @return string
 	 */
 	public static function clean_text( $value ) {
-		$value = preg_replace( '/<[^>]*>/', '', (string) $value );
-		$value = preg_replace( '/[\x00-\x1F\x7F]+/u', ' ', $value );
-		$value = trim( preg_replace( '/\s+/u', ' ', $value ) );
-		return function_exists( 'mb_substr' ) ? mb_substr( $value, 0, 500 ) : substr( $value, 0, 500 );
+		return \TopSolution\Core\Text::line( $value, 500 );
 	}
 }

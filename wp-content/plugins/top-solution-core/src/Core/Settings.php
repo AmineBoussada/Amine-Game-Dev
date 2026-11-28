@@ -27,6 +27,22 @@ class Settings {
 	}
 
 	/**
+	 * Allowed values of a list-type setting.
+	 *
+	 * @param string $name List name (order_status | phone_rule).
+	 * @return string[]
+	 */
+	public static function allowed_values( $name ) {
+		if ( 'order_status' === $name ) {
+			return self::allowed_order_statuses();
+		}
+		if ( 'phone_rule' === $name ) {
+			return \TopSolution\Forms\PhoneRule::ids();
+		}
+		return array();
+	}
+
+	/**
 	 * Fields per settings tab: key => type (`bool` or `enum:<list>`).
 	 *
 	 * @return array<string,array<string,string>>
@@ -39,6 +55,9 @@ class Settings {
 			),
 			'orders'  => array(
 				'initial_order_status' => 'enum:order_status',
+			),
+			'forms'   => array(
+				'phone_rule' => 'enum:phone_rule',
 			),
 		);
 	}
@@ -54,6 +73,8 @@ class Settings {
 			'delete_data_on_uninstall' => false,
 			// Owner decision (2026-11-28): new COD orders start as "processing".
 			'initial_order_status'     => 'processing',
+			// No market rule is assumed: 8-15 digits. The owner may switch to the Algerian mobile rule.
+			'phone_rule'               => 'generic',
 		);
 	}
 
@@ -99,9 +120,9 @@ class Settings {
 			$raw = $submitted ? $input[ $key ] : null;
 			if ( 'bool' === $type ) {
 				$result[ $key ] = ! empty( $raw ) && '0' !== $raw;
-			} elseif ( 'enum:order_status' === $type ) {
+			} elseif ( 0 === strpos( $type, 'enum:' ) ) {
 				$value          = is_string( $raw ) ? $raw : '';
-				$result[ $key ] = in_array( $value, self::allowed_order_statuses(), true ) ? $value : $defaults[ $key ];
+				$result[ $key ] = in_array( $value, self::allowed_values( substr( $type, 5 ) ), true ) ? $value : $defaults[ $key ];
 			}
 		}
 		return $result;

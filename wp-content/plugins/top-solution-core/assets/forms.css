@@ -1,0 +1,254 @@
+/*
+ * Top Solution Core — front-end form styles. Uses the child theme's design
+ * tokens when present and falls back to the brand palette, so the plugin
+ * looks right with any theme. Logical properties only (RTL-safe).
+ */
+.ts-form-front {
+	--tsf-brand: var(--ts-brand, #014749);
+	--tsf-brand-d: var(--ts-brand-d, #013234);
+	--tsf-tint: var(--ts-tint, #e0ecea);
+	--tsf-line: var(--ts-line, #e3d0bc);
+	--tsf-surface: var(--ts-surface, #f6f0ea);
+	--tsf-ink: var(--ts-ink, #0d2a2c);
+	--tsf-ink-2: var(--ts-ink-2, #42585a);
+	--tsf-bad: var(--ts-bad, #b3261e);
+	--tsf-bad-bg: var(--ts-bad-bg, #fbe1df);
+	--tsf-ok: var(--ts-ok, #266a42);
+	color: var(--tsf-ink);
+	font-family: inherit;
+	max-width: 640px;
+}
+
+.ts-form-front *,
+.ts-form-front *::before,
+.ts-form-front *::after {
+	box-sizing: border-box;
+}
+
+.ts-form-front [hidden] {
+	display: none !important;
+}
+
+.ts-fields {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 16px 12px;
+}
+
+.ts-field {
+	grid-column: 1 / -1;
+	min-width: 0;
+}
+
+.ts-field--half {
+	grid-column: span 1;
+}
+
+@media (max-width: 479px) {
+	.ts-field--half {
+		grid-column: 1 / -1;
+	}
+}
+
+.ts-label {
+	display: block;
+	margin-block-end: 6px;
+	font-size: 15px;
+	font-weight: 600;
+	line-height: 1.5;
+	padding: 0;
+}
+
+.ts-req {
+	color: var(--tsf-bad);
+}
+
+.ts-form-front input[type="text"],
+.ts-form-front input[type="tel"],
+.ts-form-front input[type="number"],
+.ts-form-front select,
+.ts-form-front textarea {
+	display: block;
+	width: 100%;
+	min-height: 52px;
+	padding: 10px 14px;
+	border: 1px solid var(--tsf-line);
+	border-radius: 10px;
+	background: #fff;
+	color: var(--tsf-ink);
+	font: inherit;
+	font-size: 16px;
+	line-height: 1.5;
+}
+
+.ts-form-front textarea {
+	min-height: 96px;
+	resize: vertical;
+}
+
+.ts-form-front input[type="tel"],
+.ts-form-front input[type="number"] {
+	text-align: end;
+}
+
+.ts-form-front input:focus,
+.ts-form-front select:focus,
+.ts-form-front textarea:focus {
+	border-color: var(--tsf-brand);
+	outline: 2px solid var(--tsf-brand);
+	outline-offset: 1px;
+}
+
+.ts-form-front select:disabled {
+	background: var(--tsf-surface);
+	color: var(--tsf-ink-2);
+	cursor: not-allowed;
+}
+
+.ts-form-front [aria-invalid="true"] {
+	border-color: var(--tsf-bad);
+	background: var(--tsf-bad-bg);
+}
+
+.ts-choices {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	min-width: 0;
+}
+
+.ts-choice-list {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+	gap: 10px;
+}
+
+.ts-choice {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	min-height: 52px;
+	padding: 10px 14px;
+	border: 1.5px solid var(--tsf-line);
+	border-radius: 10px;
+	background: #fff;
+	font-weight: 600;
+	cursor: pointer;
+}
+
+.ts-choice:has(input:checked) {
+	border-color: var(--tsf-brand);
+	background: var(--tsf-tint);
+}
+
+.ts-choice:has(input:focus-visible) {
+	outline: 2px solid var(--tsf-brand);
+	outline-offset: 2px;
+}
+
+.ts-choice input,
+.ts-check input {
+	width: 20px;
+	height: 20px;
+	margin: 0;
+	accent-color: var(--tsf-brand);
+	flex: none;
+}
+
+.ts-check {
+	display: flex;
+	align-items: flex-start;
+	gap: 10px;
+	cursor: pointer;
+}
+
+.ts-help {
+	margin: 6px 0 0;
+	font-size: 13px;
+	color: var(--tsf-ink-2);
+}
+
+.ts-error {
+	margin: 6px 0 0;
+	font-size: 14px;
+	font-weight: 600;
+	color: var(--tsf-bad);
+}
+
+.ts-error::before {
+	content: "! ";
+}
+
+.ts-info {
+	margin: 0;
+	padding: 12px 14px;
+	border-radius: 10px;
+	background: var(--tsf-surface);
+	color: var(--tsf-ink-2);
+}
+
+.ts-errors {
+	margin-block-end: 16px;
+	padding: 12px 16px;
+	border: 1px solid var(--tsf-bad);
+	border-radius: 10px;
+	background: var(--tsf-bad-bg);
+	color: #6b1510;
+}
+
+.ts-errors p {
+	margin: 0 0 6px;
+	font-weight: 700;
+}
+
+.ts-errors ul {
+	margin: 0;
+	padding-inline-start: 20px;
+}
+
+.ts-errors a {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.ts-form-actions {
+	margin-block-start: 20px;
+}
+
+.ts-submit {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	min-height: 56px;
+	padding: 0 24px;
+	border: 2px solid var(--tsf-brand);
+	border-radius: 10px;
+	background: var(--tsf-brand);
+	color: #fff;
+	font: inherit;
+	font-size: 18px;
+	font-weight: 700;
+	cursor: pointer;
+}
+
+.ts-submit:hover,
+.ts-submit:focus-visible {
+	background: var(--tsf-brand-d);
+	border-color: var(--tsf-brand-d);
+}
+
+.ts-preview-note {
+	margin: 12px 0 0;
+	padding: 10px 14px;
+	border-radius: 10px;
+	background: #e3f1e8;
+	color: var(--tsf-ok);
+	font-weight: 600;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.ts-form-front * {
+		transition: none !important;
+	}
+}

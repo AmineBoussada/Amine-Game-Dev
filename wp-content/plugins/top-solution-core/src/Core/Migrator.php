@@ -16,7 +16,7 @@ defined( 'ABSPATH' ) || exit;
 class Migrator {
 
 	const OPTION  = 'ts_core_db_version';
-	const CURRENT = 2;
+	const CURRENT = 3;
 
 	/**
 	 * Migrations: target version => callable.
@@ -27,6 +27,7 @@ class Migrator {
 		return array(
 			1 => array( __CLASS__, 'migrate_1' ),
 			2 => array( __CLASS__, 'migrate_2' ),
+			3 => array( __CLASS__, 'migrate_3' ),
 		);
 	}
 
@@ -81,5 +82,17 @@ class Migrator {
 	 */
 	public static function migrate_2() {
 		Schema::install();
+	}
+
+	/**
+	 * Version 3: forms. Creates the default form if the store has none.
+	 *
+	 * @return void
+	 */
+	public static function migrate_3() {
+		if ( ! post_type_exists( \TopSolution\Forms\FormRepository::POST_TYPE ) ) {
+			\TopSolution\Forms\FormRepository::register_post_type();
+		}
+		\TopSolution\Forms\FormRepository::ensure_default();
 	}
 }

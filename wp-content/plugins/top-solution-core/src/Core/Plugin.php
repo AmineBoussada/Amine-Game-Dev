@@ -51,9 +51,11 @@ class Plugin {
 			return;
 		}
 
-		Migrator::maybe_run();
+		// Migrations run on init (priority 20) so post types registered on init (5) exist.
+		add_action( 'init', array( Migrator::class, 'maybe_run' ), 20 );
 		Settings::register_hooks();
 		\TopSolution\Delivery\Module::init();
+		\TopSolution\Forms\Module::init();
 
 		if ( is_admin() ) {
 			Menu::init();

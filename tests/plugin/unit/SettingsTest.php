@@ -64,7 +64,7 @@ class SettingsTest extends TestCase {
 	}
 
 	public function test_garbage_input_changes_nothing() {
-		$current = array( 'debug_logging' => true, 'delete_data_on_uninstall' => false, 'initial_order_status' => 'on-hold' );
+		$current = array( 'debug_logging' => true, 'delete_data_on_uninstall' => false, 'initial_order_status' => 'on-hold', 'phone_rule' => 'generic' );
 		foreach ( array( array(), array( '__tab' => 'nope' ), 'text', null, 5 ) as $input ) {
 			$this->assertSame( $current, Settings::sanitize( $input, $current ), var_export( $input, true ) );
 		}

@@ -186,3 +186,20 @@
 	list-style: disc;
 	padding-inline-start: 20px;
 }
+
+/* Form builder */
+.ts-b-list { list-style: none; margin: 0 0 12px; padding: 0; max-width: 960px; }
+.ts-b-item { background: #fff; border: 1px solid var(--ts-line); border-radius: 8px; margin-block-end: 8px; }
+.ts-b-item.is-open { border-color: var(--ts-brand, #014749); }
+.ts-b-head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 8px 12px; }
+.ts-b-type { font-size: 12px; color: #42585a; background: var(--ts-surface, #f6f0ea); border-radius: 4px; padding: 2px 8px; }
+.ts-b-title { flex: 1 1 140px; }
+.ts-b-tools { display: inline-flex; flex-wrap: wrap; gap: 4px; }
+.ts-b-panel { border-block-start: 1px solid var(--ts-line); padding: 8px 12px 12px; }
+.ts-b-row { margin: 8px 0; }
+.ts-b-row label { display: block; font-weight: 600; margin-block-end: 4px; }
+.ts-b-rules { border: 1px solid var(--ts-line); border-radius: 6px; padding: 8px 12px; margin-block-start: 12px; }
+.ts-b-rule { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+.ts-b-builder-add, .ts-builder-add { margin: 12px 0; }
+.ts-inline-form { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.ts-form-preview { max-width: 640px; }
