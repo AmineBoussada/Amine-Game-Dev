@@ -29,6 +29,7 @@ class SettingsPage {
 			'general' => __( 'عام', 'top-solution-core' ),
 			'orders'  => __( 'الطلبات', 'top-solution-core' ),
 			'forms'   => __( 'النماذج', 'top-solution-core' ),
+			'offers'  => __( 'العروض', 'top-solution-core' ),
 		);
 	}
 
@@ -76,6 +77,8 @@ class SettingsPage {
 						self::render_orders_tab( $values );
 					} elseif ( 'forms' === $tab ) {
 						self::render_forms_tab( $values );
+					} elseif ( 'offers' === $tab ) {
+						self::render_offers_tab( $values );
 					} else {
 						self::render_general_tab( $values );
 					}
@@ -145,6 +148,32 @@ class SettingsPage {
 					</label>
 					<p class="description"><?php esc_html_e( 'يقبل الأرقام التي تبدأ بـ 05 أو 06 أو 07 (10 أرقام). تُحوَّل البادئات +213 و00213 و213 إلى الصيغة المحلية 0… تلقائياً. لا يقبل الهاتف الثابت. تحقق من أنها تناسب عملاءك قبل التفعيل.', 'top-solution-core' ); ?></p>
 				</fieldset>
+			</td>
+		</tr>
+		<?php
+	}
+
+	/**
+	 * Offers tab.
+	 *
+	 * @param array $values Current settings.
+	 * @return void
+	 */
+	private static function render_offers_tab( array $values ) {
+		$name = Settings::OPTION;
+		?>
+		<tr>
+			<th scope="row"><label for="ts-max-gifts"><?php esc_html_e( 'أقصى عدد هدايا في الطلب', 'top-solution-core' ); ?></label></th>
+			<td>
+				<input type="number" id="ts-max-gifts" name="<?php echo esc_attr( $name ); ?>[max_gifts_per_order]" min="0" max="10" step="1" class="small-text" value="<?php echo esc_attr( (string) $values['max_gifts_per_order'] ); ?>">
+				<p class="description"><?php esc_html_e( 'عند تحقق شروط أكثر من هدية يُطبَّق الأعلى أولوية حتى هذا الحد. اكتب 0 لإيقاف الهدايا.', 'top-solution-core' ); ?></p>
+			</td>
+		</tr>
+		<tr>
+			<th scope="row"><label for="ts-min-price"><?php esc_html_e( 'حد أدنى لسعر السطر (٪ من السعر الأصلي)', 'top-solution-core' ); ?></label></th>
+			<td>
+				<input type="number" id="ts-min-price" name="<?php echo esc_attr( $name ); ?>[min_price_percent]" min="0" max="100" step="1" class="small-text" value="<?php echo esc_attr( (string) $values['min_price_percent'] ); ?>">
+				<p class="description"><?php esc_html_e( 'حماية من خطأ في إعداد العروض: لا ينزل سعر أي سطر تحت هذه النسبة مهما كانت الخصومات. اكتب 0 لإيقاف الحماية.', 'top-solution-core' ); ?></p>
 			</td>
 		</tr>
 		<?php

@@ -4,7 +4,7 @@ Requires at least: 6.4
 Tested up to: 7.1
 Requires PHP: 7.4
 Requires Plugins: woocommerce
-Stable tag: 0.3.0
+Stable tag: 0.4.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -36,6 +36,10 @@ Elementor: the plugin does not use Elementor at all. It never requires Elementor
 Deactivating or deleting the plugin keeps your data unless "delete data on uninstall" is ticked in Top Solution > Settings > General. Orders are WooCommerce data and are never deleted by this plugin.
 
 == Changelog ==
+
+= 0.4.0 =
+* Offers (Phase 4): server-side pricing engine (quantity tiers, bundles, free gifts, custom rules with a closed vocabulary), offers editor, "who wins and why" price simulator, overlap warnings, settings for gifts per order and a minimum-price guard.
+* Every price is computed on the server from WooCommerce prices; the browser never supplies a price.
 
 = 0.3.0 =
 * Form builder (Phase 3): forms as private records, builder with arrow reordering, 14 field types, conditional visibility rules, a default form (name, phone, wilaya, commune, delivery method, office, address, note), duplicate / set default / delete.

@@ -56,6 +56,7 @@ class Plugin {
 		Settings::register_hooks();
 		\TopSolution\Delivery\Module::init();
 		\TopSolution\Forms\Module::init();
+		\TopSolution\Offers\Module::init();
 
 		if ( is_admin() ) {
 			Menu::init();

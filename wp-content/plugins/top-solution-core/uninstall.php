@@ -15,7 +15,7 @@ if ( is_array( $ts_core_settings ) && ! empty( $ts_core_settings['delete_data_on
 	require_once __DIR__ . '/src/Core/Schema.php';
 	foreach ( get_posts(
 		array(
-			'post_type'      => 'ts_form',
+			'post_type'      => array( 'ts_form', 'ts_offer' ),
 			'post_status'    => 'any',
 			'posts_per_page' => -1,
 			'fields'         => 'ids',

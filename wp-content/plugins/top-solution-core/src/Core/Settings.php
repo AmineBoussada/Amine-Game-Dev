@@ -43,7 +43,7 @@ class Settings {
 	}
 
 	/**
-	 * Fields per settings tab: key => type (`bool` or `enum:<list>`).
+	 * Fields per settings tab: key => type (`bool`, `enum:<list>` or `int:<min>:<max>`).
 	 *
 	 * @return array<string,array<string,string>>
 	 */
@@ -58,6 +58,10 @@ class Settings {
 			),
 			'forms'   => array(
 				'phone_rule' => 'enum:phone_rule',
+			),
+			'offers'  => array(
+				'max_gifts_per_order' => 'int:0:10',
+				'min_price_percent'   => 'int:0:100',
 			),
 		);
 	}
@@ -75,6 +79,9 @@ class Settings {
 			'initial_order_status'     => 'processing',
 			// No market rule is assumed: 8-15 digits. The owner may switch to the Algerian mobile rule.
 			'phone_rule'               => 'generic',
+			// Offers: one gift per order unless the owner decides otherwise; no price floor unless set.
+			'max_gifts_per_order'      => 1,
+			'min_price_percent'        => 0,
 		);
 	}
 
@@ -120,6 +127,11 @@ class Settings {
 			$raw = $submitted ? $input[ $key ] : null;
 			if ( 'bool' === $type ) {
 				$result[ $key ] = ! empty( $raw ) && '0' !== $raw;
+			} elseif ( 0 === strpos( $type, 'int:' ) ) {
+				list( , $min, $max ) = explode( ':', $type );
+				$text                = is_int( $raw ) ? (string) $raw : ( is_string( $raw ) ? trim( $raw ) : '' );
+				$ok                  = preg_match( '/^\d{1,4}$/', $text ) && (int) $text >= (int) $min && (int) $text <= (int) $max;
+				$result[ $key ]      = $ok ? (int) $text : $defaults[ $key ];
 			} elseif ( 0 === strpos( $type, 'enum:' ) ) {
 				$value          = is_string( $raw ) ? $raw : '';
 				$result[ $key ] = in_array( $value, self::allowed_values( substr( $type, 5 ) ), true ) ? $value : $defaults[ $key ];

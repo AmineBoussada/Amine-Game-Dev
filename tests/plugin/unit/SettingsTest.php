@@ -64,7 +64,7 @@ class SettingsTest extends TestCase {
 	}
 
 	public function test_garbage_input_changes_nothing() {
-		$current = array( 'debug_logging' => true, 'delete_data_on_uninstall' => false, 'initial_order_status' => 'on-hold', 'phone_rule' => 'generic' );
+		$current = array( 'debug_logging' => true, 'delete_data_on_uninstall' => false, 'initial_order_status' => 'on-hold', 'phone_rule' => 'generic', 'max_gifts_per_order' => 1, 'min_price_percent' => 0 );
 		foreach ( array( array(), array( '__tab' => 'nope' ), 'text', null, 5 ) as $input ) {
 			$this->assertSame( $current, Settings::sanitize( $input, $current ), var_export( $input, true ) );
 		}
@@ -117,5 +117,23 @@ class SettingsTest extends TestCase {
 	public function test_result_is_always_a_complete_array() {
 		$out = Settings::sanitize( null, array() );
 		$this->assertSame( array_keys( Settings::defaults() ), array_keys( $out ) );
+	}
+
+	public function test_integer_settings_are_range_checked_and_idempotent() {
+		$cur = Settings::defaults();
+		$ok  = Settings::sanitize( array( '__tab' => 'offers', 'max_gifts_per_order' => '3', 'min_price_percent' => '40' ), $cur );
+		$this->assertSame( 3, $ok['max_gifts_per_order'] );
+		$this->assertSame( 40, $ok['min_price_percent'] );
+		$this->assertSame( $ok, Settings::sanitize( $ok + array( '__tab' => 'offers' ), $ok ) );
+		foreach ( array( '-1', '11', 'abc', '', '1.5', '99999', array( 5 ) ) as $bad ) {
+			$out = Settings::sanitize( array( '__tab' => 'offers', 'max_gifts_per_order' => $bad ), $ok );
+			$this->assertSame( 1, $out['max_gifts_per_order'], var_export( $bad, true ) );
+		}
+		$out = Settings::sanitize( array( '__tab' => 'offers', 'min_price_percent' => '101' ), $ok );
+		$this->assertSame( 0, $out['min_price_percent'] );
+		// Saving another tab never touches them.
+		$other = Settings::sanitize( array( '__tab' => 'orders', 'initial_order_status' => 'on-hold' ), $ok );
+		$this->assertSame( 3, $other['max_gifts_per_order'] );
+		$this->assertSame( 40, $other['min_price_percent'] );
 	}
 }
