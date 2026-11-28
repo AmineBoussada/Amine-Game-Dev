@@ -28,7 +28,8 @@ class Text {
 		$value = preg_replace( '/<[^>]*>/', '', (string) $value );
 		$value = preg_replace( '/[\x00-\x1F\x7F]+/u', ' ', (string) $value );
 		$value = trim( (string) preg_replace( '/\s+/u', ' ', (string) $value ) );
-		return function_exists( 'mb_substr' ) ? mb_substr( $value, 0, $max ) : substr( $value, 0, $max );
+		// Trim again after cutting so that cleaning twice gives the same text.
+		return trim( function_exists( 'mb_substr' ) ? mb_substr( $value, 0, $max ) : substr( $value, 0, $max ) );
 	}
 
 	/**
@@ -47,7 +48,8 @@ class Text {
 		$value = preg_replace( '/[\x00-\x09\x0B-\x1F\x7F]+/u', ' ', (string) $value );
 		$value = preg_replace( '/[ \t]+/u', ' ', (string) $value );
 		$value = trim( (string) preg_replace( "/\n{3,}/", "\n\n", (string) $value ) );
-		return function_exists( 'mb_substr' ) ? mb_substr( $value, 0, $max ) : substr( $value, 0, $max );
+		// Trim again after cutting so that cleaning twice gives the same text.
+		return trim( function_exists( 'mb_substr' ) ? mb_substr( $value, 0, $max ) : substr( $value, 0, $max ) );
 	}
 
 	/**

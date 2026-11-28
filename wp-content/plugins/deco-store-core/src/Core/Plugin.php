@@ -57,6 +57,7 @@ class Plugin {
 		\DecoStore\Delivery\Module::init();
 		\DecoStore\Forms\Module::init();
 		\DecoStore\Offers\Module::init();
+		\DecoStore\Orders\Module::init();
 
 		if ( is_admin() ) {
 			Menu::init();

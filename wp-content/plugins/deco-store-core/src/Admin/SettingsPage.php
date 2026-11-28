@@ -207,6 +207,34 @@ class SettingsPage {
 				</fieldset>
 			</td>
 		</tr>
+		<tr>
+			<th scope="row"><label for="ds-confirm-msg"><?php esc_html_e( 'رسالة صفحة التأكيد', 'deco-store-core' ); ?></label></th>
+			<td>
+				<textarea id="ds-confirm-msg" name="<?php echo esc_attr( $name ); ?>[confirmation_message]" rows="3" class="large-text" maxlength="500"><?php echo esc_textarea( (string) $values['confirmation_message'] ); ?></textarea>
+				<p class="description"><?php esc_html_e( 'تظهر للعميل بعد الطلب (مثلاً متى ستتصل به). اتركها فارغة لنص محايد: «تم تسجيل طلبك بنجاح. الدفع يكون نقداً عند الاستلام.»', 'deco-store-core' ); ?></p>
+			</td>
+		</tr>
+		<tr>
+			<th scope="row"><label for="ds-dup-window"><?php esc_html_e( 'تنبيه الطلب المكرر (ساعات)', 'deco-store-core' ); ?></label></th>
+			<td>
+				<input type="number" id="ds-dup-window" name="<?php echo esc_attr( $name ); ?>[duplicate_window_hours]" min="0" max="168" class="small-text" value="<?php echo esc_attr( (string) $values['duplicate_window_hours'] ); ?>">
+				<p class="description"><?php esc_html_e( 'إذا طلب نفس رقم الهاتف نفس المنتج خلال هذه المدة يُسجَّل الطلب مع علامة «طلب مكرر محتمل» لتراجعه. لا يُرفض أي طلب. 0 = إيقاف.', 'deco-store-core' ); ?></p>
+			</td>
+		</tr>
+		<tr>
+			<th scope="row"><label for="ds-max-attempts"><?php esc_html_e( 'أقصى محاولات طلب من نفس الشبكة (كل 10 دقائق)', 'deco-store-core' ); ?></label></th>
+			<td>
+				<input type="number" id="ds-max-attempts" name="<?php echo esc_attr( $name ); ?>[max_attempts_per_ip]" min="1" max="200" class="small-text" value="<?php echo esc_attr( (string) $values['max_attempts_per_ip'] ); ?>">
+				<p class="description"><?php esc_html_e( 'حماية من الإرسال الآلي. عدة أشخاص قد يشتركون في نفس الشبكة (مقهى، شبكة الهاتف)، فلا تجعل الرقم صغيراً جداً.', 'deco-store-core' ); ?></p>
+			</td>
+		</tr>
+		<tr>
+			<th scope="row"><label for="ds-token-ttl"><?php esc_html_e( 'صلاحية صفحة الطلب (ساعات)', 'deco-store-core' ); ?></label></th>
+			<td>
+				<input type="number" id="ds-token-ttl" name="<?php echo esc_attr( $name ); ?>[token_ttl_hours]" min="1" max="72" class="small-text" value="<?php echo esc_attr( (string) $values['token_ttl_hours'] ); ?>">
+				<p class="description"><?php esc_html_e( 'بعدها تُجدَّد الصفحة تلقائياً عند الضغط على زر الطلب.', 'deco-store-core' ); ?></p>
+			</td>
+		</tr>
 		<?php
 	}
 }

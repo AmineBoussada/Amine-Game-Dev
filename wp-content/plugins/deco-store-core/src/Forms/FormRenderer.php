@@ -49,11 +49,20 @@ class FormRenderer {
 	 * Render a form.
 	 *
 	 * @param array $form Normalised definition with `id`.
-	 * @param array $args preview (bool): show the form without sending anything.
+	 * @param array $args preview (bool): show the form without sending anything;
+	 *                    before_submit (string): HTML built and escaped by the caller (order widget);
+	 *                    attrs (array): extra attributes for the form element.
 	 * @return string HTML (escaped).
 	 */
 	public static function render( array $form, array $args = array() ) {
-		$args    = array_merge( array( 'preview' => true ), $args );
+		$args    = array_merge(
+			array(
+				'preview'       => true,
+				'before_submit' => '',
+				'attrs'         => array(),
+			),
+			$args
+		);
 		$form_id = (int) $form['id'];
 		$rule    = (string) Settings::get( 'phone_rule' );
 		self::enqueue();
@@ -73,6 +82,7 @@ class FormRenderer {
 		if ( ! empty( $args['preview'] ) ) {
 			$attrs['data-preview'] = '1';
 		}
+		$attrs = array_merge( $attrs, (array) $args['attrs'] );
 		$html  = '<form' . self::attributes( $attrs ) . '>';
 		$html .= '<div class="ds-errors" role="alert" aria-live="assertive" tabindex="-1" hidden></div>';
 		$html .= '<div class="ds-fields">';
@@ -80,6 +90,7 @@ class FormRenderer {
 			$html .= self::render_field( $form_id, $field );
 		}
 		$html .= '</div>';
+		$html .= $args['before_submit'];
 		$label = '' !== $form['settings']['submit_label'] ? $form['settings']['submit_label'] : __( 'تأكيد الطلب', 'deco-store-core' );
 		$html .= '<div class="ds-form-actions"><button type="submit" class="ds-submit">' . esc_html( $label ) . '</button></div>';
 		$html .= '<p class="ds-preview-note" role="status" aria-live="polite" hidden></p>';

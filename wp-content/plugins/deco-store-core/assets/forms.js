@@ -5,7 +5,8 @@
  * dependent selects (wilaya > commune > pickup office), inline validation and
  * an error summary. The PHP SubmissionValidator is always the authority.
  *
- * Public API: window.DecoStoreForms.getValues( formElement )
+ * Public API: window.DecoStoreForms.getValues( formElement ),
+ *             window.DecoStoreForms.setErrors( formElement, { key: message } )
  * Event:      "ds-form:valid" (cancelable) with detail.values, fired on the
  *             form when the checks pass. In preview mode nothing is sent.
  */
@@ -352,6 +353,11 @@
 				problems.push( { key: key, wrapper: wrapper, message: state.i18n[ code ] || state.i18n.invalid } );
 			}
 		} );
+		renderSummary( state, problems, focusFirst );
+		return 0 === problems.length;
+	}
+
+	function renderSummary( state, problems, focusFirst ) {
 		var box = $( state.form, '.ds-errors' );
 		box.innerHTML = '';
 		if ( problems.length ) {
@@ -386,13 +392,52 @@
 		} else {
 			box.hidden = true;
 		}
-		return 0 === problems.length;
+	}
+
+	/**
+	 * Keep the error list in step with the fields: once the list is shown,
+	 * it lists only the errors still visible (and disappears when none is
+	 * left). It never adds errors while the customer is still filling in.
+	 */
+	function refreshSummary( state ) {
+		var box = $( state.form, '.ds-errors' );
+		if ( ! box || box.hidden ) {
+			return;
+		}
+		var problems = [];
+		Object.keys( state.fields ).forEach( function ( key ) {
+			var wrapper = state.fields[ key ];
+			var err = $( wrapper, '.ds-error:not([hidden])' );
+			if ( ! wrapper.hidden && err && err.textContent ) {
+				problems.push( { key: key, wrapper: wrapper, message: err.textContent } );
+			}
+		} );
+		renderSummary( state, problems, false );
+	}
+
+	/**
+	 * Show errors returned by the server ({ fieldKey: message }).
+	 */
+	function setErrors( form, errors ) {
+		var state = form.__dsState;
+		if ( ! state ) {
+			return;
+		}
+		var problems = [];
+		Object.keys( errors || {} ).forEach( function ( key ) {
+			var wrapper = state.fields[ key ];
+			if ( wrapper ) {
+				showError( wrapper, errors[ key ] );
+				problems.push( { key: key, wrapper: wrapper, message: errors[ key ] } );
+			}
+		} );
+		renderSummary( state, problems, true );
 	}
 
 	/* ---------------------------------------------------------------- init */
 	function getValues( form ) {
 		var values = {};
-		all( form, '.ds-field' ).forEach( function ( wrapper ) {
+		all( form, '.ds-field[data-key]' ).forEach( function ( wrapper ) {
 			if ( wrapper.hidden || 'info' === wrapper.getAttribute( 'data-type' ) ) {
 				return;
 			}
@@ -420,12 +465,13 @@
 			i18n: {},
 			noCommunes: false
 		};
+		form.__dsState = state;
 		try {
 			state.i18n = JSON.parse( form.getAttribute( 'data-i18n' ) || '{}' );
 		} catch ( e ) {
 			state.i18n = {};
 		}
-		all( form, '.ds-field' ).forEach( function ( wrapper ) {
+		all( form, '.ds-field[data-key]' ).forEach( function ( wrapper ) {
 			var key = wrapper.getAttribute( 'data-key' );
 			state.fields[ key ] = wrapper;
 			var map = wrapper.getAttribute( 'data-maps-to' );
@@ -446,7 +492,7 @@
 		loadCommunes( state );
 
 		form.addEventListener( 'change', function ( ev ) {
-			var wrapper = ev.target.closest( '.ds-field' );
+			var wrapper = ev.target.closest( '.ds-field[data-key]' );
 			var map = wrapper ? wrapper.getAttribute( 'data-maps-to' ) : '';
 			applyVisibility( state );
 			if ( 'wilaya' === map ) {
@@ -460,6 +506,18 @@
 			if ( wrapper && ! wrapper.hidden && $( wrapper, '.ds-error:not([hidden])' ) ) {
 				var code = checkField( state, wrapper );
 				showError( wrapper, code ? state.i18n[ code ] || state.i18n.invalid : '' );
+			}
+			refreshSummary( state );
+		} );
+
+		// Remove an error as soon as the typed value becomes valid, while typing:
+		// waiting for the field to lose focus would move the page under the
+		// customer's finger exactly when they tap the next field.
+		form.addEventListener( 'input', function ( ev ) {
+			var wrapper = ev.target.closest( '.ds-field[data-key]' );
+			if ( wrapper && ! wrapper.hidden && $( wrapper, '.ds-error:not([hidden])' ) && ! checkField( state, wrapper ) ) {
+				showError( wrapper, '' );
+				refreshSummary( state );
 			}
 		} );
 
@@ -483,7 +541,7 @@
 		all( document, '[data-ds-form]' ).forEach( init );
 	}
 
-	window.DecoStoreForms = { getValues: getValues, init: boot };
+	window.DecoStoreForms = { getValues: getValues, setErrors: setErrors, init: boot };
 	if ( 'loading' === document.readyState ) {
 		document.addEventListener( 'DOMContentLoaded', boot );
 	} else {

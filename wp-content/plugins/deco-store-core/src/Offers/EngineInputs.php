@@ -30,7 +30,7 @@ class EngineInputs {
 	 * Price a single-product order (the landing-page case).
 	 *
 	 * @param array $args product_id, variation_id, qty, wilaya_id, commune_id, method, chosen_offer_id.
-	 * @return array Engine result plus `error_product` when the product cannot be sold.
+	 * @return array Engine result plus `delivery_quote` (DeliveryService::quote() or null); error `product_unavailable` when the product cannot be sold.
 	 */
 	public static function price_single( array $args ) {
 		$args    = array_merge(
@@ -72,12 +72,13 @@ class EngineInputs {
 		$qty      = (int) $args['qty'];
 		$subtotal = $unit * max( 1, $qty );
 
-		$fee = null;
+		$fee   = null;
+		$quote = null;
 		if ( $args['method'] && $args['wilaya_id'] ) {
 			$quote = DeliveryService::quote( (string) $args['method'], (int) $args['wilaya_id'], (int) $args['commune_id'], $subtotal );
 			$fee   = $quote['available'] ? $quote['fee_minor'] : null;
 		}
-		$request = array(
+		$request                  = array(
 			'lines'           => array(
 				array(
 					'id'           => '1',
@@ -97,7 +98,9 @@ class EngineInputs {
 			'now'             => time(),
 			'weekday'         => (int) wp_date( 'w' ),
 		);
-		return PricingEngine::price( $request, self::active_offers(), self::engine_settings() );
+		$result                   = PricingEngine::price( $request, self::active_offers(), self::engine_settings() );
+		$result['delivery_quote'] = $quote; // Null when no area/method was chosen.
+		return $result;
 	}
 
 	/**

@@ -24,6 +24,9 @@ if ( is_array( $ds_core_settings ) && ! empty( $ds_core_settings['delete_data_on
 		wp_delete_post( (int) $ds_core_form_id, true );
 	}
 	delete_option( 'ds_default_form_id' );
+	wp_clear_scheduled_hook( 'ds_core_daily' );
+	global $wpdb;
+	$wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->options} WHERE option_name LIKE %s", $wpdb->esc_like( 'ds_idem_' ) . '%' ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery -- Removing our own rows on uninstall.
 	\DecoStore\Core\Capabilities::revoke_all();
 	\DecoStore\Core\Schema::uninstall();
 	delete_option( 'ds_core_settings' );

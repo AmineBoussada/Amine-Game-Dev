@@ -64,7 +64,7 @@ class SettingsTest extends TestCase {
 	}
 
 	public function test_garbage_input_changes_nothing() {
-		$current = array( 'debug_logging' => true, 'delete_data_on_uninstall' => false, 'initial_order_status' => 'on-hold', 'phone_rule' => 'generic', 'max_gifts_per_order' => 1, 'min_price_percent' => 0 );
+		$current = array( 'debug_logging' => true, 'delete_data_on_uninstall' => false, 'initial_order_status' => 'on-hold', 'phone_rule' => 'generic', 'max_gifts_per_order' => 1, 'min_price_percent' => 0, 'confirmation_message' => '', 'token_ttl_hours' => 12, 'max_attempts_per_ip' => 20, 'duplicate_window_hours' => 24 );
 		foreach ( array( array(), array( '__tab' => 'nope' ), 'text', null, 5 ) as $input ) {
 			$this->assertSame( $current, Settings::sanitize( $input, $current ), var_export( $input, true ) );
 		}
@@ -135,5 +135,17 @@ class SettingsTest extends TestCase {
 		$other = Settings::sanitize( array( '__tab' => 'orders', 'initial_order_status' => 'on-hold' ), $ok );
 		$this->assertSame( 3, $other['max_gifts_per_order'] );
 		$this->assertSame( 40, $other['min_price_percent'] );
+	}
+
+	public function test_text_settings_are_cleaned_and_idempotent() {
+		$cur = Settings::defaults();
+		$out = Settings::sanitize( array( '__tab' => 'orders', 'confirmation_message' => "  <b>سنتصل بك</b>\n\n\n\nقريباً  " . str_repeat( 'x', 600 ) ), $cur );
+		$this->assertStringNotContainsString( '<b>', $out['confirmation_message'] );
+		$this->assertLessThanOrEqual( 500, mb_strlen( $out['confirmation_message'] ) );
+		$this->assertSame( $out, Settings::sanitize( $out + array( '__tab' => 'orders' ), $out ) );
+		$this->assertSame( '', Settings::sanitize( array( '__tab' => 'orders', 'confirmation_message' => array( 'x' ) ), $cur )['confirmation_message'] );
+		// The forms tab does not reset the orders text.
+		$other = Settings::sanitize( array( '__tab' => 'forms', 'phone_rule' => 'generic' ), $out );
+		$this->assertSame( $out['confirmation_message'], $other['confirmation_message'] );
 	}
 }

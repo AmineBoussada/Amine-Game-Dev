@@ -252,3 +252,174 @@
 		transition: none !important;
 	}
 }
+
+/* ---------------------------------------------------------------- Order widget */
+.ds-order__top {
+	display: grid;
+	gap: 16px;
+	margin-block-start: 16px;
+}
+
+.ds-order__qty input {
+	max-width: 8em;
+}
+
+.ds-order__offers {
+	margin: 0;
+	padding: 12px 16px;
+	border: 1px solid var(--tsf-line);
+	border-radius: 10px;
+}
+
+.ds-order__offers legend {
+	padding-inline: 4px;
+	font-weight: 700;
+}
+
+.ds-order__offers .ds-choice {
+	margin-block-start: 8px;
+}
+
+.ds-order__summary {
+	margin-block-start: 20px;
+	padding: 14px 16px;
+	border-radius: 10px;
+	background: var(--tsf-surface);
+	color: var(--tsf-ink);
+}
+
+.ds-order__summary-empty {
+	margin: 0;
+	font-weight: 700;
+}
+
+.ds-order__lines {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	gap: 6px 12px;
+	margin: 0;
+}
+
+.ds-order__lines dt,
+.ds-order__lines dd {
+	margin: 0;
+}
+
+.ds-order__lines dd {
+	text-align: end;
+	font-variant-numeric: tabular-nums;
+}
+
+.ds-order__saving,
+.ds-order__gift {
+	color: var(--tsf-ok);
+	font-weight: 600;
+}
+
+.ds-order__lines .ds-order__total {
+	padding-block-start: 8px;
+	border-block-start: 1px solid var(--tsf-line);
+	font-size: 1.15em;
+	font-weight: 800;
+}
+
+.ds-order__message {
+	margin-block-start: 12px;
+	padding: 12px 16px;
+	border: 1px solid var(--tsf-bad);
+	border-radius: 10px;
+	background: var(--tsf-bad-bg);
+	color: #6b1510;
+}
+
+.ds-hp {
+	position: absolute !important;
+	inset-inline-start: -10000px;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+}
+
+.ds-submit[aria-busy="true"] {
+	opacity: 0.7;
+	cursor: progress;
+}
+
+.ds-order--unavailable p {
+	padding: 12px 16px;
+	border-radius: 10px;
+	background: #f2f2f2;
+}
+
+/* ---------------------------------------------------------------- Confirmation page */
+.ds-confirmation__box {
+	max-width: 640px;
+	margin: 32px auto;
+	padding: 24px;
+	border: 1px solid var(--ds-line, #e3d0bc);
+	border-radius: 14px;
+	background: #fff;
+	color: var(--ds-ink, #0d2a2c);
+}
+
+.ds-confirmation__box h1 {
+	margin-block-start: 0;
+	color: var(--ds-brand, #014749);
+}
+
+.ds-confirmation__number {
+	font-size: 1.1em;
+}
+
+.ds-confirmation__table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-block: 12px 20px;
+}
+
+.ds-confirmation .ds-confirmation__table,
+.ds-confirmation .ds-confirmation__table tr,
+.ds-confirmation .ds-confirmation__table th,
+.ds-confirmation .ds-confirmation__table td {
+	border: 0;
+	background: transparent;
+}
+
+.ds-confirmation .ds-confirmation__table th,
+.ds-confirmation .ds-confirmation__table td {
+	padding: 10px 4px;
+	border-block-end: 1px solid var(--ds-line, #e3d0bc);
+	font-weight: 400;
+	text-align: start;
+	vertical-align: top;
+}
+
+.ds-confirmation .ds-confirmation__table td {
+	text-align: end;
+	white-space: nowrap;
+}
+
+.ds-confirmation .ds-confirmation__total th,
+.ds-confirmation .ds-confirmation__total td {
+	border-block-end: 0;
+	font-size: 1.15em;
+	font-weight: 800;
+}
+
+.ds-confirmation__gift {
+	display: inline-block;
+	margin-inline-start: 6px;
+	padding: 0 8px;
+	border-radius: 999px;
+	background: var(--ds-tint, #e0ecea);
+	font-size: 0.85em;
+}
+
+.ds-confirmation .ds-btn {
+	display: inline-block;
+	padding: 12px 20px;
+	border-radius: 10px;
+	background: var(--ds-brand, #014749);
+	color: #fff;
+	text-decoration: none;
+}

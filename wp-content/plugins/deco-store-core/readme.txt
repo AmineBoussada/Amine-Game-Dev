@@ -4,7 +4,7 @@ Requires at least: 6.4
 Tested up to: 7.1
 Requires PHP: 7.4
 Requires Plugins: woocommerce
-Stable tag: 0.4.0
+Stable tag: 0.5.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -36,6 +36,10 @@ Elementor: the plugin does not use Elementor at all. It never requires Elementor
 Deactivating or deleting the plugin keeps your data unless "delete data on uninstall" is ticked in Déco Store > Settings > General. Orders are WooCommerce data and are never deleted by this plugin.
 
 == Changelog ==
+
+= 0.5.0 =
+* Orders (Phase 5): order form widget ([ds_order_form]) with live server-side price summary, submission pipeline (signed token, honeypot, rate limit, idempotency, server validation and pricing), real WooCommerce cash-on-delivery orders with price/delivery/form snapshots, confirmation page, order screen box and list column, duplicate flag. Works with HPOS and legacy order storage.
+* WooCommerce REST responses no longer include Déco Store internal meta.
 
 = 0.4.0 =
 * Offers (Phase 4): server-side pricing engine (quantity tiers, bundles, free gifts, custom rules with a closed vocabulary), offers editor, "who wins and why" price simulator, overlap warnings, settings for gifts per order and a minimum-price guard.

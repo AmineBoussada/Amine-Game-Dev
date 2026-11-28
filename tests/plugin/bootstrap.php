@@ -22,5 +22,17 @@ if ( ! function_exists( '__' ) ) {
 	}
 }
 
+if ( ! function_exists( 'wp_json_encode' ) ) {
+	/**
+	 * JSON stub.
+	 *
+	 * @param mixed $data Data.
+	 * @return string|false
+	 */
+	function wp_json_encode( $data ) {
+		return json_encode( $data );
+	}
+}
+
 require_once dirname( __DIR__, 2 ) . '/wp-content/plugins/deco-store-core/src/Core/Autoloader.php';
 \DecoStore\Core\Autoloader::register( 'DecoStore\\', dirname( __DIR__, 2 ) . '/wp-content/plugins/deco-store-core/src/' );

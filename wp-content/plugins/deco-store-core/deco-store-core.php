@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Déco Store Core
  * Description:       Business logic for the Déco Store shop: landing pages, cash-on-delivery orders, offers, delivery, inventory and reports. Works with WooCommerce and Elementor Free; Elementor Pro is never required.
- * Version:           0.4.0
+ * Version:           0.5.0
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Requires Plugins:  woocommerce
@@ -17,7 +17,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'DS_CORE_VERSION', '0.4.0' );
+define( 'DS_CORE_VERSION', '0.5.0' );
 define( 'DS_CORE_FILE', __FILE__ );
 define( 'DS_CORE_DIR', plugin_dir_path( __FILE__ ) );
 define( 'DS_CORE_URL', plugin_dir_url( __FILE__ ) );
@@ -29,6 +29,7 @@ require_once DS_CORE_DIR . 'src/Core/Autoloader.php';
 \DecoStore\Core\Autoloader::register( 'DecoStore\\', DS_CORE_DIR . 'src/' );
 
 register_activation_hook( __FILE__, array( '\DecoStore\Core\Activator', 'activate' ) );
+register_deactivation_hook( __FILE__, array( '\DecoStore\Orders\Module', 'unschedule' ) );
 
 // High-Performance Order Storage: declared before WooCommerce initialises.
 add_action( 'before_woocommerce_init', array( '\DecoStore\Core\Plugin', 'declare_woocommerce_compatibility' ) );

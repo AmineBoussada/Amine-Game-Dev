@@ -43,7 +43,7 @@ class Settings {
 	}
 
 	/**
-	 * Fields per settings tab: key => type (`bool`, `enum:<list>` or `int:<min>:<max>`).
+	 * Fields per settings tab: key => type (`bool`, `enum:<list>`, `int:<min>:<max>` or `text:<max length>`).
 	 *
 	 * @return array<string,array<string,string>>
 	 */
@@ -54,7 +54,11 @@ class Settings {
 				'delete_data_on_uninstall' => 'bool',
 			),
 			'orders'  => array(
-				'initial_order_status' => 'enum:order_status',
+				'initial_order_status'   => 'enum:order_status',
+				'confirmation_message'   => 'text:500',
+				'token_ttl_hours'        => 'int:1:72',
+				'max_attempts_per_ip'    => 'int:1:200',
+				'duplicate_window_hours' => 'int:0:168',
 			),
 			'forms'   => array(
 				'phone_rule' => 'enum:phone_rule',
@@ -82,6 +86,14 @@ class Settings {
 			// Offers: one gift per order unless the owner decides otherwise; no price floor unless set.
 			'max_gifts_per_order'      => 1,
 			'min_price_percent'        => 0,
+			// Orders: owner text shown after ordering (empty = neutral default text).
+			'confirmation_message'     => '',
+			// A form left open longer than this must be reloaded before ordering.
+			'token_ttl_hours'          => 12,
+			// Order attempts accepted from one network address per 10 minutes.
+			'max_attempts_per_ip'      => 20,
+			// Same phone + same product within this window: the order is created but flagged (0 = off).
+			'duplicate_window_hours'   => 24,
 		);
 	}
 
@@ -127,6 +139,8 @@ class Settings {
 			$raw = $submitted ? $input[ $key ] : null;
 			if ( 'bool' === $type ) {
 				$result[ $key ] = ! empty( $raw ) && '0' !== $raw;
+			} elseif ( 0 === strpos( $type, 'text:' ) ) {
+				$result[ $key ] = is_string( $raw ) ? Text::block( $raw, (int) substr( $type, 5 ) ) : $defaults[ $key ];
 			} elseif ( 0 === strpos( $type, 'int:' ) ) {
 				list( , $min, $max ) = explode( ':', $type );
 				$text                = is_int( $raw ) ? (string) $raw : ( is_string( $raw ) ? trim( $raw ) : '' );
